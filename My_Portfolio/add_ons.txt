@@ -1,0 +1,31 @@
+Hover states on project cards — slight scale (1.02x), border glow, or shadow lift on :hover with transition
+Underline/arrow-slide on links and buttons (like your "View my work →" arrow shifting right on hover)
+Smooth color/theme transitions when toggling dark/light mode (transition: background-color 0.3s)
+CSS scroll-behavior: smooth for anchor navigation
+
+Intersection Observer for fade-in/slide-up on scroll — elements animate in as they enter viewport. This is the single highest "wow per KB" technique — it's what makes portfolios feel alive without any animation library
+Animated number counters for your coding stats (1395 questions, 508 days, etc.) — triggered once via Intersection Observer, pure JS, no dependency
+
+DevTools for measuring and improving
+Built into Chrome (free, no setup)
+
+Chrome DevTools → Lighthouse tab — your primary tool. Run it in Incognito mode for a clean audit. Gives you Performance, Accessibility, Best Practices, SEO scores plus specific fixes (e.g., "reduce unused JavaScript," "serve images in next-gen format")
+Chrome DevTools → Performance tab — record a page load and see exactly what's blocking rendering (long tasks, layout shifts, JS execution time)
+Chrome DevTools → Network tab — check total page weight, throttle to "Slow 3G" to simulate what a recruiter on a bad connection experiences
+Chrome DevTools → Rendering tab → enable "Paint flashing" and "Layer borders" to spot expensive repaints from your animations
+
+External tools (free)
+
+PageSpeed Insights (pagespeed.web.dev) — same engine as Lighthouse but gives you real-world field data (from actual Chrome users) alongside lab data — more honest than Lighthouse alone
+WebPageTest.org — the most detailed option; shows filmstrip view of load progression, waterfall charts, and lets you test from different real locations/devices
+GTmetrix — good middle-ground UI, tracks performance over time if you re-run it after each deploy
+
+Core Web Vitals to actually watch (these are what Google/recruiters' browsers "feel")
+
+LCP (Largest Contentful Paint) — should be under 2.5s — this is your hero section loading
+CLS (Cumulative Layout Shift) — should be near 0 — nothing should jump around as it loads (common issue with lazy-loaded images without reserved space)
+INP (Interaction to Next Paint) — replaced FID — measures how snappy your hover/click interactions feel, directly relevant since you're adding interactivity
+
+Bundle size specifically (if using React/Next.js)
+
+next build output or Bundle Analyzer (@next/bundle-analyzer) — shows exactly which library is bloating your JS bundle, so you can see if Framer Motion or a chart library is costing you more than it's worth
