@@ -221,7 +221,7 @@ const Navbar = () => {
               ))}
               <ThemeToggle />
               <a
-                href="https://tally.so/r/mYLgYq"
+                href="https://tally.so/r/LZyoBJ"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -303,7 +303,7 @@ const Navbar = () => {
                             </a>
                           ))}
                           <a
-                            href="https://tally.so/r/mYLgYq"
+                            href="https://tally.so/r/LZyoBJ"
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={closeMenu}

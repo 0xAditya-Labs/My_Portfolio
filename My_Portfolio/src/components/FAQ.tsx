@@ -29,6 +29,11 @@ const FAQ = () => {
     answer:
       "I like to start by clearly understanding the problem and deciding what success should look like — including where it's likely to break under real load, not just whether it works in the happy path. I look at the actual requirements and choose the technology that genuinely fits them, then follow a proper SDLC rather than jumping straight into code. From there, I break things down into smaller parts, build step by step, and keep measuring whether I'm actually improving performance or usability, not just adding features. Solving 1,200+ DSA problems has helped me think more systematically, but I always try to balance clean logic with practical execution.",
   },
+  {
+    question: "When are you expected to graduate?",
+    answer:
+      "I will graduate in July 2027 with a B.Tech in Computer Science and Engineering from NIT Jalandhar.",
+  },
 ];
 
 

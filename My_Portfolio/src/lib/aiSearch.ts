@@ -149,7 +149,7 @@ ${RESUME_CONTEXT}
 Question: ${query}
 Instructions for providing responses:
 1. Voice and Tone:
-   - Answer in Pratham's voice (first person)
+   - Answer in Aditya's voice (first person)
    - Be confident but humble
 2. Content Guidelines:
    - Provide specific, data-backed information when available

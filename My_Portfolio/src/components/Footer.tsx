@@ -14,18 +14,18 @@ const Footer = () => {
         <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
         <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
       </div>
-      
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Left Column */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white">pratham.codes</h3>
+            <h3 className="text-2xl font-bold text-white">adityac.codes</h3>
             <p className="text-gray-400">
-              Building intelligent systems where AI meets full stack development. Third year CSE student at Thapar Institute.
+              Building intelligent systems where AI meets full stack development. Final year CSE student at NIT Jalandhar.
             </p>
             <div className="flex gap-3">
               <a
-                href="https://linkedin.com/in/prathamh"
+                href="https://linkedin.com/in/aditya-chauhan-nitj"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all"
@@ -33,7 +33,7 @@ const Footer = () => {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="https://github.com/prathamhanda"
+                href="https://github.com/0xAditya-Labs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all"
@@ -41,7 +41,7 @@ const Footer = () => {
                 <Github className="w-5 h-5" />
               </a>
             </div>
-            
+
           </div>
 
           {/* Middle Column - Navigation */}
@@ -75,10 +75,10 @@ const Footer = () => {
                 Open to SDE and AI/ML opportunities. Let's build something impactful together.
               </p>
               <a
-                href="mailto:prathamhanda10@gmail.com"
-                className="text-sm text-white hover:text-blue-400 flex items-center gap-2 transition-colors"
+                href="mailto:aditya.chauhan.nitj.ac@gmail.com"
+                className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
               >
-                prathamhanda10@gmail.com
+                aditya.chauhan.nitj.ac@gmail.com
                 <ArrowUp className="w-4 h-4 rotate-45" />
               </a>
               <Button
@@ -96,7 +96,7 @@ const Footer = () => {
         <div className="pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-400">
-              © 2025 Pratham Handa. All rights reserved.
+              © 2026 Aditya Chauhan. All rights reserved.
             </p>
             <div className="flex gap-6 text-xs text-gray-400">
               <span className="flex items-center gap-2">
@@ -113,11 +113,11 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-sm text-gray-400">
-              Made with ❤️ in Patiala
-              <span className="block text-xs text-white/40 mt-1 ml-6">|| ॐ नमः शिवाय ||</span>
+              Made with ❤️ in BLR
+              <span className="block text-xs text-white/40 mt-1 ml-6">|| ਜੈ ਪ੍ਰਮਾਤਮਾ ||</span>
             </p>
           </div>
-          
+
           {/* Command Palette Hint */}
           <div className="mt-6 hidden sm:flex justify-center">
             <div className="inline-flex items-center gap-2 text-xs text-gray-400 bg-white/5 px-4 py-2 rounded-full border border-white/10">
