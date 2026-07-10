@@ -51,7 +51,6 @@ const Timeline = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [visibleItems, setVisibleItems] = useState(1);
   const scrollAccumulator = useRef(0);
-  const [hasPassedProjects, setHasPassedProjects] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,17 +69,10 @@ const Timeline = () => {
         setScrollProgress(progress);
       }
 
-      // One-time check: if user has scrolled past the #projects section, mark flag
-      if (!hasPassedProjects) {
-        const projectsEl = document.getElementById('projects') || document.querySelector('[data-section="projects"]') as HTMLElement | null;
-        if (projectsEl) {
-          const projBottom = projectsEl.getBoundingClientRect().bottom + window.scrollY;
-          if (window.scrollY > projBottom) {
-            setHasPassedProjects(true);
-            setVisibleItems(timelineData.length);
-            setScrollProgress(100);
-          }
-        }
+      // Fix for refresh: if we load the page and timeline is already past the top, 
+      // reveal all items so they don't get stuck at 1.
+      if (elementTop < 0) {
+        setVisibleItems(timelineData.length);
       }
     };
 
@@ -100,17 +92,15 @@ const Timeline = () => {
       const rect = timelineRef.current.getBoundingClientRect();
       const isInView = rect.top <= 100 && rect.bottom >= window.innerHeight / 2;
 
-      if (isInView && visibleItems < timelineData.length) {
+      // Only lock scroll if scrolling down and we have more items to show.
+      // This allows scrolling back (up) smoothly without hiding items like a stack.
+      if (isInView && e.deltaY > 0 && visibleItems < timelineData.length) {
         e.preventDefault();
-
         scrollAccumulator.current += e.deltaY;
 
-        if (Math.abs(scrollAccumulator.current) > 100) {
-          if (scrollAccumulator.current > 0 && visibleItems < timelineData.length) {
-            setVisibleItems((prev) => Math.min(prev + 1, timelineData.length));
-          } else if (scrollAccumulator.current < 0 && visibleItems > 1) {
-            setVisibleItems((prev) => Math.max(prev - 1, 1));
-          }
+        // "Wait for very less like 5 scrolls extra" -> reduced threshold to 50
+        if (scrollAccumulator.current > 50) {
+          setVisibleItems((prev) => Math.min(prev + 1, timelineData.length));
           scrollAccumulator.current = 0;
         }
       }

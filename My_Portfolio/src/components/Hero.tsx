@@ -157,7 +157,7 @@ const Hero = () => {
                 className="absolute inset-0 rounded-2xl pointer-events-none block dark:hidden"
                 aria-hidden
                 style={{
-                  background: 'radial-gradient(circle at 62% 34%, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.35) 8%, rgba(255,255,255,0.05) 18%, transparent 28%)',
+                  background: 'radial-gradient(55px at 62% 34%, rgba(255,255,255,0.85) 0px, rgba(255,255,255,0.35) 15px, rgba(255,255,255,0.05) 35px, transparent 55px)',
                   mixBlendMode: 'screen',
                   opacity: 0.22 
                 }}

@@ -6,7 +6,6 @@ import {
   createBrowserRouter,
   RouterProvider,
   Outlet,
-  ScrollRestoration,
 } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -22,7 +21,6 @@ const queryClient = new QueryClient();
 const RootLayout = () => {
   return (
     <>
-      <ScrollRestoration />
       <Outlet />
       <CommandPalette />
       <MobileFAB />
@@ -38,11 +36,7 @@ const router = createBrowserRouter([
       { path: "*", element: <NotFound /> },
     ],
   },
-], {
-  future: {
-    v7_startTransition: true,
-  },
-});
+]);
 
 const App = () => {
   const [showPreloader, setShowPreloader] = useState(true);
@@ -53,7 +47,7 @@ const App = () => {
         {showPreloader && <Preloader onDone={() => setShowPreloader(false)} />}
         <Toaster />
         <Sonner />
-        <RouterProvider router={router} />
+        <RouterProvider router={router} future={{ v7_startTransition: true }} />
         <Analytics />
         <SpeedInsights />
       </TooltipProvider>

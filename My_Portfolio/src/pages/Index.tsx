@@ -17,8 +17,13 @@ const Index = () => {
   const footerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
-  // Handle hash navigation when component mounts
+  // Handle scroll restoration and hash navigation when component mounts
   useEffect(() => {
+    // Force manual scroll restoration to prevent browser from remembering scroll position on refresh
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
     const hash = window.location.hash;
     if (hash) {
       const element = document.querySelector(hash);
@@ -27,6 +32,8 @@ const Index = () => {
           element.scrollIntoView({ behavior: 'smooth' });
         }, 100);
       }
+    } else {
+      window.scrollTo(0, 0);
     }
   }, []);
 
