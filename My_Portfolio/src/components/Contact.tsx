@@ -45,20 +45,21 @@ const Contact = () => {
           </div>
 
           {/* Right Content - CTA Card */}
-          <div className={`glass-card rounded-3xl p-8 md:p-12 shadow-2xl text-center space-y-6 ${contactVisible ? 'scroll-animate scroll-animate-delay-2' : ''}`}>
+          <div className={`bg-white dark:bg-zinc-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8 md:p-12 shadow-2xl text-center space-y-6 ${contactVisible ? 'scroll-animate scroll-animate-delay-2' : ''}`}>
             <div className="w-20 h-20 rounded-full bg-foreground flex items-center justify-center mx-auto">
               <Mail className="w-10 h-10 text-background" />
             </div>
 
             <div>
-              <h3 className="text-3xl font-bold mb-3">Ready to start a project?</h3>
+              <h3 className="text-3xl font-bold mb-3 text-black dark:text-white">Current Availability</h3>
               <p className="text-muted-foreground">
-                Drop me an email and I'll get back to you within 24 hours to discuss your ideas and requirements.
+                Currently wrapping up an SDE internship at Accenture.<br />
+                Open to discuss full-time roles for 2027.
               </p>
             </div>
           <a href="https://tally.so/r/LZyoBJ" target="_blank" rel="noopener noreferrer">
-            <Button size="lg" className="rounded-full gap-2 px-8 py-6 mt-4   text-base font-medium">
-              Get in Touch
+            <Button size="lg" className="rounded-full gap-2 px-8 py-6 mt-4 text-base font-medium">
+              Let's Connect
               <ArrowRight className="w-5 h-5" />
             </Button>
             </a>
