@@ -132,11 +132,11 @@ const Timeline = () => {
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center">
            Tracing the Arc...
           </h2>
-          <img 
-            src="/icons/google-intern.png" 
-            alt="Google Intern '26" 
+          {/* <img 
+            src="/icons/aditya-intern.png" 
+            alt="Aditya Intern '26" 
             className="object-contain w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 flex-shrink-0"
-          />
+          /> */}
         </div>
 
         {/* Desktop Timeline - Horizontal */}

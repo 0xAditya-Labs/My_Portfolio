@@ -4,35 +4,12 @@ const About = () => {
   const { ref: aboutRef, isVisible: aboutVisible } = useScrollAnimation();
   
   const skills = {
-    fullstack: [
-      "JavaScript",
-      "React.js",
-      "Node.js",
-      "Express.js",
-      "FastAPI",
-      "MongoDB",
-      "MySQL",
-      "REST APIs",
-      "WebSockets"
-    ],
-    ml: [
-      "Python",
-      "Scikit-learn",
-      "Pandas",
-      "SMOTE"
-    ],
-    tools: [
-      "C++",
-      "C",
-      "System Design",
-      "Concurrency",
-      "Data Structures & Algorithms",
-      "Operating Systems",
-      "DBMS",
-      "Git",
-      "GitHub",
-      "Vercel"
-    ],
+    languages: ["C++", "Python", "C", "JavaScript"],
+    frameworks: ["React.js", "Node.js", "Express.js", "FastAPI", "TailwindCSS", "DaisyUI"],
+    databases: ["MongoDB", "MySQL", "ChromaDB"],
+    ai: ["LangChain", "Langfuse", "OpenTelemetry", "Scikit-learn", "Pandas", "SHAP", "SMOTE"],
+    core: ["Data Structures & Algorithms", "OOPs", "DBMS", "Operating Systems", "Computer Networks", "System Design"],
+    tools: ["Git", "GitHub", "Postman", "REST APIs", "WebSockets", "JWT"]
   };
 
   return (
@@ -68,57 +45,31 @@ const About = () => {
           <div className={`glass-card rounded-3xl p-8 shadow-xl ${aboutVisible ? 'scroll-animate scroll-animate-delay-2' : ''}`}>
             <h3 className="text-2xl font-bold mb-8">Skills & Expertise</h3>
 
-            <div className="space-y-8">
-              {/* Software & Full-Stack Development */}
-              <div>
-                <h4 className="text-sm uppercase tracking-wider text-muted-foreground mb-4">
-                  Software & Full-Stack Development
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {skills.fullstack.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-4 py-2 bg-white dark:bg-gray-800 text-black dark:text-white rounded-full text-sm font-medium border border-border hover:border-black dark:hover:border-white transition-colors"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+            <div className="space-y-6">
+              {Object.entries({
+                "Languages": skills.languages,
+                "Frameworks": skills.frameworks,
+                "Databases": skills.databases,
+                "AI / ML": skills.ai,
+                "Core CS": skills.core,
+                "Tools": skills.tools,
+              }).map(([category, items]) => (
+                <div key={category}>
+                  <h4 className="text-sm uppercase tracking-wider text-muted-foreground mb-3">
+                    {category}
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {items.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3 py-1.5 bg-white dark:bg-gray-800 text-black dark:text-white rounded-full text-sm font-medium border border-border hover:border-black dark:hover:border-white transition-colors"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-
-              {/* Machine Learning & Computer Vision */}
-              <div>
-                <h4 className="text-sm uppercase tracking-wider text-muted-foreground mb-4">
-                  Machine Learning & Computer Vision
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {skills.ml.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-4 py-2 bg-white dark:bg-gray-800 text-black dark:text-white rounded-full text-sm font-medium border border-border hover:border-black dark:hover:border-white transition-colors"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Developer Tools & Ecosystem */}
-              <div>
-                <h4 className="text-sm uppercase tracking-wider text-muted-foreground mb-4">
-                  Developer Tools & Ecosystem
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {skills.tools.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-4 py-2 bg-white dark:bg-gray-800 text-black dark:text-white rounded-full text-sm font-medium border border-border hover:border-black dark:hover:border-white transition-colors"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

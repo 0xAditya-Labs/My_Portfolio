@@ -3,21 +3,10 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 const TechStackScroller = () => {
   const { ref: scrollerRef, isVisible: scrollerVisible } = useScrollAnimation();
   const techStack = [
-    "React.js",
-    "Node.js",
-    "Docker",
-    "Python",
-    "MySQL",
-    "MongoDB",
-    "TailwindCSS",
-    "Docker",
-    "Next.js",
-    "JavaScript",
-    "Node.js",
-    "Python",
-    "TypeScript",
-    "TailwindCSS",
-    "Next.js",
+    "C++", "Python", "JavaScript", "React.js", "Node.js", "FastAPI",
+    "MongoDB", "MySQL", "ChromaDB", "LangChain", "Git",
+    "C++", "Python", "JavaScript", "React.js", "Node.js", "FastAPI",
+    "MongoDB", "MySQL", "ChromaDB", "LangChain", "Git",
   ];
 
   return (
