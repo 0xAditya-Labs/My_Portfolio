@@ -111,7 +111,7 @@ const Hero = () => {
           <div className="flex flex-wrap gap-4">
             <Button 
               size="lg" 
-              className="rounded-full gap-2 px-8 py-6 text-base font-medium"
+              className="rounded-full gap-2 px-8 py-6 text-base font-medium btn-premium-shine"
               onClick={() => {
                 const projectsSection = document.getElementById('projects');
                 if (projectsSection) {
@@ -125,7 +125,7 @@ const Hero = () => {
             <Button
               size="lg"
               variant="outline"
-              className="rounded-full gap-2 px-8 py-6 text-base font-medium border-2 border-black dark:border-white hover:bg-black hover:text-white hover:border-white dark:hover:bg-white dark:hover:text-black dark:hover:border-black"
+              className="rounded-full gap-2 px-8 py-6 text-base font-medium border-2 border-black dark:border-white hover:bg-black hover:text-white hover:border-white dark:hover:bg-white dark:hover:text-black dark:hover:border-black btn-premium-shine"
               onClick={() => window.open('https://drive.google.com/file/d/11PyjcBvd743IhCidr5P-h6_OAtsWuyYl/view?usp=sharing', '_blank')}
             >
               View Resume

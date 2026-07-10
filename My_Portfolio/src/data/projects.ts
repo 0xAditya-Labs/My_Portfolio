@@ -7,7 +7,7 @@ export interface Project {
   images: string[];
   tags: string[];
   techStack: string[];
-  category: string;
+  category: string | string[];
   featured: boolean;
   githubUrl?: string;
   liveUrl?: string;
@@ -97,7 +97,7 @@ export const projectsData: Project[] = [
     images: ["/projects/chatmind_1.png", "/projects/chatmind_2.png", "/projects/chatmind_3.png"],
     tags: ["React", "WebSockets", "RAG", "FastAPI"],
     techStack: ["MERN", "FastAPI", "WebSockets", "RAG", "BM25", "SocketIO", "Cloudinary"],
-    category: "ai-ml",
+    category: ["web", "ai-ml"],
     featured: true,
     githubUrl: "https://github.com/0xAditya-Labs/ChatMind",
     liveUrl: "https://chatmind-4wtp.onrender.com/",
