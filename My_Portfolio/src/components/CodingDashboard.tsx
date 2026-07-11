@@ -22,10 +22,6 @@ import {
   Tooltip,
   ResponsiveContainer,
   CartesianGrid,
-  PieChart,
-  Pie,
-  Cell,
-  Sector,
 } from "recharts";
 
 // ─────────────────────────────────────────────────────────────────
@@ -244,34 +240,6 @@ const ChartTooltip = ({ active, payload, label }: any) => {
   );
 };
 
-/** Donut active shape */
-const renderActiveShape = (props: any) => {
-  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } = props;
-  return (
-    <g>
-      <Sector
-        cx={cx} cy={cy}
-        innerRadius={Math.max(8, innerRadius - 4)}
-        outerRadius={outerRadius + 8}
-        startAngle={startAngle} endAngle={endAngle}
-        fill={fill}
-        stroke="rgba(0,0,0,0.08)"
-      />
-    </g>
-  );
-};
-
-const PieTooltip = ({ active, payload }: any) => {
-  if (!active || !payload?.length) return null;
-  const p = payload[0];
-  return (
-    <div className="cj-tooltip">
-      <p className="cj-tooltip-label">{p.name}</p>
-      <p className="cj-tooltip-value">{p.value} questions</p>
-    </div>
-  );
-};
-
 // ─────────────────────────────────────────────────────────────────
 // Main component
 // ─────────────────────────────────────────────────────────────────
@@ -280,7 +248,6 @@ const CodingDashboard = () => {
   const [loaded, setLoaded] = useState(false);
   const [cfExpanded, setCfExpanded] = useState(false);
   const [lcExpanded, setLcExpanded] = useState(false);
-  const [activeDonutIndex, setActiveDonutIndex] = useState<number | null>(null);
 
   // Heatmap tooltip state (preserved from original implementation)
   const heatmapRef = useRef<HTMLDivElement | null>(null);
@@ -749,54 +716,41 @@ const CodingDashboard = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="flex flex-col md:flex-row items-center gap-8">
-                  <div className="w-full md:w-1/2">
-                    <ResponsiveContainer width="100%" height={200}>
-                      <PieChart>
-                        <Pie
-                          data={donutData}
-                          dataKey="value"
-                          nameKey="name"
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={48}
-                          outerRadius={88}
-                          paddingAngle={5}
-                          cornerRadius={4}
-                          startAngle={-45}
-                          endAngle={225}
-                          activeIndex={activeDonutIndex ?? undefined}
-                          activeShape={renderActiveShape}
-                          onMouseEnter={(_, i) => setActiveDonutIndex(i)}
-                          onMouseLeave={() => setActiveDonutIndex(null)}
-                        >
-                          {donutData.map((entry, i) => (
-                            <Cell
-                              key={`cell-${i}`}
-                              fill={entry.color}
-                              stroke="rgba(0,0,0,0.06)"
-                              strokeWidth={activeDonutIndex === i ? 4 : 1}
-                            />
-                          ))}
-                        </Pie>
-                        <Tooltip content={<PieTooltip />} />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  </div>
-                  <div className="flex flex-col gap-3 md:w-1/2">
-                    {donutData.map((item, i) => (
-                      <div key={i} className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }} />
-                          <span className="text-sm text-muted-foreground">{item.name}</span>
-                        </div>
-                        <span className="text-sm font-semibold tabular-nums">{item.value}</span>
-                      </div>
-                    ))}
-                    <div className="border-t border-border/40 pt-2 mt-1 flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground">Total (LC)</span>
-                      <span className="text-sm font-bold">{lc?.totalSolved ?? "—"}</span>
+                <div className="flex flex-col gap-6 w-full py-4">
+                  {/* Metrics Row */}
+                  <div className="flex items-center justify-between flex-wrap gap-4">
+                    <div className="flex flex-col">
+                      <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Total (LC)</span>
+                      <span className="text-3xl font-bold tracking-tight">{lc?.totalSolved ?? "—"}</span>
                     </div>
+                    <div className="flex flex-wrap gap-4 md:gap-8">
+                      {donutData.map((item, i) => (
+                        <div key={i} className="flex flex-col items-end">
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: item.color }} />
+                            <span className="text-sm font-medium text-muted-foreground">{item.name}</span>
+                          </div>
+                          <span className="text-xl font-bold tabular-nums mt-0.5">{item.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Horizontal Progress Bar */}
+                  <div className="h-4 w-full bg-muted/50 rounded-full overflow-hidden flex gap-0.5">
+                    {donutData.map((item, i) => {
+                      const total = lc?.totalSolved || 1;
+                      const width = `${(item.value / total) * 100}%`;
+                      if (item.value === 0) return null;
+                      return (
+                        <div 
+                          key={i} 
+                          className="h-full transition-all duration-1000 ease-out hover:brightness-110 cursor-pointer"
+                          style={{ width, backgroundColor: item.color }}
+                          title={`${item.name}: ${item.value}`}
+                        />
+                      );
+                    })}
                   </div>
                 </div>
               </CardContent>
