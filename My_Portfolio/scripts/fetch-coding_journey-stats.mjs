@@ -203,10 +203,34 @@ async function getCodeChefStats() {
 // =============================================================================
 
 async function getGfgStats() {
-  const res = await fetch(`https://www.geeksforgeeks.org/profile/${GFG_USERNAME}`);
-  const html = await res.text();
-  const match = html.match(/"total_problems_solved":(\d+)/);
-  return { totalSolved: match ? Number(match[1]) : null };
+  try {
+    // Ping GFG's internal user profile API directly
+    const res = await fetch(`https://authapi.geeksforgeeks.org/api-get/user-profile-info/?handle=${GFG_USERNAME}`, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+      }
+    });
+
+    if (!res.ok) {
+      console.error(`GFG API Error: ${res.status}`);
+      return { totalSolved: null };
+    }
+
+    const data = await res.json();
+
+    // Convert the JSON to a string to catch the key regardless of where it is nested in the object
+    const jsonString = JSON.stringify(data);
+
+    // Looks for keys like "problemsSolved": 146 or "total_problems_solved": 146
+    const match = jsonString.match(/"total_problems_solved"\s*:\s*(\d+)/i) ||
+      jsonString.match(/"problems_?solved"\s*:\s*(\d+)/i);
+
+    return { totalSolved: match ? Number(match[1]) : null };
+
+  } catch (error) {
+    console.error("Error fetching GFG data:", error);
+    return { totalSolved: null };
+  }
 }
 
 // =============================================================================

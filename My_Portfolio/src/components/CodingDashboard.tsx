@@ -12,8 +12,8 @@ import {
 import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
 import {
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   Tooltip,
@@ -557,8 +557,14 @@ const CodingDashboard = () => {
             <CardContent>
               {lcChartData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={220}>
-                  <LineChart data={lcChartData} margin={{ left: 0, right: 16, top: 8, bottom: 24 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border)/0.4)" vertical={false} />
+                  <AreaChart data={lcChartData} margin={{ left: 0, right: 16, top: 8, bottom: 24 }}>
+                    <defs>
+                      <linearGradient id="colorLc" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#5e6ad2" stopOpacity={0.3}/>
+                        <stop offset="95%" stopColor="#5e6ad2" stopOpacity={0}/>
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--foreground)/0.04)" vertical={false} />
                     <XAxis
                       dataKey="date"
                       stroke="hsl(var(--muted-foreground))"
@@ -566,6 +572,7 @@ const CodingDashboard = () => {
                       interval={xAxisInterval(lcChartData.length)}
                       tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 10 }}
                       tickLine={false}
+                      axisLine={false}
                     />
                     <YAxis
                       stroke="hsl(var(--muted-foreground))"
@@ -575,16 +582,17 @@ const CodingDashboard = () => {
                       axisLine={false}
                       domain={["auto", "auto"]}
                     />
-                    <Tooltip content={<ChartTooltip />} />
-                    <Line
+                    <Tooltip content={<ChartTooltip />} cursor={{ stroke: "hsl(var(--muted-foreground)/0.2)", strokeWidth: 1, strokeDasharray: "4 4" }} />
+                    <Area
                       type="monotone"
                       dataKey="rating"
-                      stroke="#3b82f6"
+                      stroke="#5e6ad2"
+                      fillOpacity={1}
+                      fill="url(#colorLc)"
                       strokeWidth={2}
-                      dot={false}
-                      activeDot={{ r: 5, fill: "#3b82f6", stroke: "#fff", strokeWidth: 2 }}
+                      activeDot={{ r: 4, fill: "#5e6ad2", stroke: "transparent" }}
                     />
-                  </LineChart>
+                  </AreaChart>
                 </ResponsiveContainer>
               ) : (
                 <div className="h-[220px] flex items-center justify-center text-muted-foreground text-sm">
@@ -605,8 +613,14 @@ const CodingDashboard = () => {
             <CardContent>
               {cfChartData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={220}>
-                  <LineChart data={cfChartData} margin={{ left: 0, right: 16, top: 8, bottom: 24 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border)/0.4)" vertical={false} />
+                  <AreaChart data={cfChartData} margin={{ left: 0, right: 16, top: 8, bottom: 24 }}>
+                    <defs>
+                      <linearGradient id="colorCf" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#e87a36" stopOpacity={0.3}/>
+                        <stop offset="95%" stopColor="#e87a36" stopOpacity={0}/>
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--foreground)/0.04)" vertical={false} />
                     <XAxis
                       dataKey="date"
                       stroke="hsl(var(--muted-foreground))"
@@ -614,6 +628,7 @@ const CodingDashboard = () => {
                       interval={xAxisInterval(cfChartData.length)}
                       tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 10 }}
                       tickLine={false}
+                      axisLine={false}
                     />
                     <YAxis
                       stroke="hsl(var(--muted-foreground))"
@@ -623,16 +638,17 @@ const CodingDashboard = () => {
                       axisLine={false}
                       domain={["auto", "auto"]}
                     />
-                    <Tooltip content={<ChartTooltip />} />
-                    <Line
+                    <Tooltip content={<ChartTooltip />} cursor={{ stroke: "hsl(var(--muted-foreground)/0.2)", strokeWidth: 1, strokeDasharray: "4 4" }} />
+                    <Area
                       type="monotone"
                       dataKey="rating"
-                      stroke="#f59e0b"
+                      stroke="#e87a36"
+                      fillOpacity={1}
+                      fill="url(#colorCf)"
                       strokeWidth={2}
-                      dot={false}
-                      activeDot={{ r: 5, fill: "#f59e0b", stroke: "#fff", strokeWidth: 2 }}
+                      activeDot={{ r: 4, fill: "#e87a36", stroke: "transparent" }}
                     />
-                  </LineChart>
+                  </AreaChart>
                 </ResponsiveContainer>
               ) : (
                 <div className="h-[220px] flex items-center justify-center text-muted-foreground text-sm">
@@ -831,28 +847,32 @@ const CodingDashboard = () => {
         }
 
         /* Accent colors */
-        .text-lc { color: #3b82f6; }
-        .text-cf { color: #f59e0b; }
-        .text-lc-icon { color: #3b82f6; }
-        .text-cf-icon { color: #f59e0b; }
+        .text-lc { color: #5e6ad2; }
+        .text-cf { color: #e87a36; }
+        .text-lc-icon { color: #5e6ad2; }
+        .text-cf-icon { color: #e87a36; }
 
         /* Chart cards */
         .cj-chart-card {
-          border-color: hsl(var(--border) / 0.5);
-          transition: box-shadow 0.25s ease;
+          background-color: hsl(var(--card) / 0.4);
+          border-color: hsl(var(--border) / 0.3);
+          backdrop-filter: blur(8px);
+          transition: box-shadow 0.25s ease, border-color 0.25s ease;
         }
         .cj-chart-card:hover {
-          box-shadow: 0 12px 30px -8px hsl(var(--foreground) / 0.07);
+          box-shadow: 0 12px 30px -8px hsl(var(--foreground) / 0.05);
+          border-color: hsl(var(--border) / 0.6);
         }
 
         /* Chart tooltip */
         .cj-tooltip {
-          background: hsl(var(--card));
-          border: 1px solid hsl(var(--border));
-          border-radius: 8px;
+          background: hsl(var(--card) / 0.85);
+          backdrop-filter: blur(8px);
+          border: 1px solid hsl(var(--border) / 0.4);
+          border-radius: 6px;
           padding: 8px 12px;
           font-size: 0.8rem;
-          box-shadow: 0 4px 12px hsl(var(--foreground) / 0.08);
+          box-shadow: 0 8px 24px -6px hsl(0 0% 0% / 0.2);
         }
         .cj-tooltip-label {
           color: hsl(var(--muted-foreground));
