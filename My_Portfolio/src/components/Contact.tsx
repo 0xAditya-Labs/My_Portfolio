@@ -45,7 +45,7 @@ const Contact = () => {
           </div>
 
           {/* Right Content - CTA Card */}
-          <div className={`bg-white dark:bg-zinc-900 border border-gray-100 dark:border-gray-800 rounded-3xl p-8 md:p-12 shadow-2xl text-center space-y-6 ${contactVisible ? 'scroll-animate scroll-animate-delay-2' : ''}`}>
+          <div className={`glass-card rounded-3xl p-8 md:p-12 shadow-2xl text-center space-y-6 ${contactVisible ? 'scroll-animate scroll-animate-delay-2' : ''}`}>
             <div className="w-20 h-20 rounded-full bg-foreground flex items-center justify-center mx-auto">
               <Mail className="w-10 h-10 text-background" />
             </div>

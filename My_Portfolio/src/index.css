@@ -169,7 +169,7 @@ All colors MUST be HSL.
     overflow: hidden;
   }
 
-  .glass-card::after {
+  .glass-card.shining::after {
     content: '';
     position: absolute;
     top: -50%;
@@ -183,20 +183,21 @@ All colors MUST be HSL.
       rgba(255, 255, 255, 0) 100%
     );
     transform: rotate(25deg);
-    transition: all 0.75s ease-out;
+    transition: none;
     opacity: 0;
     pointer-events: none;
   }
 
-  .glass-card:hover {
+  .glass-card.shining:hover {
     transform: translateY(-6px);
     box-shadow: 0 22px 40px -10px rgba(0, 0, 0, 0.2);
     border-color: rgba(255, 255, 255, 0.25);
   }
 
-  .glass-card:hover::after {
+  .glass-card.shining:hover::after {
     left: 125%;
     opacity: 1;
+    transition: left 0.75s ease-out, opacity 0.75s ease-out;
   }
 
   /* Premium button shine effect */
@@ -404,6 +405,7 @@ body.sheet-animating [data-sheet-content] {
 /* restore full shadow after animation (small safe default) */
 [data-sheet-content] {
   -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 /* Mobile Command Palette Improvements */

@@ -10,6 +10,7 @@ import {
   Flame,
   Monitor,
   Github,
+  Target,
 } from "lucide-react";
 import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
@@ -498,12 +499,12 @@ const CodingDashboard = () => {
           {/* Platform profile links */}
           <div className="flex flex-wrap justify-center gap-3 mt-4">
             {[
-              { name: "LeetCode", url: `https://leetcode.com/${LC_USER}`, user: LC_USER, icon: "/icons/LeetCode_logo_black.png" },
-              { name: "Codeforces", url: `https://codeforces.com/profile/${CF_USER}`, user: CF_USER, icon: "/icons/codeforces.webp" },
-              { name: "CodeChef", url: `https://www.codechef.com/users/${CC_USER}`, user: CC_USER, icon: "/icons/codechef.png" },
-              { name: "GeeksforGeeks", url: `https://www.geeksforgeeks.org/user/${GFG_USER}`, user: GFG_USER, icon: "/icons/GeeksForGeeks_logo.png" },
-              { name: "GitHub", url: `https://github.com/${GITHUB_USER}`, user: GITHUB_USER, icon: Github },
-            ].map(({ name, url, user, icon }) => {
+              { name: "LeetCode", url: `https://leetcode.com/${LC_USER}`, user: LC_USER, icon: "/icons/LeetCode_logo_black.png", hoverBorder: "hover:border-[#5e6ad2]/50" },
+              { name: "Codeforces", url: `https://codeforces.com/profile/${CF_USER}`, user: CF_USER, icon: "/icons/codeforces.webp", hoverBorder: "hover:border-[#e87a36]/50" },
+              { name: "CodeChef", url: `https://www.codechef.com/users/${CC_USER}`, user: CC_USER, icon: "/icons/codechef.png", hoverBorder: "hover:border-amber-600/50" },
+              { name: "GeeksforGeeks", url: `https://www.geeksforgeeks.org/user/${GFG_USER}`, user: GFG_USER, icon: "/icons/GeeksForGeeks_logo.png", hoverBorder: "hover:border-green-600/50" },
+              { name: "GitHub", url: `https://github.com/${GITHUB_USER}`, user: GITHUB_USER, icon: Github, hoverBorder: "hover:border-black/50 dark:hover:border-white/50" },
+            ].map(({ name, url, user, icon, hoverBorder }) => {
               const IconComponent = typeof icon !== "string" ? icon : null;
               return (
                 <a
@@ -511,7 +512,7 @@ const CodingDashboard = () => {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-4 py-2 rounded-xl border border-border/60 bg-card hover:border-primary/50 hover:shadow-md transition-all text-sm font-medium text-foreground"
+                  className={`inline-flex items-center gap-3 px-4 py-2 rounded-xl border border-border/60 bg-card hover:shadow-lg transition-all duration-300 text-sm font-medium text-foreground hover:-translate-y-1 ${hoverBorder}`}
                 >
                   <div className="p-1 rounded bg-foreground/5 dark:bg-foreground/10 flex-shrink-0 border border-border/40 flex items-center justify-center">
                     {IconComponent ? (
@@ -534,7 +535,7 @@ const CodingDashboard = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8" ref={statsRowRef}>
 
           {/* LeetCode max rating */}
-          <Card className="cj-stat-card relative group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <Card className="cj-stat-card relative group transition-all duration-300">
             <ProfileLink url={`https://leetcode.com/${LC_USER}`} label="LeetCode" />
             {lcBadge && (
               <img 
@@ -560,7 +561,7 @@ const CodingDashboard = () => {
           </Card>
 
           {/* Codeforces max rating */}
-          <Card className="cj-stat-card relative group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <Card className="cj-stat-card relative group transition-all duration-300">
             <ProfileLink url={`https://codeforces.com/profile/${CF_USER}`} label="Codeforces" />
             <div className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 flex items-center justify-center rounded-full bg-[#e87a36]/10 border border-[#e87a36]/20 shadow-inner opacity-[0.85] transition-transform duration-300 group-hover:scale-[1.05]">
               <svg viewBox="0 0 24 24" className="w-8 h-8 drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -585,7 +586,7 @@ const CodingDashboard = () => {
           </Card>
 
           {/* Total Solved */}
-          <Card className="cj-stat-card relative group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <Card className="cj-stat-card relative group transition-all duration-300">
             <div className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 flex items-center justify-center rounded-full bg-indigo-500/10 border border-indigo-500/20 shadow-inner opacity-[0.85] transition-transform duration-300 group-hover:scale-[1.05]">
               <Code2 className="w-7 h-7 text-indigo-500 dark:text-indigo-400 drop-shadow-sm opacity-90" />
             </div>
@@ -603,7 +604,7 @@ const CodingDashboard = () => {
           </Card>
 
           {/* Active Days */}
-          <Card className="cj-stat-card relative group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <Card className="cj-stat-card relative group transition-all duration-300">
             <div className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 flex items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/20 shadow-inner opacity-[0.85] transition-transform duration-300 group-hover:scale-[1.05]">
               <Calendar className="w-7 h-7 text-emerald-500 dark:text-emerald-400 drop-shadow-sm opacity-90" />
             </div>
@@ -742,7 +743,10 @@ const CodingDashboard = () => {
           <div className="mb-8">
             <Card className="cj-chart-card">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base">LeetCode Difficulty Breakdown</CardTitle>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Target className="w-4 h-4 text-lc-icon" />
+                  Problem Breakdown
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-col md:flex-row items-center gap-8">
@@ -847,44 +851,46 @@ const CodingDashboard = () => {
           </CardContent>
         </Card>
 
-        {/* ── Footer line — CodeChef + GFG ── */}
+        {/* ── Status Footer ── */}
         {(stats?.codechef || stats?.gfg) && (
-          <p className="text-center text-sm text-muted-foreground/70 mb-2">
-            Also active on{" "}
-            <a
-              href={`https://www.codechef.com/users/${CC_USER}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-foreground transition-colors underline underline-offset-2"
-            >
-              CodeChef
-            </a>
-            {stats.codechef?.stars && ` (${stats.codechef.stars}`}
-            {stats.codechef?.maxRating != null && `, peak rating ${stats.codechef.maxRating}`}
-            {stats.codechef?.contestsCount != null && `, ${stats.codechef.contestsCount} contests`}
-            {(stats.codechef?.stars || stats.codechef?.maxRating != null) && ")"}
-            {stats.gfg?.totalSolved != null && (
-              <>
-                {" "}and{" "}
+          <div className="flex flex-col items-center justify-center gap-1.5 text-center mt-12 text-[13.5px] leading-relaxed text-[#4B5563] dark:text-[#9CA3AF] font-normal">
+            <div className="flex items-center justify-center gap-2 flex-wrap">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#22C55E] animate-pulse flex-shrink-0" />
+              <span>
+                Active also on{" "}
                 <a
-                  href={`https://www.geeksforgeeks.org/user/${GFG_USER}`}
+                  href={`https://www.codechef.com/users/${CC_USER}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors underline underline-offset-2"
+                  className="font-bold text-[#374151] dark:text-[#E5E7EB] hover:text-primary transition-colors underline underline-offset-2"
                 >
-                  GeeksforGeeks
+                  CodeChef
                 </a>
-                {` (${stats.gfg.totalSolved}+ problems solved)`}
-              </>
-            )}
-            .
-          </p>
+                {stats.codechef?.stars && ` (${stats.codechef.stars}`}
+                {stats.codechef?.maxRating != null && `, peak rating ${stats.codechef.maxRating}`}
+                {stats.codechef?.contestsCount != null && `, ${stats.codechef.contestsCount} contests`}
+                {(stats.codechef?.stars || stats.codechef?.maxRating != null) && ")"}
+                {stats.gfg?.totalSolved != null && (
+                  <>
+                    {" "}and{" "}
+                    <a
+                      href={`https://www.geeksforgeeks.org/user/${GFG_USER}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-bold text-[#374151] dark:text-[#E5E7EB] hover:text-primary transition-colors underline underline-offset-2"
+                    >
+                      GeeksforGeeks
+                    </a>
+                    {` (${stats.gfg.totalSolved}+ solved)`}
+                  </>
+                )}
+              </span>
+            </div>
+            <div className="text-[#9CA3AF] dark:text-[#6B7280] text-[12px] font-normal">
+              Last auto-synced {fmtRelative(stats?.lastUpdated ?? null)}
+            </div>
+          </div>
         )}
-
-        {/* ── Last updated caption ── */}
-        <p className="text-center text-xs text-muted-foreground/40 mt-1">
-          Data refreshed daily · Last updated {fmtRelative(stats?.lastUpdated ?? null)}
-        </p>
       </div>
 
       {/* ── Scoped styles ── */}
@@ -898,8 +904,12 @@ const CodingDashboard = () => {
         }
         .cj-stat-card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 20px 40px -12px hsl(var(--foreground) / 0.08);
-          border-color: hsl(var(--border));
+          box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+          border-color: #000000 !important;
+        }
+        .dark .cj-stat-card:hover {
+          border-color: #ffffff !important;
+          box-shadow: 0 12px 25px -5px rgba(255, 255, 255, 0.05), 0 8px 10px -6px rgba(255, 255, 255, 0.02);
         }
         .cj-stat-label {
           font-size: 0.75rem;
@@ -935,11 +945,14 @@ const CodingDashboard = () => {
           background-color: hsl(var(--card) / 0.4);
           border-color: hsl(var(--border) / 0.3);
           backdrop-filter: blur(8px);
-          transition: box-shadow 0.25s ease, border-color 0.25s ease;
+          transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .cj-chart-card:hover {
-          box-shadow: 0 12px 30px -8px hsl(var(--foreground) / 0.05);
-          border-color: hsl(var(--border) / 0.6);
+          transform: translateY(-6px);
+          box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        .dark .cj-chart-card:hover {
+          box-shadow: 0 12px 25px -5px rgba(255, 255, 255, 0.05), 0 8px 10px -6px rgba(255, 255, 255, 0.02);
         }
 
         /* Chart tooltip */

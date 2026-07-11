@@ -201,7 +201,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     <h3 className="font-semibold text-lg">Key Features</h3>
                     <div className="space-y-2">
                       {keyFeatures.map((feature, idx) => (
-                        <div key={idx} className="glass-card p-3 rounded-xl border border-border/80 bg-background/50 w-full overflow-hidden">
+                        <div key={idx} className="p-3 rounded-xl border border-border/80 bg-background/50 w-full overflow-hidden">
                           {typeof feature === 'string' ? (
                             <p className="text-sm break-words overflow-wrap-anywhere">{feature}</p>
                           ) : (
@@ -224,7 +224,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     <h3 className="font-semibold text-lg">Challenges & Solutions</h3>
                     <div className="space-y-3">
                       {project.challenges.map((item, idx) => (
-                        <div key={idx} className="glass-card p-3 rounded-xl border-l-4 border-l-accent border border-border/80 bg-background/50 w-full overflow-hidden">
+                        <div key={idx} className="p-3 rounded-xl border-l-4 border-l-accent border border-border/80 bg-background/50 w-full overflow-hidden">
                           {typeof item === 'string' ? (
                             <p className="text-sm break-words overflow-wrap-anywhere">{item}</p>
                           ) : (
@@ -259,7 +259,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     <h3 className="font-semibold text-lg">Technology Choices</h3>
                     <div className="space-y-2">
                       {technical.technologyChoices.map((tech, idx) => (
-                        <div key={idx} className="glass-card p-3 rounded-xl border border-border/80 bg-background/50 w-full overflow-hidden">
+                        <div key={idx} className="p-3 rounded-xl border border-border/80 bg-background/50 w-full overflow-hidden">
                           <h4 className="font-medium text-sm mb-1 break-words">{tech.name}</h4>
                           <p className="text-xs text-muted-foreground break-words overflow-wrap-anywhere">{tech.reason}</p>
                         </div>
@@ -272,7 +272,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                 {technical.architecture && (
                   <div className="space-y-2">
                     <h3 className="font-semibold text-lg">Architecture</h3>
-                    <pre className="glass-card p-3 rounded-xl text-xs overflow-x-auto font-mono border border-border/80 bg-background/50 whitespace-pre-wrap break-words max-w-full">
+                    <pre className="p-3 rounded-xl text-xs overflow-x-auto font-mono border border-border/80 bg-background/50 whitespace-pre-wrap break-words max-w-full">
                       {technical.architecture}
                     </pre>
                   </div>
@@ -284,7 +284,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     <h3 className="font-semibold text-lg">Metrics</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {project.metrics.map((metric, idx) => (
-                        <div key={idx} className="glass-card p-3 rounded-xl text-center border border-border/80 bg-background/50 w-full overflow-hidden">
+                        <div key={idx} className="p-3 rounded-xl text-center border border-border/80 bg-background/50 w-full overflow-hidden">
                           <div className="text-2xl font-bold text-accent break-words">{metric.value}</div>
                           <div className="text-xs font-medium mt-1 break-words">{metric.label}</div>
                           {metric.description && (
@@ -460,7 +460,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                       <h3 className="font-semibold text-xl">Key Features</h3>
                       <div className="grid md:grid-cols-2 gap-4">
                         {keyFeatures.map((feature, idx) => (
-                          <div key={idx} className="glass-card p-4 rounded-xl border border-border/80 bg-background/50">
+                          <div key={idx} className="p-4 rounded-xl border border-border/80 bg-background/50">
                             {typeof feature === 'string' ? (
                               <p className="text-sm">{feature}</p>
                             ) : (
@@ -483,7 +483,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                       <h3 className="font-semibold text-xl">Challenges & Solutions</h3>
                       <div className="space-y-4">
                         {project.challenges.map((item, idx) => (
-                          <div key={idx} className="glass-card p-5 rounded-xl border-l-4 border-l-accent border border-border/80 bg-background/50">
+                          <div key={idx} className="p-5 rounded-xl border-l-4 border-l-accent border border-border/80 bg-background/50">
                             {typeof item === 'string' ? (
                               <p className="text-foreground">{item}</p>
                             ) : (
@@ -520,7 +520,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                       <h3 className="font-semibold text-xl">Technology Choices</h3>
                       <div className="grid md:grid-cols-2 gap-4">
                         {technical.technologyChoices.map((tech, idx) => (
-                          <div key={idx} className="glass-card p-4 rounded-xl border border-border/80 bg-background/50">
+                          <div key={idx} className="p-4 rounded-xl border border-border/80 bg-background/50">
                             <h4 className="font-semibold mb-2">{tech.name}</h4>
                             <p className="text-sm text-muted-foreground">{tech.reason}</p>
                           </div>
@@ -533,7 +533,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                   {technical.architecture && (
                     <div className="space-y-3">
                       <h3 className="font-semibold text-xl">Architecture</h3>
-                      <pre className="glass-card p-4 rounded-xl text-sm overflow-x-auto font-mono leading-relaxed border border-border/80 bg-background/50">
+                      <pre className="p-4 rounded-xl text-sm overflow-x-auto font-mono leading-relaxed border border-border/80 bg-background/50">
                         {technical.architecture}
                       </pre>
                     </div>
@@ -546,7 +546,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                       <h3 className="font-semibold text-xl">Performance Metrics</h3>
                       <div className="grid md:grid-cols-3 gap-6">
                         {project.metrics.map((metric, idx) => (
-                          <div key={idx} className="glass-card p-6 rounded-xl text-center border border-border/80 bg-background/50">
+                          <div key={idx} className="p-6 rounded-xl text-center border border-border/80 bg-background/50">
                             <div className="text-4xl font-bold text-accent mb-2">{metric.value}</div>
                             <div className="text-sm font-semibold mb-1">{metric.label}</div>
                             {metric.description && (
@@ -564,7 +564,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     {/* Setup */}
                     <div className="space-y-3">
                       <h3 className="font-semibold text-xl">Setup</h3>
-                      <pre className="glass-card p-4 rounded-xl text-sm overflow-x-auto font-mono bg-muted border border-border/80">
+                      <pre className="p-4 rounded-xl text-sm overflow-x-auto font-mono bg-muted border border-border/80">
                         {project.documentation.setup}
                       </pre>
                     </div>
@@ -579,7 +579,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     {project.documentation.api && (
                       <div className="space-y-3">
                         <h3 className="font-semibold text-xl">API Reference</h3>
-                        <pre className="glass-card p-4 rounded-xl text-sm overflow-x-auto font-mono bg-muted border border-border/80">
+                        <pre className="p-4 rounded-xl text-sm overflow-x-auto font-mono bg-muted border border-border/80">
                           {project.documentation.api}
                         </pre>
                       </div>
@@ -596,3 +596,4 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
 };
 
 export default ProjectDetailModal;
+
