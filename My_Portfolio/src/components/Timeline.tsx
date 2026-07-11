@@ -34,11 +34,11 @@ const timelineData: TimelineItem[] = [
     tags: ["Mentorship", "DSA", "Community Leadership", "Contest Design"],
   },
   {
-    date: "DEC 2023 – PRESENT",
+    date: "DEC 2023 – MAY 2026",
     title: "Group Representative",
     company: "NIT Jalandhar",
     companyUrl: "https://departments.nitj.ac.in/dept/cse/home",
-    period: "Dec 2023 – Present",
+    period: "Dec 2023 – May 2026",
     summary:
       "Represented 1 of 6 CSE groups (28 members), streamlining faculty-student communication; initiated process re-engineering across 10+ departments, reducing paperwork by 75%.",
     tags: ["Leadership", "Process Improvement", "Cross-functional Coordination"],
@@ -85,7 +85,7 @@ const Timeline = () => {
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       if (!timelineRef.current) return;
-      
+
       // Only apply scroll-jacking on desktop (lg breakpoint = 1024px)
       if (window.innerWidth < 1024) return;
 
@@ -120,7 +120,7 @@ const Timeline = () => {
         {/* Title with Google Intern Badge */}
         <div ref={ref} className={`${isVisible ? "scroll-animate" : "opacity-0"} flex items-center justify-center gap-8 mb-20 flex-wrap`}>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center">
-           Tracing the Arc...
+            Tracing the Arc...
           </h2>
           {/* <img 
             src="/icons/aditya-intern.png" 
@@ -133,7 +133,7 @@ const Timeline = () => {
         <div className="hidden lg:block relative">
           {/* Background Line */}
           <div className="absolute top-8 left-0 right-0 h-0.5 bg-border" />
-          
+
           {/* Animated Progress Line */}
           <div
             className="absolute top-8 left-0 h-0.5 bg-gradient-to-r from-accent via-primary to-accent transition-all duration-300 ease-out"
@@ -145,18 +145,16 @@ const Timeline = () => {
             {timelineData.map((item, index) => (
               <div
                 key={index}
-                className={`relative transition-all duration-700 ${
-                  index < visibleItems ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                }`}
+                className={`relative transition-all duration-700 ${index < visibleItems ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                  }`}
               >
                 {/* Dot */}
                 <div className="relative flex justify-center mb-8">
                   <div
-                    className={`w-4 h-4 rounded-full border-2 transition-all duration-500 ${
-                      index < visibleItems
+                    className={`w-4 h-4 rounded-full border-2 transition-all duration-500 ${index < visibleItems
                         ? "bg-accent border-accent shadow-lg shadow-accent/50 scale-125"
                         : "bg-background border-border"
-                    }`}
+                      }`}
                   />
                 </div>
 
@@ -208,7 +206,7 @@ const Timeline = () => {
         <div className="lg:hidden relative pl-8">
           {/* Background Line */}
           <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-border" />
-          
+
           {/* Animated Progress Line */}
           <div
             className="absolute left-4 top-0 w-0.5 bg-gradient-to-b from-accent via-primary to-accent transition-all duration-300 ease-out"
@@ -220,18 +218,16 @@ const Timeline = () => {
             {timelineData.map((item, index) => (
               <div
                 key={index}
-                className={`relative ${
-                  isVisible ? `scroll-animate scroll-animate-delay-${index + 1}` : "opacity-0"
-                }`}
+                className={`relative ${isVisible ? `scroll-animate scroll-animate-delay-${index + 1}` : "opacity-0"
+                  }`}
               >
                 {/* Dot */}
                 <div className="absolute -left-[26px] top-0">
                   <div
-                    className={`w-4 h-4 rounded-full border-2 transition-all duration-500 ${
-                      scrollProgress > (index / (timelineData.length - 1)) * 100
+                    className={`w-4 h-4 rounded-full border-2 transition-all duration-500 ${scrollProgress > (index / (timelineData.length - 1)) * 100
                         ? "bg-accent border-accent shadow-lg shadow-accent/50 scale-125"
                         : "bg-background border-border"
-                    }`}
+                      }`}
                   />
                 </div>
 

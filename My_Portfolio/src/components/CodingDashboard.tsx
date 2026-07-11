@@ -171,6 +171,17 @@ function historyToChartData(history: RatingPoint[]): { date: string; rating: num
   }));
 }
 
+function getCfRankExplanation(rank: string | null) {
+  const r = rank?.toLowerCase() || "";
+  if (r.includes("newbie")) return "Newbie (0–1199) is the starting rank on Codeforces. It shows a basic understanding of programming and an eagerness to learn.";
+  if (r.includes("pupil")) return "Pupil (1200–1399) reflects a growing understanding of core algorithms and problem-solving speed.";
+  if (r.includes("specialist")) return "Specialist (1400–1599) places in the top ~15% of active users. It reflects consistent participation and strong data structures knowledge.";
+  if (r.includes("expert")) return "Expert (1600–1899) is a highly respected rank, showcasing deep algorithmic knowledge and fast implementation skills.";
+  if (r.includes("candidate master")) return "Candidate Master (1900–2099) places users among the elite competitive programmers.";
+  if (r.includes("master") && !r.includes("candidate")) return "Master (2100+) is a tier reserved for world-class problem solvers.";
+  return "Competitive programming ranks reflect problem-solving speed and algorithmic knowledge under time pressure.";
+}
+
 // ─────────────────────────────────────────────────────────────────
 // Sub-components
 // ─────────────────────────────────────────────────────────────────
@@ -235,6 +246,7 @@ const CodingDashboard = () => {
   const [stats, setStats] = useState<CodingJourneyStats | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [cfExpanded, setCfExpanded] = useState(false);
+  const [lcExpanded, setLcExpanded] = useState(false);
   const [activeDonutIndex, setActiveDonutIndex] = useState<number | null>(null);
 
   // Heatmap tooltip state (preserved from original implementation)
@@ -253,6 +265,17 @@ const CodingDashboard = () => {
   const cfMaxRating = useCountUp(stats?.codeforces?.maxRating ?? null, statsInView);
   const totalSolved = useCountUp(stats?.totalSolvedAllPlatforms ?? null, statsInView);
   const activeDays = useCountUp(stats?.totalActiveDays ?? null, statsInView);
+
+  // LeetCode Badge Logic
+  const rawLcMaxRating = stats?.leetcode?.maxRating;
+  let lcBadge = null;
+  if (rawLcMaxRating != null) {
+    if (rawLcMaxRating >= 2150) {
+      lcBadge = { src: "/badge-guardian.png", name: "Guardian" };
+    } else if (rawLcMaxRating >= 1850) {
+      lcBadge = { src: "/badge-knight.png", name: "Knight" };
+    }
+  }
 
   // ── Fetch stats JSON once ──────────────────────────────────────
   useEffect(() => {
@@ -443,20 +466,25 @@ const CodingDashboard = () => {
           {/* Platform profile links */}
           <div className="flex flex-wrap justify-center gap-3 mt-4">
             {[
-              { name: "LeetCode", url: `https://leetcode.com/${LC_USER}`, user: LC_USER },
-              { name: "Codeforces", url: `https://codeforces.com/profile/${CF_USER}`, user: CF_USER },
-              { name: "CodeChef", url: `https://www.codechef.com/users/${CC_USER}`, user: CC_USER },
-              { name: "GeeksforGeeks", url: `https://www.geeksforgeeks.org/user/${GFG_USER}`, user: GFG_USER },
-            ].map(({ name, url, user }) => (
+              { name: "LeetCode", url: `https://leetcode.com/${LC_USER}`, user: LC_USER, icon: "/icons/LeetCode_logo_black.png" },
+              { name: "Codeforces", url: `https://codeforces.com/profile/${CF_USER}`, user: CF_USER, icon: "/icons/codeforces.webp" },
+              { name: "CodeChef", url: `https://www.codechef.com/users/${CC_USER}`, user: CC_USER, icon: "/icons/codechef.png" },
+              { name: "GeeksforGeeks", url: `https://www.geeksforgeeks.org/user/${GFG_USER}`, user: GFG_USER, icon: "/icons/GeeksForGeeks_logo.png" },
+            ].map(({ name, url, user, icon }) => (
               <a
                 key={name}
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/60 bg-card hover:border-primary/50 hover:shadow-md transition-all text-sm font-medium text-muted-foreground hover:text-foreground"
+                className="inline-flex items-center gap-3 px-4 py-2 rounded-xl border border-border/60 bg-card hover:border-primary/50 hover:shadow-md transition-all text-sm font-medium text-muted-foreground hover:text-foreground"
               >
-                {name}
-                <span className="text-xs opacity-50">@{user}</span>
+                <div className="p-1 rounded bg-foreground/5 dark:bg-foreground/10 flex-shrink-0 border border-border/40">
+                  <img src={icon} alt={name} className={`w-3.5 h-3.5 object-contain opacity-80 ${name === 'LeetCode' ? 'dark:invert' : ''}`} />
+                </div>
+                <div className="flex flex-col items-start leading-none">
+                  <span className="mb-0.5">{name}</span>
+                  <span className="text-[10px] opacity-60 font-normal">@{user}</span>
+                </div>
               </a>
             ))}
           </div>
@@ -466,17 +494,51 @@ const CodingDashboard = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8" ref={statsRowRef}>
 
           {/* LeetCode max rating */}
-          <Card className="cj-stat-card relative group">
+          <Card 
+            className={`cj-stat-card relative group ${lcBadge ? "cursor-pointer" : ""}`}
+            onClick={() => lcBadge && setLcExpanded((v) => !v)}
+          >
             <ProfileLink url={`https://leetcode.com/${LC_USER}`} label="LeetCode" />
+            {lcBadge && (
+              <img 
+                src={lcBadge.src} 
+                alt={lcBadge.name} 
+                title={`LeetCode ${lcBadge.name}`} 
+                className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 object-contain drop-shadow-md opacity-90 transition-transform group-hover:scale-110" 
+              />
+            )}
             <CardContent className="p-6">
-              <p className="cj-stat-label">LeetCode Peak</p>
+              <div className="flex items-center gap-2 mb-2">
+                <img src="/icons/LeetCode_logo_black.png" className="w-4 h-4 dark:invert opacity-70" alt="LeetCode" />
+                <p className="cj-stat-label mb-0">LeetCode Peak</p>
+              </div>
               <div className="cj-stat-value text-lc">
                 {stats?.leetcode?.maxRating != null ? lcMaxRating : "—"}
               </div>
               {stats?.leetcode?.topPercentage != null && (
                 <p className="cj-stat-sub">Top {stats.leetcode.topPercentage}%</p>
               )}
-              <p className="cj-stat-sub mt-1 opacity-60">Max Contest Rating</p>
+              {lcBadge ? (
+                <>
+                  <div className="mt-3 flex items-center gap-1 text-xs text-muted-foreground/50">
+                    {lcExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                    {lcExpanded ? "less" : `what's ${lcBadge.name}?`}
+                  </div>
+                  <div
+                    className="overflow-hidden transition-all duration-300 ease-out"
+                    style={{ maxHeight: lcExpanded ? "120px" : "0px", opacity: lcExpanded ? 1 : 0 }}
+                  >
+                    <p className="text-xs text-muted-foreground mt-3 leading-relaxed border-t border-border/30 pt-3 pr-14">
+                      <span className="font-medium text-foreground">{lcBadge.name}</span>{" "}
+                      {lcBadge.name === "Guardian" 
+                        ? "is the highest LeetCode badge, awarded for a contest rating of 2150+, placing users in the top ~1% globally." 
+                        : "is awarded to LeetCode users with a contest rating of 1850 or higher, placing them in the top ~5% of competitors."}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <p className="cj-stat-sub mt-1 opacity-60">Max Contest Rating</p>
+              )}
             </CardContent>
           </Card>
 
@@ -487,7 +549,10 @@ const CodingDashboard = () => {
           >
             <ProfileLink url={`https://codeforces.com/profile/${CF_USER}`} label="Codeforces" />
             <CardContent className="p-6">
-              <p className="cj-stat-label">Codeforces Peak</p>
+              <div className="flex items-center gap-2 mb-2">
+                <img src="/icons/codeforces.webp" className="w-4 h-4 opacity-70" alt="Codeforces" />
+                <p className="cj-stat-label mb-0">Codeforces Peak</p>
+              </div>
               <div className="cj-stat-value text-cf">
                 {stats?.codeforces?.maxRating != null ? cfMaxRating : "—"}
               </div>
@@ -504,7 +569,7 @@ const CodingDashboard = () => {
               {/* Expand toggle */}
               <div className="mt-3 flex items-center gap-1 text-xs text-muted-foreground/50">
                 {cfExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
-                {cfExpanded ? "less" : "what's Specialist?"}
+                {cfExpanded ? "less" : `what's ${stats?.codeforces?.maxRankTitle || 'this rank'}?`}
               </div>
               {/* Expanded context */}
               <div
@@ -512,7 +577,8 @@ const CodingDashboard = () => {
                 style={{ maxHeight: cfExpanded ? "120px" : "0px", opacity: cfExpanded ? 1 : 0 }}
               >
                 <p className="text-xs text-muted-foreground mt-3 leading-relaxed border-t border-border/30 pt-3">
-                  <span className="font-medium text-foreground">Specialist</span> (1400–1599) places in the top ~15% of active Codeforces users globally. It reflects consistent contest participation, strong data structures knowledge, and the ability to solve Div. 2 C/D problems under time pressure.
+                  <span className="font-medium text-foreground">{stats?.codeforces?.maxRankTitle || "Rank"}</span>:{" "}
+                  {getCfRankExplanation(stats?.codeforces?.maxRankTitle)}
                 </p>
               </div>
             </CardContent>
