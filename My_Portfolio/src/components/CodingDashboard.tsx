@@ -8,6 +8,8 @@ import {
   ChevronDown,
   ChevronUp,
   Flame,
+  Monitor,
+  Github,
 } from "lucide-react";
 import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
@@ -32,6 +34,7 @@ const LC_USER = "Aditya_chauhan__";
 const CF_USER = "Adree";
 const CC_USER = "chauhanaditya5";
 const GFG_USER = "adityacha9ddw";
+const GITHUB_USER = "0xAditya-Labs";
 
 // ─────────────────────────────────────────────────────────────────
 // Types
@@ -173,13 +176,42 @@ function historyToChartData(history: RatingPoint[]): { date: string; rating: num
 
 function getCfRankExplanation(rank: string | null) {
   const r = rank?.toLowerCase() || "";
-  if (r.includes("newbie")) return "Newbie (0–1199) is the starting rank on Codeforces. It shows a basic understanding of programming and an eagerness to learn.";
-  if (r.includes("pupil")) return "Pupil (1200–1399) reflects a growing understanding of core algorithms and problem-solving speed.";
-  if (r.includes("specialist")) return "Specialist (1400–1599) places in the top ~15% of active users. It reflects consistent participation and strong data structures knowledge.";
-  if (r.includes("expert")) return "Expert (1600–1899) is a highly respected rank, showcasing deep algorithmic knowledge and fast implementation skills.";
-  if (r.includes("candidate master")) return "Candidate Master (1900–2099) places users among the elite competitive programmers.";
-  if (r.includes("master") && !r.includes("candidate")) return "Master (2100+) is a tier reserved for world-class problem solvers.";
-  return "Competitive programming ranks reflect problem-solving speed and algorithmic knowledge under time pressure.";
+  let desc = "";
+  if (r.includes("newbie")) {
+    desc = "Newbie is the entry-level rank, indicating initial participation and basic problem-solving skills.";
+  } else if (r.includes("pupil")) {
+    desc = "Pupil indicates solid foundational coding and growing familiarity with classic algorithms.";
+  } else if (r.includes("specialist")) {
+    desc = "Specialist represents the top ~15% of active users, showing consistent contest performance and strong data structures knowledge.";
+  } else if (r.includes("expert")) {
+    desc = "Expert is a highly respected milestone, showcasing deep algorithmic mastery and fast implementation speed.";
+  } else if (r.includes("candidate master")) {
+    desc = "Candidate Master marks the entrance into elite competitive programming tiers.";
+  } else if (r.includes("master") && !r.includes("candidate")) {
+    desc = "Master/International Master represents world-class algorithmic proficiency.";
+  } else if (r.includes("grandmaster")) {
+    desc = "Grandmaster/Legendary Grandmaster is the absolute pinnacle of competitive programming.";
+  } else {
+    desc = "Reflects algorithmic accuracy and speed under tight contest time limits.";
+  }
+
+  return (
+    <div className="space-y-2 mt-1">
+      <p>{desc}</p>
+      <div className="pt-2 border-t border-border/30">
+        <span className="block font-medium text-foreground mb-1 text-[10px] uppercase tracking-wider">Codeforces Rating Hierarchy:</span>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-[10px] text-muted-foreground/75">
+          <div>• Newbie: &lt; 1200</div>
+          <div>• Pupil: 1200–1399</div>
+          <div>• Specialist: 1400–1599</div>
+          <div>• Expert: 1600–1899</div>
+          <div>• Candidate Master: 1900–2099</div>
+          <div>• Master / IM: 2100–2399</div>
+          <div>• Grandmaster+: 2400+</div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 // ─────────────────────────────────────────────────────────────────
@@ -470,23 +502,31 @@ const CodingDashboard = () => {
               { name: "Codeforces", url: `https://codeforces.com/profile/${CF_USER}`, user: CF_USER, icon: "/icons/codeforces.webp" },
               { name: "CodeChef", url: `https://www.codechef.com/users/${CC_USER}`, user: CC_USER, icon: "/icons/codechef.png" },
               { name: "GeeksforGeeks", url: `https://www.geeksforgeeks.org/user/${GFG_USER}`, user: GFG_USER, icon: "/icons/GeeksForGeeks_logo.png" },
-            ].map(({ name, url, user, icon }) => (
-              <a
-                key={name}
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-4 py-2 rounded-xl border border-border/60 bg-card hover:border-primary/50 hover:shadow-md transition-all text-sm font-medium text-muted-foreground hover:text-foreground"
-              >
-                <div className="p-1 rounded bg-foreground/5 dark:bg-foreground/10 flex-shrink-0 border border-border/40">
-                  <img src={icon} alt={name} className={`w-3.5 h-3.5 object-contain opacity-80 ${name === 'LeetCode' ? 'dark:invert' : ''}`} />
-                </div>
-                <div className="flex flex-col items-start leading-none">
-                  <span className="mb-0.5">{name}</span>
-                  <span className="text-[10px] opacity-60 font-normal">@{user}</span>
-                </div>
-              </a>
-            ))}
+              { name: "GitHub", url: `https://github.com/${GITHUB_USER}`, user: GITHUB_USER, icon: Github },
+            ].map(({ name, url, user, icon }) => {
+              const IconComponent = typeof icon !== "string" ? icon : null;
+              return (
+                <a
+                  key={name}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-4 py-2 rounded-xl border border-border/60 bg-card hover:border-primary/50 hover:shadow-md transition-all text-sm font-medium text-foreground"
+                >
+                  <div className="p-1 rounded bg-foreground/5 dark:bg-foreground/10 flex-shrink-0 border border-border/40 flex items-center justify-center">
+                    {IconComponent ? (
+                      <IconComponent className="w-3.5 h-3.5 text-black dark:text-white fill-current opacity-80" />
+                    ) : (
+                      <img src={icon as string} alt={name} className={`w-3.5 h-3.5 object-contain opacity-80 ${name === 'LeetCode' ? 'dark:invert' : ''}`} />
+                    )}
+                  </div>
+                  <div className="flex flex-col items-start leading-none">
+                    <span className="mb-0.5 font-bold">{name}</span>
+                    <span className="text-[10px] text-muted-foreground font-normal">@{user}</span>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </div>
 
@@ -494,128 +534,89 @@ const CodingDashboard = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8" ref={statsRowRef}>
 
           {/* LeetCode max rating */}
-          <Card 
-            className={`cj-stat-card relative group ${lcBadge ? "cursor-pointer" : ""}`}
-            onClick={() => lcBadge && setLcExpanded((v) => !v)}
-          >
+          <Card className="cj-stat-card relative group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
             <ProfileLink url={`https://leetcode.com/${LC_USER}`} label="LeetCode" />
             {lcBadge && (
               <img 
                 src={lcBadge.src} 
                 alt={lcBadge.name} 
                 title={`LeetCode ${lcBadge.name}`} 
-                className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 object-contain drop-shadow-md opacity-90 transition-transform group-hover:scale-110" 
+                className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 object-contain drop-shadow-md opacity-[0.85] transition-transform duration-300 group-hover:scale-[1.05]" 
               />
             )}
             <CardContent className="p-6">
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-1.5">
                 <img src="/icons/LeetCode_logo_black.png" className="w-4 h-4 dark:invert opacity-70" alt="LeetCode" />
-                <p className="cj-stat-label mb-0">LeetCode Peak</p>
+                <p className="cj-stat-label mb-0 uppercase tracking-wider">LeetCode Peak</p>
               </div>
-              <div className="cj-stat-value text-lc">
+              <div className="w-5 h-0.5 bg-[#5e6ad2] mb-3 rounded-full opacity-80 transition-all duration-300 group-hover:w-[40%]" />
+              <div className="cj-stat-value text-lc tabular-nums">
                 {stats?.leetcode?.maxRating != null ? lcMaxRating : "—"}
               </div>
               {stats?.leetcode?.topPercentage != null && (
                 <p className="cj-stat-sub">Top {stats.leetcode.topPercentage}%</p>
               )}
-              {lcBadge ? (
-                <>
-                  <div className="mt-3 flex items-center gap-1 text-xs text-muted-foreground/50">
-                    {lcExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
-                    {lcExpanded ? "less" : `what's ${lcBadge.name}?`}
-                  </div>
-                  <div
-                    className="overflow-hidden transition-all duration-300 ease-out"
-                    style={{ maxHeight: lcExpanded ? "120px" : "0px", opacity: lcExpanded ? 1 : 0 }}
-                  >
-                    <p className="text-xs text-muted-foreground mt-3 leading-relaxed border-t border-border/30 pt-3 pr-14">
-                      <span className="font-medium text-foreground">{lcBadge.name}</span>{" "}
-                      {lcBadge.name === "Guardian" 
-                        ? "is the highest LeetCode badge, awarded for a contest rating of 2150+, placing users in the top ~1% globally." 
-                        : "is awarded to LeetCode users with a contest rating of 1850 or higher, placing them in the top ~5% of competitors."}
-                    </p>
-                  </div>
-                </>
-              ) : (
-                <p className="cj-stat-sub mt-1 opacity-60">Max Contest Rating</p>
-              )}
             </CardContent>
           </Card>
 
-          {/* Codeforces expandable card */}
-          <Card
-            className="cj-stat-card relative group cursor-pointer"
-            onClick={() => setCfExpanded((v) => !v)}
-          >
+          {/* Codeforces max rating */}
+          <Card className="cj-stat-card relative group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
             <ProfileLink url={`https://codeforces.com/profile/${CF_USER}`} label="Codeforces" />
-            <div className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 flex items-center justify-center rounded-full bg-[#e87a36]/10 border border-[#e87a36]/20 shadow-inner opacity-90 transition-transform group-hover:scale-110">
+            <div className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 flex items-center justify-center rounded-full bg-[#e87a36]/10 border border-[#e87a36]/20 shadow-inner opacity-[0.85] transition-transform duration-300 group-hover:scale-[1.05]">
               <svg viewBox="0 0 24 24" className="w-8 h-8 drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="3" y="10" width="4" height="11" rx="1" fill="#e87a36" className="opacity-95" />
-                <rect x="10" y="3" width="4" height="18" rx="1" fill="#3182ce" className="opacity-95" />
-                <rect x="17" y="7" width="4" height="14" rx="1" fill="#ecc94b" className="opacity-95" />
+                <rect x="3" y="10" width="4" height="11" rx="1" fill="#e87a36" className="opacity-90" />
+                <rect x="10" y="3" width="4" height="18" rx="1" fill="#3182ce" className="opacity-90" />
+                <rect x="17" y="7" width="4" height="14" rx="1" fill="#ecc94b" className="opacity-90" />
               </svg>
             </div>
             <CardContent className="p-6">
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-1.5">
                 <img src="/icons/codeforces.webp" className="w-4 h-4 opacity-70" alt="Codeforces" />
-                <p className="cj-stat-label mb-0">Codeforces Peak</p>
+                <p className="cj-stat-label mb-0 uppercase tracking-wider">Codeforces Peak</p>
               </div>
-              <div className="cj-stat-value text-cf">
+              <div className="w-5 h-0.5 bg-[#e87a36] mb-3 rounded-full opacity-80 transition-all duration-300 group-hover:w-[40%]" />
+              <div className="cj-stat-value text-cf tabular-nums">
                 {stats?.codeforces?.maxRating != null ? cfMaxRating : "—"}
               </div>
               {stats?.codeforces?.maxRankTitle && (
                 <p className="cj-stat-sub font-medium">{stats.codeforces.maxRankTitle}</p>
               )}
-              {/* Current rating secondary */}
-              {stats?.codeforces?.currentRating != null && (
-                <p className="text-xs text-muted-foreground/60 mt-0.5">
-                  Current: {stats.codeforces.currentRating}
-                  {stats.codeforces.currentRankTitle && ` · ${stats.codeforces.currentRankTitle}`}
-                </p>
-              )}
-              {/* Expand toggle */}
-              <div className="mt-3 flex items-center gap-1 text-xs text-muted-foreground/50">
-                {cfExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
-                {cfExpanded ? "less" : `what's ${stats?.codeforces?.maxRankTitle || 'this rank'}?`}
-              </div>
-              {/* Expanded context */}
-              <div
-                className="overflow-hidden transition-all duration-300 ease-out"
-                style={{ maxHeight: cfExpanded ? "120px" : "0px", opacity: cfExpanded ? 1 : 0 }}
-              >
-                <p className="text-xs text-muted-foreground mt-3 leading-relaxed border-t border-border/30 pt-3 pr-14">
-                  <span className="font-medium text-foreground">{stats?.codeforces?.maxRankTitle || "Rank"}</span>:{" "}
-                  {getCfRankExplanation(stats?.codeforces?.maxRankTitle)}
-                </p>
-              </div>
             </CardContent>
           </Card>
 
           {/* Total Solved */}
-          <Card className="cj-stat-card relative group">
-            <div className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 flex items-center justify-center rounded-full bg-indigo-500/10 border border-indigo-500/20 shadow-inner opacity-90 transition-transform group-hover:scale-110">
-              <Code2 className="w-7 h-7 text-indigo-500 dark:text-indigo-400 drop-shadow-sm" />
+          <Card className="cj-stat-card relative group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+            <div className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 flex items-center justify-center rounded-full bg-indigo-500/10 border border-indigo-500/20 shadow-inner opacity-[0.85] transition-transform duration-300 group-hover:scale-[1.05]">
+              <Code2 className="w-7 h-7 text-indigo-500 dark:text-indigo-400 drop-shadow-sm opacity-90" />
             </div>
             <CardContent className="p-6">
-              <p className="cj-stat-label">Total Problems Solved</p>
-              <div className="cj-stat-value">
+              <div className="flex items-center gap-2 mb-1.5">
+                <Monitor className="w-4 h-4 text-indigo-500 opacity-70" />
+                <p className="cj-stat-label mb-0 uppercase tracking-wider">Total Problems Solved</p>
+              </div>
+              <div className="w-5 h-0.5 bg-indigo-500 mb-3 rounded-full opacity-80 transition-all duration-300 group-hover:w-[40%]" />
+              <div className="cj-stat-value tabular-nums">
                 {stats?.totalSolvedAllPlatforms != null ? totalSolved : "—"}
               </div>
-              <p className="cj-stat-sub opacity-60">across all platforms</p>
+              <p className="cj-stat-sub opacity-60">LeetCode • Codeforces • CodeChef • GeeksforGeeks</p>
             </CardContent>
           </Card>
 
           {/* Active Days */}
-          <Card className="cj-stat-card relative group">
-            <div className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 flex items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/20 shadow-inner opacity-90 transition-transform group-hover:scale-110">
-              <Calendar className="w-7 h-7 text-emerald-500 dark:text-emerald-400 drop-shadow-sm" />
+          <Card className="cj-stat-card relative group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+            <div className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 flex items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/20 shadow-inner opacity-[0.85] transition-transform duration-300 group-hover:scale-[1.05]">
+              <Calendar className="w-7 h-7 text-emerald-500 dark:text-emerald-400 drop-shadow-sm opacity-90" />
             </div>
             <CardContent className="p-6">
-              <p className="cj-stat-label">Active Days</p>
-              <div className="cj-stat-value">
+              <div className="flex items-center gap-2 mb-1.5">
+                <Flame className="w-4 h-4 text-emerald-500 opacity-70" />
+                <p className="cj-stat-label mb-0 uppercase tracking-wider">Active Days</p>
+              </div>
+              <div className="w-5 h-0.5 bg-emerald-500 mb-3 rounded-full opacity-80 transition-all duration-300 group-hover:w-[40%]" />
+              <div className="cj-stat-value tabular-nums">
                 {stats?.totalActiveDays != null ? activeDays : "—"}
               </div>
-              <p className="cj-stat-sub opacity-60">days coded (lifetime)</p>
+              <p className="cj-stat-sub opacity-60">Days with submissions</p>
             </CardContent>
           </Card>
         </div>
