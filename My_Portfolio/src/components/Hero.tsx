@@ -80,7 +80,7 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 lg:gap-4 items-center relative z-10">
         {/* Command Palette Hint - Overlaid on main content */}
         <div className="absolute top-0.5 right-0 z-20 hidden sm:block">
-          <div className="bg-gradient-to-r from-gray-100/95 to-gray-200/90 dark:from-gray-900/95 dark:to-black/90 backdrop-blur-sm text-gray-900 dark:text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg border border-black/20 dark:border-white/10">
+          <div className="bg-gradient-to-r from-gray-100/95 to-gray-200/90 dark:from-gray-900/95 dark:to-card/90 backdrop-blur-sm text-gray-900 dark:text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg border border-black/20 dark:border-white/10">
             Press <kbd className="px-2 py-0.5 mx-1 bg-gray-300/60 dark:bg-gray-800/60 border border-black/20 dark:border-white/20 rounded text-xs font-mono font-semibold">Ctrl+K</kbd> to open the command palette
           </div>
         </div>
@@ -89,12 +89,12 @@ const Hero = () => {
           <div className="inline-block">
             {isNarrow ? (
               <div className="marquee" aria-hidden>
-                <div className="marquee__inner bg-black text-white px-6 py-2 rounded-full text-sm font-medium uppercase tracking-wide">
+                <div className="marquee__inner bg-primary text-primary-foreground px-6 py-2 rounded-full text-sm font-medium uppercase tracking-wide">
                   <span>Full Stack Developer & AI Engineer</span>
                 </div>
               </div>
             ) : (
-              <span className="bg-black text-white px-6 py-2 rounded-full text-sm font-medium uppercase tracking-wide">
+              <span className="bg-primary text-primary-foreground px-6 py-2 rounded-full text-sm font-medium uppercase tracking-wide">
                 Full Stack Developer, AI Engineer & Competitive Programmer
               </span>
             )}
@@ -125,7 +125,7 @@ const Hero = () => {
             <Button
               size="lg"
               variant="outline"
-              className="rounded-full gap-2 px-8 py-6 text-base font-medium border-2 border-black dark:border-white hover:bg-black hover:text-white hover:border-white dark:hover:bg-white dark:hover:text-black dark:hover:border-black btn-premium-shine"
+              className="rounded-full gap-2 px-8 py-6 text-base font-medium border-2 border-primary dark:border-white hover:bg-primary hover:text-primary-foreground hover:border-primary dark:hover:bg-white dark:hover:text-black dark:hover:border-black btn-premium-shine"
               onClick={() => window.open('https://drive.google.com/file/d/11PyjcBvd743IhCidr5P-h6_OAtsWuyYl/view?usp=sharing', '_blank')}
             >
               View Resume
@@ -138,7 +138,7 @@ const Hero = () => {
         <div className={`relative mt-12 lg:mt-0 ${heroVisible ? 'scroll-animate scroll-animate-delay-2' : ''}`}>
           <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
             {/* subtle framed border */}
-            <div className="rounded-3xl p-1 bg-white/60 dark:bg-black/30 relative">
+            <div className="rounded-3xl p-1 bg-white/60 dark:bg-card/30 relative">
               <img
                 src="/Aditya-PFP.jpg"
                 alt="Profile"

@@ -859,7 +859,7 @@ const CodingDashboard = () => {
         .cj-stat-card:hover {
           transform: translateY(-4px);
           box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-          border-color: #000000 !important;
+          border-color: #0D1117 !important;
         }
         .dark .cj-stat-card:hover {
           border-color: #ffffff !important;
