@@ -495,15 +495,76 @@
   },
   "codechef": {
     "currentRating": 1593,
+    "maxRating": 1661,
     "stars": "★★",
-    "maxRating": null,
-    "contestsCount": 5,
+    "maxStars": "★★★",
+    "contestsCount": 12,
     "totalSolved": 52,
-    "_rawSample": "\nwindow.csrfToken = '62ee22cef772835d2a0c5bd2d09be60f5a66c75251dea92936a96f7296fb34a4';\n    <iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-TV5X2M\"\n    height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe>\n    \n    \n        \n            \n                \n                    \n                    \n                \n            \n            \n                \n                    \n                         \n                            Courses\n                            \n                    \n                        \n                    \n                \n                    \n                        Programming and DSALearn to think like a programmer. \n                              Develop your problem-solving skills with essential data structures and algorithms.\n      "
+    "history": [
+      {
+        "timestamp": 1750809600000,
+        "rating": 1445,
+        "name": "Starters 192 (Rated)"
+      },
+      {
+        "timestamp": 1751414400000,
+        "rating": 1627,
+        "name": "Starters 193 (Rated)"
+      },
+      {
+        "timestamp": 1753228800000,
+        "rating": 1619,
+        "name": "Starters 196 (Rated)"
+      },
+      {
+        "timestamp": 1753833600000,
+        "rating": 1618,
+        "name": " Starters 197 (Rated)"
+      },
+      {
+        "timestamp": 1755043200000,
+        "rating": 1623,
+        "name": "Starters 199 (Rated)"
+      },
+      {
+        "timestamp": 1756252800000,
+        "rating": 1645,
+        "name": "Starters 201 (Rated)"
+      },
+      {
+        "timestamp": 1761091200000,
+        "rating": 1644,
+        "name": "Starters 209 (Rated)"
+      },
+      {
+        "timestamp": 1766534400000,
+        "rating": 1644,
+        "name": "Starters 218 (Rated)"
+      },
+      {
+        "timestamp": 1767139200000,
+        "rating": 1661,
+        "name": "Starters 219 (Rated)"
+      },
+      {
+        "timestamp": 1774396800000,
+        "rating": 1659,
+        "name": "Starters 231 (Rated)"
+      },
+      {
+        "timestamp": 1778025600000,
+        "rating": 1627,
+        "name": "Starters 237 (Rated)"
+      },
+      {
+        "timestamp": 1781654400000,
+        "rating": 1593,
+        "name": "Starters 243 (Rated)"
+      }
+    ]
   },
   "gfg": {
-    "totalSolved": null,
-    "_rawSample": "(self.__next_f=self.__next_f||[]).push([0])self.__next_f.push([1,\"1:\\\"$Sreact.fragment\\\"\\n3:I[9766,[],\\\"\\\"]\\n4:I[98924,[],\\\"\\\"]\\n9:I[57150,[],\\\"\\\"]\\na:I[24431,[],\\\"OutletBoundary\\\"]\\nc:I[15278,[],\\\"AsyncMetadataOutlet\\\"]\\ne:I[24431,[],\\\"ViewportBoundary\\\"]\\n10:I[24431,[],\\\"MetadataBoundary\\\"]\\n11:\\\"$Sreact.suspense\\\"\\n:HL[\\\"https://assets.geeksforgeeks.org/connect-prod/_next/static/css/905b85828f655ef5.css\\\",\\\"style\\\"]\\n:HL[\\\"https://assets.geeksforgeeks.org/connect-prod/_next/static/css/1cbafe4fac6bbf5a.css\\\",\\\"style\\\"]\\n:HL[\\\"https://assets.geeksforgeeks.org/connect-prod/_next/static/css/071a9a09dd784595.css\\\",\\\"style\\\"]\\n:HL[\\\"https://assets.geeksforgeeks.org/connect-prod/_next/static/css/9c7d3f01c9f6f4a5.css\\\",\\\"style\\\"]\\n:HL[\\\"https://assets.geeksforgeeks.org/connect-prod/_next/static"
+    "totalSolved": null
   },
   "heatmap": [
     {
@@ -1498,5 +1559,5 @@
   "errors": [],
   "totalActiveDays": 295,
   "totalSolvedAllPlatforms": 1174,
-  "lastUpdated": "2026-07-11T11:14:06.502Z"
+  "lastUpdated": "2026-07-11T13:19:14.259Z"
 }
