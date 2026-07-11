@@ -95,7 +95,7 @@ const Hero = () => {
               </div>
             ) : (
               <span className="bg-black text-white px-6 py-2 rounded-full text-sm font-medium uppercase tracking-wide">
-                Full Stack Developer, AI Engineer & Competitve Programmer
+                Full Stack Developer, AI Engineer & Competitive Programmer
               </span>
             )}
           </div>
@@ -167,7 +167,7 @@ const Hero = () => {
             {/* bottom overlay */}
             <div className="absolute bottom-4 left-4 right-4  rounded-2xl p-6 text-white  border-white/10 ">
               <p className="text-s uppercase tracking-wider mb-2 text-white/80">Available for work</p>
-              <p className="text-lg font-semibold">Let's collaborate on a project, talk systems, architecture, or our next big idea.!</p>
+              <p className="text-lg font-semibold">Let's talk systems and architecture, or collaborate on our next big idea!</p>
                 <p className="text-xs sm:text-xs text-yellow-400 mt-3">|| ॐ कृष्णाय नमः || ॐ नमः शिवाय ||</p>
             </div>
           </div>

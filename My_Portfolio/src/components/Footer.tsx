@@ -16,7 +16,7 @@ const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-3 gap-12 mb-12">
+        <div className="grid lg:grid-cols-2 gap-12 mb-12">
           {/* Left Column */}
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-white">adityac.codes</h3>
@@ -41,11 +41,10 @@ const Footer = () => {
                 <Github className="w-5 h-5" />
               </a>
             </div>
-
           </div>
 
-          {/* Middle Column - Navigation */}
-          <div>
+          {/* Right Column - Navigation */}
+          <div className="lg:justify-self-end lg:text-right">
             <h4 className="text-lg font-semibold mb-4 text-white">Navigation</h4>
             <nav className="space-y-2">
               <a href="/" className="block text-gray-400 hover:text-white transition-colors">
@@ -65,39 +64,22 @@ const Footer = () => {
               </a>
             </nav>
           </div>
-
-          {/* Right Column - CTA with glass effect */}
-          <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all" />
-            <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl p-6 space-y-4 border border-white/10">
-              <h4 className="text-xl font-semibold text-white">Let's talk</h4>
-              <p className="text-gray-400 text-sm">
-                Open to SDE and AI/ML opportunities. Let's build something impactful together.
-              </p>
-              <a
-                href="mailto:aditya.chauhan.nitj.ac@gmail.com"
-                className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
-              >
-                aditya.chauhan.nitj.ac@gmail.com
-                <ArrowUp className="w-4 h-4 rotate-45" />
-              </a>
-              <Button
-                onClick={scrollToTop}
-                variant="outline"
-                className="w-full rounded-full bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/30 transition-all"
-              >
-                Back to top
-              </Button>
-            </div>
-          </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-400">
-              © 2026 Aditya Chauhan. All rights reserved.
-            </p>
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <p className="text-sm text-gray-400">
+                © 2026 Aditya Chauhan. All rights reserved.
+              </p>
+              <button
+                onClick={scrollToTop}
+                className="text-sm text-gray-400 hover:text-white transition-colors underline underline-offset-4"
+              >
+                Back to top
+              </button>
+            </div>
             <div className="flex gap-6 text-xs text-gray-400">
               <span className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
@@ -105,7 +87,7 @@ const Footer = () => {
               </span>
               <span className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                Rating: 1939
+                Rating: 1956
               </span>
               <span className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />

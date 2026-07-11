@@ -27,3 +27,6 @@ dist-ssr
 dist
 *.timestamp-*
 .vite
+
+# testing while dev logic andSuggestions for projects 
+testing_and_suggestions/
