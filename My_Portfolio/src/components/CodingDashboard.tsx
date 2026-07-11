@@ -548,6 +548,13 @@ const CodingDashboard = () => {
             onClick={() => setCfExpanded((v) => !v)}
           >
             <ProfileLink url={`https://codeforces.com/profile/${CF_USER}`} label="Codeforces" />
+            <div className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 flex items-center justify-center rounded-full bg-[#e87a36]/10 border border-[#e87a36]/20 shadow-inner opacity-90 transition-transform group-hover:scale-110">
+              <svg viewBox="0 0 24 24" className="w-8 h-8 drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="10" width="4" height="11" rx="1" fill="#e87a36" className="opacity-95" />
+                <rect x="10" y="3" width="4" height="18" rx="1" fill="#3182ce" className="opacity-95" />
+                <rect x="17" y="7" width="4" height="14" rx="1" fill="#ecc94b" className="opacity-95" />
+              </svg>
+            </div>
             <CardContent className="p-6">
               <div className="flex items-center gap-2 mb-2">
                 <img src="/icons/codeforces.webp" className="w-4 h-4 opacity-70" alt="Codeforces" />
@@ -576,7 +583,7 @@ const CodingDashboard = () => {
                 className="overflow-hidden transition-all duration-300 ease-out"
                 style={{ maxHeight: cfExpanded ? "120px" : "0px", opacity: cfExpanded ? 1 : 0 }}
               >
-                <p className="text-xs text-muted-foreground mt-3 leading-relaxed border-t border-border/30 pt-3">
+                <p className="text-xs text-muted-foreground mt-3 leading-relaxed border-t border-border/30 pt-3 pr-14">
                   <span className="font-medium text-foreground">{stats?.codeforces?.maxRankTitle || "Rank"}</span>:{" "}
                   {getCfRankExplanation(stats?.codeforces?.maxRankTitle)}
                 </p>
@@ -586,25 +593,29 @@ const CodingDashboard = () => {
 
           {/* Total Solved */}
           <Card className="cj-stat-card relative group">
+            <div className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 flex items-center justify-center rounded-full bg-indigo-500/10 border border-indigo-500/20 shadow-inner opacity-90 transition-transform group-hover:scale-110">
+              <Code2 className="w-7 h-7 text-indigo-500 dark:text-indigo-400 drop-shadow-sm" />
+            </div>
             <CardContent className="p-6">
               <p className="cj-stat-label">Total Problems Solved</p>
               <div className="cj-stat-value">
                 {stats?.totalSolvedAllPlatforms != null ? totalSolved : "—"}
               </div>
               <p className="cj-stat-sub opacity-60">across all platforms</p>
-              <Code2 className="absolute bottom-4 right-4 w-6 h-6 text-muted-foreground/15" />
             </CardContent>
           </Card>
 
           {/* Active Days */}
           <Card className="cj-stat-card relative group">
+            <div className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 flex items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/20 shadow-inner opacity-90 transition-transform group-hover:scale-110">
+              <Calendar className="w-7 h-7 text-emerald-500 dark:text-emerald-400 drop-shadow-sm" />
+            </div>
             <CardContent className="p-6">
               <p className="cj-stat-label">Active Days</p>
               <div className="cj-stat-value">
                 {stats?.totalActiveDays != null ? activeDays : "—"}
               </div>
               <p className="cj-stat-sub opacity-60">days coded (lifetime)</p>
-              <Calendar className="absolute bottom-4 right-4 w-6 h-6 text-muted-foreground/15" />
             </CardContent>
           </Card>
         </div>
