@@ -11,6 +11,7 @@ import {
   Monitor,
   Github,
   Target,
+  Trophy,
 } from "lucide-react";
 import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
@@ -419,10 +420,10 @@ const CodingDashboard = () => {
     lc?.easySolved != null || lc?.mediumSolved != null || lc?.hardSolved != null
   )
     ? [
-        { name: "Easy", value: lc?.easySolved ?? 0, color: "#22c55e" },
-        { name: "Medium", value: lc?.mediumSolved ?? 0, color: "#f59e0b" },
-        { name: "Hard", value: lc?.hardSolved ?? 0, color: "#ef4444" },
-      ]
+      { name: "Easy", value: lc?.easySolved ?? 0, color: "#22c55e" },
+      { name: "Medium", value: lc?.mediumSolved ?? 0, color: "#f59e0b" },
+      { name: "Hard", value: lc?.hardSolved ?? 0, color: "#ef4444" },
+    ]
     : [];
 
   const heatmapValues: HeatmapDay[] = stats?.heatmap ?? [];
@@ -505,11 +506,11 @@ const CodingDashboard = () => {
           <Card className="cj-stat-card relative group transition-all duration-300">
             <ProfileLink url={`https://leetcode.com/${LC_USER}`} label="LeetCode" />
             {lcBadge && (
-              <img 
-                src={lcBadge.src} 
-                alt={lcBadge.name} 
-                title={`LeetCode ${lcBadge.name}`} 
-                className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 object-contain drop-shadow-md opacity-[0.85] transition-transform duration-300 group-hover:scale-[1.05]" 
+              <img
+                src={lcBadge.src}
+                alt={lcBadge.name}
+                title={`LeetCode ${lcBadge.name}`}
+                className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 object-contain drop-shadow-md opacity-[0.85] transition-transform duration-300 group-hover:scale-[1.05]"
               />
             )}
             <CardContent className="p-6">
@@ -606,8 +607,8 @@ const CodingDashboard = () => {
                   <AreaChart data={lcChartData} margin={{ left: 0, right: 16, top: 8, bottom: 24 }}>
                     <defs>
                       <linearGradient id="colorLc" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#5e6ad2" stopOpacity={0.3}/>
-                        <stop offset="95%" stopColor="#5e6ad2" stopOpacity={0}/>
+                        <stop offset="5%" stopColor="#5e6ad2" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="#5e6ad2" stopOpacity={0} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--foreground)/0.04)" vertical={false} />
@@ -662,8 +663,8 @@ const CodingDashboard = () => {
                   <AreaChart data={cfChartData} margin={{ left: 0, right: 16, top: 8, bottom: 24 }}>
                     <defs>
                       <linearGradient id="colorCf" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#e87a36" stopOpacity={0.3}/>
-                        <stop offset="95%" stopColor="#e87a36" stopOpacity={0}/>
+                        <stop offset="5%" stopColor="#e87a36" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="#e87a36" stopOpacity={0} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--foreground)/0.04)" vertical={false} />
@@ -735,7 +736,7 @@ const CodingDashboard = () => {
                       ))}
                     </div>
                   </div>
-                  
+
                   {/* Horizontal Progress Bar */}
                   <div className="h-4 w-full bg-muted/50 rounded-full overflow-hidden flex gap-0.5">
                     {donutData.map((item, i) => {
@@ -743,8 +744,8 @@ const CodingDashboard = () => {
                       const width = `${(item.value / total) * 100}%`;
                       if (item.value === 0) return null;
                       return (
-                        <div 
-                          key={i} 
+                        <div
+                          key={i}
                           className="h-full transition-all duration-1000 ease-out hover:brightness-110 cursor-pointer"
                           style={{ width, backgroundColor: item.color }}
                           title={`${item.name}: ${item.value}`}
@@ -757,6 +758,46 @@ const CodingDashboard = () => {
             </Card>
           </div>
         )}
+
+        {/* ── Notable Achievements ── */}
+        <div className="mb-8">
+          <Card className="cj-chart-card">
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center gap-2 text-base">
+                <Trophy className="w-4 h-4 text-yellow-500" />
+                Notable Achievements
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-background/50 border border-border/50 hover:border-primary/50 transition-colors">
+                  <div className="w-10 h-10 rounded bg-slate-100/80 dark:bg-slate-200/90 flex items-center justify-center shrink-0 mt-0.5 p-1.5 shadow-sm border border-border/50">
+                    <img src="/icons/Meta_Logo.png" alt="Meta" className="w-full h-full object-contain scale-[1.2]" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground">Meta Hacker Cup</h4>
+                    <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
+                      Global Rank 3223 (AIR 875) in Round 1 and qualified for Round 2.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-background/50 border border-border/50 hover:border-primary/50 transition-colors">
+                  <div className="w-10 h-10 rounded bg-slate-100/80 dark:bg-slate-200/90 flex items-center justify-center shrink-0 mt-0.5 p-1 shadow-sm border border-border/50">
+                    <img src="/icons/Flipkart-Logo-webp.png" alt="Flipkart" className="w-full h-full object-contain scale-[1.2]" />
+                    {/* <img src="/icons/flipkart-logo.png" alt="Flipkart" className="w-full h-full object-contain scale-[1.2]" /> */}
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground">Flipkart Grid 7.0</h4>
+                    <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
+                      Semi-Finalist, reaching the top 0.5% nationally among 1.5 lakh+ participants.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* ── Coding Activity Heatmap ── */}
         <Card className="cj-chart-card mb-6">

@@ -8,11 +8,11 @@ const techStack = [
 const TechList = () => (
   <div className="flex items-center shrink-0">
     {techStack.map((tech, index) => (
-      <div key={index} className="flex items-center shrink-0 group">
-        <span className="text-2xl font-medium text-background dark:text-foreground whitespace-nowrap group-hover:text-background/80 dark:group-hover:text-foreground/80">
+      <div key={index} className="flex items-center shrink-0">
+        <span className="text-2xl font-medium text-background dark:text-foreground whitespace-nowrap transition-all duration-300 group-hover/scroller:opacity-20 hover:!opacity-100 hover:scale-110 cursor-pointer">
           {tech}
         </span>
-        <span className="mx-8 text-background/40 dark:text-foreground/40 transition-colors group-hover:text-background/60 dark:group-hover:text-foreground/60">
+        <span className="mx-8 text-background/40 dark:text-foreground/40 transition-opacity duration-300 group-hover/scroller:opacity-20">
           •
         </span>
       </div>
@@ -24,13 +24,13 @@ const TechStackScroller = () => {
   const { ref: scrollerRef, isVisible: scrollerVisible } = useScrollAnimation();
 
   return (
-    <section ref={scrollerRef} className={`py-16 bg-foreground dark:bg-background overflow-hidden ${scrollerVisible ? 'scroll-animate-fade' : 'opacity-0'}`}>
+    <section ref={scrollerRef} className={`py-16 bg-foreground dark:bg-card overflow-hidden ${scrollerVisible ? 'scroll-animate-fade' : 'opacity-0'}`}>
       <div className="max-w-full relative">
         {/* Gradient overlays for fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-foreground dark:from-background via-foreground/90 dark:via-background/90 to-transparent z-10" style={{ left: '-1px' }} />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-foreground dark:from-background via-foreground/90 dark:via-background/90 to-transparent z-10" style={{ right: '-1px' }} />
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-foreground dark:from-card via-foreground/90 dark:via-card/90 to-transparent z-10 pointer-events-none" style={{ left: '-1px' }} />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-foreground dark:from-card via-foreground/90 dark:via-card/90 to-transparent z-10 pointer-events-none" style={{ right: '-1px' }} />
         
-        <div className="flex animate-scroll w-max">
+        <div className="flex animate-scroll w-max hover:[animation-play-state:paused] group/scroller">
           <TechList />
           <TechList />
         </div>

@@ -7,6 +7,7 @@ interface TimelineItem {
   title: string;
   company?: string;
   companyUrl?: string;
+  logo?: string;
   period?: string;
   summary: string;
   tags: string[];
@@ -18,6 +19,7 @@ const timelineData: TimelineItem[] = [
     title: "Software Development Engineer Intern",
     company: "Accenture",
     companyUrl: "https://accenture.com",
+    logo: "/icons/Accenture-Logo (2).png",
     period: "Jun 2026 – Jul 2026",
     summary:
       "Decreased RAG input-token usage by 34% for ContextIQ using LangChain chunking, and slashed vector-search latency by 69% by refactoring the ChromaDB client into a singleton.",
@@ -28,6 +30,7 @@ const timelineData: TimelineItem[] = [
     title: "Software Development & CP Core Team Co-Lead",
     company: "Google Developer Group, NIT Jalandhar",
     companyUrl: "https://gdg.community.dev/gdg-on-campus-dr-b-r-ambedkar-national-institute-of-technology-jalandhar-india/",
+    logo: "/icons/gdg-logo.svg",
     period: "Dec 2024 – Present",
     summary:
       "Increased contest performance by 40% and junior participation by 30% through structured DSA mentoring; coordinated CodeVerse and CodeHunt for 90+ participants",
@@ -38,6 +41,7 @@ const timelineData: TimelineItem[] = [
     title: "Group Representative",
     company: "NIT Jalandhar",
     companyUrl: "https://departments.nitj.ac.in/dept/cse/home",
+    logo: "/icons/NIT-Jalandhar-Logo.webp",
     period: "Dec 2023 – May 2026",
     summary:
       "Represented 1 of 6 CSE groups (28 members), streamlining faculty-student communication; initiated process re-engineering across 10+ departments, reducing paperwork by 75%.",
@@ -161,23 +165,30 @@ const Timeline = () => {
                 {/* Content Card */}
                 <div className="p-5 rounded-xl group cursor-default border border-black/60 dark:border-gray-400 transition-transform duration-200 ease-out transform hover:-translate-y-1 hover:shadow-lg bg-white/5 dark:bg-white/3 backdrop-blur-sm">
                   <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-sm text-muted-foreground">{item.period || item.date}</p>
-                      <div className="mt-2 flex items-start justify-between gap-3">
-                        <h3 className="text-xl font-bold text-foreground leading-snug">{item.title}</h3>
-                      </div>
-                      {item.company && (
-                        <p className="text-sm text-muted-foreground mb-3">
-                          {item.companyUrl ? (
-                            <a href={item.companyUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:underline relative pr-6">
-                              <span>{item.company}</span>
-                              <ArrowRight className="absolute top-0 right-0 w-5 h-5 -rotate-45 text-accent" />
-                            </a>
-                          ) : (
-                            <>{item.company}</>
-                          )}
-                        </p>
+                    <div className="flex gap-4 w-full">
+                      {item.logo && (
+                        <div className="w-12 h-12 rounded bg-slate-100/80 dark:bg-slate-200/90 p-1.5 flex items-center justify-center shrink-0 border border-border/50 shadow-sm mt-1">
+                          <img src={item.logo} alt={item.company} className="max-w-full max-h-full object-contain" />
+                        </div>
                       )}
+                      <div>
+                        <p className="text-sm text-muted-foreground">{item.period || item.date}</p>
+                        <div className="mt-1 flex items-start justify-between gap-3">
+                          <h3 className="text-xl font-bold text-foreground leading-snug">{item.title}</h3>
+                        </div>
+                        {item.company && (
+                          <p className="text-sm text-muted-foreground mb-3">
+                            {item.companyUrl ? (
+                              <a href={item.companyUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:underline relative pr-6">
+                                <span>{item.company}</span>
+                                <ArrowRight className="absolute top-0 right-0 w-5 h-5 -rotate-45 text-accent" />
+                              </a>
+                            ) : (
+                              <>{item.company}</>
+                            )}
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </div>
 
@@ -233,20 +244,29 @@ const Timeline = () => {
 
                 {/* Content Card */}
                 <div className="bg-background/80 backdrop-blur-md p-6 rounded-xl group cursor-default border border-black/60 dark:border-gray-400 ml-4">
-                  <p className="text-sm text-muted-foreground">{item.period || item.date}</p>
-                  <h3 className="text-xl font-bold mb-1 text-foreground">{item.title}</h3>
-                  {item.company && (
-                    <p className="text-sm text-muted-foreground mb-3">
-                      {item.companyUrl ? (
-                        <a href={item.companyUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:underline relative pr-6">
-                          <span>{item.company}</span>
-                          <ArrowRight className="absolute top-0 right-0 w-5 h-5 -rotate-45 text-accent" />
-                        </a>
-                      ) : (
-                        <>{item.company}</>
+                  <div className="flex gap-4">
+                    {item.logo && (
+                      <div className="w-12 h-12 rounded bg-slate-100/80 dark:bg-slate-200/90 p-1.5 flex items-center justify-center shrink-0 border border-border/50 shadow-sm mt-1">
+                        <img src={item.logo} alt={item.company} className="max-w-full max-h-full object-contain" />
+                      </div>
+                    )}
+                    <div>
+                      <p className="text-sm text-muted-foreground">{item.period || item.date}</p>
+                      <h3 className="text-xl font-bold mb-1 text-foreground mt-1">{item.title}</h3>
+                      {item.company && (
+                        <p className="text-sm text-muted-foreground mb-3">
+                          {item.companyUrl ? (
+                            <a href={item.companyUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:underline relative pr-6">
+                              <span>{item.company}</span>
+                              <ArrowRight className="absolute top-0 right-0 w-5 h-5 -rotate-45 text-accent" />
+                            </a>
+                          ) : (
+                            <>{item.company}</>
+                          )}
+                        </p>
                       )}
-                    </p>
-                  )}
+                    </div>
+                  </div>
 
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                     {item.summary}
