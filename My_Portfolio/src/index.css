@@ -1,4 +1,5 @@
 @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -53,51 +54,74 @@ All colors MUST be HSL.
     /* Glass effect */
     --glass-bg: 0 0% 100% / 0.6;
     --glass-border: 0 0% 100% / 0.2;
+
+    /* Monospace font var — used for all numbers, dates, tech tags */
+    --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
   }
 
   .dark {
-    --background: 216 28% 7%;
-    --foreground: 210 38% 93%;
+    /* === 3-TIER SURFACE ELEVATION === */
+    --background: 216 14% 6%;       /* b1: page base ~#0B0D0F */
+    --foreground: 210 20% 92%;      /* primary text ~#E9EDF1 — warm off-white */
 
-    --card: 215 21% 11%;
-    --card-foreground: 210 38% 93%;
+    --card: 216 16% 9%;             /* b2: card/section surfaces ~#12151A */
+    --card-foreground: 210 20% 92%;
 
-    --popover: 215 21% 11%;
-    --popover-foreground: 210 38% 93%;
+    --popover: 216 16% 9%;
+    --popover-foreground: 210 20% 92%;
 
-    --primary: 210 38% 93%;
-    --primary-foreground: 216 28% 7%;
+    /* === SIGNATURE ACCENT — Codeforces Specialist Cyan === */
+    /* His CF rank is Specialist; CF's own color for that rank is cyan/teal */
+    --primary: 174 73% 48%;         /* #22D3C9 — links, active nav, CTA, chart lines */
+    --primary-foreground: 216 14% 6%; /* dark text on bright cyan button */
 
-    --secondary: 215 21% 11%;
-    --secondary-foreground: 210 38% 93%;
+    --secondary: 216 15% 12%;       /* b3: elevated surfaces ~#181C22 */
+    --secondary-foreground: 210 20% 92%;
 
-    --muted: 215 21% 11%;
-    --muted-foreground: 212 9% 58%;
+    --muted: 216 15% 12%;
+    --muted-foreground: 215 8% 62%; /* secondary text ~#9BA3AE */
 
-    --accent: 212 12% 21%;
-    --accent-foreground: 210 38% 93%;
+    --accent: 216 15% 12%;          /* b3 elevated — achievement cards, featured items */
+    --accent-foreground: 210 20% 92%;
 
     --destructive: 0 62% 50%;
-    --destructive-foreground: 210 38% 93%;
+    --destructive-foreground: 210 20% 92%;
 
-    --border: 212 12% 21%;
-    --input: 212 12% 21%;
-    --ring: 210 38% 93%;
-    
+    --border: 215 13% 16%;          /* border-subtle ~#232830 */
+    --input: 215 13% 16%;
+    --ring: 174 73% 48%;            /* focus ring = accent cyan */
+
+    /* Extended tokens used in components */
+    --border-default: 215 11% 22%; /* stronger separator ~#313945 */
+    --text-tertiary: 220 9% 45%;   /* timestamps, captions */
+    --p-dim: 174 60% 22%;          /* muted teal for tag fills */
+
     /* Dark gradient colors */
-    --gradient-start: 216 28% 7%;
-    --gradient-mid: 215 21% 9%;
-    --gradient-end: 216 28% 7%;
+    --gradient-start: 216 14% 6%;
+    --gradient-mid: 216 14% 8%;
+    --gradient-end: 216 14% 6%;
     
     /* Glass effect for dark mode */
-    --glass-bg: 215 21% 11% / 0.7;
-    --glass-border: 212 12% 21% / 0.4;
+    --glass-bg: 216 16% 9% / 0.7;
+    --glass-border: 215 13% 16% / 0.4;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+  }
+
+  /* Global monospace utility — use on any number, date, or tech tag */
+  .num {
+    font-family: var(--font-mono);
+  }
+
+  /* Cyan focus ring on every interactive element — accessibility + brand */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 
   html {
@@ -202,15 +226,20 @@ All colors MUST be HSL.
   }
 
   .glass-card.shining:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 22px 40px -10px rgba(0, 0, 0, 0.2);
-    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: none;
+    border-color: hsl(var(--border-default, 215 11% 22%));
+  }
+
+  .dark .glass-card.shining:hover {
+    border-color: hsl(174 73% 48% / 0.4); /* cyan at 40% on dark */
   }
 
   .glass-card.shining:hover::after {
-    left: 125%;
-    opacity: 1;
-    transition: left 0.75s ease-out, opacity 0.75s ease-out;
+    /* shine sweep disabled — reads as templated */
+    left: -60%;
+    opacity: 0;
+    transition: none;
   }
 
   /* Premium button shine effect */

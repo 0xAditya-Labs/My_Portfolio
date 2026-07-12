@@ -144,31 +144,25 @@ const Hero = () => {
                 alt="Profile"
                 className="w-full h-[420px] sm:h-[500px] md:h-[550px] object-cover rounded-2xl transition-transform duration-500 scale-150 sm:scale-100 sm:group-hover:scale-105"
               />
-              {/* Vignette effect overlay - dark mode only */}
-              <div 
-                className="absolute inset-0 rounded-2xl pointer-events-none hidden dark:block"
-                style={{
-                  background: 'radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0.5) 100%)'
-                }}
-              ></div>
-
-              {/* Subtle eye highlight vignette - light mode only */}
+              {/* Bottom scrim — ensures text is readable regardless of photo content */}
               <div
-                className="absolute inset-0 rounded-2xl pointer-events-none block dark:hidden"
-                aria-hidden
+                className="absolute inset-0 rounded-2xl pointer-events-none"
                 style={{
-                  background: 'radial-gradient(55px at 62% 34%, rgba(255,255,255,0.85) 0px, rgba(255,255,255,0.35) 15px, rgba(255,255,255,0.05) 35px, transparent 55px)',
-                  mixBlendMode: 'screen',
-                  opacity: 0.22 
+                  background: 'linear-gradient(to top, rgba(11,13,15,0.90) 0%, rgba(11,13,15,0.5) 35%, rgba(11,13,15,0.1) 60%, transparent 80%)'
                 }}
               />
             </div>
 
             {/* bottom overlay */}
-            <div className="absolute bottom-4 left-4 right-4  rounded-2xl p-6 text-white  border-white/10 ">
-              <p className="text-s uppercase tracking-wider mb-2 text-white/80">Available for work</p>
-              <p className="text-lg font-semibold">Let's talk systems and architecture, or collaborate on our next big idea!</p>
-                <p className="text-xs sm:text-xs text-yellow-400 mt-3">|| ॐ कृष्णाय नमः || ॐ नमः शिवाय ||</p>
+            <div className="absolute bottom-4 left-4 right-4 rounded-2xl p-6 text-white">
+              <p
+                className="text-xs uppercase tracking-widest mb-2 font-medium"
+                style={{ fontFamily: 'var(--font-mono)', color: 'hsl(174 73% 48%)' }}
+              >
+                ● Available for work
+              </p>
+              <p className="text-lg font-semibold text-white/95">Let's talk systems and architecture, or collaborate on our next big idea!</p>
+              <p className="text-xs sm:text-xs text-yellow-400 mt-3">|| ॐ कृष्णाय नमः || ॐ नमः शिवाय ||</p>
             </div>
           </div>
         </div>

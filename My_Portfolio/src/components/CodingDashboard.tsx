@@ -971,37 +971,37 @@ const CodingDashboard = () => {
           font-size: 0.9rem;
         }
 
-        /* Heatmap cell colors — blue accent, dual-mode */
+        /* Heatmap cell colors — Codeforces Specialist cyan opacity ramp */
         .react-calendar-heatmap .color-empty {
           fill: hsl(var(--muted) / 0.25);
         }
         .react-calendar-heatmap .color-scale-1 {
-          fill: hsl(213 94% 68% / 0.25);
+          fill: hsl(174 73% 48% / 0.15);
         }
         .react-calendar-heatmap .color-scale-2 {
-          fill: hsl(213 94% 68% / 0.5);
+          fill: hsl(174 73% 48% / 0.35);
         }
         .react-calendar-heatmap .color-scale-3 {
-          fill: hsl(213 94% 68% / 0.75);
+          fill: hsl(174 73% 48% / 0.60);
         }
         .react-calendar-heatmap .color-scale-4 {
-          fill: hsl(213 94% 68%);
+          fill: hsl(174 73% 48% / 0.90);
         }
         .react-calendar-heatmap text {
           fill: hsl(var(--muted-foreground));
           font-size: 10px;
         }
         .react-calendar-heatmap rect:hover {
-          stroke: hsl(213 94% 68%);
+          stroke: hsl(174 73% 48%);
           stroke-width: 2px;
         }
 
-        /* Light mode: slightly more saturated */
+        /* Light mode: keep same hue but slightly more opaque so it reads on white */
         :root .react-calendar-heatmap .color-scale-4 {
-          fill: hsl(213 80% 55%);
+          fill: hsl(174 73% 38%);
         }
         .dark .react-calendar-heatmap .color-scale-4 {
-          fill: hsl(213 94% 65%);
+          fill: hsl(174 73% 48%);
         }
       `}</style>
     </section>

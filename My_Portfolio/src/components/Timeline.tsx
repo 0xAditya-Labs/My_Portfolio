@@ -155,15 +155,15 @@ const Timeline = () => {
                 {/* Dot */}
                 <div className="relative flex justify-center mb-8">
                   <div
-                    className={`w-4 h-4 rounded-full border-2 transition-all duration-500 ${index < visibleItems
-                        ? "bg-accent border-accent shadow-lg shadow-accent/50 scale-125"
-                        : "bg-background border-border"
+                    className={`w-3 h-3 rounded-full transition-all duration-500 ${index < visibleItems
+                        ? "bg-primary shadow-lg shadow-primary/50 scale-125"
+                        : "bg-background border-2 border-border"
                       }`}
                   />
                 </div>
 
-                {/* Content Card */}
-                <div className="p-5 rounded-xl group cursor-default border border-black/60 dark:border-gray-400 transition-transform duration-200 ease-out transform hover:-translate-y-1 hover:shadow-lg bg-white/5 dark:bg-white/3 backdrop-blur-sm">
+                {/* Content Card — left-stripe instead of full border */}
+                <div className="pl-4 border-l-[3px] border-primary bg-card/60 rounded-r-xl py-4 pr-4 group cursor-default transition-transform duration-150 ease-out hover:-translate-y-0.5">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex gap-4 w-full">
                       {item.logo && (
@@ -172,7 +172,7 @@ const Timeline = () => {
                         </div>
                       )}
                       <div>
-                        <p className="text-sm text-muted-foreground">{item.period || item.date}</p>
+                        <p className="text-sm text-muted-foreground" style={{ fontFamily: 'var(--font-mono)' }}>{item.period || item.date}</p>
                         <div className="mt-1 flex items-start justify-between gap-3">
                           <h3 className="text-xl font-bold text-foreground leading-snug">{item.title}</h3>
                         </div>
@@ -181,7 +181,7 @@ const Timeline = () => {
                             {item.companyUrl ? (
                               <a href={item.companyUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:underline relative pr-6">
                                 <span>{item.company}</span>
-                                <ArrowRight className="absolute top-0 right-0 w-5 h-5 -rotate-45 text-accent" />
+                                <ArrowRight className="absolute top-0 right-0 w-5 h-5 -rotate-45 text-primary" />
                               </a>
                             ) : (
                               <>{item.company}</>
@@ -201,7 +201,7 @@ const Timeline = () => {
                       <span
                         key={tag}
                         className="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-muted/80 text-foreground font-medium dark:bg-muted/70 dark:text-foreground"
-                        style={{ borderRadius: '9999px' }}
+                        style={{ borderRadius: '9999px', fontFamily: 'var(--font-mono)' }}
                       >
                         {tag}
                       </span>
@@ -235,9 +235,9 @@ const Timeline = () => {
                 {/* Dot */}
                 <div className="absolute -left-[26px] top-0">
                   <div
-                    className={`w-4 h-4 rounded-full border-2 transition-all duration-500 ${scrollProgress > (index / (timelineData.length - 1)) * 100
-                        ? "bg-accent border-accent shadow-lg shadow-accent/50 scale-125"
-                        : "bg-background border-border"
+                    className={`w-3 h-3 rounded-full transition-all duration-500 ${scrollProgress > (index / (timelineData.length - 1)) * 100
+                        ? "bg-primary shadow-lg shadow-primary/50 scale-125"
+                        : "bg-background border-2 border-border"
                       }`}
                   />
                 </div>
