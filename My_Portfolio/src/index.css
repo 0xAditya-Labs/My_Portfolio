@@ -108,17 +108,16 @@ All colors MUST be HSL.
   }
 
   /* Grid overlay on elements that use the background color (shows above the bg but below content) */
-  .bg-background {
+  body {
     position: relative; /* ensure pseudo-element is positioned relative to this container */
-    overflow: visible;
   }
 
-  .bg-background::before {
+  body::before {
     content: '';
     position: absolute;
     inset: 0;
     pointer-events: none;
-  z-index: 0; /* keep the pseudo BG behind content */
+    z-index: 0; /* keep the pseudo BG behind content */
     background-image: 
       linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
@@ -127,7 +126,7 @@ All colors MUST be HSL.
     mix-blend-mode: normal;
   }
 
-  .dark .bg-background::before {
+  .dark body::before {
     background-image: 
       linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
