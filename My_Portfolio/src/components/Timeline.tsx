@@ -156,7 +156,7 @@ const Timeline = () => {
                 <div className="relative flex justify-center mb-8">
                   <div
                     className={`w-4 h-4 rounded-full border-2 transition-all duration-500 ${index < visibleItems
-                      ? "bg-accent border-accent shadow-lg shadow-accent/50 scale-125"
+                      ? "bg-blue-500 border-blue-500 shadow-lg shadow-blue-500/50 scale-125"
                       : "bg-background border-border"
                       }`}
                   />
@@ -236,7 +236,7 @@ const Timeline = () => {
                 <div className="absolute -left-[26px] top-0">
                   <div
                     className={`w-4 h-4 rounded-full border-2 transition-all duration-500 ${scrollProgress > (index / (timelineData.length - 1)) * 100
-                      ? "bg-accent border-accent shadow-lg shadow-accent/50 scale-125"
+                      ? "bg-blue-500 border-blue-500 shadow-lg shadow-blue-500/50 scale-125"
                       : "bg-background border-border"
                       }`}
                   />

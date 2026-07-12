@@ -187,7 +187,7 @@ const Projects = () => {
                       e.stopPropagation();
                       openProject(project);
                     }}
-                    className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:gap-3 transition-all"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:gap-3 transition-all"
                   >
                     View Project
                     <ExternalLink className="w-4 h-4" />

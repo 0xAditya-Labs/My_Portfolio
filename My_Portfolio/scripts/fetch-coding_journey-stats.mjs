@@ -202,6 +202,7 @@ async function getCodeChefStats() {
 // GeeksforGeeks — real key: "total_problems_solved":N in the RSC payload
 // =============================================================================
 
+
 async function getGfgStats() {
   try {
     // Ping GFG's internal user profile API directly

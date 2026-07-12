@@ -7,7 +7,7 @@ const About = () => {
     languages: ["C++", "Python", "C", "JavaScript"],
     frameworks: ["React.js", "Node.js", "Express.js", "FastAPI", "TailwindCSS", "DaisyUI"],
     databases: ["MongoDB", "MySQL", "ChromaDB"],
-    ai: ["LangChain", "Langfuse", "OpenTelemetry", "Scikit-learn", "Pandas", "SHAP", "SMOTE"],
+    ai: ["RAG", "LangChain", "Langfuse", "OpenTelemetry", "Scikit-learn", "Pandas", "SHAP", "SMOTE"],
     core: ["Data Structures & Algorithms", "OOPs", "DBMS", "Operating Systems", "Computer Networks", "System Design"],
     tools: ["Git", "GitHub", "Postman", "REST APIs", "WebSockets", "JWT"]
   };

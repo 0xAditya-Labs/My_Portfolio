@@ -519,7 +519,7 @@ const CodingDashboard = () => {
                 <p className="cj-stat-label mb-0 uppercase tracking-wider">LeetCode Peak</p>
               </div>
               <div className="w-5 h-0.5 bg-[#5e6ad2] mb-3 rounded-full opacity-80 transition-all duration-300 group-hover:w-[40%]" />
-              <div className="cj-stat-value text-lc tabular-nums">
+              <div className="cj-stat-value text-lc tabular-nums" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700 }}>
                 {stats?.leetcode?.maxRating != null ? lcMaxRating : "—"}
               </div>
               {stats?.leetcode?.topPercentage != null && (
@@ -544,7 +544,7 @@ const CodingDashboard = () => {
                 <p className="cj-stat-label mb-0 uppercase tracking-wider">Codeforces Peak</p>
               </div>
               <div className="w-5 h-0.5 bg-[#e87a36] mb-3 rounded-full opacity-80 transition-all duration-300 group-hover:w-[40%]" />
-              <div className="cj-stat-value text-cf tabular-nums">
+              <div className="cj-stat-value text-cf tabular-nums" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700 }}>
                 {stats?.codeforces?.maxRating != null ? cfMaxRating : "—"}
               </div>
               {stats?.codeforces?.maxRankTitle && (
@@ -564,7 +564,7 @@ const CodingDashboard = () => {
                 <p className="cj-stat-label mb-0 uppercase tracking-wider">Total Problems Solved</p>
               </div>
               <div className="w-5 h-0.5 bg-indigo-500 mb-3 rounded-full opacity-80 transition-all duration-300 group-hover:w-[40%]" />
-              <div className="cj-stat-value tabular-nums">
+              <div className="cj-stat-value tabular-nums text-foreground" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700 }}>
                 {stats?.totalSolvedAllPlatforms != null ? totalSolved : "—"}
               </div>
               <p className="cj-stat-sub opacity-60">LeetCode • Codeforces • CodeChef • GeeksforGeeks</p>
@@ -582,7 +582,7 @@ const CodingDashboard = () => {
                 <p className="cj-stat-label mb-0 uppercase tracking-wider">Active Days</p>
               </div>
               <div className="w-5 h-0.5 bg-emerald-500 mb-3 rounded-full opacity-80 transition-all duration-300 group-hover:w-[40%]" />
-              <div className="cj-stat-value tabular-nums">
+              <div className="cj-stat-value tabular-nums text-foreground" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700 }}>
                 {stats?.totalActiveDays != null ? activeDays : "—"}
               </div>
               <p className="cj-stat-sub opacity-60">Days with submissions</p>
