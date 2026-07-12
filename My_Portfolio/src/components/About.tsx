@@ -2,7 +2,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const About = () => {
   const { ref: aboutRef, isVisible: aboutVisible } = useScrollAnimation();
-  
+
   const skills = {
     languages: ["C++", "Python", "C", "JavaScript"],
     frameworks: ["React.js", "Node.js", "Express.js", "FastAPI", "TailwindCSS", "DaisyUI"],
@@ -11,10 +11,6 @@ const About = () => {
     core: ["Data Structures & Algorithms", "OOPs", "DBMS", "Operating Systems", "Computer Networks", "System Design"],
     tools: ["Git", "GitHub", "Postman", "REST APIs", "WebSockets", "JWT"]
   };
-
-  // These 4 map to exactly what each recruiter audience scans for:
-  // C++ → DSA/quant, System Design → senior-track MAANG, LangChain/RAG → AI engineering roles
-  const PROMOTED = new Set(["C++", "System Design", "LangChain", "RAG"]);
 
   return (
     <section id="about" ref={aboutRef} className="py-24 bg-background">
@@ -31,11 +27,11 @@ const About = () => {
 
             <div className="space-y-6 text-lg text-muted-foreground">
               <p>
-               I'm a third-year Computer Science Engineering student at Dr. B.R. Ambedkar National Institute of Technology, Jalandhar, maintaining a <span className="font-bold text-black dark:text-white"><span className="num">8.53</span> CGPA (Top 4%ile)</span>. Currently, I work as a Software Development Engineer Intern at Accenture, where I've built a RAG-based Q&A microservice that reduced manual review time by 45%.
+                I'm a third-year Computer Science Engineering student at Dr. B.R. Ambedkar National Institute of Technology, Jalandhar, maintaining a <span className="font-bold text-black dark:text-white">CGPA of 8.53 (Top 4%ile)</span>. Currently, I work as a Software Development Engineer Intern at Accenture, where I've built a RAG-based Q&A microservice that reduced manual review time by 45%.
               </p>
 
               <p>
-                My work sits at the intersection of systems engineering and applied AI — I genuinely enjoy reasoning through concurrency, system design, and OS internals, not just building on top of them. I've engineered a thread-safe LRU cache handling <span className="num font-bold text-black dark:text-white">15,000+</span> QPS at <span className="num font-bold text-black dark:text-white">3ms</span> p99 latency, and a real-time RAG messaging platform delivering sub-<span className="num font-bold text-black dark:text-white">50ms</span> under concurrent load. I've also solved <span className="font-bold text-black dark:text-white"><span className="num">1,200+</span> DSA problems</span>, earning Specialist on Codeforces, Knight on LeetCode, and 3-star on CodeChef.
+                My work sits at the intersection of systems engineering and applied AI — I genuinely enjoy reasoning through concurrency, system design, and OS internals, not just building on top of them. I've engineered a thread-safe LRU cache handling 15,000+ QPS at 3ms p99 latency, and a real-time RAG messaging platform delivering sub-50ms under concurrent load. I've also solved <span className="font-bold text-black dark:text-white">1,200+ DSA problems</span>, earning Specialist on Codeforces, Knight on LeetCode, and 3-star on CodeChef.
               </p>
 
               <p>
@@ -66,13 +62,7 @@ const About = () => {
                     {items.map((skill) => (
                       <span
                         key={skill}
-                        className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors
-                          ${
-                            PROMOTED.has(skill)
-                              ? 'border-primary/40 text-primary dark:text-primary dark:bg-primary/10 bg-cyan-50'
-                              : 'bg-white dark:bg-gray-800 text-black dark:text-white border-border hover:border-black dark:hover:border-white'
-                          }`}
-                        style={{ fontFamily: 'var(--font-mono)' }}
+                        className="px-3 py-1.5 bg-white dark:bg-gray-800 text-black dark:text-white rounded-full text-sm font-medium border border-border hover:border-black dark:hover:border-white transition-colors"
                       >
                         {skill}
                       </span>

@@ -4,7 +4,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Contact = () => {
   const { ref: contactRef, isVisible: contactVisible } = useScrollAnimation();
-  
+
   return (
     <section id="contact" ref={contactRef} className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-6">
@@ -45,13 +45,9 @@ const Contact = () => {
           </div>
 
           {/* Right Content - CTA Card */}
-          <div className={`rounded-3xl p-8 md:p-12 shadow-2xl text-center space-y-6 border border-border border-t-2 border-t-primary ${contactVisible ? 'scroll-animate scroll-animate-delay-2' : ''}`}
-            style={{ background: 'hsl(var(--accent))' }}
-          >
-            <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto border-2 border-primary/40"
-              style={{ background: 'hsl(174 73% 48% / 0.12)' }}
-            >
-              <Mail className="w-10 h-10" style={{ color: 'hsl(174 73% 48%)' }} />
+          <div className={`glass-card rounded-3xl p-8 md:p-12 shadow-2xl text-center space-y-6 ${contactVisible ? 'scroll-animate scroll-animate-delay-2' : ''}`}>
+            <div className="w-20 h-20 rounded-full bg-foreground flex items-center justify-center mx-auto">
+              <Mail className="w-10 h-10 text-background" />
             </div>
 
             <div>
@@ -61,13 +57,11 @@ const Contact = () => {
                 Open to discuss full-time roles for 2027.
               </p>
             </div>
-          <a href="https://tally.so/r/LZyoBJ" target="_blank" rel="noopener noreferrer">
-            <Button size="lg" className="rounded-full gap-2 px-8 py-6 mt-4 text-base font-medium"
-              style={{ background: 'hsl(174 73% 48%)', color: 'hsl(216 14% 6%)' }}
-            >
-              Let's Connect
-              <ArrowRight className="w-5 h-5" />
-            </Button>
+            <a href="https://tally.so/r/LZyoBJ" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="rounded-full gap-2 px-8 py-6 mt-4 text-base font-medium">
+                Let's Connect
+                <ArrowRight className="w-5 h-5" />
+              </Button>
             </a>
             <p className="text-sm text-muted-foreground">Opens in a new tab</p>
           </div>
