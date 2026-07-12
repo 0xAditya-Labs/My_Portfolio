@@ -239,6 +239,7 @@ Common update points:
 - GitHub: https://github.com/0xAditya-Labs
 - Email: aditya.chauhan.nitj.ac@gmail.com
 - LeetCode: https://leetcode.com/u/Aditya_chauhan__/
+- alias link: https://aditya-chauhan-portfolio-beta.vercel.app/
 <div align="center">
 
 **⭐ If you found this portfolio inspiring, consider giving it a star!**
