@@ -126,7 +126,7 @@ const Hero = () => {
               size="lg"
               variant="outline"
               className="rounded-full gap-2 px-8 py-6 text-base font-medium border-2 border-primary dark:border-white hover:bg-primary hover:text-primary-foreground hover:border-primary dark:hover:bg-white dark:hover:text-black dark:hover:border-black btn-premium-shine"
-              onClick={() => window.open('https://drive.google.com/file/d/11PyjcBvd743IhCidr5P-h6_OAtsWuyYl/view?usp=sharing', '_blank')}
+              onClick={() => window.open('https://drive.google.com/file/d/1ey76P7eqpmiMD-C0LmM27ndCzXkrNiDT/view?usp=sharing', '_blank')}
             >
               View Resume
               <Download className="w-5 h-5" />

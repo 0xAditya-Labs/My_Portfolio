@@ -351,7 +351,7 @@ const CommandPalette = () => {
         <CommandSeparator />
         <CommandGroup heading="Actions">
           <CommandItem onSelect={() => {
-            window.open('https://drive.google.com/file/d/11PyjcBvd743IhCidr5P-h6_OAtsWuyYl/view?usp=sharing', '_blank');
+            window.open('https://drive.google.com/file/d/1ey76P7eqpmiMD-C0LmM27ndCzXkrNiDT/view?usp=sharing', '_blank');
             setOpen(false);
           }}>
             <Download className="mr-2 h-4 w-4" />
