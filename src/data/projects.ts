@@ -40,7 +40,9 @@ export const projectsData: Project[] = [
     images: [
       "/projects/chatmind_1.png",
       "/projects/chatmind_2.png",
-      "/projects/chatmind_3.png"
+      "/projects/chatmind_3.png",
+      "/projects/chatmind_4.png",
+      "/projects/chatmind_5.png"
     ],
     tags: ["MERN", "FastAPI", "WebSockets", "RAG"],
     techStack: ["MongoDB", "Express.js", "React", "Node.js", "FastAPI", "WebSockets", "BM25", "Vector Retrieval"],
@@ -84,9 +86,7 @@ export const projectsData: Project[] = [
     fullDescription: "SwiftCache is a concurrent LRU cache server built from first principles in C++, combining a custom hash-map and doubly linked list to guarantee deterministic O(1) get/set operations with TTL-based eviction. Designed with correctness under concurrent load as the primary constraint, it uses fine-grained locking to sustain high throughput without sacrificing thread safety, and exposes a modular, self-serve configuration layer to reduce integration effort for new caching features.",
     image: "/projects/swiftcache_1.png",
     images: [
-      "/projects/swiftcache_1.png",
-      "/projects/swiftcache_2.png",
-      "/projects/swiftcache_3.png"
+      "/projects/swiftcache_1.png"
     ],
     tags: ["C++", "Concurrency", "TCP/HTTP"],
     techStack: ["C++", "TCP/HTTP", "Multithreading", "Custom Hash-Map", "Doubly Linked List"],
@@ -132,7 +132,8 @@ export const projectsData: Project[] = [
     images: [
       "/projects/isp_1.png",
       "/projects/isp_2.png",
-      "/projects/isp_3.png"
+      "/projects/isp_3.png",
+      "/projects/isp_4.png"
     ],
     tags: ["React", "FastAPI", "Scikit-learn", "SHAP"],
     techStack: ["Scikit-learn", "FastAPI", "Uvicorn", "React", "Vite", "Tailwind CSS", "SHAP"],
@@ -177,8 +178,7 @@ export const projectsData: Project[] = [
     fullDescription: "ContextIQ is a retrieval-augmented generation assistant built during my internship at Accenture to answer IT-support queries against a synthetic enterprise knowledge base. Beyond the core RAG pipeline, the project focused heavily on observability: Langfuse traces LLM cost and output quality across requests, while OpenTelemetry instruments backend latency end-to-end — together enabling systematic performance debugging rather than guesswork. This observability layer directly enabled a 34% reduction in RAG input-token usage and a 69% cut in vector-search latency by making bottlenecks visible and measurable.",
     image: "/projects/contextiq_1.png",
     images: [
-      "/projects/contextiq_1.png",
-      "/projects/contextiq_2.png"
+      "/projects/contextiq_1.png"
     ],
     tags: ["Python", "LangChain", "RAG", "Observability"],
     techStack: ["Python", "LangChain", "FastAPI", "ChromaDB", "Langfuse", "OpenTelemetry"],
@@ -224,7 +224,10 @@ export const projectsData: Project[] = [
     image: "/projects/portfolio_1.png",
     images: [
       "/projects/portfolio_1.png",
-      "/projects/portfolio_2.png"
+      "/projects/portfolio_2.png",
+      "/projects/portfolio_3.png",
+      "/projects/portfolio_4.png",
+      "/projects/portfolio_5.png"
     ],
     tags: ["React", "TypeScript", "Vite", "Gemini API"],
     techStack: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "Radix UI", "Google Gemini API", "Vercel"],
@@ -271,7 +274,8 @@ export const projectsData: Project[] = [
     fullDescription: "This Airline Management System is a robust C++ command-line application that demonstrates strong Object-Oriented Programming (OOP) architecture. It allows users to book and cancel tickets for up to 50 seats, auto-generates text-based tickets, and provides an admin-protected environment for crew management. The system heavily relies on core OOP concepts including abstraction, inheritance, polymorphism, and encapsulation to maintain data privacy and structural modularity.",
     image: "/projects/airline_1.png",
     images: [
-      "/projects/airline_1.png"
+      "/projects/airline_1.png",
+      "/projects/airline_2.png"
     ],
     tags: ["C++", "OOP", "CLI"],
     techStack: ["C++"],
@@ -309,7 +313,8 @@ export const projectsData: Project[] = [
     fullDescription: "This project recreates a simplified version of the JOSAA seat allocation workflow through an interactive web portal. Students register their counselling preferences, and administrators execute a seat allocation engine based on student ranks and seat availability. Originally a command-line application, it was redesigned into a secure Flask web app with REST APIs, Twilio-based OTP authentication, and automated report generation capabilities.",
     image: "/projects/jossa_1.png",
     images: [
-      "/projects/jossa_1.png"
+      "/projects/jossa_1.png",
+      "/projects/jossa_2.png"
     ],
     tags: ["Flask", "Python", "Twilio"],
     techStack: ["Flask", "Twilio", "Python", "REST APIs"],

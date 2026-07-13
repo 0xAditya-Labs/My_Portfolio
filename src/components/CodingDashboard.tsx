@@ -12,6 +12,7 @@ import {
   Github,
   Target,
   Trophy,
+  X,
 } from "lucide-react";
 import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
@@ -248,6 +249,7 @@ const CodingDashboard = () => {
   const [stats, setStats] = useState<CodingJourneyStats | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [cfExpanded, setCfExpanded] = useState(false);
+  const [activeCert, setActiveCert] = useState<string | null>(null);
   const [lcExpanded, setLcExpanded] = useState(false);
 
   // Heatmap tooltip state (preserved from original implementation)
@@ -774,8 +776,17 @@ const CodingDashboard = () => {
                   <div className="w-10 h-10 rounded bg-slate-100/80 dark:bg-slate-200/90 flex items-center justify-center shrink-0 mt-0.5 p-1.5 shadow-sm border border-border/50">
                     <img src="/icons/Meta_Logo.png" alt="Meta" className="w-full h-full object-contain scale-[1.2]" />
                   </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-foreground">Meta Hacker Cup</h4>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm font-semibold text-foreground">Meta Hacker Cup</h4>
+                      <button 
+                        onClick={() => setActiveCert("/achievements/Meta_HackerCup_2025_certificate_img.png")}
+                        className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
+                      >
+                        <ExternalLink className="w-3 h-3" />
+                        Certificate
+                      </button>
+                    </div>
                     <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
                       Global Rank 3223 (AIR 875) in Round 1 and qualified for Round 2.
                     </p>
@@ -785,10 +796,18 @@ const CodingDashboard = () => {
                 <div className="flex items-start gap-4 p-4 rounded-xl bg-background/50 border border-border/50 hover:border-primary/50 transition-colors">
                   <div className="w-10 h-10 rounded bg-slate-100/80 dark:bg-slate-200/90 flex items-center justify-center shrink-0 mt-0.5 p-1 shadow-sm border border-border/50">
                     <img src="/icons/Flipkart-Logo-webp.png" alt="Flipkart" className="w-full h-full object-contain scale-[1.2]" />
-                    {/* <img src="/icons/flipkart-logo.png" alt="Flipkart" className="w-full h-full object-contain scale-[1.2]" /> */}
                   </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-foreground">Flipkart Grid 7.0</h4>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm font-semibold text-foreground">Flipkart Grid 7.0</h4>
+                      <button 
+                        onClick={() => setActiveCert("/achievements/Flipkart7.0_certificate.png")}
+                        className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
+                      >
+                        <ExternalLink className="w-3 h-3" />
+                        Certificate
+                      </button>
+                    </div>
                     <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
                       Semi-Finalist, reaching the top 0.5% nationally among 1.5 lakh+ participants.
                     </p>
@@ -887,6 +906,30 @@ const CodingDashboard = () => {
           </div>
         )}
       </div>
+
+      {/* ── Fullscreen Certificate Modal ── */}
+      {activeCert && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200"
+          onClick={() => setActiveCert(null)}
+        >
+          <div className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center">
+            <button 
+              onClick={(e) => { e.stopPropagation(); setActiveCert(null); }}
+              className="absolute -top-12 right-0 p-2 text-white/70 hover:text-white transition-colors rounded-full hover:bg-white/10"
+              aria-label="Close certificate"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <img 
+              src={activeCert} 
+              alt="Achievement Certificate" 
+              className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl border border-white/10"
+              onClick={(e) => e.stopPropagation()} 
+            />
+          </div>
+        </div>
+      )}
 
       {/* ── Scoped styles ── */}
       <style>{`

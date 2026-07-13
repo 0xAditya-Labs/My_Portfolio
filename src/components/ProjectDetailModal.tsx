@@ -100,7 +100,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-              
+
               {/* Title & CTAs on Hero */}
               <div className="absolute bottom-4 left-4 right-4">
                 <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 break-words">{project.title}</h2>
@@ -350,7 +350,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-              
+
               {/* Title on Left */}
               <div className="absolute bottom-6 left-8">
                 <h2 className="text-4xl font-bold text-white">{project.title}</h2>
