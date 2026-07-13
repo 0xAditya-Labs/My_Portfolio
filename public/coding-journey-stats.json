@@ -5,9 +5,9 @@
     "topPercentage": 3.12,
     "contestsCount": 47,
     "easySolved": 233,
-    "mediumSolved": 404,
+    "mediumSolved": 405,
     "hardSolved": 76,
-    "totalSolved": 713,
+    "totalSolved": 714,
     "history": [
       {
         "timestamp": 1723905000000,
@@ -1554,10 +1554,14 @@
     {
       "date": "2026-07-07",
       "count": 1
+    },
+    {
+      "date": "2026-07-13",
+      "count": 2
     }
   ],
   "errors": [],
-  "totalActiveDays": 295,
-  "totalSolvedAllPlatforms": 1320,
-  "lastUpdated": "2026-07-11T18:19:07.851Z"
+  "totalActiveDays": 296,
+  "totalSolvedAllPlatforms": 1321,
+  "lastUpdated": "2026-07-13T17:29:41.173Z"
 }
