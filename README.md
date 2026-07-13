@@ -123,7 +123,7 @@ Built from the ground up with **React + Vite + TypeScript**, this repository act
          <sub><b>Coding Activity</b> — Granular DSA tracking</sub>
       </td>
       <td align="center" width="50%">
-         <img src="public/ss/mobile.png" alt="Mobile" />
+         <img src="public/ss/mobile.jpeg" alt="Mobile" />
          <br />
          <sub><b>Mobile Experience</b> — Fully responsive navigation</sub>
       </td>
