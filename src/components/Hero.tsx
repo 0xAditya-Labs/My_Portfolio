@@ -144,24 +144,15 @@ const Hero = () => {
                 alt="Profile"
                 className="w-full h-[420px] sm:h-[500px] md:h-[550px] object-cover rounded-2xl transition-transform duration-500 scale-150 sm:scale-100 sm:group-hover:scale-105"
               />
-              {/* Vignette effect overlay - dark mode only */}
+              {/* Vignette effect overlay */}
               <div
-                className="absolute inset-0 rounded-2xl pointer-events-none hidden dark:block"
+                className="absolute inset-0 rounded-2xl pointer-events-none block"
                 style={{
                   background: 'radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0.5) 100%)'
                 }}
               ></div>
 
-              {/* Subtle eye highlight vignette - light mode only */}
-              <div
-                className="absolute inset-0 rounded-2xl pointer-events-none block dark:hidden"
-                aria-hidden
-                style={{
-                  background: 'radial-gradient(55px at 62% 34%, rgba(255,255,255,0.85) 0px, rgba(255,255,255,0.35) 15px, rgba(255,255,255,0.05) 35px, transparent 55px)',
-                  mixBlendMode: 'screen',
-                  opacity: 0.22
-                }}
-              />
+
             </div>
 
             {/* bottom overlay */}

@@ -2,11 +2,18 @@
 const RESUME_CONTEXT = `PERSONAL INFORMATION & CONTACT:
 Name: Aditya Chauhan
 Role: Software Engineer & Competitive Programmer
-Education: B.Tech CSE, NIT Jalandhar (CGPA: 8.53)
+Born: August 2005
+Hometown: Ludhiana, Punjab
+Languages: English, Hindi, Punjabi
 Email: aditya.chauhan.nitj.ac@gmail.com
 LinkedIn: linkedin.com/in/aditya-chauhan-nitj
 GitHub: github.com/0xAditya-Labs
 Portfolio: adityac.codes
+EDUCATION & ACADEMICS:
+1. B.Tech CSE, NIT Jalandhar (CGPA: 8.53, Top 4%ile)
+2. Class 12 (PCM + CS), DAV Public School, BRS Nagar, Ludhiana (CBSE: 94%)
+3. Class 10, DAV Public School, BRS Nagar, Ludhiana (CBSE: 92%)
+4. Competitive Exams: JEE Main & Advanced (AIR 12,000)
 PROFESSIONAL SUMMARY:
 Aditya Chauhan is a Computer Science Engineering student at NIT Jalandhar (CGPA 8.53, Top 4%ile), currently working as an SDE Intern at Accenture building GenAI and RAG-based systems. He specializes in high-performance concurrent systems, applied AI, and full-stack web development, with a strong competitive programming background (Specialist on Codeforces, Knight on LeetCode, 3-star on CodeChef).
 WORK EXPERIENCE:
@@ -51,7 +58,10 @@ const fallbackResponses: Record<string, string> = {
   "work style": "I like to understand problems deeply, including where they break under real load, choose the right technology, and follow a proper SDLC rather than jumping straight into code.",
   "experience": "I'm currently an SDE Intern at Accenture working on GenAI/RAG systems, and I co-lead the Google Developer Group at NIT Jalandhar, mentoring 150+ students in DSA.",
   "skills": "I specialize in C++ and Python for systems, MERN/FastAPI for full-stack, and have a growing focus on RAG pipelines, concurrency, and high-performance system design.",
-  "education": "I'm a B.Tech CSE student at NIT Jalandhar, maintaining a CGPA of 8.53 (Top 4%).",
+  "education": "I'm a B.Tech CSE student at NIT Jalandhar (CGPA 8.53). I completed my 10th (92%) and 12th (94%) from DAV Public School, BRS Nagar, Ludhiana. I also secured AIR 12,000 in JEE Main and Advanced.",
+  "hometown": "I am from Ludhiana, Punjab. I was born in August 2005.",
+  "ludhiana": "I am from Ludhiana, Punjab.",
+  "background": "I am from Ludhiana, Punjab, born in August 2005.",
   "projects": "My main projects include SwiftCache (15,000+ QPS concurrent LRU cache), ChatMind (real-time RAG messaging), and RetainOps (AI customer retention platform).",
   "contact": "You can reach me at aditya.chauhan.nitj.ac@gmail.com, or connect on LinkedIn (linkedin.com/in/aditya-chauhan-nitj).",
   "achievements": "I'm a Codeforces Specialist, LeetCode Knight, and CodeChef 3-star with 1,200+ DSA problems solved.",
@@ -63,19 +73,19 @@ const fallbackResponses: Record<string, string> = {
 
 function getFallbackResponse(query: string): string | null {
   const normalizedQuery = query.toLowerCase().trim();
-  
+
   // Check for exact matches first
   if (fallbackResponses[normalizedQuery]) {
     return fallbackResponses[normalizedQuery];
   }
-  
+
   // Check for partial matches
   for (const [key, value] of Object.entries(fallbackResponses)) {
     if (normalizedQuery.includes(key) || key.includes(normalizedQuery)) {
       return value;
     }
   }
-  
+
   return null;
 }
 
@@ -223,7 +233,7 @@ Remember: You are representing a professional developer's portfolio. Your respon
       return `I apologize, but I'm having trouble processing your query at the moment. Please try again or rephrase your question.`;
     }
 
-    
+
 
     let text = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
 
@@ -240,13 +250,13 @@ Remember: You are representing a professional developer's portfolio. Your respon
     return text;
   } catch (error) {
     console.error("Error in queryAI:", error);
-    
+
     // Try to get a fallback response
     const fallback = getFallbackResponse(query);
     if (fallback) {
       return fallback;
     }
-    
+
     return "I apologize, but I'm having trouble processing your request. Please try again in a moment.";
   }
 }
@@ -264,7 +274,7 @@ export function isHardcodedQuery(query: string): boolean {
   ];
 
   const lowerQuery = query.toLowerCase().trim();
-  
+
   // Check if query starts with or matches any hardcoded keyword (prefix matching)
   return hardcodedKeywords.some((keyword) =>
     keyword.startsWith(lowerQuery) || lowerQuery.startsWith(keyword)

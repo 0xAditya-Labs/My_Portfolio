@@ -1,12 +1,12 @@
 <div align="center">
 
-#  Aditya Chauhan | Portfolio
+# Aditya Chauhan | Software Engineer Portfolio
 
 <a href="https://adityac.codes">
 <img src="https://img.shields.io/badge/Live%20Portfolio-adityac.codes-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Portfolio" />
 </a>
 
-### **AI-powered navigation. Performance-first UI. A portfolio that feels like a product.**
+### **Building intelligent systems where AI meets high-performance engineering.**
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-007ACC?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=white)](https://react.dev/)
@@ -16,96 +16,61 @@
 
 <br />
 
-[🚀 Quick Start](#-quick-start) • [✨ Highlights](#-feature-highlights) • [🖼️ Screenshots](#%EF%B8%8F-screenshots) • [🛠️ Tech Stack](#%EF%B8%8F-tech-stack) • [📖 Customization](#-customization)
+[🚀 Quick Start](#-quick-start) • [✨ Highlights](#-feature-highlights) • [🖼️ Screenshots](#%EF%B8%8F-screenshots) • [🛠️ Tech Stack](#%EF%B8%8F-tech-stack) • [📬 Contact](#-contact)
 
 <br />
 
 </div>
 
-## 🎯 What is this?
+## 🎯 Overview
 
-This is a modern, product-grade developer portfolio built with **React + Vite + TypeScript**, designed to showcase projects, experience, and live coding stats with a premium UX.
+This is the personal portfolio and interactive resume of **Aditya Chauhan**—a software engineer specializing in high-performance concurrent systems, applied AI, and full-stack web development. 
 
-It’s optimized for **keyboard-first navigation**, **smooth scroll interactions**, and **fast perceived performance** (preloading, lightweight animations, and a clean component architecture).
+Built from the ground up with **React + Vite + TypeScript**, this repository acts as a real-world product rather than a simple static page. It highlights production-grade projects (like `SwiftCache` and `ChatMind`), visualizes competitive programming statistics, and features an integrated AI assistant powered by Google Gemini.
 
 ---
 
-## ✨ Feature Highlights
+## ✨ Core Features
 
 <table>
 <tr>
 <td width="50%">
 
-### 🤖 AI Command Palette
-- Natural language search (Google Gemini integration)
-- Keyboard-first UX (**Ctrl+K**)
-- Quick navigation across sections and content
-- Mobile-friendly quick access (floating action button)
+### 🤖 Gemini AI Command Palette
+- Embedded AI search trained on Aditya's resume and background
+- Keyboard-first UX (**Ctrl+K**) for instant navigation
+- Graceful degradation: Hardcoded fallback logic if API limits are reached
+- Fluid natural language Q&A about projects and experience
 
 </td>
 <td width="50%">
 
-### 📊 Live Coding Dashboard
-- Multi-platform stats (e.g. competitive programming + contributions)
-- Cached & resilient fetching patterns
-- Clean visualizations and quick glance widgets
+### 📊 Competitive Coding Dashboard
+- Live visualization of CP statistics and milestones
+- Deep links to Codeforces (Specialist), LeetCode (Knight), and CodeChef (3-star)
+- Dedicated tracking of 1,200+ DSA problems solved
+- Clean, accessible data charts and progress widgets
 
 </td>
 </tr>
 <tr>
 <td width="50%">
 
-### 🎨 Premium UI/UX
-- Glassmorphism-inspired cards and layered backgrounds
-- Dark/Light theme support
-- Responsive layout with mobile-friendly interactions
-- Animated SVG preloader experience
+### 🧩 Deep Project Modals
+- Rich galleries and image carousels for project screenshots
+- Detailed technical breakdowns (Challenges, Solutions, Architecture)
+- Deep dives into specific metrics (e.g., QPS, Latency, Accuracy)
+- Direct links to GitHub repositories and live deployments
 
 </td>
 <td width="50%">
 
-### ⚡ Performance-first Architecture
+### ⚡ Performance-First Architecture
+- Near-instant loads with Vite and strategic image preloading
 - Scroll-triggered reveals via IntersectionObserver
-- Image preloading for key project thumbnails
-- UI built from accessible primitives (Radix + shadcn)
+- Premium Glassmorphism UI built on Radix + shadcn/ui
+- Seamless Dark/Light system-aware theme switching
 
-</td>
-</tr>
-</table>
-
-<table>
-<tr>
-<td align="center" width="33%">
-<h3>⌨️</h3>
-<b>Keyboard-first</b><br/>
-<sub>Ctrl+K command palette • fast navigation</sub>
-</td>
-<td align="center" width="33%">
-<h3>🧠</h3>
-<b>AI Search</b><br/>
-<sub>Gemini-powered answers • smart fallbacks</sub>
-</td>
-<td align="center" width="33%">
-<h3>🌓</h3>
-<b>Theme System</b><br/>
-<sub>Light/Dark toggle • system-aware</sub>
-</td>
-</tr>
-<tr>
-<td align="center" width="33%">
-<h3>🧩</h3>
-<b>Project Deep Dives</b><br/>
-<sub>Detail modal • gallery • tech stack</sub>
-</td>
-<td align="center" width="33%">
-<h3>📈</h3>
-<b>Live Stats</b><br/>
-<sub>Coding dashboard • charts • snapshots</sub>
-</td>
-<td align="center" width="33%">
-<h3>⚡</h3>
-<b>Perceived Speed</b><br/>
-<sub>Image preloading • scroll reveals</sub>
 </td>
 </tr>
 </table>
@@ -114,133 +79,104 @@ It’s optimized for **keyboard-first navigation**, **smooth scroll interactions
 
 ## 🖼️ Screenshots
 
-Add screenshots here to match the “product README” vibe. Recommended set:
-
-- **Hero / Landing** (top of the page)
-- **Projects grid** (with cards visible)
-- **Project detail modal** (open on a project)
-- **AI Command Palette** (opened with Ctrl+K)
-- **Coding Dashboard** (stats + charts)
-- **Mobile view** (any section + nav/fab)
-
 <table>
    <tr>
       <td align="center" width="50%">
          <img src="public/ss/hero.png" alt="Hero" />
          <br />
-         <sub><b>Hero</b> — first impression + headline</sub>
+         <sub><b>Hero</b> — Clean introduction and primary CTA</sub>
       </td>
       <td align="center" width="50%">
          <img src="public/ss/projects.png" alt="Projects" />
          <br />
-         <sub><b>Projects</b> — curated work with rich cards</sub>
+         <sub><b>Projects</b> — Filterable showcase of system and AI builds</sub>
       </td>
    </tr>
    <tr>
       <td align="center" width="50%">
          <img src="public/ss/modal.png" alt="Project Modal" />
          <br />
-         <sub><b>Project Modal</b> — full project story + gallery</sub>
+         <sub><b>Project Modal</b> — Technical deep-dives and metrics</sub>
       </td>
       <td align="center" width="50%">
          <img src="public/ss/command.png" alt="Command Palette" />
          <br />
-         <sub><b>Command Palette</b> — AI navigation with Ctrl+K</sub>
+         <sub><b>Command Palette</b> — Talk to the Gemini assistant with Ctrl+K</sub>
       </td>
    </tr>
    <tr>
       <td align="center" width="50%">
          <img src="public/ss/coding.png" alt="Coding Dashboard" />
          <br />
-         <sub><b>Coding Dashboard</b> — live stats and visuals</sub>
+         <sub><b>Coding Dashboard</b> — CP stats and algorithmic milestones</sub>
       </td>
       <td align="center" width="50%">
          <img src="public/ss/mobile.png" alt="Mobile" />
          <br />
-         <sub><b>Mobile</b> — responsive layout + touch-friendly UX</sub>
+         <sub><b>Mobile</b> — Fully responsive with native-feeling FABs</sub>
       </td>
    </tr>
 </table>
-
-> Tip: your screenshots live in `public/ss/` — keep adding images there and update the filenames in this section.
 
 ---
 
 ## 🚀 Quick Start
 
+### 1. Clone & Install
 ```bash
-# 1) Install deps
+git clone https://github.com/0xAditya-Labs/My_Portfolio.git
+cd My_Portfolio
 npm install
+```
 
-# 2) Configure env (optional but recommended for AI features)
-# Create a .env file in the project root
+### 2. Configure Environment
+To enable the AI Command Palette, you need a free Google Gemini API key. Create a `.env` file in the root directory:
+```env
+VITE_GEMINI_API_KEY=your_gemini_key_here
+```
 
-# 3) Start dev server
+### 3. Run Development Server
+```bash
 npm run dev
 ```
-
-Open http://localhost:8080
-
-### 🔐 Environment Variables
-
-Create `.env` in the project root:
-
-```env
-# Enables AI-powered command palette features
-VITE_GEMINI_API_KEY=your_key_here
-```
-
-### Production
-
-```bash
-npm run build
-npm run preview
-```
+Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 ---
 
 ## 🛠️ Tech Stack
 
-**Frontend**
+**Frontend Architecture**
 - React 18, TypeScript, Vite
 - Tailwind CSS
 
 **UI / UX**
 - shadcn/ui + Radix UI primitives
-- lucide-react icons
-- next-themes for theme switching
+- framer-motion (Animations)
+- lucide-react (Icons)
+- next-themes (System-aware Dark Mode)
 
-**Data / Integrations**
-- TanStack Query
-- Google Gemini integration for AI search
+**Data & AI**
+- Google Gemini API (`generativelanguage.googleapis.com/v1beta`)
+- Custom Fallback Search Algorithm (Graceful Degradation)
 
-**Deployment / Analytics**
-- Vercel
+**Deployment & Analytics**
+- Vercel (Hosting)
 - Vercel Analytics + Speed Insights
-
----
-
-## 📖 Customization
-
-Common update points:
-
-- **Projects**: edit `src/data/projects.ts`
-- **AI Context**: edit `src/lib/aiSearch.ts` (resume/context + fallback answers)
-- **Branding / Theme tokens**: edit `src/index.css` (CSS variables + theme primitives)
-- **Public assets**: swap images under `public/` (icons, project images, preloader SVG)
 
 ---
 
 ## 📬 Contact
 
 **Aditya Chauhan**
-- Portfolio: https://adityac.codes
-- LinkedIn: https://www.linkedin.com/in/aditya-chauhan-nitj/
-- GitHub: https://github.com/0xAditya-Labs
-- Email: aditya.chauhan.nitj.ac@gmail.com
-- LeetCode: https://leetcode.com/u/Aditya_chauhan__/
+- **Live Portfolio:** [adityac.codes](https://adityac.codes)
+- **LinkedIn:** [aditya-chauhan-nitj](https://www.linkedin.com/in/aditya-chauhan-nitj/)
+- **GitHub:** [@0xAditya-Labs](https://github.com/0xAditya-Labs)
+- **Email:** aditya.chauhan.nitj.ac@gmail.com
+- **LeetCode:** [Aditya_chauhan__](https://leetcode.com/u/Aditya_chauhan__/)
+
+<br/>
 <div align="center">
 
-**⭐ If you found this portfolio inspiring, consider giving it a star!**
+**⭐ If you enjoyed exploring this architecture or found it inspiring, consider dropping a star on the repo!**
 
 </div>
