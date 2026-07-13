@@ -28,5 +28,8 @@ dist
 *.timestamp-*
 .vite
 
+# env 
+.env 
+
 # testing while dev logic andSuggestions for projects 
 testing_and_suggestions/
