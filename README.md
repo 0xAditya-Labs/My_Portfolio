@@ -106,14 +106,26 @@ Built from the ground up with **React + Vite + TypeScript**, this repository act
    </tr>
    <tr>
       <td align="center" width="50%">
-         <img src="public/ss/coding.png" alt="Coding Dashboard" />
+         <img src="public/ss/coding-1.png" alt="Coding Dashboard Overview" />
          <br />
-         <sub><b>Coding Dashboard</b> — CP stats and algorithmic milestones</sub>
+         <sub><b>Coding Dashboard</b> — Real-time CP stats visualization</sub>
+      </td>
+      <td align="center" width="50%">
+         <img src="public/ss/coding-2.png" alt="Coding Milestones" />
+         <br />
+         <sub><b>Algorithmic Milestones</b> — Dynamic platform aggregation</sub>
+      </td>
+   </tr>
+   <tr>
+      <td align="center" width="50%">
+         <img src="public/ss/coding-3.png" alt="Coding Activity" />
+         <br />
+         <sub><b>Coding Activity</b> — Granular DSA tracking</sub>
       </td>
       <td align="center" width="50%">
          <img src="public/ss/mobile.png" alt="Mobile" />
          <br />
-         <sub><b>Mobile</b> — Fully responsive with native-feeling FABs</sub>
+         <sub><b>Mobile Experience</b> — Fully responsive navigation</sub>
       </td>
    </tr>
 </table>
