@@ -35,7 +35,7 @@ async function main() {
   }
 
   const prompt = `Test connection: please reply with exactly "Gemini reachable" and current timestamp.`;
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`;
 
   const payload = {
     contents: [
@@ -52,7 +52,7 @@ async function main() {
       temperature: 0.3,
       topP: 0.8,
       topK: 30,
-    },  
+    },
   };
 
   try {
