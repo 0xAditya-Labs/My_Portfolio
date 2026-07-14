@@ -205,7 +205,7 @@
     "currentRankTitle": "pupil",
     "maxRankTitle": "Specialist",
     "contestsCount": 71,
-    "totalSolved": 409,
+    "totalSolved": 413,
     "history": [
       {
         "timestamp": 1719768900000,
@@ -1558,10 +1558,14 @@
     {
       "date": "2026-07-13",
       "count": 2
+    },
+    {
+      "date": "2026-07-14",
+      "count": 6
     }
   ],
   "errors": [],
-  "totalActiveDays": 296,
-  "totalSolvedAllPlatforms": 1321,
-  "lastUpdated": "2026-07-13T17:29:41.173Z"
+  "totalActiveDays": 297,
+  "totalSolvedAllPlatforms": 1325,
+  "lastUpdated": "2026-07-14T19:50:13.701Z"
 }
