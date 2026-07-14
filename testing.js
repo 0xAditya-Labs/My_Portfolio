@@ -13,8 +13,8 @@ function readDotEnv(dotenvPath) {
     const content = fs.readFileSync(dotenvPath, 'utf8');
     const lines = content.split(/\r?\n/);
     for (const line of lines) {
-      const m = line.match(/^\s*VITE_GEMINI_API_KEY\s*=\s*(.+)\s*$/);
-      if (m) return m[1].trim();
+      const m = line.match(/^\s*VITE_GEMINI_API_KEYS\s*=\s*(.+)\s*$/);
+      if (m) return m[1].split(',')[0].trim();
     }
   } catch (err) {
     return null;
@@ -23,19 +23,19 @@ function readDotEnv(dotenvPath) {
 }
 
 async function main() {
-  let apiKey = process.env.VITE_GEMINI_API_KEY;
+  let apiKey = process.env.VITE_GEMINI_API_KEYS;
   if (!apiKey) {
-    const envPath = path.resolve(process.cwd(), '.env.local');
+    const envPath = path.resolve(process.cwd(), '.env');
     apiKey = readDotEnv(envPath);
   }
 
   if (!apiKey) {
-    console.error('Gemini API key not found. Set VITE_GEMINI_API_KEY or add .env.local');
+    console.error('Gemini API key not found. Set VITE_GEMINI_API_KEYS or add .env');
     process.exit(1);
   }
 
   const prompt = `Test connection: please reply with exactly "Gemini reachable" and current timestamp.`;
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=${apiKey}`;
 
   const payload = {
     contents: [

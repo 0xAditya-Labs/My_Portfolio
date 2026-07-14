@@ -391,8 +391,7 @@ All colors MUST be HSL.
 
   /* Target both the plugin class and common Radix/Shadcn data-state classes */
   .slide-in-from-bottom-full,
-  [data-state="open"].slide-in-from-bottom,
-  [data-state="open"]\:slide-in-from-bottom {
+  [data-state="open"].slide-in-from-bottom {
     transform-origin: center bottom !important;
     backface-visibility: hidden !important;
     will-change: transform, opacity !important;
