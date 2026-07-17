@@ -6,8 +6,8 @@
     "contestsCount": 47,
     "easySolved": 234,
     "mediumSolved": 407,
-    "hardSolved": 76,
-    "totalSolved": 717,
+    "hardSolved": 77,
+    "totalSolved": 718,
     "history": [
       {
         "timestamp": 1723905000000,
@@ -1574,10 +1574,14 @@
     {
       "date": "2026-07-16",
       "count": 1
+    },
+    {
+      "date": "2026-07-17",
+      "count": 1
     }
   ],
   "errors": [],
-  "totalActiveDays": 299,
-  "totalSolvedAllPlatforms": 1328,
-  "lastUpdated": "2026-07-16T19:38:00.963Z"
+  "totalActiveDays": 300,
+  "totalSolvedAllPlatforms": 1329,
+  "lastUpdated": "2026-07-17T19:38:10.667Z"
 }
