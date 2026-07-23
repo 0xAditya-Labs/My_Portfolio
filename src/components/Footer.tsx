@@ -1,8 +1,27 @@
 import { Link } from "react-router-dom";
 import { Github, Linkedin, ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 
 const Footer = () => {
+  const [lcRating, setLcRating] = useState<number | null>(null);
+  const [lcTitle, setLcTitle] = useState<string>("Knight");
+
+  useEffect(() => {
+    fetch("/coding-journey-stats.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const rating = data?.leetcode?.currentRating || data?.leetcode?.maxRating;
+        if (rating) {
+          setLcRating(rating);
+          if (rating >= 2150) setLcTitle("Guardian");
+          else if (rating >= 1850) setLcTitle("Knight");
+          else setLcTitle("User");
+        }
+      })
+      .catch((err) => console.error("Failed to fetch LC stats for footer", err));
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -83,11 +102,11 @@ const Footer = () => {
             <div className="flex gap-6 text-xs text-gray-400">
               <span className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                LeetCode: Knight
+                LeetCode: {lcTitle}
               </span>
               <span className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                Rating: 1956
+                Rating: {lcRating !== null ? lcRating : 1956}
               </span>
               <span className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
