@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { X, Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, Github, ExternalLink, ChevronLeft, ChevronRight, Play, Presentation } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -128,6 +128,32 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                       <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="w-4 h-4" />
                         Live Demo
+                      </a>
+                    </Button>
+                  )}
+                  {project.demoVideoUrl && (
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      className="rounded-full gap-2 bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 whitespace-nowrap"
+                      asChild
+                    >
+                      <a href={project.demoVideoUrl} target="_blank" rel="noopener noreferrer">
+                        <Play className="w-4 h-4" />
+                        Watch Demo
+                      </a>
+                    </Button>
+                  )}
+                  {project.pitchDeckUrl && (
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      className="rounded-full gap-2 bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 whitespace-nowrap"
+                      asChild
+                    >
+                      <a href={project.pitchDeckUrl} target="_blank" rel="noopener noreferrer">
+                        <Presentation className="w-4 h-4" />
+                        Pitch Deck
                       </a>
                     </Button>
                   )}
@@ -382,6 +408,30 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     </a>
                   </Button>
                 )}
+                {project.demoVideoUrl && (
+                  <Button
+                    variant="secondary"
+                    className="rounded-full gap-2 bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20"
+                    asChild
+                  >
+                    <a href={project.demoVideoUrl} target="_blank" rel="noopener noreferrer">
+                      <Play className="w-4 h-4" />
+                      Watch Demo
+                    </a>
+                  </Button>
+                )}
+                {project.pitchDeckUrl && (
+                  <Button
+                    variant="secondary"
+                    className="rounded-full gap-2 bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20"
+                    asChild
+                  >
+                    <a href={project.pitchDeckUrl} target="_blank" rel="noopener noreferrer">
+                      <Presentation className="w-4 h-4" />
+                      Pitch Deck
+                    </a>
+                  </Button>
+                )}
               </div>
 
               {/* Carousel Controls */}
@@ -582,6 +632,19 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                         <pre className="p-4 rounded-xl text-sm overflow-x-auto font-mono bg-muted border border-border/80">
                           {project.documentation.api}
                         </pre>
+                      </div>
+                    )}
+
+                    {/* Architecture */}
+                    {project.documentation.architecture && (
+                      <div className="space-y-3">
+                        <h3 className="font-semibold text-xl">Architecture</h3>
+                        <p className="text-muted-foreground leading-relaxed">{project.documentation.architecture}</p>
+                        {project.documentation.architectureImage && (
+                          <div className="mt-6 rounded-xl overflow-hidden border border-border/80 mx-auto max-w-3xl bg-background/50">
+                            <img src={project.documentation.architectureImage} alt="Architecture Diagram" className="w-full h-auto object-contain" />
+                          </div>
+                        )}
                       </div>
                     )}
                   </TabsContent>

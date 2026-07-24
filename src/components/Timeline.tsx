@@ -22,8 +22,8 @@ const timelineData: TimelineItem[] = [
     logo: "/icons/Accenture-Logo (2).png",
     period: "Jun 2026 – Jul 2026",
     summary:
-      "Decreased RAG input-token usage by 34% for ContextIQ using LangChain chunking, and slashed vector-search latency by 69% by refactoring the ChromaDB client into a singleton.",
-    tags: ["LangChain", "Langfuse", "OpenTelemetry", "ChromaDB", "RAG", "Python"],
+      "Engineered a LangGraph ReAct agent for ContextIQ, decreasing RAG input-token usage by 34% via docstring tool-gating to eliminate out-of-scope calls. Slashed vector-search latency by 69% by tracing DB connection bottlenecks with OpenTelemetry and refactoring ChromaDB into a thread-safe singleton.",
+    tags: ["LangGraph", "ReAct", "Langfuse", "OpenTelemetry", "ChromaDB", "Python", "RAG"],
   },
   {
     date: "DEC 2024 – PRESENT",

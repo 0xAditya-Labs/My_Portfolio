@@ -11,6 +11,8 @@ export interface Project {
   featured: boolean;
   githubUrl?: string;
   liveUrl?: string;
+  demoVideoUrl?: string;
+  pitchDeckUrl?: string;
   features: string[];
   challenges: string[];
   metrics: {
@@ -77,6 +79,60 @@ export const projectsData: Project[] = [
       setup: "git clone https://github.com/0xAditya-Labs/ChatMind.git && npm install && cd server && npm install",
       usage: "Users sign up, join real-time chat conversations, and can ask the built-in Q&A panel questions about past messages — the RAG pipeline retrieves and summarizes relevant chat history conversationally instead of requiring manual scrolling/search.",
       api: "POST /api/auth/signup :- Register a new user\nPOST /api/auth/login :- Authenticate using JWT\nGET /api/messages/:id :- Fetch conversation history\nPOST /api/messages :- Send a message\nWS /socket.io :- Real-time messaging\nPOST /api/rag/query :- Ask questions over chat history"
+    }
+  },
+  {
+    id: "contextiq",
+    title: "ContextIQ — RAG-Based IT Support Assistant",
+    description: "A LangChain-powered RAG agent that answers IT-support queries from a synthetic enterprise knowledge base, instrumented end-to-end with Langfuse and OpenTelemetry for full-stack observability.",
+    fullDescription: "ContextIQ is a retrieval-augmented generation assistant built during my internship at Accenture to answer IT-support queries against a synthetic enterprise knowledge base. Beyond the core RAG pipeline, the project focused heavily on observability and architectural control: Langfuse traces LLM cost and output quality across requests, while OpenTelemetry instruments backend latency end-to-end. This layer directly enabled a 34% reduction in RAG input-token usage and a 69% cut in vector-search latency by making bottlenecks visible. Furthermore, to eliminate out-of-scope LLM hallucinations, the system was upgraded to a stateful ReAct agent in LangGraph that evaluates queries against tool docstrings before executing costly database retrievals.",
+    image: "/projects/contextiq_2.png",
+    images: [
+      "/projects/contextiq_1.png",
+      "/projects/contextiq_2.png",
+      "/projects/contextiq_3.png",
+      "/projects/contextiq_4.png"
+    ],
+    tags: ["Python", "LangGraph", "Gemini", "RAG", "Observability"],
+    techStack: ["Python", "LangGraph", "Gemini API", "FastAPI", "ChromaDB", "Langfuse", "OpenTelemetry"],
+    category: ["ai-ml", "backend"],
+    featured: true,
+    githubUrl: "https://github.com/0xAditya-Labs/ContextIQ",
+    liveUrl: "",
+    demoVideoUrl: "https://youtu.be/iB0DpAtEWZA?si=DufV_p64cXk-fUmC",
+    pitchDeckUrl: "https://docs.google.com/presentation/d/1YjKR_LsQPGX68dEUOVmqeWUsBH6sl-gq/edit",
+    features: [
+      "LangGraph ReAct Architecture: Dynamic docstring tool-gating that eliminated out-of-scope LLM hallucinations and reduced token waste.",
+      "Langfuse instrumentation tracing LLM cost and output quality per request.",
+      "OpenTelemetry tracing across the backend for end-to-end latency profiling.",
+      "Singleton-refactored ChromaDB client eliminating a traced 400ms bottleneck."
+    ],
+    challenges: [
+      "Handling out-of-scope IT queries without wasting API tokens or hallucinating answers — solved by designing a stateful ReAct agent in LangGraph that evaluates queries against tool docstrings before executing costly retrievals.",
+      "Identifying the actual source of vector-search latency required instrumenting the full request path with OpenTelemetry rather than assuming the bottleneck's location — the real cause (repeated ChromaDB client instantiation) wasn't where it was initially suspected.",
+      "Reducing token usage via chunking without degrading retrieval quality, validated quantitatively via Langfuse rather than by inspection alone."
+    ],
+    metrics: [
+      { label: "RAG Input-Token Usage", value: "-34% (1800 → 1180 tokens/request)" },
+      { label: "Vector-Search Latency", value: "-69% (580ms → 180ms)" },
+      { label: "Bottleneck Identified", value: "400ms traced via OpenTelemetry" }
+    ],
+    implementation: {
+      approach: "Built a stateful ReAct agent using LangGraph to orchestrate query tool-gating, ensuring out-of-scope queries are blocked before costly database retrievals. The system leverages Gemini API for generation and embeddings. Integrated Langfuse and OpenTelemetry to form a systematic observability layer — Langfuse for LLM cost/quality tracing, OpenTelemetry for backend latency — allowing for precise bottleneck identification and metric-driven optimization.",
+      technologies: [
+        { name: "LangGraph", reason: "Provides the ReAct architecture and stateful orchestration for the RAG agent." },
+        { name: "Gemini API", reason: "Powers the LLM generations and high-quality vector embeddings for the knowledge base." },
+        { name: "Langfuse", reason: "Traces LLM cost and quality per request, enabling measurable token-usage optimization." },
+        { name: "OpenTelemetry", reason: "End-to-end backend latency tracing, used to locate and fix the 400ms ChromaDB bottleneck." }
+      ]
+    },
+    documentation: {
+      setup: "git clone https://github.com/0xAditya-Labs/ContextIQ.git && pip install -r requirements.txt --break-system-packages",
+      usage: "Users submit IT-support questions through the assistant interface. The LangGraph ReAct agent evaluates the query; if valid, it retrieves context and generates a grounded response using Gemini API. Out-of-scope queries are rejected to save tokens.",
+      api: "POST /api/query :- Submit IT-support query\nPOST /api/retrieve :- Retrieve relevant knowledge chunks\nGET /api/traces :- View Langfuse request traces\nGET /api/metrics :- Retrieve observability metrics\nGET /api/health :- Health check endpoint"
+,
+      architecture: "LangGraph ReAct Agent orchestrates tool-gating and query execution. FastAPI handles routing, ChromaDB manages vector storage, and Gemini API powers generation. Full-stack observability is implemented with Langfuse and OpenTelemetry.",
+      architectureImage: "/projects/contextiq_3.png"
     }
   },
   {
@@ -169,51 +225,6 @@ export const projectsData: Project[] = [
       setup: "git clone https://github.com/0xAditya-Labs/ISP-Customer-retention-Recommender.git && pip install -r requirements.txt --break-system-packages && npm install",
       usage: "Support teams upload a customer CSV to instantly see churn-risk rankings, with each at-risk customer flagged alongside a SHAP-generated explanation of why — enabling targeted retention offers instead of blanket discounts.",
       api: "POST /api/predict :- Predict churn probability from uploaded dataset\nPOST /api/upload :- Upload customer CSV\nGET /api/results :- Retrieve prediction results\nGET /api/shap/:customerId :- Fetch SHAP explanation for a customer\nGET /api/health :- Health check endpoint"
-    }
-  },
-  {
-    id: "contextiq",
-    title: "ContextIQ — RAG-Based IT Support Assistant",
-    description: "A LangChain-powered RAG agent that answers IT-support queries from a synthetic enterprise knowledge base, instrumented end-to-end with Langfuse and OpenTelemetry for full-stack observability.",
-    fullDescription: "ContextIQ is a retrieval-augmented generation assistant built during my internship at Accenture to answer IT-support queries against a synthetic enterprise knowledge base. Beyond the core RAG pipeline, the project focused heavily on observability: Langfuse traces LLM cost and output quality across requests, while OpenTelemetry instruments backend latency end-to-end — together enabling systematic performance debugging rather than guesswork. This observability layer directly enabled a 34% reduction in RAG input-token usage and a 69% cut in vector-search latency by making bottlenecks visible and measurable.",
-    image: "/projects/contextiq_1.png",
-    images: [
-      "/projects/contextiq_1.png"
-    ],
-    tags: ["Python", "LangChain", "RAG", "Observability"],
-    techStack: ["Python", "LangChain", "FastAPI", "ChromaDB", "Langfuse", "OpenTelemetry"],
-    category: ["ai-ml", "backend"],
-    featured: true,
-    githubUrl: "https://github.com/0xAditya-Labs/ContextIQ",
-    liveUrl: "",
-    features: [
-      "LangChain-based RAG pipeline answering IT-support queries over a synthetic knowledge base.",
-      "Langfuse instrumentation tracing LLM cost and output quality per request.",
-      "OpenTelemetry tracing across the backend for end-to-end latency profiling.",
-      "Singleton-refactored ChromaDB client eliminating a traced 400ms bottleneck.",
-      "LangChain-based chunking strategy reducing input-token usage without sacrificing answer quality."
-    ],
-    challenges: [
-      "Identifying the actual source of vector-search latency required instrumenting the full request path with OpenTelemetry rather than assuming the bottleneck's location — the real cause (repeated ChromaDB client instantiation) wasn't where it was initially suspected.",
-      "Reducing token usage via chunking without degrading retrieval quality, validated quantitatively via Langfuse rather than by inspection alone."
-    ],
-    metrics: [
-      { label: "RAG Input-Token Usage", value: "-34% (1800 → 1180 tokens/request)" },
-      { label: "Vector-Search Latency", value: "-69% (580ms → 180ms)" },
-      { label: "Bottleneck Identified", value: "400ms traced via OpenTelemetry" }
-    ],
-    implementation: {
-      approach: "Built the RAG pipeline with LangChain's chunking utilities to control token usage, then used Langfuse and OpenTelemetry together as a systematic observability layer — Langfuse for LLM-level cost/quality tracing, OpenTelemetry for backend latency — to find and fix real bottlenecks with data rather than assumption.",
-      technologies: [
-        { name: "LangChain", reason: "Provides chunking and retrieval orchestration for the RAG pipeline." },
-        { name: "Langfuse", reason: "Traces LLM cost and quality per request, enabling measurable token-usage optimization." },
-        { name: "OpenTelemetry", reason: "End-to-end backend latency tracing, used to locate and fix the 400ms ChromaDB bottleneck." }
-      ]
-    },
-    documentation: {
-      setup: "git clone https://github.com/0xAditya-Labs/ContextIQ.git && pip install -r requirements.txt --break-system-packages",
-      usage: "Users submit IT-support questions through the assistant interface; the system retrieves relevant context from the knowledge base via the RAG pipeline and returns a grounded, context-aware answer in real time.",
-      api: "POST /api/query :- Submit IT-support query\nPOST /api/retrieve :- Retrieve relevant knowledge chunks\nGET /api/traces :- View Langfuse request traces\nGET /api/metrics :- Retrieve observability metrics\nGET /api/health :- Health check endpoint"
     }
   },
   {
