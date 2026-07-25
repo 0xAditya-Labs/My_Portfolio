@@ -572,10 +572,6 @@
   },
   "heatmap": [
     {
-      "date": "2025-07-25",
-      "count": 1
-    },
-    {
       "date": "2025-07-26",
       "count": 7
     },
@@ -1581,7 +1577,7 @@
     }
   ],
   "errors": [],
-  "totalActiveDays": 301,
+  "totalActiveDays": 300,
   "totalSolvedAllPlatforms": 1333,
-  "lastUpdated": "2026-07-24T19:52:46.706Z"
+  "lastUpdated": "2026-07-25T19:40:13.340Z"
 }
