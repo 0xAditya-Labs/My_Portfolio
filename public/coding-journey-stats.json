@@ -2,7 +2,7 @@
   "leetcode": {
     "currentRating": 1965,
     "maxRating": 1965,
-    "topPercentage": 3.14,
+    "topPercentage": 3.15,
     "contestsCount": 47,
     "easySolved": 236,
     "mediumSolved": 410,
@@ -573,7 +573,7 @@
   "heatmap": [
     {
       "date": "2025-07-31",
-      "count": 8
+      "count": 3
     },
     {
       "date": "2025-08-01",
@@ -1562,10 +1562,14 @@
     {
       "date": "2026-07-30",
       "count": 2
+    },
+    {
+      "date": "2026-07-31",
+      "count": 1
     }
   ],
   "errors": [],
-  "totalActiveDays": 298,
+  "totalActiveDays": 299,
   "totalSolvedAllPlatforms": 1334,
-  "lastUpdated": "2026-07-30T19:58:29.034Z"
+  "lastUpdated": "2026-07-31T19:59:26.191Z"
 }
