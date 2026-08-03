@@ -568,7 +568,7 @@
     ]
   },
   "gfg": {
-    "totalSolved": null
+    "totalSolved": 146
   },
   "heatmap": [
     {
@@ -1562,6 +1562,6 @@
   ],
   "errors": [],
   "totalActiveDays": 298,
-  "totalSolvedAllPlatforms": 1191,
-  "lastUpdated": "2026-08-02T19:40:40.398Z"
+  "totalSolvedAllPlatforms": 1337,
+  "lastUpdated": "2026-08-03T20:06:10.972Z"
 }
