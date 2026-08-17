@@ -4,10 +4,10 @@
     "maxRating": 1965,
     "topPercentage": 3.16,
     "contestsCount": 47,
-    "easySolved": 263,
-    "mediumSolved": 424,
+    "easySolved": 264,
+    "mediumSolved": 429,
     "hardSolved": 78,
-    "totalSolved": 765,
+    "totalSolved": 771,
     "history": [
       {
         "timestamp": 1723905000000,
@@ -579,10 +579,6 @@
     "totalSolved": 146
   },
   "heatmap": [
-    {
-      "date": "2025-08-17",
-      "count": 5
-    },
     {
       "date": "2025-08-18",
       "count": 6
@@ -1562,10 +1558,14 @@
     {
       "date": "2026-08-16",
       "count": 28
+    },
+    {
+      "date": "2026-08-17",
+      "count": 16
     }
   ],
   "errors": [],
   "totalActiveDays": 302,
-  "totalSolvedAllPlatforms": 1379,
-  "lastUpdated": "2026-08-16T18:52:04.556Z"
+  "totalSolvedAllPlatforms": 1385,
+  "lastUpdated": "2026-08-17T19:05:08.903Z"
 }
