@@ -208,11 +208,11 @@
     ]
   },
   "codeforces": {
-    "currentRating": 1325,
+    "currentRating": 1352,
     "maxRating": 1418,
     "currentRankTitle": "pupil",
     "maxRankTitle": "Specialist",
-    "contestsCount": 72,
+    "contestsCount": 73,
     "totalSolved": 416,
     "history": [
       {
@@ -502,6 +502,10 @@
       {
         "timestamp": 1784047800000,
         "rating": 1325
+      },
+      {
+        "timestamp": 1786120500000,
+        "rating": 1352
       }
     ]
   },
@@ -579,10 +583,6 @@
     "totalSolved": 146
   },
   "heatmap": [
-    {
-      "date": "2025-08-25",
-      "count": 4
-    },
     {
       "date": "2025-08-26",
       "count": 6
@@ -1555,5 +1555,5 @@
   "errors": [],
   "totalActiveDays": 304,
   "totalSolvedAllPlatforms": 1399,
-  "lastUpdated": "2026-08-25T19:05:58.769Z"
+  "lastUpdated": "2026-08-26T20:17:47.396Z"
 }
