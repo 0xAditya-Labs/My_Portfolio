@@ -5,8 +5,8 @@
     "topPercentage": 3.27,
     "contestsCount": 48,
     "easySolved": 272,
-    "mediumSolved": 433,
-    "hardSolved": 80,
+    "mediumSolved": 432,
+    "hardSolved": 81,
     "totalSolved": 785,
     "history": [
       {
@@ -1543,5 +1543,5 @@
   "errors": [],
   "totalActiveDays": 304,
   "totalSolvedAllPlatforms": 1399,
-  "lastUpdated": "2026-08-29T01:48:35.679Z"
+  "lastUpdated": "2026-08-29T21:01:41.190Z"
 }
