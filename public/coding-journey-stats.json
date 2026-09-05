@@ -213,7 +213,7 @@
     "currentRankTitle": "pupil",
     "maxRankTitle": "Specialist",
     "contestsCount": 73,
-    "totalSolved": 416,
+    "totalSolved": 420,
     "history": [
       {
         "timestamp": 1719768900000,
@@ -585,7 +585,7 @@
   "heatmap": [
     {
       "date": "2025-09-05",
-      "count": 8
+      "count": 6
     },
     {
       "date": "2025-09-06",
@@ -1518,10 +1518,14 @@
     {
       "date": "2026-08-25",
       "count": 1
+    },
+    {
+      "date": "2026-09-05",
+      "count": 4
     }
   ],
   "errors": [],
-  "totalActiveDays": 303,
-  "totalSolvedAllPlatforms": 1399,
-  "lastUpdated": "2026-09-04T20:52:49.299Z"
+  "totalActiveDays": 304,
+  "totalSolvedAllPlatforms": 1403,
+  "lastUpdated": "2026-09-05T20:30:59.136Z"
 }
