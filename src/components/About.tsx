@@ -13,7 +13,7 @@ const About = () => {
   };
 
   return (
-    <section id="about" ref={aboutRef} className="py-24 bg-background">
+    <section id="about" ref={aboutRef} className="py-20 lg:py-24 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left Content */}
@@ -22,10 +22,10 @@ const About = () => {
               <p className="text-sm uppercase tracking-wider text-muted-foreground mb-4">
                 About Me
               </p>
-              <h2 className="text-5xl font-bold mb-8">My background</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6">My background</h2>
             </div>
 
-            <div className="space-y-6 text-lg text-muted-foreground">
+            <div className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed">
               <p>
                 I'm a third-year Computer Science Engineering student at Dr. B.R. Ambedkar National Institute of Technology, Jalandhar, maintaining a <span className="font-bold text-black dark:text-white">CGPA of 8.53 (Top 4%ile)</span>. Currently, I work as a Software Development Engineer Intern at Accenture, where I've built a RAG-based Q&A microservice that reduced manual review time by 45%.
               </p>

@@ -53,7 +53,7 @@ const Hero = () => {
   }, [isMobile]);
 
   return (
-    <section ref={heroRef} className="min-h-[85vh] bg-background relative overflow-hidden pt-24 pb-16">
+    <section ref={heroRef} className="min-h-[85vh] bg-background relative overflow-hidden pt-20 pb-12 flex flex-col justify-center">
       {/* Decorative floating elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
@@ -100,18 +100,18 @@ const Hero = () => {
             )}
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-[4.2rem] font-bold leading-[1.1] tracking-tight">
             Building intelligent systems where AI meets full stack development
           </h1>
 
-          <p className="text-lg text-muted-foreground max-w-lg">
+          <p className="text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed">
             Hi, I'm <span className="text-foreground font-medium">Aditya Chauhan</span>. <br></br>I solve real problems through thoughtful engineering, combining strong fundamentals with practical execution. I care deeply about performance, clarity, and building systems that scale beyond prototypes.
           </p>
 
           <div className="flex flex-wrap gap-4">
             <Button
               size="lg"
-              className="rounded-full gap-2 px-8 py-6 text-base font-medium btn-premium-shine"
+              className="rounded-full gap-2 px-8 py-5 text-base font-medium btn-premium-shine"
               onClick={() => {
                 const projectsSection = document.getElementById('projects');
                 if (projectsSection) {
@@ -125,7 +125,7 @@ const Hero = () => {
             <Button
               size="lg"
               variant="outline"
-              className="rounded-full gap-2 px-8 py-6 text-base font-medium border-2 border-primary dark:border-white hover:bg-primary hover:text-primary-foreground hover:border-primary dark:hover:bg-white dark:hover:text-black dark:hover:border-black btn-premium-shine"
+              className="rounded-full gap-2 px-8 py-5 text-base font-medium border-2 border-primary dark:border-white hover:bg-primary hover:text-primary-foreground hover:border-primary dark:hover:bg-white dark:hover:text-black dark:hover:border-black btn-premium-shine"
               onClick={() => window.open('https://drive.google.com/file/d/1ey76P7eqpmiMD-C0LmM27ndCzXkrNiDT/view?usp=sharing', '_blank')}
             >
               View Resume
@@ -142,7 +142,7 @@ const Hero = () => {
               <img
                 src="/Aditya-PFP.jpg"
                 alt="Profile"
-                className="w-full h-[420px] sm:h-[500px] md:h-[550px] object-cover rounded-2xl transition-transform duration-500 scale-150 sm:scale-100 sm:group-hover:scale-105"
+                className="w-full h-[380px] sm:h-[450px] md:h-[480px] object-cover rounded-2xl transition-transform duration-500 scale-150 sm:scale-100 sm:group-hover:scale-105"
               />
               {/* Vignette effect overlay */}
               <div
