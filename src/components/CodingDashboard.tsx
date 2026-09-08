@@ -450,7 +450,7 @@ const CodingDashboard = () => {
   // ── Render ─────────────────────────────────────────────────────
   return (
     <section
-      className="py-20 px-6 bg-gradient-to-b from-background to-muted/20"
+      className="py-16 px-6 bg-gradient-to-b from-background to-muted/20"
       id="coding-dashboard"
       style={{ opacity: loaded ? 1 : 0, transition: "opacity 0.4s ease" }}
     >

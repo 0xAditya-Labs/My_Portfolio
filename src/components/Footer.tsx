@@ -184,7 +184,7 @@ const Footer = () => {
               <p>
                 Made with <span className="inline-block text-rose-500/90 text-xs mx-0.5">❤️</span> in BLR
               </p>
-              <span className="block text-[11px] text-white/40 mt-1 md:ml-6 tracking-wider">|| ਜੈ ਪ੍ਰਮਾਤਮਾ ||</span>
+              <span className="block text-[11px] text-white/40 mt-1 md:ml-6 tracking-wider">|| ਜੈ ਪਰਮਾਤਮਾ ||</span>
             </div>
           </div>
 

@@ -62,7 +62,7 @@ const Projects = () => {
   const closeProject = () => setSelectedProject(null);
 
   return (
-    <section id="projects" ref={projectsRef} className="py-24 bg-background">
+    <section id="projects" ref={projectsRef} className="pt-24 pb-16 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <div className={`mb-12 ${projectsVisible ? 'scroll-animate' : ''}`}>
           <p className="text-sm uppercase tracking-wider text-muted-foreground mb-4">
