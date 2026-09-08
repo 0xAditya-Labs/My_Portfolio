@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Github, Linkedin, ArrowUp } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter, ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 
@@ -34,30 +34,48 @@ const Footer = () => {
         <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 mb-12">
+      <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 relative z-10">
+        <div className="flex flex-col lg:flex-row justify-between gap-12 mb-16">
           {/* Left Column */}
-          <div className="space-y-6">
+          <div className="space-y-6 max-w-md">
             <h3 className="text-2xl font-bold text-white">adityac.codes</h3>
             <p className="text-gray-400">
               Building intelligent systems where AI meets full stack development. Final year CSE student at NIT Jalandhar.
             </p>
             <div className="flex gap-3">
               <a
+                href="mailto:aditya.chauhan.nitj.ac@gmail.com"
+                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 hover:-translate-y-1 border border-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm"
+                aria-label="Email"
+              >
+                <Mail className="w-[18px] h-[18px]" />
+              </a>
+              <a
                 href="https://linkedin.com/in/aditya-chauhan-nitj"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all"
+                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 hover:-translate-y-1 border border-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm"
+                aria-label="LinkedIn"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-[18px] h-[18px]" />
               </a>
               <a
                 href="https://github.com/0xAditya-Labs"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all"
+                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 hover:-translate-y-1 border border-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm"
+                aria-label="GitHub"
               >
-                <Github className="w-5 h-5" />
+                <Github className="w-[18px] h-[18px]" />
+              </a>
+              <a
+                href="https://x.com/AdityaNitj1204"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 hover:-translate-y-1 border border-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm"
+                aria-label="Twitter"
+              >
+                <Twitter className="w-[18px] h-[18px]" />
               </a>
             </div>
           </div>
@@ -94,9 +112,12 @@ const Footer = () => {
               </p>
               <button
                 onClick={scrollToTop}
-                className="text-sm text-gray-400 hover:text-white transition-colors underline underline-offset-4"
+                className="group flex items-center gap-3 text-sm text-gray-400 hover:text-white transition-colors ml-0 sm:ml-4"
               >
-                Back to top
+                <span>Back to top</span>
+                <div className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-white/20 border border-white/10 flex items-center justify-center transition-all duration-300 group-hover:-translate-y-1">
+                  <ArrowUp className="w-4 h-4" />
+                </div>
               </button>
             </div>
             <div className="flex gap-6 text-xs text-gray-400">
