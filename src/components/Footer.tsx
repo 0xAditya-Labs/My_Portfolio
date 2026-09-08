@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail, Twitter, ArrowUp } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 
 const Footer = () => {
@@ -26,129 +24,183 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleOpenCommandPalette = () => {
+    window.dispatchEvent(new CustomEvent("open-command-palette"));
+  };
+
   return (
-    <footer className="bg-[#0a0a0a] py-16 relative overflow-hidden">
-      {/* Decorative gradient blobs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+    <footer className="bg-[#0a0a0a] pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-12 lg:pb-6 relative overflow-hidden text-neutral-300">
+      {/* Black atmospheric lighting system */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden>
+        <div className="absolute -bottom-28 -left-24 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-28 -right-24 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 relative z-10">
-        <div className="flex flex-col lg:flex-row justify-between gap-12 mb-16">
-          {/* Left Column */}
-          <div className="space-y-6 max-w-md">
-            <h3 className="text-2xl font-bold text-white">adityac.codes</h3>
-            <p className="text-gray-400">
+      <div className="max-w-6xl mx-auto px-8 sm:px-16 lg:px-20 relative z-10">
+        {/* Main Upper Section: Left Brand + Right Navigation */}
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-12 mb-6 lg:mb-8">
+          {/* Left Column: Identity & Positioning */}
+          <div className="space-y-5 max-w-sm lg:w-1/3">
+            {/* Primary & Secondary Identity Lockup: adityac.codes + [AC] */}
+            <div className="flex items-center gap-2.5">
+              <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white font-sans">
+                adityac<span className="text-neutral-500 font-normal">.codes</span>
+              </h3>
+              <div
+                className="w-6 h-6 rounded-full bg-white/5 border border-white/15 flex items-center justify-center overflow-hidden flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity shadow-inner"
+                title="AC Seal"
+              >
+                <img
+                  src="/preloader.svg"
+                  alt="AC"
+                  className="w-full h-full object-cover select-none"
+                  draggable={false}
+                />
+              </div>
+            </div>
+
+            <p className="text-sm sm:text-base text-neutral-400 leading-relaxed font-normal">
               Building intelligent systems where AI meets full stack development. Final year CSE student at NIT Jalandhar.
             </p>
-            <div className="flex gap-3">
+
+            {/* Social Links with Refined Software-Product Affordance */}
+            <div className="flex items-center gap-2.5 pt-1">
               <a
                 href="mailto:aditya.chauhan.nitj.ac@gmail.com"
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 hover:-translate-y-1 border border-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm"
-                aria-label="Email"
+                className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.09] active:bg-white/[0.12] border border-white hover:border-white text-white flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+                aria-label="Send email to Aditya"
               >
-                <Mail className="w-[18px] h-[18px]" />
+                <Mail className="w-4 h-4" />
               </a>
               <a
                 href="https://linkedin.com/in/aditya-chauhan-nitj"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 hover:-translate-y-1 border border-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm"
-                aria-label="LinkedIn"
+                className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.09] active:bg-white/[0.12] border border-white hover:border-white text-white flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+                aria-label="Aditya's LinkedIn profile"
               >
-                <Linkedin className="w-[18px] h-[18px]" />
+                <Linkedin className="w-4 h-4" />
               </a>
               <a
                 href="https://github.com/0xAditya-Labs"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 hover:-translate-y-1 border border-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm"
-                aria-label="GitHub"
+                className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.09] active:bg-white/[0.12] border border-white hover:border-white text-white flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+                aria-label="Aditya's GitHub profile"
               >
-                <Github className="w-[18px] h-[18px]" />
+                <Github className="w-4 h-4" />
               </a>
               <a
                 href="https://x.com/AdityaNitj1204"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 hover:-translate-y-1 border border-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm"
-                aria-label="Twitter"
+                className="w-9 h-9 rounded-full bg-white/[0.04] hover:bg-white/[0.09] active:bg-white/[0.12] border border-white hover:border-white text-white flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+                aria-label="Aditya's X (Twitter) profile"
               >
-                <Twitter className="w-[18px] h-[18px]" />
+                <Twitter className="w-4 h-4" />
               </a>
             </div>
           </div>
 
-          {/* Right Column - Navigation */}
-          <div className="lg:justify-self-end lg:text-right">
-            <h4 className="text-lg font-semibold mb-4 text-white">Navigation</h4>
-            <nav className="space-y-2">
-              <a href="/" className="block text-gray-400 hover:text-white transition-colors">
+
+
+          {/* Right Column: Anchored Navigation */}
+          <div className="lg:text-right lg:w-1/3">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
+              Navigation
+            </h4>
+            <nav className="flex flex-col space-y-2.5 lg:items-end">
+              <a
+                href="/"
+                className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
+              >
                 Home
               </a>
-              <a href="#projects" className="block text-gray-400 hover:text-white transition-colors">
+              <a
+                href="#projects"
+                className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
+              >
                 Projects
               </a>
-              <a href="#about" className="block text-gray-400 hover:text-white transition-colors">
+              <a
+                href="#about"
+                className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
+              >
                 About
               </a>
-              <a href="#contact" className="block text-gray-400 hover:text-white transition-colors">
+              <a
+                href="#contact"
+                className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
+              >
                 Contact
               </a>
-              <a href="#faq" className="block text-gray-400 hover:text-white transition-colors">
+              <a
+                href="#faq"
+                className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
+              >
                 FAQs
               </a>
             </nav>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10">
+        {/* Centered Back to Top - Positioned just above the line */}
+        <div className="flex justify-center mb-4 lg:mb-6">
+          <button
+            onClick={scrollToTop}
+            className="group inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none underline underline-offset-4"
+            aria-label="Back to top"
+          >
+            <ArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform duration-200" />
+            <span className="font-medium">Back to top</span>
+          </button>
+        </div>
+
+        {/* Lower Structure: Divided by Subtle Border */}
+        <div className="pt-5 border-t border-white/[0.08]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex flex-col sm:flex-row items-center gap-4">
-              <p className="text-sm text-gray-400">
+            <div className="flex items-center">
+              <p className="text-sm text-neutral-400">
                 © 2026 Aditya Chauhan. All rights reserved.
               </p>
-              <button
-                onClick={scrollToTop}
-                className="group flex items-center gap-3 text-sm text-gray-400 hover:text-white transition-colors ml-0 sm:ml-4"
-              >
-                <span>Back to top</span>
-                <div className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-white/20 border border-white/10 flex items-center justify-center transition-all duration-300 group-hover:-translate-y-1">
-                  <ArrowUp className="w-4 h-4" />
-                </div>
-              </button>
             </div>
-            <div className="flex gap-6 text-xs text-gray-400">
-              <span className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                LeetCode: {lcTitle}
+            
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs text-neutral-400">
+              <span className="flex items-center gap-1.5 sm:gap-2">
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400/90 shadow-[0_0_6px_rgba(52,211,153,0.4)] animate-pulse" />
+                LeetCode: <span className="text-neutral-200 font-mono">{lcTitle}</span>
               </span>
-              <span className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                Rating: {lcRating !== null ? lcRating : 1956}
+              <span className="flex items-center gap-1.5 sm:gap-2">
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400/90 shadow-[0_0_6px_rgba(52,211,153,0.4)] animate-pulse" />
+                Rating: <span className="text-neutral-200 font-mono">{lcRating !== null ? lcRating : 1959}</span>
               </span>
-              <span className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                CGPA: 8.53
+              <span className="flex items-center gap-1.5 sm:gap-2">
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400/90 shadow-[0_0_6px_rgba(52,211,153,0.4)] animate-pulse" />
+                CGPA: <span className="text-neutral-200 font-mono">8.53</span>
               </span>
             </div>
-            <p className="text-sm text-gray-400">
-              Made with ❤️ in BLR
-              <span className="block text-xs text-white/40 mt-1 ml-6">|| ਜੈ ਪ੍ਰਮਾਤਮਾ ||</span>
-            </p>
+            
+            <div className="flex flex-col items-center md:items-end text-sm text-neutral-400">
+              <p>
+                Made with <span className="inline-block text-rose-500/90 text-xs mx-0.5">❤️</span> in BLR
+              </p>
+              <span className="block text-[11px] text-white/40 mt-1 md:ml-6 tracking-wider">|| ਜੈ ਪ੍ਰਮਾਤਮਾ ||</span>
+            </div>
           </div>
 
-          {/* Command Palette Hint */}
-          <div className="mt-6 hidden sm:flex justify-center">
-            <div className="inline-flex items-center gap-2 text-xs text-gray-400 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+          {/* Center / Lower: Command Palette Affordance (Exact Copy, Tactile Keycap) */}
+          <div className="mt-5 pt-2 flex justify-center">
+            <button
+              onClick={handleOpenCommandPalette}
+              className="group inline-flex items-center gap-2 text-[11px] sm:text-xs text-neutral-400 hover:text-neutral-200 bg-white/[0.02] hover:bg-white/[0.05] active:bg-white/[0.08] px-3.5 sm:px-4 py-1.5 rounded-full border border-white/[0.08] hover:border-white/20 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+              aria-label="Press Ctrl+K to open the command palette"
+            >
               <span>Press</span>
-              <kbd className="px-2 py-1 text-xs font-semibold bg-white/10 border border-white/20 rounded text-white">
+              <kbd className="inline-flex items-center justify-center px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-[11px] font-mono font-semibold text-neutral-200 bg-neutral-900 border border-neutral-700/80 rounded shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_1px_2px_rgba(0,0,0,0.5)] group-hover:border-neutral-600 transition-colors">
                 Ctrl+K
               </kbd>
               <span>to open the command palette</span>
-            </div>
+            </button>
           </div>
         </div>
       </div>
