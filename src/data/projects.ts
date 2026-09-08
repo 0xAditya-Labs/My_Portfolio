@@ -138,11 +138,13 @@ export const projectsData: Project[] = [
   {
     id: "swiftcache",
     title: "SwiftCache — Thread-Safe Concurrent LRU Cache Server",
-    description: "A high-performance, thread-safe TCP-based LRU cache server built in C++, sustaining 15,000+ QPS with sub-3ms p99 latency through deterministic O(1) operations.",
-    fullDescription: "SwiftCache is a concurrent LRU cache server built from first principles in C++, combining a custom hash-map and doubly linked list to guarantee deterministic O(1) get/set operations with TTL-based eviction. Designed with correctness under concurrent load as the primary constraint, it uses fine-grained locking to sustain high throughput without sacrificing thread safety, and exposes a modular, self-serve configuration layer to reduce integration effort for new caching features.",
+    description: "A high-performance, thread-safe TCP-based LRU cache server built in C++, sustaining 160,000+ QPS with sub-0.26ms p99 latency through deterministic O(1) operations.",
+    fullDescription: "SwiftCache is a concurrent LRU cache server built from first principles in C++, combining a custom hash-map and doubly linked list to guarantee deterministic O(1) get/set operations with TTL-based eviction. Designed with correctness under concurrent load as the primary constraint, it uses fine-grained locking (16 independent shards) to sustain high throughput without sacrificing thread safety, and exposes a modular, self-serve configuration layer to reduce integration effort for new caching features.",
     image: "/projects/swiftcache_1.png",
     images: [
-      "/projects/swiftcache_1.png"
+      "/projects/swiftcache_1.png",
+      "/projects/swiftcache_2.png",
+      "/projects/swiftcache_3.png"
     ],
     tags: ["C++", "Concurrency", "TCP/HTTP"],
     techStack: ["C++", "TCP/HTTP", "Multithreading", "Custom Hash-Map", "Doubly Linked List"],
@@ -152,27 +154,29 @@ export const projectsData: Project[] = [
     liveUrl: "",
     features: [
       "Deterministic O(1) get/set operations via custom hash-map + doubly linked list.",
-      "TTL-based eviction with configurable expiry per cache entry.",
-      "Sustains 15,000+ QPS with sub-3ms p99 latency under concurrent read/write workloads.",
-      "Modular, self-serve caching architecture reducing new feature integration effort by 3x.",
-      "Thread-safe design supporting simultaneous multi-client TCP connections."
+      "TTL-based eviction with lazy expiry and a background reaper thread.",
+      "Sustains 160,000+ QPS with sub-0.26ms p99 latency under concurrent workloads.",
+      "Fine-grained lock striping via 16 shards to prevent global contention.",
+      "Thread-safe design tested to handle 512 concurrent TCP connections optimally."
     ],
     challenges: [
-      "Ensuring correctness under high concurrent read/write contention without resorting to a single global lock, which would bottleneck throughput.",
-      "Benchmarking realistic workloads to validate p99 latency claims rather than relying on average-case latency alone."
+      "Ensuring correctness under high contention without resorting to a single global lock, which would bottleneck throughput.",
+      "Benchmarking realistic workloads with Zipfian distributions to validate p99 latency rather than relying on average-case numbers.",
+      "Preventing deadlocks in the background TTL reaper by enforcing sequential, per-shard lock acquisition."
     ],
     metrics: [
-      { label: "Throughput", value: "15,000+ QPS" },
-      { label: "p99 Latency", value: "<3ms" },
-      { label: "Feature Integration Effort", value: "3x faster" }
+      { label: "Throughput", value: "160,000+ QPS" },
+      { label: "p99 Latency", value: "<0.26ms" },
+      { label: "Kernel vs Engine Latency", value: ">99% OS overhead" }
     ],
     implementation: {
-      approach: "Built a custom hash-map and doubly linked list combination from scratch (rather than relying on standard library containers) to guarantee O(1) time complexity for all cache operations, paired with fine-grained locking to maximize concurrent throughput without sacrificing thread safety.",
+      approach: "Built a custom hash-map and intrusive doubly-linked list from scratch to guarantee O(1) operations without extra memory allocations per node. Scaled concurrency using a ShardedCache with independent mutexes per shard. Validated via a closed-loop benchmarking client using Zipfian key distributions.",
       technologies: [
         { name: "C++", reason: "Low-level control over memory layout and locking primitives needed for deterministic performance guarantees." },
         { name: "TCP/HTTP", reason: "Enables the cache to be accessed as a networked service, not just an in-process library." }
       ]
     },
+    architecture: "Implemented a multi-layered design separating the I/O layer (ThreadPoolServer) from the concurrency layer (ShardedCache). This avoids global locks and achieves true parallel execution, resulting in 160,194 median QPS. The architecture explicitly isolates pure algorithmic cache execution (~0.25µs) from kernel/TCP overhead (~87µs), proving that data structure optimization is bottlenecked by the OS at scale.",
     documentation: {
       setup: "git clone https://github.com/0xAditya-Labs/SwiftCache.git && cd SwiftCache && make",
       usage: "Client applications connect to the server over TCP and issue GET, SET, and DELETE commands against the cache; TTL-based expiry and LRU eviction are handled automatically under the hood.",

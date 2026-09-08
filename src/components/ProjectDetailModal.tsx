@@ -367,7 +367,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
 
         {/* Scrollable Container */}
         <ScrollArea className="flex-1">
-          <div className="relative">
+          <div className="relative w-full overflow-x-hidden">
             {/* Hero Section - Scrolls */}
             <div className="relative h-[320px]">
               <img
@@ -583,9 +583,9 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                   {technical.architecture && (
                     <div className="space-y-3">
                       <h3 className="font-semibold text-xl">Architecture</h3>
-                      <pre className="p-4 rounded-xl text-sm overflow-x-auto font-mono leading-relaxed border border-border/80 bg-background/50">
+                      <div className="p-4 rounded-xl text-sm font-mono leading-relaxed border border-border/80 bg-background/50 whitespace-pre-wrap break-words max-w-full">
                         {technical.architecture}
-                      </pre>
+                      </div>
                     </div>
                   )}
                 </TabsContent>
