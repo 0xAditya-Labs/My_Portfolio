@@ -10,12 +10,12 @@ LinkedIn: linkedin.com/in/aditya-chauhan-nitj
 GitHub: github.com/0xAditya-Labs
 Portfolio: adityac.codes
 EDUCATION & ACADEMICS:
-1. B.Tech CSE, NIT Jalandhar (CGPA: 8.53, Top 4%ile)
+1. B.Tech CSE, NIT Jalandhar (CGPA: 8.56, Top 4%ile)
 2. Class 12 (PCM + CS), DAV Public School, BRS Nagar, Ludhiana (CBSE: 94%)
 3. Class 10, DAV Public School, BRS Nagar, Ludhiana (CBSE: 92%)
 4. Competitive Exams: JEE Main & Advanced (AIR 12,000)
 PROFESSIONAL SUMMARY:
-Aditya Chauhan is a Computer Science Engineering student at NIT Jalandhar (CGPA 8.53, Top 4%ile), currently working as an SDE Intern at Accenture building GenAI and RAG-based systems. He specializes in high-performance concurrent systems, applied AI, and full-stack web development, with a strong competitive programming background (Specialist on Codeforces, Knight on LeetCode, 3-star on CodeChef).
+Aditya Chauhan is a Computer Science Engineering student at NIT Jalandhar (CGPA 8.56, Top 4%ile), currently working as an SDE Intern at Accenture building GenAI and RAG-based systems. He specializes in high-performance concurrent systems, applied AI, and full-stack web development, with a strong competitive programming background (Specialist on Codeforces, Knight on LeetCode, 3-star on CodeChef).
 WORK EXPERIENCE:
 1. Software Development Engineer Intern — Accenture (Jun 2026 – Jul 2026)
    - Decreased RAG input-token usage by 34% for ContextIQ using LangChain chunking
@@ -58,7 +58,7 @@ const fallbackResponses: Record<string, string> = {
   "work style": "I like to understand problems deeply, including where they break under real load, choose the right technology, and follow a proper SDLC rather than jumping straight into code.",
   "experience": "I'm currently an SDE Intern at Accenture working on GenAI/RAG systems, and I co-lead the Google Developer Group at NIT Jalandhar, mentoring 150+ students in DSA.",
   "skills": "I specialize in C++ and Python for systems, MERN/FastAPI for full-stack, and have a growing focus on RAG pipelines, concurrency, and high-performance system design.",
-  "education": "I'm a B.Tech CSE student at NIT Jalandhar (CGPA 8.53). I completed my 10th (92%) and 12th (94%) from DAV Public School, BRS Nagar, Ludhiana. I also secured AIR 12,000 in JEE Main and Advanced.",
+  "education": "I'm a B.Tech CSE student at NIT Jalandhar (CGPA 8.56). I completed my 10th (92%) and 12th (94%) from DAV Public School, BRS Nagar, Ludhiana. I also secured AIR 12,000 in JEE Main and Advanced.",
   "hometown": "I am from Ludhiana, Punjab. I was born in August 2005.",
   "ludhiana": "I am from Ludhiana, Punjab.",
   "background": "I am from Ludhiana, Punjab, born in August 2005.",

@@ -176,7 +176,7 @@ const Footer = () => {
               </span>
               <span className="flex items-center gap-1.5 sm:gap-2">
                 <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400/90 shadow-[0_0_6px_rgba(52,211,153,0.4)] animate-pulse" />
-                CGPA: <span className="text-neutral-200 font-mono">8.53</span>
+                CGPA: <span className="text-neutral-200 font-mono">8.56</span>
               </span>
             </div>
             

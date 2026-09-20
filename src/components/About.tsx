@@ -27,7 +27,7 @@ const About = () => {
 
             <div className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed">
               <p>
-                I'm a third-year Computer Science Engineering student at Dr. B.R. Ambedkar National Institute of Technology, Jalandhar, maintaining a <span className="font-bold text-black dark:text-white">CGPA of 8.53 (Top 4%ile)</span>. Currently, I work as a Software Development Engineer Intern at Accenture, where I've built a RAG-based Q&A microservice that reduced manual review time by 45%.
+                I'm a third-year Computer Science Engineering student at Dr. B.R. Ambedkar National Institute of Technology, Jalandhar, maintaining a <span className="font-bold text-black dark:text-white">CGPA of 8.56 (Top 4%ile)</span>. Currently, I work as a Software Development Engineer Intern at Accenture, where I've built a RAG-based Q&A microservice that reduced manual review time by 45%.
               </p>
 
               <p>
