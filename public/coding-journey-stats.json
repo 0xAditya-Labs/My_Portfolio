@@ -5,9 +5,9 @@
     "topPercentage": 3.25,
     "contestsCount": 49,
     "easySolved": 279,
-    "mediumSolved": 439,
+    "mediumSolved": 440,
     "hardSolved": 87,
-    "totalSolved": 805,
+    "totalSolved": 806,
     "history": [
       {
         "timestamp": 1723905000000,
@@ -217,7 +217,7 @@
     "currentRankTitle": "pupil",
     "maxRankTitle": "Specialist",
     "contestsCount": 77,
-    "totalSolved": 439,
+    "totalSolved": 442,
     "history": [
       {
         "timestamp": 1719768900000,
@@ -530,12 +530,12 @@
     ]
   },
   "codechef": {
-    "currentRating": 1593,
+    "currentRating": 1637,
     "maxRating": 1661,
-    "stars": "★★",
+    "stars": "★★★",
     "maxStars": "★★★",
-    "contestsCount": 12,
-    "totalSolved": 52,
+    "contestsCount": 13,
+    "totalSolved": 59,
     "history": [
       {
         "timestamp": 1750809600000,
@@ -596,6 +596,11 @@
         "timestamp": 1781654400000,
         "rating": 1593,
         "name": "Starters 243 (Rated)"
+      },
+      {
+        "timestamp": 1790726400000,
+        "rating": 1637,
+        "name": "Starters 258 (Rated)"
       }
     ]
   },
@@ -603,10 +608,6 @@
     "totalSolved": 146
   },
   "heatmap": [
-    {
-      "date": "2025-09-30",
-      "count": 1
-    },
     {
       "date": "2025-10-01",
       "count": 3
@@ -1546,10 +1547,14 @@
     {
       "date": "2026-09-29",
       "count": 2
+    },
+    {
+      "date": "2026-09-30",
+      "count": 8
     }
   ],
   "errors": [],
   "totalActiveDays": 310,
-  "totalSolvedAllPlatforms": 1442,
-  "lastUpdated": "2026-09-29T22:26:42.810Z"
+  "totalSolvedAllPlatforms": 1453,
+  "lastUpdated": "2026-09-30T22:25:40.283Z"
 }
