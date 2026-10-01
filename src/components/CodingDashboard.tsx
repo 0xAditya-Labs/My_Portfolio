@@ -243,14 +243,17 @@ const ProfileLink = ({ url, label }: { url: string; label: string }) => (
   </a>
 );
 
-/** Recharts custom tooltip */
+// Remove Global Rank from tooltip to focus on contest, date, rating and change.
 const ChartTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
   const data = payload[0].payload;
   const isPositive = data.ratingChange >= 0;
   return (
     <div className="p-3 bg-card border border-border shadow-xl rounded-lg z-50 text-foreground min-w-[160px]">
-      <p className="text-xs text-muted-foreground mb-3">{data.fullDate}</p>
+      <p className="text-xs font-medium text-muted-foreground max-w-[220px] mb-1 leading-tight line-clamp-2">
+        {data.contestName}
+      </p>
+      <p className="text-xs text-muted-foreground/70 mb-3">{data.fullDate}</p>
       <div className="flex items-center justify-between gap-6">
         <div>
           <p className="text-[10px] uppercase text-muted-foreground font-semibold">Rating</p>
@@ -263,12 +266,6 @@ const ChartTooltip = ({ active, payload }: any) => {
           </p>
         </div>
       </div>
-      {data.rank && (
-        <div className="mt-2 pt-2 border-t border-border/50">
-          <p className="text-[10px] uppercase text-muted-foreground font-semibold">Global Rank</p>
-          <p className="text-sm font-bold">#{data.rank}</p>
-        </div>
-      )}
     </div>
   );
 };
@@ -449,6 +446,32 @@ const CodingDashboard = () => {
     ? historyToChartData(stats.codeforces.history)
     : [];
 
+  // ── Highest Rank Lines ───────────────────────────────────────
+  const lcRankLine = (() => {
+    const m = stats?.leetcode?.maxRating;
+    if (!m) return null;
+    if (m >= 2150) return { y: 2150, label: "Guardian" };
+    if (m >= 1850) return { y: 1850, label: "Knight" };
+    return null;
+  })();
+
+  const cfRankLine = (() => {
+    const m = stats?.codeforces?.maxRating;
+    if (!m) return null;
+    if (m >= 2400) return { y: 2400, label: "Grandmaster" };
+    if (m >= 2100) return { y: 2100, label: "Master" };
+    if (m >= 1900) return { y: 1900, label: "Candidate Master" };
+    if (m >= 1600) return { y: 1600, label: "Expert" };
+    if (m >= 1400) return { y: 1400, label: "Specialist" };
+    if (m >= 1200) return { y: 1200, label: "Pupil" };
+    return null;
+  })();
+
+  const [lcHovered, setLcHovered] = useState<any>(null);
+  const [cfHovered, setCfHovered] = useState<any>(null);
+
+  const activeDaysCount = stats?.totalActiveDays || 0;
+
   const lc = stats?.leetcode;
   const donutData = (
     lc?.easySolved != null || lc?.mediumSolved != null || lc?.hardSolved != null
@@ -559,6 +582,9 @@ const CodingDashboard = () => {
               {stats?.leetcode?.topPercentage != null && (
                 <p className="cj-stat-sub">Top {stats.leetcode.topPercentage}%</p>
               )}
+              {lcBadge && (
+                <p className="cj-stat-sub font-medium capitalize mt-0.5">{lcBadge.name}</p>
+              )}
             </CardContent>
           </Card>
 
@@ -625,20 +651,42 @@ const CodingDashboard = () => {
         </div>
 
         {/* ── Rating Trend Charts ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 items-stretch">
 
           {/* LeetCode Rating History */}
-          <Card className="cj-chart-card">
-            <CardHeader className="pb-2">
+          <Card className="cj-chart-card flex flex-col h-full">
+            <CardHeader className="pb-2 flex flex-row items-center justify-between min-h-[48px]">
               <CardTitle className="flex items-center gap-2 text-base">
                 <TrendingUp className="w-4 h-4 text-lc-icon" />
                 LeetCode Rating
               </CardTitle>
+              {lcHovered && (
+                <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-medium text-foreground text-right transition-opacity">
+                  <span className="text-muted-foreground truncate max-w-[120px] sm:max-w-[200px]">{lcHovered.contestName}</span>
+                  <span className="text-muted-foreground/60 hidden sm:inline-block">· {lcHovered.fullDate || lcHovered.date} ·</span>
+                  <span className="font-bold">{lcHovered.rating}</span>
+                  <span className="text-muted-foreground/60">·</span>
+                  <span className={`font-bold ${lcHovered.ratingChange >= 0 ? "text-green-500" : "text-red-500"}`}>
+                    {lcHovered.ratingChange > 0 ? "+" : ""}{lcHovered.ratingChange}
+                  </span>
+                </div>
+              )}
             </CardHeader>
             <CardContent>
               {lcChartData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={220}>
-                  <AreaChart data={lcChartData} margin={{ left: 0, right: 16, top: 8, bottom: 24 }}>
+                  <AreaChart 
+                    data={lcChartData} 
+                    margin={{ left: 0, right: 16, top: 8, bottom: 24 }}
+                    onMouseMove={(e: any) => {
+                      if (e.isTooltipActive && e.activePayload) {
+                        setLcHovered(e.activePayload[0].payload);
+                      } else {
+                        setLcHovered(null);
+                      }
+                    }}
+                    onMouseLeave={() => setLcHovered(null)}
+                  >
                     <defs>
                       <linearGradient id="colorLc" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#5e6ad2" stopOpacity={0.3} />
@@ -663,8 +711,10 @@ const CodingDashboard = () => {
                       axisLine={false}
                       domain={["auto", "auto"]}
                     />
-                    <Tooltip content={<ChartTooltip />} cursor={{ stroke: "hsl(var(--muted-foreground)/0.2)", strokeWidth: 1, strokeDasharray: "4 4" }} offset={25} />
-                    <ReferenceLine y={1850} stroke="hsl(var(--muted-foreground)/0.5)" strokeDasharray="4 4" label={{ position: 'insideTopLeft', value: 'Knight', fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} />
+                    <Tooltip content={<></>} cursor={{ stroke: "hsl(var(--muted-foreground)/0.2)", strokeWidth: 1, strokeDasharray: "4 4" }} />
+                    {lcRankLine && (
+                      <ReferenceLine y={lcRankLine.y} stroke="hsl(var(--muted-foreground)/0.3)" strokeDasharray="4 4" label={{ position: 'insideTopLeft', value: lcRankLine.label, fill: 'hsl(var(--muted-foreground)/0.7)', fontSize: 10 }} />
+                    )}
                     <Area
                       type="monotone"
                       dataKey="rating"
@@ -685,17 +735,39 @@ const CodingDashboard = () => {
           </Card>
 
           {/* Codeforces Rating History */}
-          <Card className="cj-chart-card">
-            <CardHeader className="pb-2">
+          <Card className="cj-chart-card flex flex-col h-full">
+            <CardHeader className="pb-2 flex flex-row items-center justify-between min-h-[48px]">
               <CardTitle className="flex items-center gap-2 text-base">
                 <TrendingUp className="w-4 h-4 text-cf-icon" />
                 Codeforces Rating
               </CardTitle>
+              {cfHovered && (
+                <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-medium text-foreground text-right transition-opacity">
+                  <span className="text-muted-foreground truncate max-w-[120px] sm:max-w-[200px]">{cfHovered.contestName}</span>
+                  <span className="text-muted-foreground/60 hidden sm:inline-block">· {cfHovered.fullDate || cfHovered.date} ·</span>
+                  <span className="font-bold">{cfHovered.rating}</span>
+                  <span className="text-muted-foreground/60">·</span>
+                  <span className={`font-bold ${cfHovered.ratingChange >= 0 ? "text-green-500" : "text-red-500"}`}>
+                    {cfHovered.ratingChange > 0 ? "+" : ""}{cfHovered.ratingChange}
+                  </span>
+                </div>
+              )}
             </CardHeader>
             <CardContent>
               {cfChartData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={220}>
-                  <AreaChart data={cfChartData} margin={{ left: 0, right: 16, top: 8, bottom: 24 }}>
+                  <AreaChart 
+                    data={cfChartData} 
+                    margin={{ left: 0, right: 16, top: 8, bottom: 24 }}
+                    onMouseMove={(e: any) => {
+                      if (e.isTooltipActive && e.activePayload) {
+                        setCfHovered(e.activePayload[0].payload);
+                      } else {
+                        setCfHovered(null);
+                      }
+                    }}
+                    onMouseLeave={() => setCfHovered(null)}
+                  >
                     <defs>
                       <linearGradient id="colorCf" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#e87a36" stopOpacity={0.3} />
@@ -718,12 +790,12 @@ const CodingDashboard = () => {
                       tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 10 }}
                       tickLine={false}
                       axisLine={false}
-                      domain={["auto", (dataMax: number) => Math.max(dataMax + 100, 1600)]}
+                      domain={["auto", "auto"]}
                     />
-                    <Tooltip content={<ChartTooltip />} cursor={{ stroke: "hsl(var(--muted-foreground)/0.2)", strokeWidth: 1, strokeDasharray: "4 4" }} offset={25} />
-                    <ReferenceLine y={1200} stroke="hsl(var(--muted-foreground)/0.5)" strokeDasharray="4 4" label={{ position: 'insideTopLeft', value: 'Pupil', fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} />
-                    <ReferenceLine y={1400} stroke="hsl(var(--muted-foreground)/0.5)" strokeDasharray="4 4" label={{ position: 'insideTopLeft', value: 'Specialist', fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} />
-                    <ReferenceLine y={1600} stroke="hsl(var(--muted-foreground)/0.5)" strokeDasharray="4 4" label={{ position: 'insideTopLeft', value: 'Expert', fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} />
+                    <Tooltip content={<></>} cursor={{ stroke: "hsl(var(--muted-foreground)/0.2)", strokeWidth: 1, strokeDasharray: "4 4" }} />
+                    {cfRankLine && (
+                      <ReferenceLine y={cfRankLine.y} stroke="hsl(var(--muted-foreground)/0.3)" strokeDasharray="4 4" label={{ position: 'insideTopLeft', value: cfRankLine.label, fill: 'hsl(var(--muted-foreground)/0.7)', fontSize: 10 }} />
+                    )}
                     <Area
                       type="monotone"
                       dataKey="rating"
@@ -748,14 +820,18 @@ const CodingDashboard = () => {
         {donutData.length > 0 && (
           <div className="mb-8">
             <Card className="cj-chart-card">
-              <CardHeader className="pb-2">
+              <CardHeader className="pb-2 flex flex-row items-center justify-between">
                 <CardTitle className="flex items-center gap-2 text-base">
                   <Target className="w-4 h-4 text-lc-icon" />
                   Problem Breakdown
                 </CardTitle>
+                <div className="text-xs text-muted-foreground bg-foreground/5 px-2.5 py-1 rounded-md font-medium border border-border/40">
+                  <span className="font-bold text-foreground mr-1">{activeDaysCount > 0 ? activeDaysCount : "—"}</span> 
+                  Active Days
+                </div>
               </CardHeader>
-              <CardContent>
-                <div className="flex flex-col gap-6 w-full py-4">
+              <CardContent className="pt-6">
+                <div className="flex flex-col gap-6 w-full pb-4">
                   {/* Metrics Row */}
                   <div className="flex items-center justify-between flex-wrap gap-4">
                     <div className="flex flex-col">
