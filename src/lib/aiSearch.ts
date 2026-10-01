@@ -15,7 +15,7 @@ EDUCATION & ACADEMICS:
 3. Class 10, DAV Public School, BRS Nagar, Ludhiana (CBSE: 92%)
 4. Competitive Exams: JEE Main & Advanced (AIR 12,000)
 PROFESSIONAL SUMMARY:
-Aditya Chauhan is a Computer Science Engineering student at NIT Jalandhar (CGPA 8.56, Top 4%ile), currently working as an SDE Intern at Accenture building GenAI and RAG-based systems. He specializes in high-performance concurrent systems, applied AI, and full-stack web development, with a strong competitive programming background (Specialist on Codeforces, Knight on LeetCode, 3-star on CodeChef).
+Aditya Chauhan is a final-year Computer Science Engineering student at NIT Jalandhar (CGPA 8.56, Top 4%ile). He recently completed an SDE Internship at Accenture building GenAI and RAG-based systems. Currently, he is building scalable projects targeting real users, enjoying competitive programming, and actively exploring his next opportunity. He specializes in high-performance concurrent systems, applied AI, and full-stack web development, with a strong competitive programming background (Specialist on Codeforces, Knight on LeetCode, 3-star on CodeChef).
 WORK EXPERIENCE:
 1. Software Development Engineer Intern — Accenture (Jun 2026 – Jul 2026)
    - Decreased RAG input-token usage by 34% for ContextIQ using LangChain chunking
@@ -56,7 +56,7 @@ interface GeminiResponse {
 // Fallback responses for common queries when AI fails
 const fallbackResponses: Record<string, string> = {
   "work style": "I like to understand problems deeply, including where they break under real load, choose the right technology, and follow a proper SDLC rather than jumping straight into code.",
-  "experience": "I'm currently an SDE Intern at Accenture working on GenAI/RAG systems, and I co-lead the Google Developer Group at NIT Jalandhar, mentoring 150+ students in DSA.",
+  "experience": "I recently completed an SDE Internship at Accenture working on GenAI/RAG systems, and I co-lead the Google Developer Group at NIT Jalandhar, mentoring 150+ students in DSA. Currently, I'm building scalable projects and exploring my next opportunity.",
   "skills": "I specialize in C++ and Python for systems, MERN/FastAPI for full-stack, and have a growing focus on RAG pipelines, concurrency, and high-performance system design.",
   "education": "I'm a B.Tech CSE student at NIT Jalandhar (CGPA 8.56). I completed my 10th (92%) and 12th (94%) from DAV Public School, BRS Nagar, Ludhiana. I also secured AIR 12,000 in JEE Main and Advanced.",
   "hometown": "I am from Ludhiana, Punjab. I was born in August 2005.",
@@ -64,7 +64,7 @@ const fallbackResponses: Record<string, string> = {
   "background": "I am from Ludhiana, Punjab, born in August 2005.",
   "projects": "My main projects include SwiftCache (15,000+ QPS concurrent LRU cache), ChatMind (real-time RAG messaging), and RetainOps (AI customer retention platform).",
   "contact": "You can reach me at aditya.chauhan.nitj.ac@gmail.com, or connect on LinkedIn (linkedin.com/in/aditya-chauhan-nitj).",
-  "achievements": "I'm a Codeforces Specialist, LeetCode Knight, and CodeChef 3-star with 1,200+ DSA problems solved.",
+  "achievements": "I'm a Codeforces Specialist, LeetCode Knight, and CodeChef 3-star with 1,500+ DSA problems solved.",
   "leadership": "I Co-Lead the Google Developer Group and the Literacy and Debating Club at NIT Jalandhar, and organized the Hackmol hackathon.",
   "availability": "I am open to full-time roles starting mid-2027, and open to internship/collaboration opportunities before then.",
   "text": "You can reach me through my website (adityac.codes), LinkedIn (linkedin.com/in/aditya-chauhan-nitj), or email (aditya.chauhan.nitj.ac@gmail.com).",

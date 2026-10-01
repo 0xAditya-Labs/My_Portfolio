@@ -24,6 +24,7 @@ import {
   Tooltip,
   ResponsiveContainer,
   CartesianGrid,
+  ReferenceLine,
 } from "recharts";
 
 // ─────────────────────────────────────────────────────────────────
@@ -41,6 +42,8 @@ const GITHUB_USER = "0xAditya-Labs";
 interface RatingPoint {
   timestamp: number;
   rating: number;
+  contestName?: string;
+  rank?: number;
 }
 
 interface LeetCodeData {
@@ -166,11 +169,20 @@ function fmtRelative(iso: string | null): string {
   return new Date(iso).toLocaleDateString(undefined, { month: "short", day: "numeric" });
 }
 
-function historyToChartData(history: RatingPoint[]): { date: string; rating: number }[] {
-  return history.map((p) => ({
-    date: new Date(p.timestamp).toLocaleDateString("en-US", { month: "short", year: "2-digit" }),
-    rating: p.rating,
-  }));
+function historyToChartData(history: RatingPoint[]) {
+  let prevRating = 0;
+  return history.map((p, i) => {
+    const change = i === 0 ? 0 : p.rating - prevRating;
+    prevRating = p.rating;
+    return {
+      date: new Date(p.timestamp).toLocaleDateString("en-US", { month: "short", year: "2-digit" }),
+      fullDate: new Date(p.timestamp).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+      rating: p.rating,
+      ratingChange: change,
+      contestName: p.contestName || `Contest #${i + 1}`,
+      rank: p.rank,
+    };
+  });
 }
 
 function getCfRankExplanation(rank: string | null) {
@@ -232,12 +244,31 @@ const ProfileLink = ({ url, label }: { url: string; label: string }) => (
 );
 
 /** Recharts custom tooltip */
-const ChartTooltip = ({ active, payload, label }: any) => {
+const ChartTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
+  const data = payload[0].payload;
+  const isPositive = data.ratingChange >= 0;
   return (
-    <div className="cj-tooltip">
-      <p className="cj-tooltip-label">{label}</p>
-      <p className="cj-tooltip-value">{payload[0].value}</p>
+    <div className="p-3 bg-card border border-border shadow-xl rounded-lg z-50 text-foreground min-w-[160px]">
+      <p className="text-xs text-muted-foreground mb-3">{data.fullDate}</p>
+      <div className="flex items-center justify-between gap-6">
+        <div>
+          <p className="text-[10px] uppercase text-muted-foreground font-semibold">Rating</p>
+          <p className="text-lg font-bold tabular-nums">{data.rating}</p>
+        </div>
+        <div className="text-right">
+          <p className="text-[10px] uppercase text-muted-foreground font-semibold">Change</p>
+          <p className={`text-sm font-bold tabular-nums ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
+            {isPositive ? '+' : ''}{data.ratingChange}
+          </p>
+        </div>
+      </div>
+      {data.rank && (
+        <div className="mt-2 pt-2 border-t border-border/50">
+          <p className="text-[10px] uppercase text-muted-foreground font-semibold">Global Rank</p>
+          <p className="text-sm font-bold">#{data.rank}</p>
+        </div>
+      )}
     </div>
   );
 };
@@ -267,7 +298,8 @@ const CodingDashboard = () => {
   const lcMaxRating = useCountUp(stats?.leetcode?.maxRating ?? null, statsInView);
   const cfMaxRating = useCountUp(stats?.codeforces?.maxRating ?? null, statsInView);
   const totalSolved = useCountUp(stats?.totalSolvedAllPlatforms ?? null, statsInView);
-  const activeDays = useCountUp(stats?.totalActiveDays ?? null, statsInView);
+  const totalContestsCount = stats ? ((stats?.leetcode?.contestsCount || 0) + (stats?.codeforces?.contestsCount || 0) + (stats?.codechef?.contestsCount || 0)) : null;
+  const totalContests = useCountUp(totalContestsCount, statsInView);
 
   // LeetCode Badge Logic
   const rawLcMaxRating = stats?.leetcode?.maxRating;
@@ -573,21 +605,21 @@ const CodingDashboard = () => {
             </CardContent>
           </Card>
 
-          {/* Active Days */}
+          {/* Total Contests */}
           <Card className="cj-stat-card relative group transition-all duration-300">
             <div className="absolute top-1/2 -translate-y-1/2 right-6 w-14 h-14 flex items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/20 shadow-inner opacity-[0.85] transition-transform duration-300 group-hover:scale-[1.05]">
-              <Calendar className="w-7 h-7 text-emerald-500 dark:text-emerald-400 drop-shadow-sm opacity-90" />
+              <Trophy className="w-7 h-7 text-emerald-500 dark:text-emerald-400 drop-shadow-sm opacity-90" />
             </div>
             <CardContent className="p-6">
               <div className="flex items-center gap-2 mb-1.5">
                 <Flame className="w-4 h-4 text-emerald-500 opacity-70" />
-                <p className="cj-stat-label mb-0 uppercase tracking-wider">Active Days</p>
+                <p className="cj-stat-label mb-0 uppercase tracking-wider">Total Contests</p>
               </div>
               <div className="w-5 h-0.5 bg-emerald-500 mb-3 rounded-full opacity-80 transition-all duration-300 group-hover:w-[40%]" />
               <div className="cj-stat-value tabular-nums text-foreground" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700 }}>
-                {stats?.totalActiveDays != null ? activeDays : "—"}
+                {totalContestsCount != null ? totalContests : "—"}
               </div>
-              <p className="cj-stat-sub opacity-60">Days with submissions</p>
+              <p className="cj-stat-sub opacity-60">LeetCode • Codeforces • CodeChef</p>
             </CardContent>
           </Card>
         </div>
@@ -631,7 +663,8 @@ const CodingDashboard = () => {
                       axisLine={false}
                       domain={["auto", "auto"]}
                     />
-                    <Tooltip content={<ChartTooltip />} cursor={{ stroke: "hsl(var(--muted-foreground)/0.2)", strokeWidth: 1, strokeDasharray: "4 4" }} />
+                    <Tooltip content={<ChartTooltip />} cursor={{ stroke: "hsl(var(--muted-foreground)/0.2)", strokeWidth: 1, strokeDasharray: "4 4" }} offset={25} />
+                    <ReferenceLine y={1850} stroke="hsl(var(--muted-foreground)/0.5)" strokeDasharray="4 4" label={{ position: 'insideTopLeft', value: 'Knight', fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} />
                     <Area
                       type="monotone"
                       dataKey="rating"
@@ -685,9 +718,12 @@ const CodingDashboard = () => {
                       tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 10 }}
                       tickLine={false}
                       axisLine={false}
-                      domain={["auto", "auto"]}
+                      domain={["auto", (dataMax: number) => Math.max(dataMax + 100, 1600)]}
                     />
-                    <Tooltip content={<ChartTooltip />} cursor={{ stroke: "hsl(var(--muted-foreground)/0.2)", strokeWidth: 1, strokeDasharray: "4 4" }} />
+                    <Tooltip content={<ChartTooltip />} cursor={{ stroke: "hsl(var(--muted-foreground)/0.2)", strokeWidth: 1, strokeDasharray: "4 4" }} offset={25} />
+                    <ReferenceLine y={1200} stroke="hsl(var(--muted-foreground)/0.5)" strokeDasharray="4 4" label={{ position: 'insideTopLeft', value: 'Pupil', fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} />
+                    <ReferenceLine y={1400} stroke="hsl(var(--muted-foreground)/0.5)" strokeDasharray="4 4" label={{ position: 'insideTopLeft', value: 'Specialist', fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} />
+                    <ReferenceLine y={1600} stroke="hsl(var(--muted-foreground)/0.5)" strokeDasharray="4 4" label={{ position: 'insideTopLeft', value: 'Expert', fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} />
                     <Area
                       type="monotone"
                       dataKey="rating"
@@ -723,7 +759,7 @@ const CodingDashboard = () => {
                   {/* Metrics Row */}
                   <div className="flex items-center justify-between flex-wrap gap-4">
                     <div className="flex flex-col">
-                      <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Total (LC)</span>
+                      <span className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Total (LeetCode)</span>
                       <span className="text-3xl font-bold tracking-tight">{lc?.totalSolved ?? "—"}</span>
                     </div>
                     <div className="flex flex-wrap gap-4 md:gap-8">

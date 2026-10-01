@@ -27,11 +27,11 @@ const About = () => {
 
             <div className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed">
               <p>
-                I'm a third-year Computer Science Engineering student at Dr. B.R. Ambedkar National Institute of Technology, Jalandhar, maintaining a <span className="font-bold text-black dark:text-white">CGPA of 8.56 (Top 4%ile)</span>. Currently, I work as a Software Development Engineer Intern at Accenture, where I've built a RAG-based Q&A microservice that reduced manual review time by 45%.
+                I'm a final-year Computer Science Engineering student at Dr. B.R. Ambedkar National Institute of Technology, Jalandhar, maintaining a <span className="font-bold text-black dark:text-white">CGPA of 8.56 (Top 4%ile)</span>. I recently completed my Software Development Engineering Internship at Accenture, where I built a RAG-based Q&A microservice that reduced manual review time by 45%. Currently, I'm building scalable projects targeting real users, enjoying competitive programming, and actively exploring my next opportunity.
               </p>
 
               <p>
-                My work sits at the intersection of systems engineering and applied AI — I genuinely enjoy reasoning through concurrency, system design, and OS internals, not just building on top of them. I've engineered a thread-safe LRU cache handling 15,000+ QPS at 3ms p99 latency, and a real-time RAG messaging platform delivering sub-50ms under concurrent load. I've also solved <span className="font-bold text-black dark:text-white">1,200+ DSA problems</span>, earning Specialist on Codeforces, Knight on LeetCode, and 3-star on CodeChef.
+                My work sits at the intersection of software engineering, systems engineering, and applied AI — I genuinely enjoy reasoning through concurrency, system design, and OS internals, not just building on top of them. I've engineered a thread-safe LRU cache handling 15,000+ QPS at 3ms p99 latency, and a real-time RAG messaging platform delivering sub-50ms under concurrent load. I've also solved <span className="font-bold text-black dark:text-white">1,500+ DSA problems</span>, earning Specialist on Codeforces, Knight on LeetCode, and 3-star on CodeChef.
               </p>
 
               <p>

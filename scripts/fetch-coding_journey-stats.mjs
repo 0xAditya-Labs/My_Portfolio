@@ -40,7 +40,7 @@ async function getLeetCodeStats() {
   const ranking = contestData.userContestRanking || {};
   const history = (contestData.userContestRankingHistory || [])
     .filter((e) => e.attended)
-    .map((e) => ({ timestamp: e.contest.startTime * 1000, rating: Math.round(e.rating) }));
+    .map((e) => ({ timestamp: e.contest.startTime * 1000, rating: Math.round(e.rating), contestName: e.contest.title }));
   const maxRating = history.length ? Math.max(...history.map((h) => h.rating)) : null;
 
   const profileQuery = `
@@ -104,6 +104,8 @@ async function getCodeforcesStats() {
   const history = ratingData.result.map((c) => ({
     timestamp: c.ratingUpdateTimeSeconds * 1000,
     rating: c.newRating,
+    contestName: c.contestName,
+    rank: c.rank,
   }));
 
   await sleep(1500);

@@ -12,7 +12,7 @@ const FAQ = () => {
   {
     question: "What do you do and what are you currently working on?",
     answer:
-      "I'm a CS Engineering student at NIT Jalandhar, currently working as an SDE Intern at Accenture building GenAI and RAG-based document intelligence systems. Outside of that, I'm building high-performance systems — most recently a thread-safe LRU cache handling 15,000+ QPS.",
+      "I'm a final-year CS Engineering student at NIT Jalandhar. I recently wrapped up an SDE Internship at Accenture where I built GenAI and RAG-based document intelligence systems. Right now, I'm focused on building scalable projects for real users, competing in CP, and exploring my next role. Outside of that, I'm building high-performance systems — most recently a thread-safe LRU cache handling 15,000+ QPS.",
   },
   {
     question: "What kind of projects excite you the most?",
@@ -27,7 +27,7 @@ const FAQ = () => {
   {
     question: "How do you usually approach a new problem or project?",
     answer:
-      "I like to start by clearly understanding the problem and deciding what success should look like — including where it's likely to break under real load, not just whether it works in the happy path. I look at the actual requirements and choose the technology that genuinely fits them, then follow a proper SDLC rather than jumping straight into code. From there, I break things down into smaller parts, build step by step, and keep measuring whether I'm actually improving performance or usability, not just adding features. Solving 1,200+ DSA problems has helped me think more systematically, but I always try to balance clean logic with practical execution.",
+      "I like to start by clearly understanding the problem and deciding what success should look like — including where it's likely to break under real load, not just whether it works in the happy path. I look at the actual requirements and choose the technology that genuinely fits them, then follow a proper SDLC rather than jumping straight into code. From there, I break things down into smaller parts, build step by step, and keep measuring whether I'm actually improving performance or usability, not just adding features. Solving 1,500+ DSA problems has helped me think more systematically, allowing me to approach architectural problems from multiple creative perspectives before committing to a design. Ultimately, I always try to balance that clean, algorithmic logic with practical, production-ready execution.",
   },
   {
     question: "When are you expected to graduate?",
