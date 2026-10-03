@@ -33,3 +33,4 @@ dist
 
 # testing while dev logic andSuggestions for projects 
 testing_and_suggestions/
+.env
