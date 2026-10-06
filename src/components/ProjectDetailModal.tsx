@@ -109,7 +109,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     <Button
                       size="sm"
                       variant="secondary"
-                      className="rounded-full gap-2 bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 whitespace-nowrap"
+                      className="rounded-full gap-2 bg-black/90 hover:bg-black border border-white/20 text-white hover:text-white whitespace-nowrap"
                       asChild
                     >
                       <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
@@ -122,7 +122,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     <Button
                       size="sm"
                       variant="secondary"
-                      className="rounded-full gap-2 bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 whitespace-nowrap"
+                      className="rounded-full gap-2 bg-white hover:bg-gray-100 text-black border border-transparent font-medium whitespace-nowrap"
                       asChild
                     >
                       <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
@@ -135,7 +135,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     <Button
                       size="sm"
                       variant="secondary"
-                      className="rounded-full gap-2 bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 whitespace-nowrap"
+                      className="rounded-full gap-2 bg-black/90 hover:bg-black border border-white/20 text-white hover:text-white whitespace-nowrap"
                       asChild
                     >
                       <a href={project.demoVideoUrl} target="_blank" rel="noopener noreferrer">
@@ -148,7 +148,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     <Button
                       size="sm"
                       variant="secondary"
-                      className="rounded-full gap-2 bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30 whitespace-nowrap"
+                      className="rounded-full gap-2 bg-black/90 hover:bg-black border border-white/20 text-white hover:text-white whitespace-nowrap"
                       asChild
                     >
                       <a href={project.pitchDeckUrl} target="_blank" rel="noopener noreferrer">
@@ -165,14 +165,14 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                 <>
                   <button
                     onClick={prevImage}
-                    className="absolute left-2 top-[40%] -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors z-20"
+                    className="absolute left-2 top-[40%] -translate-y-1/2 w-8 h-8 rounded-full premium-overlay text-white flex items-center justify-center text-white hover:bg-black/70 transition-colors z-20"
                     aria-label="Previous image"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-2 top-[40%] -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors z-20"
+                    className="absolute right-2 top-[40%] -translate-y-1/2 w-8 h-8 rounded-full premium-overlay text-white flex items-center justify-center text-white hover:bg-black/70 transition-colors z-20"
                     aria-label="Next image"
                   >
                     <ChevronRight className="w-5 h-5" />
@@ -207,7 +207,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
 
             {/* Tabs */}
             <Tabs defaultValue="overview" className="mb-6">
-              <div className="sticky top-0 z-50 pb-4 bg-background/95 backdrop-blur-md">
+              <div className="sticky top-0 z-50 pb-4 bg-background/98 shadow-sm">
                 <TabsList className="w-full grid grid-cols-2">
                   <TabsTrigger value="overview" className="rounded-full">Overview</TabsTrigger>
                   <TabsTrigger value="technical" className="rounded-full">Technical</TabsTrigger>
@@ -360,7 +360,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
           onClick={onClose}
           size="icon"
           variant="ghost"
-          className="absolute right-6 top-6 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md text-white hover:bg-black/60 z-[200]"
+          className="absolute right-6 top-6 w-10 h-10 rounded-full premium-overlay text-white text-white hover:bg-black/60 z-[200]"
         >
           <X className="w-5 h-5" />
         </Button>
@@ -369,7 +369,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
         <ScrollArea className="flex-1">
           <div className="relative w-full overflow-x-hidden">
             {/* Hero Section - Scrolls */}
-            <div className="relative h-[320px]">
+            <div className="relative h-[360px]">
               <img
                 src={images[currentImageIndex]}
                 alt={project.title}
@@ -377,21 +377,20 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
-              {/* Title on Left */}
-              <div className="absolute bottom-6 left-8">
-                <h2 className="text-4xl font-bold text-white">{project.title}</h2>
-              </div>
-
-              {/* CTAs on Right */}
-              <div className="absolute bottom-6 right-8 flex gap-3">
+              {/* Title and CTAs */}
+              <div className="absolute bottom-10 left-8 right-8 flex flex-col md:flex-row md:items-end justify-between gap-4 z-10">
+                <div className="flex-1 min-w-0 pr-4">
+                  <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight line-clamp-2">{project.title}</h2>
+                </div>
+                <div className="flex flex-wrap gap-3 shrink-0">
                 {project.githubUrl && (
                   <Button
                     variant="secondary"
-                    className="rounded-full gap-2 bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20"
+                    className="rounded-full gap-2 bg-black hover:bg-white/10 border border-white/20 hover:border-white/40 text-white hover:text-white transition-all hover:scale-[1.02] active:scale-95"
                     asChild
                   >
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="w-4 h-4" />
+                      <Github className="w-4 h-4 transition-transform group-hover:rotate-12 group-hover:scale-110" />
                       GitHub
                     </a>
                   </Button>
@@ -399,11 +398,11 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                 {project.liveUrl && (
                   <Button
                     variant="secondary"
-                    className="rounded-full gap-2 bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20"
+                    className="rounded-full gap-2 bg-white hover:bg-gray-200 text-black border border-transparent font-bold transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
                     asChild
                   >
                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLink className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                       Live Demo
                     </a>
                   </Button>
@@ -411,11 +410,11 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                 {project.demoVideoUrl && (
                   <Button
                     variant="secondary"
-                    className="rounded-full gap-2 bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20"
+                    className="rounded-full gap-2 bg-black hover:bg-white/10 border border-white/20 hover:border-white/40 text-white hover:text-white transition-all hover:scale-[1.02] active:scale-95"
                     asChild
                   >
                     <a href={project.demoVideoUrl} target="_blank" rel="noopener noreferrer">
-                      <Play className="w-4 h-4" />
+                      <Play className="w-4 h-4 transition-transform group-hover:scale-110 group-hover:text-blue-400" />
                       Watch Demo
                     </a>
                   </Button>
@@ -423,35 +422,36 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                 {project.pitchDeckUrl && (
                   <Button
                     variant="secondary"
-                    className="rounded-full gap-2 bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20"
+                    className="rounded-full gap-2 bg-black hover:bg-white/10 border border-white/20 hover:border-white/40 text-white hover:text-white transition-all hover:scale-[1.02] active:scale-95"
                     asChild
                   >
                     <a href={project.pitchDeckUrl} target="_blank" rel="noopener noreferrer">
-                      <Presentation className="w-4 h-4" />
+                      <Presentation className="w-4 h-4 transition-transform group-hover:scale-110 group-hover:text-purple-400" />
                       Pitch Deck
                     </a>
                   </Button>
                 )}
               </div>
+            </div>
 
               {/* Carousel Controls */}
               {images.length > 1 && (
                 <>
                   <button
                     onClick={prevImage}
-                    className="absolute left-4 top-[45%] -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 transition-colors z-20"
+                    className="absolute left-4 top-[45%] -translate-y-1/2 w-10 h-10 rounded-full premium-overlay text-white flex items-center justify-center text-white hover:bg-black/60 transition-colors z-20"
                     aria-label="Previous image"
                   >
                     <ChevronLeft className="w-6 h-6" />
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-4 top-[45%] -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/60 transition-colors z-20"
+                    className="absolute right-4 top-[45%] -translate-y-1/2 w-10 h-10 rounded-full premium-overlay text-white flex items-center justify-center text-white hover:bg-black/60 transition-colors z-20"
                     aria-label="Next image"
                   >
                     <ChevronRight className="w-6 h-6" />
                   </button>
-                  <div className="absolute bottom-[80px] left-1/2 -translate-x-1/2 flex gap-2">
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
                     {images.map((_, idx) => (
                       <button
                         key={idx}
@@ -471,7 +471,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
             </div>
 
             {/* Tech Badges - Sticky */}
-            <div className="sticky top-0 z-40 px-8 py-4 border-b border-border bg-background/95 backdrop-blur-md">
+            <div className="sticky top-0 z-40 px-8 py-4 border-b border-border bg-background/98 shadow-sm">
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <Badge key={tag} variant="secondary" className="rounded-full">
@@ -485,7 +485,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
             <Tabs defaultValue="overview" className="px-8">
               {/* Sticky Tabs */}
               <div className="sticky top-[72px] z-50 pt-4 pb-2 flex justify-center">
-                <div className="bg-background/95 backdrop-blur-md rounded-full p-1">
+                <div className="bg-background/98 shadow-sm rounded-full p-1">
                   <TabsList className="inline-flex h-11 items-center justify-center rounded-full bg-muted p-1">
                     <TabsTrigger value="overview" className="rounded-full px-6">Overview</TabsTrigger>
                     <TabsTrigger value="technical" className="rounded-full px-6">Technical</TabsTrigger>

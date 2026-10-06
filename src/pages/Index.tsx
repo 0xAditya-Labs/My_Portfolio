@@ -58,13 +58,25 @@ const Index = () => {
         <Navbar />
         <Hero />
         <TechStackScroller />
-        <About />
+        
+        <div className="bg-gradient-to-b from-background via-card to-background py-1">
+          <About />
+        </div>
+        
         <Timeline />
-        <Projects />
+        
+        <div className="bg-gradient-to-b from-background via-card to-background py-1">
+          <Projects />
+        </div>
+        
         <Suspense fallback={<div className="py-24" />}>
           <CodingDashboard />
         </Suspense>
-        <FAQ />
+        
+        <div className="bg-gradient-to-b from-background via-card to-background py-1">
+          <FAQ />
+        </div>
+        
         <Contact />
         <Footer />
         <MobileFAB />
@@ -86,13 +98,25 @@ const Index = () => {
         <Navbar />
         <Hero />
         <TechStackScroller />
-        <About />
+        
+        <div className="bg-gradient-to-b from-background via-card to-background py-1">
+          <About />
+        </div>
+        
         <Timeline />
-        <Projects />
+        
+        <div className="bg-gradient-to-b from-background via-card to-background py-1">
+          <Projects />
+        </div>
+        
         <Suspense fallback={<div className="py-24" />}>
           <CodingDashboard />
         </Suspense>
-        <FAQ />
+        
+        <div className="bg-gradient-to-b from-background via-card to-background py-1">
+          <FAQ />
+        </div>
+        
         <Contact />
       </main>
 {/* FIXED FOOTER */}

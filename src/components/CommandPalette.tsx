@@ -221,7 +221,7 @@ const CommandPalette = () => {
   const commandContent = (
     <>
       <CommandInput 
-        placeholder={isMobile ? "Search portfolio or commands" : "Search portfolio, ask questions, or use commands... (AI-powered)"} 
+        placeholder={isMobile ? "Ask AI about my skills..." : "Type any question for AI (e.g. 'What are your core skills?')..."}
         value={searchQuery}
         onValueChange={setSearchQuery}
       />

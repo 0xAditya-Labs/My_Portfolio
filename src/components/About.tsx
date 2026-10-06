@@ -43,7 +43,7 @@ const About = () => {
 
           {/* Right Content - Skills Card */}
           <div 
-            className={`bg-background/80 border border-border/50 backdrop-blur-md rounded-3xl p-8 shadow-xl ${aboutVisible ? 'scroll-animate scroll-animate-delay-2' : ''}`}
+            className={`premium-card rounded-3xl p-8 ${aboutVisible ? 'scroll-animate scroll-animate-delay-2' : ''}`}
           >
             <h3 className="text-2xl font-bold mb-8">Skills & Expertise</h3>
 

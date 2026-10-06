@@ -27,18 +27,18 @@ import {
   ReferenceLine,
 } from "recharts";
 
-// ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Constants
-// ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const LC_USER = "Aditya_chauhan__";
 const CF_USER = "Adree";
 const CC_USER = "chauhanaditya5";
 const GFG_USER = "adityacha9ddw";
 const GITHUB_USER = "0xAditya-Labs";
 
-// ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Types
-// ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 interface RatingPoint {
   timestamp: number;
   rating: number;
@@ -98,11 +98,11 @@ interface CodingJourneyStats {
   lastUpdated: string | null;
 }
 
-// ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Hooks
-// ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-/** Animates 0 → target over ~400ms (ease-out) once `enabled` flips true. */
+/** Animates 0 â†’ target over ~400ms (ease-out) once `enabled` flips true. */
 function useCountUp(target: number | null, enabled: boolean): number {
   const [display, setDisplay] = useState(0);
   const hasRun = useRef(false);
@@ -154,9 +154,9 @@ function useInView(ref: React.RefObject<HTMLElement | null>): boolean {
   return inView;
 }
 
-// ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Helpers
-// ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function fmtRelative(iso: string | null): string {
   if (!iso) return "unknown";
   const diff = Date.now() - new Date(iso).getTime();
@@ -212,22 +212,22 @@ function getCfRankExplanation(rank: string | null) {
       <div className="pt-2 border-t border-border/30">
         <span className="block font-medium text-foreground mb-1 text-[10px] uppercase tracking-wider">Codeforces Rating Hierarchy:</span>
         <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-[10px] text-muted-foreground/75">
-          <div>• Newbie: &lt; 1200</div>
-          <div>• Pupil: 1200–1399</div>
-          <div>• Specialist: 1400–1599</div>
-          <div>• Expert: 1600–1899</div>
-          <div>• Candidate Master: 1900–2099</div>
-          <div>• Master / IM: 2100–2399</div>
-          <div>• Grandmaster+: 2400+</div>
+          <div>â€¢ Newbie: &lt; 1200</div>
+          <div>â€¢ Pupil: 1200â€“1399</div>
+          <div>â€¢ Specialist: 1400â€“1599</div>
+          <div>â€¢ Expert: 1600â€“1899</div>
+          <div>â€¢ Candidate Master: 1900â€“2099</div>
+          <div>â€¢ Master / IM: 2100â€“2399</div>
+          <div>â€¢ Grandmaster+: 2400+</div>
         </div>
       </div>
     </div>
   );
 }
 
-// ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Sub-components
-// ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /** Small external link icon pinned to top-right of a card */
 const ProfileLink = ({ url, label }: { url: string; label: string }) => (
@@ -270,9 +270,9 @@ const ChartTooltip = ({ active, payload }: any) => {
   );
 };
 
-// ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // Main component
-// ─────────────────────────────────────────────────────────────────
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const CodingDashboard = () => {
   const [stats, setStats] = useState<CodingJourneyStats | null>(null);
   const [loaded, setLoaded] = useState(false);
@@ -309,7 +309,7 @@ const CodingDashboard = () => {
     }
   }
 
-  // ── Fetch stats JSON once ──────────────────────────────────────
+  // â”€â”€ Fetch stats JSON once â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   useEffect(() => {
     fetch("/coding-journey-stats.json")
       .then((r) => { if (!r.ok) throw new Error("Failed to load stats"); return r.json(); })
@@ -321,7 +321,7 @@ const CodingDashboard = () => {
       .catch(() => setLoaded(true)); // still reveal UI even on error
   }, []);
 
-  // ── Heatmap tooltip (ported, preserved logic) ──────────────────
+  // â”€â”€ Heatmap tooltip (ported, preserved logic) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   useEffect(() => {
     let container = heatmapRef.current;
     if (!container) return;
@@ -438,7 +438,7 @@ const CodingDashboard = () => {
     };
   }, [stats]); // re-attach when stats arrive and heatmap renders
 
-  // ── Derived chart data ─────────────────────────────────────────
+  // â”€â”€ Derived chart data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const lcChartData = stats?.leetcode?.history?.length
     ? historyToChartData(stats.leetcode.history)
     : [];
@@ -446,7 +446,7 @@ const CodingDashboard = () => {
     ? historyToChartData(stats.codeforces.history)
     : [];
 
-  // ── Highest Rank Lines ───────────────────────────────────────
+  // â”€â”€ Highest Rank Lines â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const lcRankLine = (() => {
     const m = stats?.leetcode?.maxRating;
     if (!m) return null;
@@ -485,7 +485,7 @@ const CodingDashboard = () => {
 
   const heatmapValues: HeatmapDay[] = stats?.heatmap ?? [];
 
-  // ── Responsive chart tick count ────────────────────────────────
+  // â”€â”€ Responsive chart tick count â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const [chartMaxTicks, setChartMaxTicks] = useState(8);
   useEffect(() => {
     const update = () => {
@@ -502,7 +502,7 @@ const CodingDashboard = () => {
     [chartMaxTicks]
   );
 
-  // ── Render ─────────────────────────────────────────────────────
+  // â”€â”€ Render â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   return (
     <section
       className="py-16 px-6 bg-gradient-to-b from-background to-muted/20"
@@ -511,7 +511,7 @@ const CodingDashboard = () => {
     >
       <div className="max-w-7xl mx-auto">
 
-        {/* ── Section Header ── */}
+        {/* â”€â”€ Section Header â”€â”€ */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
@@ -556,7 +556,7 @@ const CodingDashboard = () => {
           </div>
         </div>
 
-        {/* ── Headline Stat Row ── */}
+        {/* â”€â”€ Headline Stat Row â”€â”€ */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8" ref={statsRowRef}>
 
           {/* LeetCode max rating */}
@@ -577,7 +577,7 @@ const CodingDashboard = () => {
               </div>
               <div className="w-5 h-0.5 bg-[#5e6ad2] mb-3 rounded-full opacity-80 transition-all duration-300 group-hover:w-[40%]" />
               <div className="cj-stat-value text-lc tabular-nums" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700 }}>
-                {stats?.leetcode?.maxRating != null ? lcMaxRating : "—"}
+                {stats?.leetcode?.maxRating != null ? lcMaxRating : "â€”"}
               </div>
               {stats?.leetcode?.topPercentage != null && (
                 <p className="cj-stat-sub">Top {stats.leetcode.topPercentage}%</p>
@@ -627,7 +627,7 @@ const CodingDashboard = () => {
               <div className="cj-stat-value tabular-nums text-foreground" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700 }}>
                 {stats?.totalSolvedAllPlatforms != null ? totalSolved : "—"}
               </div>
-              <p className="cj-stat-sub opacity-60">LeetCode • Codeforces • CodeChef • GeeksforGeeks</p>
+              <p className="cj-stat-sub opacity-60">LeetCode &bull; Codeforces &bull; CodeChef &bull; GeeksforGeeks</p>
             </CardContent>
           </Card>
 
@@ -645,7 +645,7 @@ const CodingDashboard = () => {
               <div className="cj-stat-value tabular-nums text-foreground" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700 }}>
                 {totalContestsCount != null ? totalContests : "—"}
               </div>
-              <p className="cj-stat-sub opacity-60">LeetCode • Codeforces • CodeChef</p>
+              <p className="cj-stat-sub opacity-60">LeetCode &bull; Codeforces &bull; CodeChef</p>
             </CardContent>
           </Card>
         </div>
@@ -663,9 +663,9 @@ const CodingDashboard = () => {
               {lcHovered && (
                 <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-medium text-foreground text-right transition-opacity">
                   <span className="text-muted-foreground truncate max-w-[120px] sm:max-w-[200px]">{lcHovered.contestName}</span>
-                  <span className="text-muted-foreground/60 hidden sm:inline-block">· {lcHovered.fullDate || lcHovered.date} ·</span>
+                  <span className="text-muted-foreground/60 hidden sm:inline-block">&bull; {lcHovered.fullDate || lcHovered.date} &bull;</span>
                   <span className="font-bold">{lcHovered.rating}</span>
-                  <span className="text-muted-foreground/60">·</span>
+                  <span className="text-muted-foreground/60">&bull;</span>
                   <span className={`font-bold ${lcHovered.ratingChange >= 0 ? "text-green-500" : "text-red-500"}`}>
                     {lcHovered.ratingChange > 0 ? "+" : ""}{lcHovered.ratingChange}
                   </span>
@@ -744,9 +744,9 @@ const CodingDashboard = () => {
               {cfHovered && (
                 <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-medium text-foreground text-right transition-opacity">
                   <span className="text-muted-foreground truncate max-w-[120px] sm:max-w-[200px]">{cfHovered.contestName}</span>
-                  <span className="text-muted-foreground/60 hidden sm:inline-block">· {cfHovered.fullDate || cfHovered.date} ·</span>
+                  <span className="text-muted-foreground/60 hidden sm:inline-block">&bull; {cfHovered.fullDate || cfHovered.date} &bull;</span>
                   <span className="font-bold">{cfHovered.rating}</span>
-                  <span className="text-muted-foreground/60">·</span>
+                  <span className="text-muted-foreground/60">&bull;</span>
                   <span className={`font-bold ${cfHovered.ratingChange >= 0 ? "text-green-500" : "text-red-500"}`}>
                     {cfHovered.ratingChange > 0 ? "+" : ""}{cfHovered.ratingChange}
                   </span>
@@ -826,7 +826,7 @@ const CodingDashboard = () => {
                   Problem Breakdown
                 </CardTitle>
                 <div className="text-xs text-muted-foreground bg-foreground/5 px-2.5 py-1 rounded-md font-medium border border-border/40">
-                  <span className="font-bold text-foreground mr-1">{activeDaysCount > 0 ? activeDaysCount : "—"}</span> 
+                  <span className="font-bold text-foreground mr-1">{activeDaysCount > 0 ? activeDaysCount : "â€”"}</span> 
                   Active Days
                 </div>
               </CardHeader>
@@ -873,7 +873,7 @@ const CodingDashboard = () => {
           </div>
         )}
 
-        {/* ── Notable Achievements ── */}
+        {/* â”€â”€ Notable Achievements â”€â”€ */}
         <div className="mb-8">
           <Card className="cj-chart-card">
             <CardHeader className="pb-4">
@@ -930,7 +930,7 @@ const CodingDashboard = () => {
           </Card>
         </div>
 
-        {/* ── Coding Activity Heatmap ── */}
+        {/* â”€â”€ Coding Activity Heatmap â”€â”€ */}
         <Card className="cj-chart-card mb-6">
           <CardHeader className="pb-2">
             <CardTitle className="flex items-center gap-2 text-base">
@@ -977,7 +977,7 @@ const CodingDashboard = () => {
           </CardContent>
         </Card>
 
-        {/* ── Status Footer ── */}
+        {/* â”€â”€ Status Footer â”€â”€ */}
         {(stats?.codechef || stats?.gfg) && (
           <div className="flex flex-col items-center justify-center gap-1.5 text-center mt-12 text-[13.5px] leading-relaxed text-[#4B5563] dark:text-[#9CA3AF] font-normal">
             <div className="flex items-center justify-center gap-2 flex-wrap">
@@ -1019,10 +1019,10 @@ const CodingDashboard = () => {
         )}
       </div>
 
-      {/* ── Fullscreen Certificate Modal ── */}
+      {/* â”€â”€ Fullscreen Certificate Modal â”€â”€ */}
       {activeCert && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-[100] flex items-center justify-center premium-overlay p-4 animate-in fade-in duration-200"
           onClick={() => setActiveCert(null)}
         >
           <div className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center">
@@ -1043,7 +1043,7 @@ const CodingDashboard = () => {
         </div>
       )}
 
-      {/* ── Scoped styles ── */}
+      {/* â”€â”€ Scoped styles â”€â”€ */}
       <style>{`
         /* Stat cards */
         .cj-stat-card {
@@ -1125,21 +1125,32 @@ const CodingDashboard = () => {
           font-size: 0.9rem;
         }
 
-        /* Heatmap cell colors — blue accent, dual-mode */
+        /* Heatmap grid structure */
+        .react-calendar-heatmap rect {
+          stroke: rgba(0, 0, 0, 0.04);
+          stroke-width: 1px;
+          rx: 2px;
+          ry: 2px;
+        }
+        .dark .react-calendar-heatmap rect {
+          stroke: rgba(255, 255, 255, 0.04);
+        }
+
+        /* Heatmap cell colors â€” blue accent, dual-mode */
         .react-calendar-heatmap .color-empty {
-          fill: hsl(var(--muted) / 0.25);
+          fill: hsl(var(--muted) / 0.1);
         }
         .react-calendar-heatmap .color-scale-1 {
-          fill: hsl(213 94% 68% / 0.25);
+          fill: hsl(213 94% 68% / 0.4);
         }
         .react-calendar-heatmap .color-scale-2 {
-          fill: hsl(213 94% 68% / 0.5);
+          fill: hsl(213 94% 68% / 0.65);
         }
         .react-calendar-heatmap .color-scale-3 {
-          fill: hsl(213 94% 68% / 0.75);
+          fill: hsl(213 94% 68% / 0.9);
         }
         .react-calendar-heatmap .color-scale-4 {
-          fill: hsl(213 94% 68%);
+          fill: hsl(213 94% 68% / 1);
         }
         .react-calendar-heatmap text {
           fill: hsl(var(--muted-foreground));

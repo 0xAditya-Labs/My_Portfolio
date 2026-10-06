@@ -147,8 +147,8 @@ const Navbar = () => {
         <nav
           className={`mx-auto px-4 sm:px-8 py-4 flex items-center relative transition-all duration-300 overflow-hidden ${
             isScrolled
-              ? "max-w-[85em] rounded-full backdrop-blur-xl bg-white/70 dark:bg-black/70 border border-gray-200/50 dark:border-gray-700/50 shadow-lg"
-              : "max-w-full rounded-none backdrop-blur-xl bg-white/70 dark:bg-black/70 border-b border-gray-200/30 dark:border-gray-700/30 shadow-none"
+              ? "max-w-[85em] rounded-full premium-nav"
+              : "max-w-full rounded-none premium-nav border-x-0 border-t-0"
           }`}
         >
           {/* ✅ Scroll Underline */}

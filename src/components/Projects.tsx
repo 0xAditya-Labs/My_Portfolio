@@ -72,7 +72,7 @@ const Projects = () => {
 
           {/* Filter Tabs */}
           <div className="flex justify-start overflow-x-auto pb-2 sm:pb-0">
-            <div className="inline-flex items-center bg-gray-100/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-full p-1.5 border border-gray-200/60 dark:border-gray-700/30 shadow-sm min-w-max">
+            <div className="inline-flex items-center bg-secondary/50 rounded-full p-1.5 border border-border shadow-sm min-w-max">
             <button
               onClick={() => setFilter("all")}
               className={`px-4 sm:px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
@@ -124,7 +124,7 @@ const Projects = () => {
             <div
               key={project.id}
               onClick={() => openProject(project)}
-              className={`group bg-background/80 backdrop-blur-md border border-border/50 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer ${
+              className={`group premium-card rounded-3xl cursor-pointer ${
                 projectsVisible ? `scroll-animate scroll-animate-delay-${Math.min(index % 3 + 1, 3)}` : ''
               }`}
               role="button"
@@ -169,29 +169,31 @@ const Projects = () => {
                       {project.tags.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
-                          className="text-xs px-2 py-1 bg-secondary rounded-full"
+                          className="text-[11px] px-3 py-1 bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 text-foreground rounded-full font-semibold uppercase tracking-wider"
                         >
                           {tag}
                         </span>
                       ))}
                       {project.tags.length > 3 && (
-                        <span className="text-xs px-2 py-1 bg-secondary rounded-full">
+                        <span className="text-[11px] px-3 py-1 bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 text-foreground rounded-full font-semibold uppercase tracking-wider">
                           +{project.tags.length - 3}
                         </span>
                       )}
                     </div>
                   </div>
 
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      openProject(project);
-                    }}
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:gap-3 transition-all"
-                  >
-                    View Project
-                    <ExternalLink className="w-4 h-4" />
-                  </button>
+                  <div className="pt-2">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openProject(project);
+                      }}
+                      className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-500/15 px-4 py-2 -ml-4 rounded-lg transition-colors"
+                    >
+                      View Project
+                      <ExternalLink className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

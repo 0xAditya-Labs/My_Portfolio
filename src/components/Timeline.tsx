@@ -164,7 +164,7 @@ const Timeline = () => {
 
                 {/* Content Card */}
                 <div 
-                  className="p-5 rounded-xl group cursor-default border border-black/60 dark:border-gray-400 transition-transform duration-200 ease-out hover:-translate-y-1 hover:shadow-lg bg-white/5 dark:bg-white/3 backdrop-blur-sm"
+                  className="premium-card p-5 rounded-xl group cursor-default"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex gap-4 w-full">
@@ -202,7 +202,7 @@ const Timeline = () => {
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-muted/80 text-foreground font-medium dark:bg-muted/70 dark:text-foreground"
+                        className="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-muted/80 text-foreground font-medium border border-border/40 dark:bg-white/5 dark:border-white/10"
                         style={{ borderRadius: '9999px' }}
                       >
                         {tag}
@@ -246,7 +246,7 @@ const Timeline = () => {
 
                 {/* Content Card */}
                 <div 
-                  className="bg-background/80 backdrop-blur-md p-6 rounded-xl group cursor-default border border-black/60 dark:border-gray-400 ml-4 transition-transform hover:-translate-y-1 hover:shadow-lg"
+                  className="premium-card p-6 rounded-xl group cursor-default ml-4"
                 >
                   <div className="flex gap-4">
                     {item.logo && (
@@ -280,7 +280,7 @@ const Timeline = () => {
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-muted/80 text-foreground font-medium dark:bg-muted/70 dark:text-foreground"
+                        className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-muted/80 text-foreground font-medium border border-border/40 dark:bg-white/5 dark:border-white/10"
                         style={{ borderRadius: '9999px' }}
                       >
                         {tag}

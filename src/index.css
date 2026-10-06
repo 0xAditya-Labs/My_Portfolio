@@ -175,6 +175,74 @@ All colors MUST be HSL.
   }
 
   /* Glass effect with hover tilt */
+  /* Premium Solid Card System (Vercel/Linear Aesthetic) */
+  .premium-card {
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dark .premium-card {
+    background-color: hsl(var(--card));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06), 0 8px 24px -4px rgba(0, 0, 0, 0.3);
+  }
+
+  .premium-card:hover {
+    transform: translateY(-2px) scale(1.005);
+    box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.08), 0 4px 8px -4px rgba(0, 0, 0, 0.04);
+  }
+
+  .dark .premium-card:hover {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.02), 0 12px 24px -4px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Premium Buttons */
+  .premium-button {
+    background-color: hsl(var(--background));
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    transition: all 0.2s ease;
+  }
+
+  .dark .premium-button {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .premium-button:hover {
+    background-color: hsl(var(--secondary));
+  }
+
+  .dark .premium-button:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Premium Navbar */
+  .premium-nav {
+    background-color: hsl(var(--background));
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .dark .premium-nav {
+    background-color: hsl(var(--background));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Modal Overlays */
+  .premium-overlay {
+    background-color: rgba(0, 0, 0, 0.9);
+    background-image: radial-gradient(circle at center, rgba(40, 80, 200, 0.15) 0%, rgba(0, 0, 0, 0) 60%);
+  }
+
   .glass-card {
     background: hsl(var(--glass-bg));
     -webkit-backdrop-filter: blur(12px);
@@ -525,18 +593,4 @@ body.sheet-animating [data-sheet-content] {
       transform: none !important;
     }
   }
-}
-
-/* BRAVE ON MAC FALLBACK (Fixes the black box rendering bug) */
-html.brave-browser.mac-os .backdrop-blur-md,
-html.brave-browser.mac-os .backdrop-blur-sm,
-html.brave-browser.mac-os .backdrop-blur-xl,
-html.brave-browser.mac-os .glass-card {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  background-color: hsl(var(--background)) !important;
-}
-
-html.brave-browser.mac-os .bg-white\/5 {
-  background-color: hsl(var(--background)) !important;
 }
