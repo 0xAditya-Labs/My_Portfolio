@@ -5,9 +5,9 @@
     "topPercentage": 3.25,
     "contestsCount": 49,
     "easySolved": 279,
-    "mediumSolved": 444,
+    "mediumSolved": 445,
     "hardSolved": 90,
-    "totalSolved": 813,
+    "totalSolved": 814,
     "history": [
       {
         "timestamp": 1723905000000,
@@ -267,7 +267,7 @@
     "currentRankTitle": "pupil",
     "maxRankTitle": "Specialist",
     "contestsCount": 77,
-    "totalSolved": 443,
+    "totalSolved": 445,
     "history": [
       {
         "timestamp": 1719768900000,
@@ -812,10 +812,6 @@
     "totalSolved": 146
   },
   "heatmap": [
-    {
-      "date": "2025-10-05",
-      "count": 11
-    },
     {
       "date": "2025-10-06",
       "count": 3
@@ -1751,10 +1747,14 @@
     {
       "date": "2026-10-04",
       "count": 5
+    },
+    {
+      "date": "2026-10-05",
+      "count": 5
     }
   ],
   "errors": [],
-  "totalActiveDays": 310,
-  "totalSolvedAllPlatforms": 1461,
-  "lastUpdated": "2026-10-04T21:42:38.711Z"
+  "totalActiveDays": 311,
+  "totalSolvedAllPlatforms": 1464,
+  "lastUpdated": "2026-10-06T00:13:09.820Z"
 }
