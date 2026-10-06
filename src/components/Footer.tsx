@@ -31,9 +31,9 @@ const Footer = () => {
   return (
     <footer className="bg-[#0a0a0a] pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-12 lg:pb-6 relative overflow-hidden text-neutral-300">
       {/* Black atmospheric lighting system */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none transform-gpu" style={{ willChange: "transform" }} aria-hidden>
-        <div className="absolute -bottom-28 -left-24 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl transform-gpu" />
-        <div className="absolute -bottom-28 -right-24 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl transform-gpu" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden>
+        <div className="absolute -bottom-28 -left-24 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-28 -right-24 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-6xl mx-auto px-8 sm:px-16 lg:px-20 relative z-10">

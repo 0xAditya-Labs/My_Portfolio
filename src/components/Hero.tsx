@@ -55,26 +55,25 @@ const Hero = () => {
   return (
     <section ref={heroRef} className="min-h-[85vh] bg-background relative overflow-hidden pt-20 pb-12 flex flex-col justify-center">
       {/* Decorative floating elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none transform-gpu" style={{ willChange: "transform" }}>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
           ref={blobA}
-          className={`absolute top-20 left-10 w-20 h-20 rounded-full bg-blue-200/30 blur-xl transform-gpu ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
-          style={{ willChange: "transform" }}
+          className={`absolute top-20 left-10 w-20 h-20 rounded-full bg-blue-200/30 blur-xl ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
         />
         <div
           ref={blobB}
-          className={`absolute top-40 right-20 w-32 h-32 rounded-full bg-purple-200/20 blur-2xl transform-gpu ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
-          style={{ animationDelay: '1s', willChange: "transform" }}
+          className={`absolute top-40 right-20 w-32 h-32 rounded-full bg-purple-200/20 blur-2xl ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          style={{ animationDelay: '1s' }}
         />
         <div
           ref={blobC}
-          className={`absolute bottom-40 left-1/4 w-24 h-24 rounded-full bg-pink-200/20 blur-xl transform-gpu ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
-          style={{ animationDelay: '2s', willChange: "transform" }}
+          className={`absolute bottom-40 left-1/4 w-24 h-24 rounded-full bg-pink-200/20 blur-xl ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          style={{ animationDelay: '2s' }}
         />
         <div
           ref={blobD}
-          className={`absolute top-1/3 right-1/3 w-16 h-16 rounded-full bg-cyan-200/30 blur-lg transform-gpu ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
-          style={{ animationDelay: '0.5s', willChange: "transform" }}
+          className={`absolute top-1/3 right-1/3 w-16 h-16 rounded-full bg-cyan-200/30 blur-lg ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          style={{ animationDelay: '0.5s' }}
         />
       </div>
 
