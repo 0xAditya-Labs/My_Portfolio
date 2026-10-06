@@ -15,6 +15,7 @@ I build high-performance, concurrent systems and production-grade AI application
 - LeetCode: Knight rank, rating 1961.
 - Codeforces: Specialist rank.
 - CodeChef: 3-star.
+- Proceeded to Round 2 of Meta hackercup and Semifinals of Flipkart Grid twice.
 
 ## Skills
 Languages: C++, Python, JavaScript, C
@@ -34,4 +35,6 @@ Website: https://adityac.codes
 GitHub: https://github.com/0xAditya-Labs
 LeetCode: https://leetcode.com/u/adityachauhan_/
 Codeforces: https://codeforces.com/profile/adityachauhan_
+Linkedin: https://www.linkedin.com/in/aditya-chauhan-nitj/
+Email: aditya.chauhan.nitj.ac@gmail.com
 Contact: https://tally.so/r/LZyoBJ
