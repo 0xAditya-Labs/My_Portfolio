@@ -62,22 +62,23 @@ const NotFound = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
           ref={blobA}
-          className={`absolute top-20 left-10 w-32 h-32 rounded-full bg-blue-200/20 blur-3xl ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          className={`absolute top-20 left-10 w-64 h-64 rounded-full ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          style={{ background: 'radial-gradient(circle, rgba(191,219,254,0.2) 0%, rgba(191,219,254,0) 70%)' }}
         />
         <div
           ref={blobB}
-          className={`absolute top-40 right-20 w-48 h-48 rounded-full bg-purple-200/15 blur-3xl ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
-          style={{ animationDelay: '1s' }}
+          className={`absolute top-40 right-20 w-96 h-96 rounded-full ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          style={{ background: 'radial-gradient(circle, rgba(233,213,255,0.15) 0%, rgba(233,213,255,0) 70%)', animationDelay: '1s' }}
         />
         <div
           ref={blobC}
-          className={`absolute bottom-40 left-1/4 w-40 h-40 rounded-full bg-pink-200/15 blur-3xl ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
-          style={{ animationDelay: '2s' }}
+          className={`absolute bottom-40 left-1/4 w-80 h-80 rounded-full ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          style={{ background: 'radial-gradient(circle, rgba(251,207,232,0.15) 0%, rgba(251,207,232,0) 70%)', animationDelay: '2s' }}
         />
         <div
           ref={blobD}
-          className={`absolute top-1/3 right-1/3 w-24 h-24 rounded-full bg-cyan-200/20 blur-2xl ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
-          style={{ animationDelay: '0.5s' }}
+          className={`absolute top-1/3 right-1/3 w-48 h-48 rounded-full ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          style={{ background: 'radial-gradient(circle, rgba(165,243,252,0.2) 0%, rgba(165,243,252,0) 70%)', animationDelay: '0.5s' }}
         />
       </div>
 
