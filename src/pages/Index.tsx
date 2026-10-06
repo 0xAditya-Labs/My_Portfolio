@@ -1,11 +1,11 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TechStackScroller from "@/components/TechStackScroller";
 import About from "@/components/About";
 import Timeline from "../components/Timeline";
 import Projects from "@/components/Projects";
-import CodingDashboard from "@/components/CodingDashboard";
+const CodingDashboard = lazy(() => import("@/components/CodingDashboard"));
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -61,7 +61,9 @@ const Index = () => {
         <About />
         <Timeline />
         <Projects />
-        <CodingDashboard />
+        <Suspense fallback={<div className="py-24" />}>
+          <CodingDashboard />
+        </Suspense>
         <FAQ />
         <Contact />
         <Footer />
@@ -87,7 +89,9 @@ const Index = () => {
         <About />
         <Timeline />
         <Projects />
-        <CodingDashboard />
+        <Suspense fallback={<div className="py-24" />}>
+          <CodingDashboard />
+        </Suspense>
         <FAQ />
         <Contact />
       </main>

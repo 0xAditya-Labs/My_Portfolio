@@ -303,9 +303,9 @@ const CodingDashboard = () => {
   let lcBadge = null;
   if (rawLcMaxRating != null) {
     if (rawLcMaxRating >= 2150) {
-      lcBadge = { src: "/badge-guardian.png", name: "Guardian" };
+      lcBadge = { src: "/badge-guardian.webp", name: "Guardian" };
     } else if (rawLcMaxRating >= 1850) {
-      lcBadge = { src: "/badge-knight.png", name: "Knight" };
+      lcBadge = { src: "/badge-knight.webp", name: "Knight" };
     }
   }
 
@@ -524,10 +524,10 @@ const CodingDashboard = () => {
           {/* Platform profile links */}
           <div className="flex flex-wrap justify-center gap-3 mt-4">
             {[
-              { name: "LeetCode", url: `https://leetcode.com/${LC_USER}`, user: LC_USER, icon: "/icons/LeetCode_logo_black.png", hoverBorder: "hover:border-[#5e6ad2]/50" },
+              { name: "LeetCode", url: `https://leetcode.com/${LC_USER}`, user: LC_USER, icon: "/icons/LeetCode_logo_black.webp", hoverBorder: "hover:border-[#5e6ad2]/50" },
               { name: "Codeforces", url: `https://codeforces.com/profile/${CF_USER}`, user: CF_USER, icon: "/icons/codeforces.webp", hoverBorder: "hover:border-[#e87a36]/50" },
-              { name: "CodeChef", url: `https://www.codechef.com/users/${CC_USER}`, user: CC_USER, icon: "/icons/codechef.png", hoverBorder: "hover:border-amber-600/50" },
-              { name: "GeeksforGeeks", url: `https://www.geeksforgeeks.org/user/${GFG_USER}`, user: GFG_USER, icon: "/icons/GeeksForGeeks_logo.png", hoverBorder: "hover:border-green-600/50" },
+              { name: "CodeChef", url: `https://www.codechef.com/users/${CC_USER}`, user: CC_USER, icon: "/icons/codechef.webp", hoverBorder: "hover:border-amber-600/50" },
+              { name: "GeeksforGeeks", url: `https://www.geeksforgeeks.org/user/${GFG_USER}`, user: GFG_USER, icon: "/icons/GeeksForGeeks_logo.webp", hoverBorder: "hover:border-green-600/50" },
               { name: "GitHub", url: `https://github.com/${GITHUB_USER}`, user: GITHUB_USER, icon: Github, hoverBorder: "hover:border-black/50 dark:hover:border-white/50" },
             ].map(({ name, url, user, icon, hoverBorder }) => {
               const IconComponent = typeof icon !== "string" ? icon : null;
@@ -572,7 +572,7 @@ const CodingDashboard = () => {
             )}
             <CardContent className="p-6">
               <div className="flex items-center gap-2 mb-1.5">
-                <img src="/icons/LeetCode_logo_black.png" className="w-4 h-4 dark:invert opacity-70" alt="LeetCode" />
+                <img src="/icons/LeetCode_logo_black.webp" className="w-4 h-4 dark:invert opacity-70" alt="LeetCode" />
                 <p className="cj-stat-label mb-0 uppercase tracking-wider">LeetCode Peak</p>
               </div>
               <div className="w-5 h-0.5 bg-[#5e6ad2] mb-3 rounded-full opacity-80 transition-all duration-300 group-hover:w-[40%]" />
@@ -886,13 +886,13 @@ const CodingDashboard = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-start gap-4 p-4 rounded-xl bg-background/50 border border-border/50 hover:border-primary/50 transition-colors">
                   <div className="w-10 h-10 rounded bg-slate-100/80 dark:bg-slate-200/90 flex items-center justify-center shrink-0 mt-0.5 p-1.5 shadow-sm border border-border/50">
-                    <img src="/icons/Meta_Logo.png" alt="Meta" className="w-full h-full object-contain scale-[1.2]" />
+                    <img src="/icons/Meta_Logo.webp" alt="Meta" className="w-full h-full object-contain scale-[1.2]" />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <h4 className="text-sm font-semibold text-foreground">Meta Hacker Cup</h4>
                       <button 
-                        onClick={() => setActiveCert("/achievements/Meta_HackerCup_2025_certificate_img.png")}
+                        onClick={() => setActiveCert("/achievements/Meta_HackerCup_2025_certificate_img.webp")}
                         className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
                       >
                         <ExternalLink className="w-3 h-3" />
@@ -907,13 +907,13 @@ const CodingDashboard = () => {
 
                 <div className="flex items-start gap-4 p-4 rounded-xl bg-background/50 border border-border/50 hover:border-primary/50 transition-colors">
                   <div className="w-10 h-10 rounded bg-slate-100/80 dark:bg-slate-200/90 flex items-center justify-center shrink-0 mt-0.5 p-1 shadow-sm border border-border/50">
-                    <img src="/icons/Flipkart-Logo-webp.png" alt="Flipkart" className="w-full h-full object-contain scale-[1.2]" />
+                    <img src="/icons/Flipkart-Logo-webp.webp" alt="Flipkart" className="w-full h-full object-contain scale-[1.2]" />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <h4 className="text-sm font-semibold text-foreground">Flipkart Grid 7.0</h4>
                       <button 
-                        onClick={() => setActiveCert("/achievements/Flipkart7.0_certificate.png")}
+                        onClick={() => setActiveCert("/achievements/Flipkart7.0_certificate.webp")}
                         className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
                       >
                         <ExternalLink className="w-3 h-3" />

@@ -38,13 +38,13 @@ export const projectsData: Project[] = [
     title: "ChatMind — Real-Time Messaging Platform with RAG Q&A",
     description: "A real-time messaging platform with sub-50ms delivery, featuring a hybrid RAG pipeline for contextual question answering over chat history.",
     fullDescription: "ChatMind combines real-time bidirectional messaging with a retrieval-augmented generation system that lets users query their own chat history conversationally. WebSocket-based delivery keeps end-to-end latency under 50ms, while a hybrid retrieval pipeline — combining BM25 keyword search, vector similarity, and reciprocal rank fusion — surfaces the most contextually relevant messages before a cross-encoder reranker refines results for accuracy.",
-    image: "/projects/chatmind_1.png",
+    image: "/projects/chatmind_1.webp",
     images: [
-      "/projects/chatmind_1.png",
-      "/projects/chatmind_2.png",
-      "/projects/chatmind_3.png",
-      "/projects/chatmind_4.png",
-      "/projects/chatmind_5.png"
+      "/projects/chatmind_1.webp",
+      "/projects/chatmind_2.webp",
+      "/projects/chatmind_3.webp",
+      "/projects/chatmind_4.webp",
+      "/projects/chatmind_5.webp"
     ],
     tags: ["MERN", "FastAPI", "WebSockets", "RAG"],
     techStack: ["MongoDB", "Express.js", "React", "Node.js", "FastAPI", "WebSockets", "BM25", "Vector Retrieval"],
@@ -86,12 +86,12 @@ export const projectsData: Project[] = [
     title: "ContextIQ — RAG-Based IT Support Assistant",
     description: "A LangChain-powered RAG agent that answers IT-support queries from a synthetic enterprise knowledge base, instrumented end-to-end with Langfuse and OpenTelemetry for full-stack observability.",
     fullDescription: "ContextIQ is a retrieval-augmented generation assistant built during my internship at Accenture to answer IT-support queries against a synthetic enterprise knowledge base. Beyond the core RAG pipeline, the project focused heavily on observability and architectural control: Langfuse traces LLM cost and output quality across requests, while OpenTelemetry instruments backend latency end-to-end. This layer directly enabled a 34% reduction in RAG input-token usage and a 69% cut in vector-search latency by making bottlenecks visible. Furthermore, to eliminate out-of-scope LLM hallucinations, the system was upgraded to a stateful ReAct agent in LangGraph that evaluates queries against tool docstrings before executing costly database retrievals.",
-    image: "/projects/contextiq_2.png",
+    image: "/projects/contextiq_2.webp",
     images: [
-      "/projects/contextiq_1.png",
-      "/projects/contextiq_2.png",
-      "/projects/contextiq_3.png",
-      "/projects/contextiq_4.png"
+      "/projects/contextiq_1.webp",
+      "/projects/contextiq_2.webp",
+      "/projects/contextiq_3.webp",
+      "/projects/contextiq_4.webp"
     ],
     tags: ["Python", "LangGraph", "Gemini", "RAG", "Observability"],
     techStack: ["Python", "LangGraph", "Gemini API", "FastAPI", "ChromaDB", "Langfuse", "OpenTelemetry"],
@@ -132,7 +132,7 @@ export const projectsData: Project[] = [
       api: "POST /api/query :- Submit IT-support query\nPOST /api/retrieve :- Retrieve relevant knowledge chunks\nGET /api/traces :- View Langfuse request traces\nGET /api/metrics :- Retrieve observability metrics\nGET /api/health :- Health check endpoint"
 ,
       architecture: "LangGraph ReAct Agent orchestrates tool-gating and query execution. FastAPI handles routing, ChromaDB manages vector storage, and Gemini API powers generation. Full-stack observability is implemented with Langfuse and OpenTelemetry.",
-      architectureImage: "/projects/contextiq_3.png"
+      architectureImage: "/projects/contextiq_3.webp"
     }
   },
   {
@@ -140,11 +140,11 @@ export const projectsData: Project[] = [
     title: "SwiftCache — Thread-Safe Concurrent LRU Cache Server",
     description: "A high-performance, thread-safe TCP-based LRU cache server built in C++, sustaining 160,000+ QPS with sub-0.26ms p99 latency through deterministic O(1) operations.",
     fullDescription: "SwiftCache is a concurrent LRU cache server built from first principles in C++, combining a custom hash-map and doubly linked list to guarantee deterministic O(1) get/set operations with TTL-based eviction. Designed with correctness under concurrent load as the primary constraint, it uses fine-grained locking (16 independent shards) to sustain high throughput without sacrificing thread safety, and exposes a modular, self-serve configuration layer to reduce integration effort for new caching features.",
-    image: "/projects/swiftcache_1.png",
+    image: "/projects/swiftcache_1.webp",
     images: [
-      "/projects/swiftcache_1.png",
-      "/projects/swiftcache_2.png",
-      "/projects/swiftcache_3.png"
+      "/projects/swiftcache_1.webp",
+      "/projects/swiftcache_2.webp",
+      "/projects/swiftcache_3.webp"
     ],
     tags: ["C++", "Concurrency", "TCP/HTTP"],
     techStack: ["C++", "TCP/HTTP", "Multithreading", "Custom Hash-Map", "Doubly Linked List"],
@@ -188,12 +188,12 @@ export const projectsData: Project[] = [
     title: "ISP Customer Retention Command Center",
     description: "A production-ready full-stack B2B SaaS platform that helps ISPs proactively reduce customer churn using Machine Learning and Explainable AI (XAI). It intelligently prioritizes customers by churn risk and provides AI-generated explanations for personalized retention actions.",
     fullDescription: "The ISP Customer Retention Command Center transforms churn prediction into an actionable decision-making platform. By ingesting customer data via CSV, it predicts churn probability using a trained Machine Learning model and prioritizes at-risk customers. Crucially, it leverages SHAP Explainable AI to provide support agents with the underlying reasons for churn risk, enabling personalized retention strategies rather than generic offers.",
-    image: "/projects/isp_1.png",
+    image: "/projects/isp_1.webp",
     images: [
-      "/projects/isp_1.png",
-      "/projects/isp_2.png",
-      "/projects/isp_3.png",
-      "/projects/isp_4.png"
+      "/projects/isp_1.webp",
+      "/projects/isp_2.webp",
+      "/projects/isp_3.webp",
+      "/projects/isp_4.webp"
     ],
     tags: ["React", "FastAPI", "Scikit-learn", "SHAP"],
     techStack: ["Scikit-learn", "FastAPI", "Uvicorn", "React", "Vite", "Tailwind CSS", "SHAP"],
@@ -236,13 +236,13 @@ export const projectsData: Project[] = [
     title: "Aditya Chauhan | Software Engineer Portfolio",
     description: "A performance-first personal portfolio and interactive resume built with React, Vite, and TypeScript. It features an integrated Gemini-powered AI command palette and a live competitive coding dashboard.",
     fullDescription: "A modern, highly performant personal developer portfolio engineered to showcase projects, technical skills, and competitive programming achievements. Built on the React and Vite ecosystem, the application utilizes Tailwind CSS and Shadcn/ui for a bespoke, accessible design system. Key technical implementations include a globally accessible Command Palette for rapid keyboard-first navigation, hardware-accelerated scroll animations, and a dynamic Coding Dashboard. This dashboard leverages Vercel Serverless Functions and custom scraping scripts to aggregate and normalize real-time statistics from platforms including LeetCode, CodeChef, Codeforces, and GeeksforGeeks.",
-    image: "/projects/portfolio_1.png",
+    image: "/projects/portfolio_1.webp",
     images: [
-      "/projects/portfolio_1.png",
-      "/projects/portfolio_2.png",
-      "/projects/portfolio_3.png",
-      "/projects/portfolio_4.png",
-      "/projects/portfolio_5.png"
+      "/projects/portfolio_1.webp",
+      "/projects/portfolio_2.webp",
+      "/projects/portfolio_3.webp",
+      "/projects/portfolio_4.webp",
+      "/projects/portfolio_5.webp"
     ],
     tags: ["React", "TypeScript", "Vite", "Gemini API"],
     techStack: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "Radix UI", "Google Gemini API", "Vercel"],
@@ -287,10 +287,10 @@ export const projectsData: Project[] = [
     title: "Airline Reservation System",
     description: "A modular Airline Management System built in C++ utilizing strict Object-Oriented Programming principles. It handles ticket booking, cancellation, and protected crew management.",
     fullDescription: "This Airline Management System is a robust C++ command-line application that demonstrates strong Object-Oriented Programming (OOP) architecture. It allows users to book and cancel tickets for up to 50 seats, auto-generates text-based tickets, and provides an admin-protected environment for crew management. The system heavily relies on core OOP concepts including abstraction, inheritance, polymorphism, and encapsulation to maintain data privacy and structural modularity.",
-    image: "/projects/airline_1.png",
+    image: "/projects/airline_1.webp",
     images: [
-      "/projects/airline_1.png",
-      "/projects/airline_2.png"
+      "/projects/airline_1.webp",
+      "/projects/airline_2.webp"
     ],
     tags: ["C++", "OOP", "CLI"],
     techStack: ["C++"],
@@ -326,10 +326,10 @@ export const projectsData: Project[] = [
     title: "JOSSA-Style Seat Allocation Portal",
     description: "A Flask-based web application that simulates the JOSAA counselling process by allocating seats based on student rank, preferences, and seat availability. It features secure OTP authentication and automated allocation reporting.",
     fullDescription: "This project recreates a simplified version of the JOSAA seat allocation workflow through an interactive web portal. Students register their counselling preferences, and administrators execute a seat allocation engine based on student ranks and seat availability. Originally a command-line application, it was redesigned into a secure Flask web app with REST APIs, Twilio-based OTP authentication, and automated report generation capabilities.",
-    image: "/projects/jossa_1.png",
+    image: "/projects/jossa_1.webp",
     images: [
-      "/projects/jossa_1.png",
-      "/projects/jossa_2.png"
+      "/projects/jossa_1.webp",
+      "/projects/jossa_2.webp"
     ],
     tags: ["Flask", "Python", "Twilio"],
     techStack: ["Flask", "Twilio", "Python", "REST APIs"],
@@ -366,9 +366,9 @@ export const projectsData: Project[] = [
     title: "My Articles and Blogs",
     description: "A technical writing repository dedicated to deep dives into software engineering concepts, explaining them in a simple and unambiguous way.",
     fullDescription: "This repository serves as a centralized hub for my technical articles and engineering notes. It focuses on exploring the depth and clarity of complex software engineering topics. The collection includes comprehensive, no-nonsense breakdowns of Low-Level Design (LLD) concepts, such as applying SOLID principles to write manageable and scalable code.",
-    image: "/projects/blogs_1.png",
+    image: "/projects/blogs_1.webp",
     images: [
-      "/projects/blogs_1.png"
+      "/projects/blogs_1.webp"
     ],
     tags: ["Technical Writing", "System Design", "LLD", "SOLID"],
     techStack: ["Markdown", "GitHub"],

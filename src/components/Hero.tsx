@@ -141,7 +141,7 @@ const Hero = () => {
             {/* subtle framed border */}
             <div className="rounded-3xl p-1 bg-white/60 dark:bg-card/30 relative">
               <img
-                src="/Aditya-PFP.png"
+                src="/Aditya-PFP.webp"
                 alt="Profile"
                 className="w-full h-[380px] sm:h-[450px] md:h-[480px] object-cover rounded-2xl transition-transform duration-500 scale-150 sm:scale-100 sm:group-hover:scale-105"
               />
@@ -156,11 +156,15 @@ const Hero = () => {
 
             </div>
 
-            {/* bottom overlay */}
-            <div className="absolute bottom-4 left-4 right-4  rounded-2xl p-6 text-white  border-white/10 ">
-              <p className="text-s uppercase tracking-wider mb-2 text-white/80">Available for work</p>
-              <p className="text-lg font-semibold">Let's talk systems and architecture, or collaborate on our next big idea!</p>
-              <p className="text-xs sm:text-xs text-yellow-400 mt-3">|| ॐ कृष्णाय नमः || ॐ नमः शिवाय ||</p>
+            {/* Mantra — touches base of photo with a small gap */}
+            <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-2 pointer-events-none">
+              <p className="text-xs sm:text-xs text-yellow-400 tracking-wide font-medium drop-shadow-md">|| ॐ कृष्णाय नमः || ॐ नमः शिवाय ||</p>
+            </div>
+
+            {/* Available / CTA text — sits right above the mantra */}
+            <div className="absolute bottom-6 left-4 right-4 rounded-2xl px-4 pt-4 pb-2 text-white border-white/10 drop-shadow-lg">
+              <p className="text-[10px] sm:text-xs uppercase tracking-wider mb-1 text-white/80 font-semibold">Available for work</p>
+              <p className="text-sm sm:text-base md:text-lg font-semibold leading-snug">Let's talk systems and architecture, or collaborate on our next big idea!</p>
             </div>
           </div>
         </div>

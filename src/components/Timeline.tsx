@@ -19,7 +19,7 @@ const timelineData: TimelineItem[] = [
     title: "Software Development Engineer Intern",
     company: "Accenture",
     companyUrl: "https://accenture.com",
-    logo: "/icons/Accenture-Logo (2).png",
+    logo: "/icons/Accenture-Logo (2).webp",
     period: "Jun 2026 – Jul 2026",
     summary:
       "Engineered a LangGraph ReAct agent for ContextIQ, decreasing RAG input-token usage by 34% via docstring tool-gating to eliminate out-of-scope calls. Slashed vector-search latency by 69% by tracing DB connection bottlenecks with OpenTelemetry and refactoring ChromaDB into a thread-safe singleton.",
@@ -127,7 +127,7 @@ const Timeline = () => {
             Tracing the Arc...
           </h2>
           {/* <img 
-            src="/icons/aditya-intern.png" 
+            src="/icons/aditya-intern.webp" 
             alt="Aditya Intern '26" 
             className="object-contain w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 flex-shrink-0"
           /> */}

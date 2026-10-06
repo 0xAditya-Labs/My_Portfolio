@@ -9,10 +9,10 @@ import {
 } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import CommandPalette from "@/components/CommandPalette";
+const CommandPalette = lazy(() => import("@/components/CommandPalette"));
 import MobileFAB from "@/components/MobileFAB";
 import Preloader from "@/components/Preloader";
 
@@ -22,7 +22,9 @@ const RootLayout = () => {
   return (
     <>
       <Outlet />
-      <CommandPalette />
+      <Suspense fallback={null}>
+        <CommandPalette />
+      </Suspense>
       <MobileFAB />
     </>
   );

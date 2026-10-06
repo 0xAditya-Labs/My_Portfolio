@@ -1,0 +1,37 @@
+# Aditya Chauhan — adityac.codes
+Full Stack Developer and AI Engineer. Final year B.Tech CSE student at Dr. B.R. Ambedkar National Institute of Technology (NIT Jalandhar), maintaining a CGPA of 8.56 (Top 4%ile).
+
+## About
+I build high-performance, concurrent systems and production-grade AI applications. I genuinely enjoy reasoning through concurrency, system design, and OS internals — not just building on top of them.
+
+## Experience
+- Software Development Engineering Intern at Accenture: Built a RAG-based Q&A microservice using LangChain + FastAPI that reduced manual review time by 45%.
+- Co-Lead, Google Developer Group (GDG) at NIT Jalandhar: Led algorithmic training for 150+ students.
+
+## Technical Achievements
+- Engineered a thread-safe LRU cache handling 15,000+ QPS at 3ms p99 latency.
+- Built a real-time RAG messaging platform delivering sub-50ms responses under concurrent load.
+- Solved 1,500+ DSA problems.
+- LeetCode: Knight rank, rating 1961.
+- Codeforces: Specialist rank.
+- CodeChef: 3-star.
+
+## Skills
+Languages: C++, Python, JavaScript, C
+Frameworks: React.js, Node.js, Express.js, FastAPI, TailwindCSS
+Databases: MongoDB, MySQL, ChromaDB
+AI/ML: RAG, LangChain, Langfuse, OpenTelemetry, Scikit-learn, Pandas, SHAP, SMOTE
+Core CS: Data Structures & Algorithms, OOPs, DBMS, Operating Systems, Computer Networks, System Design
+Tools: Git, GitHub, Postman, REST APIs, WebSockets, JWT
+
+## Education
+Dr. B.R. Ambedkar National Institute of Technology, Jalandhar
+B.Tech, Computer Science and Engineering (2022-2026)
+CGPA: 8.56 (Top 4%ile)
+
+## Links
+Website: https://adityac.codes
+GitHub: https://github.com/0xAditya-Labs
+LeetCode: https://leetcode.com/u/adityachauhan_/
+Codeforces: https://codeforces.com/profile/adityachauhan_
+Contact: https://tally.so/r/LZyoBJ
