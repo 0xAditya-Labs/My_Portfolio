@@ -1092,9 +1092,9 @@ const CodingDashboard = () => {
 
         /* Chart cards */
         .cj-chart-card {
-          background-color: hsl(var(--card) / 0.4);
+          background-color: hsl(var(--card) / 0.85);
           border-color: hsl(var(--border) / 0.3);
-          backdrop-filter: blur(8px);
+          transform: translateZ(0);
           transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .cj-chart-card:hover {
@@ -1107,8 +1107,7 @@ const CodingDashboard = () => {
 
         /* Chart tooltip */
         .cj-tooltip {
-          background: hsl(var(--card) / 0.85);
-          backdrop-filter: blur(8px);
+          background: hsl(var(--card) / 0.95);
           border: 1px solid hsl(var(--border) / 0.4);
           border-radius: 6px;
           padding: 8px 12px;

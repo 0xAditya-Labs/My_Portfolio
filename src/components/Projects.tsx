@@ -124,9 +124,10 @@ const Projects = () => {
             <div
               key={project.id}
               onClick={() => openProject(project)}
-              className={`group bg-background/80 backdrop-blur-md border border-border/50 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer ${
+              className={`group bg-background/80 backdrop-blur-md transform-gpu border border-border/50 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer ${
                 projectsVisible ? `scroll-animate scroll-animate-delay-${Math.min(index % 3 + 1, 3)}` : ''
               }`}
+              style={{ willChange: "transform" }}
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {

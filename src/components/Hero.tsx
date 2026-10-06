@@ -55,32 +55,33 @@ const Hero = () => {
   return (
     <section ref={heroRef} className="min-h-[85vh] bg-background relative overflow-hidden pt-20 pb-12 flex flex-col justify-center">
       {/* Decorative floating elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none transform-gpu" style={{ willChange: "transform" }}>
         <div
           ref={blobA}
-          className={`absolute top-20 left-10 w-20 h-20 rounded-full bg-blue-200/30 blur-xl ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          className={`absolute top-20 left-10 w-20 h-20 rounded-full bg-blue-200/30 blur-xl transform-gpu ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          style={{ willChange: "transform" }}
         />
         <div
           ref={blobB}
-          className={`absolute top-40 right-20 w-32 h-32 rounded-full bg-purple-200/20 blur-2xl ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
-          style={isMobile ? { animationDelay: '1s' } : { animationDelay: '1s' }}
+          className={`absolute top-40 right-20 w-32 h-32 rounded-full bg-purple-200/20 blur-2xl transform-gpu ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          style={{ animationDelay: '1s', willChange: "transform" }}
         />
         <div
           ref={blobC}
-          className={`absolute bottom-40 left-1/4 w-24 h-24 rounded-full bg-pink-200/20 blur-xl ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
-          style={isMobile ? { animationDelay: '2s' } : { animationDelay: '2s' }}
+          className={`absolute bottom-40 left-1/4 w-24 h-24 rounded-full bg-pink-200/20 blur-xl transform-gpu ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          style={{ animationDelay: '2s', willChange: "transform" }}
         />
         <div
           ref={blobD}
-          className={`absolute top-1/3 right-1/3 w-16 h-16 rounded-full bg-cyan-200/30 blur-lg ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
-          style={isMobile ? { animationDelay: '0.5s' } : { animationDelay: '0.5s' }}
+          className={`absolute top-1/3 right-1/3 w-16 h-16 rounded-full bg-cyan-200/30 blur-lg transform-gpu ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          style={{ animationDelay: '0.5s', willChange: "transform" }}
         />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 lg:gap-4 items-center relative z-10">
         {/* Command Palette Hint - Overlaid on main content */}
         <div className="absolute top-0.5 right-0 z-20 hidden sm:block">
-          <div className="bg-gradient-to-r from-gray-100/95 to-gray-200/90 dark:from-gray-900/95 dark:to-card/90 backdrop-blur-sm text-gray-900 dark:text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg border border-black/20 dark:border-white/10">
+          <div className="bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-900 dark:to-card text-gray-900 dark:text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg border border-black/20 dark:border-white/10 transform-gpu">
             Press <kbd className="px-2 py-0.5 mx-1 bg-gray-300/60 dark:bg-gray-800/60 border border-black/20 dark:border-white/20 rounded text-xs font-mono font-semibold">Ctrl+K</kbd> to open the command palette
           </div>
         </div>

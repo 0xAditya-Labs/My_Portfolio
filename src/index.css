@@ -177,11 +177,15 @@ All colors MUST be HSL.
   /* Glass effect with hover tilt */
   .glass-card {
     background: hsl(var(--glass-bg));
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     border: 1px solid hsl(var(--glass-border));
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
   }
 
   .glass-card.shining::after {

@@ -42,7 +42,10 @@ const About = () => {
           </div>
 
           {/* Right Content - Skills Card */}
-          <div className={`bg-background/80 border border-border/50 backdrop-blur-md rounded-3xl p-8 shadow-xl ${aboutVisible ? 'scroll-animate scroll-animate-delay-2' : ''}`}>
+          <div 
+            className={`bg-background/80 border border-border/50 backdrop-blur-md transform-gpu rounded-3xl p-8 shadow-xl ${aboutVisible ? 'scroll-animate scroll-animate-delay-2' : ''}`}
+            style={{ willChange: "transform" }}
+          >
             <h3 className="text-2xl font-bold mb-8">Skills & Expertise</h3>
 
             <div className="space-y-6">

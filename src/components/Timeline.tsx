@@ -163,7 +163,10 @@ const Timeline = () => {
                 </div>
 
                 {/* Content Card */}
-                <div className="p-5 rounded-xl group cursor-default border border-black/60 dark:border-gray-400 transition-transform duration-200 ease-out transform hover:-translate-y-1 hover:shadow-lg bg-white/5 dark:bg-white/3 backdrop-blur-sm">
+                <div 
+                  className="p-5 rounded-xl group cursor-default border border-black/60 dark:border-gray-400 transition-transform duration-200 ease-out transform transform-gpu hover:-translate-y-1 hover:shadow-lg bg-white/5 dark:bg-white/3 backdrop-blur-sm"
+                  style={{ willChange: "transform" }}
+                >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex gap-4 w-full">
                       {item.logo && (
@@ -243,7 +246,10 @@ const Timeline = () => {
                 </div>
 
                 {/* Content Card */}
-                <div className="bg-background/80 backdrop-blur-md p-6 rounded-xl group cursor-default border border-black/60 dark:border-gray-400 ml-4">
+                <div 
+                  className="bg-background/80 backdrop-blur-md transform-gpu p-6 rounded-xl group cursor-default border border-black/60 dark:border-gray-400 ml-4 transition-transform hover:-translate-y-1 hover:shadow-lg"
+                  style={{ willChange: "transform" }}
+                >
                   <div className="flex gap-4">
                     {item.logo && (
                       <div className="w-12 h-12 rounded bg-slate-100/80 dark:bg-slate-200/90 p-1.5 flex items-center justify-center shrink-0 border border-border/50 shadow-sm mt-1">

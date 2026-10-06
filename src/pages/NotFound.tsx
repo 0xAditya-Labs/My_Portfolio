@@ -60,25 +60,26 @@ const NotFound = () => {
       {/* Grid overlay */}
       <div className="grid-overlay" aria-hidden />
       {/* Decorative floating elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none transform-gpu" style={{ willChange: "transform" }}>
         <div
           ref={blobA}
-          className={`absolute top-20 left-10 w-32 h-32 rounded-full bg-blue-200/20 blur-3xl ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          className={`absolute top-20 left-10 w-32 h-32 rounded-full bg-blue-200/20 blur-3xl transform-gpu ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          style={{ willChange: "transform" }}
         />
         <div
           ref={blobB}
-          className={`absolute top-40 right-20 w-48 h-48 rounded-full bg-purple-200/15 blur-3xl ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
-          style={{ animationDelay: '1s' }}
+          className={`absolute top-40 right-20 w-48 h-48 rounded-full bg-purple-200/15 blur-3xl transform-gpu ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          style={{ animationDelay: '1s', willChange: "transform" }}
         />
         <div
           ref={blobC}
-          className={`absolute bottom-40 left-1/4 w-40 h-40 rounded-full bg-pink-200/15 blur-3xl ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
-          style={{ animationDelay: '2s' }}
+          className={`absolute bottom-40 left-1/4 w-40 h-40 rounded-full bg-pink-200/15 blur-3xl transform-gpu ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          style={{ animationDelay: '2s', willChange: "transform" }}
         />
         <div
           ref={blobD}
-          className={`absolute top-1/3 right-1/3 w-24 h-24 rounded-full bg-cyan-200/20 blur-2xl ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
-          style={{ animationDelay: '0.5s' }}
+          className={`absolute top-1/3 right-1/3 w-24 h-24 rounded-full bg-cyan-200/20 blur-2xl transform-gpu ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          style={{ animationDelay: '0.5s', willChange: "transform" }}
         />
       </div>
 
