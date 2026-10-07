@@ -17,7 +17,7 @@ def convert_to_webp(source):
         return False
 
 def replace_in_files():
-    search_patterns = ['src/**/*.tsx', 'src/**/*.ts', 'src/**/*.css', 'public/index.html', 'index.html']
+    search_patterns = ['src/**/*.tsx', 'src/**/*.ts', 'src/**/*.css', 'public/index.html', 'index.html', 'README.md']
     files_to_check = []
     
     for pattern in search_patterns:

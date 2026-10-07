@@ -82,48 +82,48 @@ Built from the ground up with **React + Vite + TypeScript**, this repository act
 <table>
    <tr>
       <td align="center" width="50%">
-         <img src="public/ss/hero.png" alt="Hero" />
+         <img src="public/ss/hero.webp" alt="Hero" />
          <br />
          <sub><b>Hero</b> — Clean introduction and primary CTA</sub>
       </td>
       <td align="center" width="50%">
-         <img src="public/ss/projects.png" alt="Projects" />
+         <img src="public/ss/projects.webp" alt="Projects" />
          <br />
          <sub><b>Projects</b> — Filterable showcase of system and AI builds</sub>
       </td>
    </tr>
    <tr>
       <td align="center" width="50%">
-         <img src="public/ss/modal.png" alt="Project Modal" />
+         <img src="public/ss/modal.webp" alt="Project Modal" />
          <br />
          <sub><b>Project Modal</b> — Technical deep-dives and metrics</sub>
       </td>
       <td align="center" width="50%">
-         <img src="public/ss/command.png" alt="Command Palette" />
+         <img src="public/ss/command.webp" alt="Command Palette" />
          <br />
          <sub><b>Command Palette</b> — Talk to the Gemini assistant with Ctrl+K</sub>
       </td>
    </tr>
    <tr>
       <td align="center" width="50%">
-         <img src="public/ss/coding-1.png" alt="Coding Dashboard Overview" />
+         <img src="public/ss/coding-1.webp" alt="Coding Dashboard Overview" />
          <br />
          <sub><b>Coding Dashboard</b> — Real-time CP stats visualization</sub>
       </td>
       <td align="center" width="50%">
-         <img src="public/ss/coding-2.png" alt="Coding Milestones" />
+         <img src="public/ss/coding-2.webp" alt="Coding Milestones" />
          <br />
          <sub><b>Algorithmic Milestones</b> — Dynamic platform aggregation</sub>
       </td>
    </tr>
    <tr>
       <td align="center" width="50%">
-         <img src="public/ss/coding-3.png" alt="Coding Activity" />
+         <img src="public/ss/coding-3.webp" alt="Coding Activity" />
          <br />
          <sub><b>Coding Activity</b> — Granular DSA tracking</sub>
       </td>
       <td align="center" width="50%">
-         <img src="public/ss/mobile.jpeg" alt="Mobile" />
+         <img src="public/ss/mobile.webp" alt="Mobile" />
          <br />
          <sub><b>Mobile Experience</b> — Fully responsive navigation</sub>
       </td>
