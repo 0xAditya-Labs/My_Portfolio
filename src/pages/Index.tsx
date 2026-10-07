@@ -59,13 +59,13 @@ const Index = () => {
         <Hero />
         <TechStackScroller />
         
-        <div className="bg-gradient-to-b from-background via-card to-background py-1">
+        <div className="bg-muted/30 dark:bg-card/40 transition-colors duration-300">
           <About />
         </div>
         
         <Timeline />
         
-        <div className="bg-gradient-to-b from-background via-card to-background py-1">
+        <div className="bg-muted/30 dark:bg-card/40 transition-colors duration-300">
           <Projects />
         </div>
         
@@ -73,7 +73,7 @@ const Index = () => {
           <CodingDashboard />
         </Suspense>
         
-        <div className="bg-gradient-to-b from-background via-card to-background py-1">
+        <div className="bg-muted/30 dark:bg-card/40 transition-colors duration-300">
           <FAQ />
         </div>
         
@@ -99,13 +99,13 @@ const Index = () => {
         <Hero />
         <TechStackScroller />
         
-        <div className="bg-gradient-to-b from-background via-card to-background py-1">
+        <div className="bg-muted/30 dark:bg-card/40 transition-colors duration-300">
           <About />
         </div>
         
         <Timeline />
         
-        <div className="bg-gradient-to-b from-background via-card to-background py-1">
+        <div className="bg-muted/30 dark:bg-card/40 transition-colors duration-300">
           <Projects />
         </div>
         
@@ -113,7 +113,7 @@ const Index = () => {
           <CodingDashboard />
         </Suspense>
         
-        <div className="bg-gradient-to-b from-background via-card to-background py-1">
+        <div className="bg-muted/30 dark:bg-card/40 transition-colors duration-300">
           <FAQ />
         </div>
         

@@ -24,9 +24,12 @@
 
 ## 🎯 Overview
 
-This is the personal portfolio and interactive resume of **Aditya Chauhan**—a software engineer specializing in high-performance concurrent systems, applied AI, and full-stack web development. 
+This is the personal portfolio and interactive resume of **Aditya Chauhan**—a software engineer specializing in high-performance concurrent systems, applied AI, and full-stack web development. Built with **React + Vite + TypeScript**, this repository acts as a real-world product showcasing production-grade engineering.
 
-Built from the ground up with **React + Vite + TypeScript**, this repository acts as a real-world product rather than a simple static page. It highlights production-grade projects (like `SwiftCache` and `ChatMind`), visualizes competitive programming statistics, and features an integrated AI assistant powered by Google Gemini.
+### Why this portfolio matters:
+- **For Non-Tech & Recruiters:** A clean, lightning-fast interactive resume that clearly presents my experience, projects, and contact details without overwhelming jargon.
+- **For Hiring Managers & Interviewers:** Direct proof of impact. Features integrated AI (Gemini), live metrics for 1,500+ DSA problems solved (Codeforces Specialist, LeetCode Knight), and case studies of systems handling 15,000+ QPS with sub-50ms latency.
+- **For Engineers & Architects:** Clean architecture highlighting my focus on concurrency, system design, and graceful degradation (e.g., hardcoded fallback logic when LLM APIs fail, scroll-optimized rendering, and state-driven animations).
 
 ---
 

@@ -102,7 +102,7 @@ interface CodingJourneyStats {
 // Hooks
 // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-/** Animates 0 â†’ target over ~400ms (ease-out) once `enabled` flips true. */
+/** Animates 0 → target over ~400ms (ease-out) once `enabled` flips true. */
 function useCountUp(target: number | null, enabled: boolean): number {
   const [display, setDisplay] = useState(0);
   const hasRun = useRef(false);
