@@ -262,12 +262,12 @@
     ]
   },
   "codeforces": {
-    "currentRating": 1389,
+    "currentRating": 1394,
     "maxRating": 1418,
     "currentRankTitle": "pupil",
     "maxRankTitle": "Specialist",
-    "contestsCount": 77,
-    "totalSolved": 451,
+    "contestsCount": 78,
+    "totalSolved": 455,
     "history": [
       {
         "timestamp": 1719768900000,
@@ -730,6 +730,12 @@
         "rating": 1389,
         "contestName": "Codeforces Round 1124 (Div. 2)",
         "rank": 2635
+      },
+      {
+        "timestamp": 1791655500000,
+        "rating": 1394,
+        "contestName": "DeepInfra Round 1 (Codeforces Round 1126, Div. 1 + Div. 2)",
+        "rank": 3373
       }
     ]
   },
@@ -812,10 +818,6 @@
     "totalSolved": 146
   },
   "heatmap": [
-    {
-      "date": "2025-10-09",
-      "count": 5
-    },
     {
       "date": "2025-10-10",
       "count": 6
@@ -1751,10 +1753,14 @@
     {
       "date": "2026-10-09",
       "count": 5
+    },
+    {
+      "date": "2026-10-10",
+      "count": 5
     }
   ],
   "errors": [],
-  "totalActiveDays": 314,
-  "totalSolvedAllPlatforms": 1472,
-  "lastUpdated": "2026-10-09T22:46:53.587Z"
+  "totalActiveDays": 315,
+  "totalSolvedAllPlatforms": 1476,
+  "lastUpdated": "2026-10-10T21:55:17.094Z"
 }
