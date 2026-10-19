@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail, Twitter, ArrowUp } from "lucide-react";
 import { useState, useEffect } from "react";
+import HaloSpray from "./HaloSpray";
 
 const Footer = () => {
   const [lcRating, setLcRating] = useState<number | null>(null);
@@ -43,7 +44,7 @@ const Footer = () => {
       </div>
 
       <div className="max-w-6xl mx-auto px-8 sm:px-16 lg:px-20 relative z-10">
-        {/* Main Upper Section: Left Brand + Right Navigation */}
+        {/* Main Upper Section: Left Brand + Middle Navigation + Right Animation */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-12 mb-6 lg:mb-8">
           {/* Left Column: Identity & Positioning */}
           <div className="space-y-5 max-w-sm lg:w-1/3">
@@ -108,45 +109,64 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* Middle Column: Vertical Navigation */}
+          <div className="lg:w-1/3 flex flex-col lg:items-center">
+            <div>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
+                Navigation
+              </h4>
+              <nav className="flex flex-col space-y-2.5">
+                <a
+                  href="/"
+                  className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
+                >
+                  Home
+                </a>
+                <a
+                  href="#projects"
+                  className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
+                >
+                  Projects
+                </a>
+                <a
+                  href="#about"
+                  className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
+                >
+                  About
+                </a>
+                <a
+                  href="#contact"
+                  className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
+                >
+                  Contact
+                </a>
+                <a
+                  href="#faq"
+                  className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
+                >
+                  FAQs
+                </a>
+              </nav>
+            </div>
+          </div>
 
-
-          {/* Right Column: Anchored Navigation */}
-          <div className="lg:text-right lg:w-1/3">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
-              Navigation
-            </h4>
-            <nav className="flex flex-col space-y-2.5 lg:items-end">
-              <a
-                href="/"
-                className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
-              >
-                Home
-              </a>
-              <a
-                href="#projects"
-                className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
-              >
-                Projects
-              </a>
-              <a
-                href="#about"
-                className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
-              >
-                About
-              </a>
-              <a
-                href="#contact"
-                className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
-              >
-                Contact
-              </a>
-              <a
-                href="#faq"
-                className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
-              >
-                FAQs
-              </a>
-            </nav>
+          {/* Right Column: HaloSpray Animation */}
+          <div className="lg:w-1/3 w-full flex items-center justify-center lg:justify-end">
+            <div
+              className="w-full max-w-[360px] h-[220px] pointer-events-none select-none overflow-hidden"
+              style={{
+                WebkitMaskImage:
+                  "radial-gradient(ellipse at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 75%)",
+                maskImage:
+                  "radial-gradient(ellipse at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 75%)",
+              }}
+              aria-hidden="true"
+            >
+              <HaloSpray
+                background="transparent"
+                style={{ width: "100%", height: "100%" }}
+              />
+            </div>
           </div>
         </div>
 
