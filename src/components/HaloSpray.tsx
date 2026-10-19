@@ -534,7 +534,7 @@ varying float v_size;
 void main() {
     float d = length(gl_PointCoord - 0.5) * (v_size + 2.0);
     float r = v_size * 0.5;
-    float a = v_col.a * (1.0 - smoothstep(r - 0.75, r + 0.75, d));
+    float a = v_col.a * (1.0 - smoothstep(r - 0.35, r + 0.35, d));
     if (a < 0.003) discard;
     gl_FragColor = vec4(v_col.rgb * a, a);
 }`

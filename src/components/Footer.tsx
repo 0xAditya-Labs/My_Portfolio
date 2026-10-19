@@ -153,17 +153,20 @@ const Footer = () => {
           {/* Right Column: HaloSpray Animation */}
           <div className="lg:w-1/3 w-full flex items-center justify-center lg:justify-end">
             <div
-              className="w-full max-w-[360px] h-[220px] pointer-events-none select-none overflow-hidden"
+              className="w-full max-w-[380px] h-[240px] select-none overflow-hidden cursor-crosshair"
               style={{
                 WebkitMaskImage:
-                  "radial-gradient(ellipse at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 75%)",
+                  "radial-gradient(ellipse at center, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 98%)",
                 maskImage:
-                  "radial-gradient(ellipse at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 75%)",
+                  "radial-gradient(ellipse at center, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 98%)",
               }}
               aria-hidden="true"
             >
               <HaloSpray
                 background="transparent"
+                reach={14}
+                strength={5}
+                dotSize={120}
                 style={{ width: "100%", height: "100%" }}
               />
             </div>
