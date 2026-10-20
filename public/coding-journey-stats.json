@@ -5,9 +5,9 @@
     "topPercentage": 3.26,
     "contestsCount": 49,
     "easySolved": 279,
-    "mediumSolved": 446,
-    "hardSolved": 91,
-    "totalSolved": 816,
+    "mediumSolved": 448,
+    "hardSolved": 93,
+    "totalSolved": 820,
     "history": [
       {
         "timestamp": 1723905000000,
@@ -262,12 +262,12 @@
     ]
   },
   "codeforces": {
-    "currentRating": 1389,
+    "currentRating": 1394,
     "maxRating": 1418,
     "currentRankTitle": "pupil",
     "maxRankTitle": "Specialist",
-    "contestsCount": 77,
-    "totalSolved": 451,
+    "contestsCount": 78,
+    "totalSolved": 463,
     "history": [
       {
         "timestamp": 1719768900000,
@@ -730,6 +730,12 @@
         "rating": 1389,
         "contestName": "Codeforces Round 1124 (Div. 2)",
         "rank": 2635
+      },
+      {
+        "timestamp": 1791655500000,
+        "rating": 1394,
+        "contestName": "DeepInfra Round 1 (Codeforces Round 1126, Div. 1 + Div. 2)",
+        "rank": 3373
       }
     ]
   },
@@ -812,42 +818,6 @@
     "totalSolved": 146
   },
   "heatmap": [
-    {
-      "date": "2025-10-09",
-      "count": 5
-    },
-    {
-      "date": "2025-10-10",
-      "count": 6
-    },
-    {
-      "date": "2025-10-11",
-      "count": 13
-    },
-    {
-      "date": "2025-10-12",
-      "count": 3
-    },
-    {
-      "date": "2025-10-13",
-      "count": 1
-    },
-    {
-      "date": "2025-10-14",
-      "count": 1
-    },
-    {
-      "date": "2025-10-15",
-      "count": 2
-    },
-    {
-      "date": "2025-10-16",
-      "count": 1
-    },
-    {
-      "date": "2025-10-17",
-      "count": 4
-    },
     {
       "date": "2025-10-19",
       "count": 2
@@ -1751,10 +1721,42 @@
     {
       "date": "2026-10-09",
       "count": 5
+    },
+    {
+      "date": "2026-10-10",
+      "count": 5
+    },
+    {
+      "date": "2026-10-12",
+      "count": 5
+    },
+    {
+      "date": "2026-10-13",
+      "count": 7
+    },
+    {
+      "date": "2026-10-14",
+      "count": 1
+    },
+    {
+      "date": "2026-10-15",
+      "count": 1
+    },
+    {
+      "date": "2026-10-17",
+      "count": 3
+    },
+    {
+      "date": "2026-10-18",
+      "count": 1
+    },
+    {
+      "date": "2026-10-19",
+      "count": 2
     }
   ],
   "errors": [],
-  "totalActiveDays": 314,
-  "totalSolvedAllPlatforms": 1472,
-  "lastUpdated": "2026-10-09T22:46:53.587Z"
+  "totalActiveDays": 321,
+  "totalSolvedAllPlatforms": 1488,
+  "lastUpdated": "2026-10-19T22:31:23.025Z"
 }
