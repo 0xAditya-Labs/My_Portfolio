@@ -115,36 +115,48 @@ const Footer = () => {
               <h4 className="text-xs font-semibold uppercase tracking-wider text-white mb-4">
                 Navigation
               </h4>
-              <nav className="flex flex-col space-y-2.5">
+              <nav className="flex flex-col justify-between h-[140px]">
                 <a
                   href="/"
-                  className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
+                  className="text-[13px] sm:text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white leading-none flex items-center"
                 >
                   Home
                 </a>
                 <a
-                  href="#projects"
-                  className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
-                >
-                  Projects
-                </a>
-                <a
                   href="#about"
-                  className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
+                  className="text-[13px] sm:text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white leading-none flex items-center"
                 >
                   About
                 </a>
                 <a
-                  href="#contact"
-                  className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
+                  href="#timeline"
+                  className="text-[13px] sm:text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white leading-none flex items-center"
                 >
-                  Contact
+                  Experience
+                </a>
+                <a
+                  href="#projects"
+                  className="text-[13px] sm:text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white leading-none flex items-center"
+                >
+                  Projects
+                </a>
+                <a
+                  href="#coding-dashboard"
+                  className="text-[13px] sm:text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white leading-none flex items-center"
+                >
+                  Coding
                 </a>
                 <a
                   href="#faq"
-                  className="text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
+                  className="text-[13px] sm:text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white leading-none flex items-center"
                 >
                   FAQs
+                </a>
+                <a
+                  href="#contact"
+                  className="text-[13px] sm:text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white leading-none flex items-center"
+                >
+                  Contact
                 </a>
               </nav>
             </div>
