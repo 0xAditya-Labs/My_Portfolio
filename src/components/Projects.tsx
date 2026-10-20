@@ -5,6 +5,7 @@ import ProjectDetailModal from "@/components/ProjectDetailModal";
 import { projectsData } from "@/data/projects";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { preloadImages } from "@/lib/imagePreloader";
+import GabrielGraph from "@/components/GabrielGraph";
 
 const Projects = () => {
   const { ref: projectsRef, isVisible: projectsVisible } = useScrollAnimation();
@@ -65,56 +66,75 @@ const Projects = () => {
     <section id="projects" ref={projectsRef} className="pt-24 pb-16 bg-transparent">
       <div className="max-w-7xl mx-auto px-6">
         <div className={`mb-12 ${projectsVisible ? 'scroll-animate' : ''}`}>
-          <p className="text-sm uppercase tracking-wider text-muted-foreground mb-4">
-            Projects
-          </p>
-          <h2 className="text-5xl font-bold mb-8">Selected work</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+            {/* Column 1: Title and Filter Tabs */}
+            <div className="flex flex-col justify-between space-y-6">
+              <div>
+                <p className="text-sm uppercase tracking-wider text-muted-foreground mb-3">
+                  Projects
+                </p>
+                <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">Selected work</h2>
+              </div>
 
-          {/* Filter Tabs */}
-          <div className="flex justify-start overflow-x-auto pb-2 sm:pb-0">
-            <div className="inline-flex items-center bg-secondary/50 rounded-full p-1.5 border border-border shadow-sm min-w-max">
-            <button
-              onClick={() => setFilter("all")}
-              className={`px-4 sm:px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
-                filter === "all"
-                  ? "bg-foreground text-background shadow-sm"
-                  : "text-muted-foreground hover:text-foreground hover:bg-white/60 dark:hover:bg-gray-700/50"
-              }`}
-            >
-              All
-            </button>
-            <button
-              onClick={() => setFilter("web")}
-              className={`px-4 sm:px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
-                filter === "web"
-                  ? "bg-foreground text-background shadow-sm"
-                  : "text-muted-foreground hover:text-foreground hover:bg-white/60 dark:hover:bg-gray-700/50"
-              }`}
-            >
-              Web
-            </button>
-            <button
-              onClick={() => setFilter("tools")}
-              className={`px-4 sm:px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
-                filter === "tools"
-                  ? "bg-foreground text-background shadow-sm"
-                  : "text-muted-foreground hover:text-foreground hover:bg-white/60 dark:hover:bg-gray-700/50"
-              }`}
-            >
-              Tools
-            </button>
-            <button
-              onClick={() => setFilter("ai-ml")}
-              className={`px-4 sm:px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
-                filter === "ai-ml"
-                  ? "bg-foreground text-background shadow-sm"
-                  : "text-muted-foreground hover:text-foreground hover:bg-white/60 dark:hover:bg-gray-700/50"
-              }`}
-            >
-              AI/ML
-            </button>
-           
+              {/* Filter Tabs */}
+              <div className="flex justify-start overflow-x-auto pb-2 sm:pb-0">
+                <div className="inline-flex items-center bg-secondary/50 rounded-full p-1.5 border border-border shadow-sm min-w-max">
+                  <button
+                    onClick={() => setFilter("all")}
+                    className={`px-4 sm:px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                      filter === "all"
+                        ? "bg-foreground text-background shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-white/60 dark:hover:bg-gray-700/50"
+                    }`}
+                  >
+                    All
+                  </button>
+                  <button
+                    onClick={() => setFilter("web")}
+                    className={`px-4 sm:px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                      filter === "web"
+                        ? "bg-foreground text-background shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-white/60 dark:hover:bg-gray-700/50"
+                    }`}
+                  >
+                    Web
+                  </button>
+                  <button
+                    onClick={() => setFilter("tools")}
+                    className={`px-4 sm:px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                      filter === "tools"
+                        ? "bg-foreground text-background shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-white/60 dark:hover:bg-gray-700/50"
+                    }`}
+                  >
+                    Tools
+                  </button>
+                  <button
+                    onClick={() => setFilter("ai-ml")}
+                    className={`px-4 sm:px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                      filter === "ai-ml"
+                        ? "bg-foreground text-background shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-white/60 dark:hover:bg-gray-700/50"
+                    }`}
+                  >
+                    AI/ML
+                  </button>
+                </div>
+              </div>
             </div>
+
+            {/* Column 2: Interactive 3D Gabriel Graph (parallel in grid) */}
+            <div className="flex items-center justify-start">
+              <div
+                className="w-[190px] h-[190px] sm:w-[210px] sm:h-[210px] relative select-none"
+                title="Interactive 3D Gabriel Graph - Drag to orbit"
+              >
+                <GabrielGraph background="transparent" nodes={false} style={{ width: "100%", height: "100%" }} />
+              </div>
+            </div>
+
+            {/* Column 3: Empty column maintaining 3-column grid alignment */}
+            <div className="hidden lg:block" />
           </div>
         </div>
 

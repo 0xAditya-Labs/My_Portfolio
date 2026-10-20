@@ -385,6 +385,7 @@ function __OriginkitBase_GabrielGraph(props: Props) {
         nodes = false,
         seed = 1,
         style,
+        className,
     } = props
 
     const hostRef = useRef<HTMLDivElement>(null)
@@ -627,18 +628,16 @@ function __OriginkitBase_GabrielGraph(props: Props) {
     return (
         <div
             ref={hostRef}
+            className={className}
             style={{
                 position: "relative",
                 width: "100%",
                 height: "100%",
-                minWidth: 1200,
-                minHeight: 800,
-                ...style,
-                background,
                 overflow: "hidden",
-
                 touchAction: "none",
                 cursor: "grab",
+                background,
+                ...style,
             }}
         >
             <canvas
@@ -667,7 +666,7 @@ export const THEME_CONFIGS = {
         size: 80,
         speed: 15,
         inner: true,
-        nodes: true,
+        nodes: false,
     },
     lightMode: {
         background: "#FFFFFF",
@@ -684,7 +683,7 @@ export const THEME_CONFIGS = {
         size: 80,
         speed: 15,
         inner: true,
-        nodes: true,
+        nodes: false,
     },
 } as const
 
@@ -699,5 +698,5 @@ export default function GabrielGraph(props: GabrielGraphProps = {}) {
     const isLight = mounted && (resolvedTheme === "light" || theme === "light")
     const activePreset = isLight ? THEME_CONFIGS.lightMode : THEME_CONFIGS.darkMode
 
-    return <__OriginkitBase_GabrielGraph {...activePreset} {...props} />
+    return <__OriginkitBase_GabrielGraph {...activePreset} {...props} nodes={props.nodes ?? false} />
 }
