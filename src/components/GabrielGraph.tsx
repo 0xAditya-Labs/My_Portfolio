@@ -374,9 +374,9 @@ const DEFAULT_PALETTE: Required<PaletteMap> = {
 
 function __OriginkitBase_GabrielGraph(props: Props) {
     const {
-        background = "#000000",
-        baseColor = "#531669",
-        palette = { "color1": "#ED555D", "color2": "#FFFCC9", "color3": "#41B797", "color4": "#EDA126", "color5": "#7B5770" },
+        background = "transparent",
+        baseColor = "#607B96",
+        palette = { "color1": "#607B96", "color2": "#607B96", "color3": "#607B96", "color4": "#607B96", "color5": "#607B96" },
         density = 120,
         thickness = 2,
         size = 85,
@@ -697,14 +697,14 @@ GabrielGraph.displayName = "Gabriel Graph"
 
 export const THEME_CONFIGS = {
     darkMode: {
-        background: "#0F172A",
-        baseColor: "#38BDF8",
+        background: "transparent",
+        baseColor: "#607B96",
         palette: [
-            "#0F172A",
-            "#0F172A",
-            "#0F172A",
-            "#0F172A",
-            "#0F172A",
+            "#607B96",
+            "#607B96",
+            "#607B96",
+            "#607B96",
+            "#607B96",
         ],
         density: 120,
         thickness: 2,
@@ -713,14 +713,14 @@ export const THEME_CONFIGS = {
         nodes: false,
     },
     lightMode: {
-        background: "#FFFFFF",
+        background: "transparent",
         baseColor: "#475569",
         palette: [
-            "#FFFFFF",
-            "#FFFFFF",
-            "#FFFFFF",
-            "#FFFFFF",
-            "#FFFFFF",
+            "#475569",
+            "#475569",
+            "#475569",
+            "#475569",
+            "#475569",
         ],
         density: 120,
         thickness: 2,
