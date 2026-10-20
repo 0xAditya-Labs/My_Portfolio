@@ -253,12 +253,16 @@ The portfolio is organized to make personal updates straightforward.
 
 **Aditya Chauhan**
 - **Live Portfolio:** [adityac.codes](https://adityac.codes)
+
 - **LinkedIn:** [aditya-chauhan-nitj](https://www.linkedin.com/in/aditya-chauhan-nitj/)
 - **GitHub:** [@0xAditya-Labs](https://github.com/0xAditya-Labs)
+
 - **Email:** aditya.chauhan.nitj.ac@gmail.com
+- **X(formly Twitter):** [@AdityaNitj1204](https://x.com/AdityaNitj1204)
+
 - **LeetCode:** [Aditya_chauhan__](https://leetcode.com/u/Aditya_chauhan__/)
 - **Codeforces:** [Adree](https://codeforces.com/profile/Adree)
-- **X(formly Twitter):** [@AdityaNitj1204](https://x.com/AdityaNitj1204)
+
 
 <br/>
 <div align="center">
