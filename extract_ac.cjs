@@ -1,0 +1,10 @@
+const fs = require('fs');
+const svg = fs.readFileSync('public/favicon.svg', 'utf8');
+const dMatch = svg.match(/\sd="([^"]+)"/);
+const subpaths = dMatch[1].split(/(?=[Mm])/).filter(s => s.trim().length > 0);
+console.log('Subpath 1 length:', subpaths[1].length);
+console.log('Subpath 2 length:', subpaths[2].length);
+const combined = subpaths[1].trim() + ' ' + subpaths[2].trim();
+console.log('Combined length:', combined.length);
+fs.writeFileSync('public/ac_path.json', JSON.stringify({ path: combined }));
+console.log('Saved to public/ac_path.json');

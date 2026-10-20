@@ -33,12 +33,12 @@ const Footer = () => {
     <footer className="bg-[#0a0a0a] pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-12 lg:pb-6 relative overflow-hidden text-neutral-300">
       {/* Black atmospheric lighting system */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden>
-        <div 
-          className="absolute -bottom-28 -left-24 w-96 h-96 rounded-full" 
+        <div
+          className="absolute -bottom-28 -left-24 w-96 h-96 rounded-full"
           style={{ background: 'radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0) 70%)' }}
         />
-        <div 
-          className="absolute -bottom-28 -right-24 w-96 h-96 rounded-full" 
+        <div
+          className="absolute -bottom-28 -right-24 w-96 h-96 rounded-full"
           style={{ background: 'radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(168, 85, 247, 0) 70%)' }}
         />
       </div>
@@ -165,23 +165,34 @@ const Footer = () => {
           {/* Right Column: HaloSpray Animation */}
           <div className="lg:w-1/3 w-full flex items-center justify-center lg:justify-end">
             <div
-              className="w-full max-w-[380px] h-[175px] select-none overflow-hidden cursor-crosshair"
+              className="relative w-full select-none cursor-crosshair"
               style={{
-                WebkitMaskImage:
-                  "radial-gradient(ellipse at center, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 98%)",
-                maskImage:
-                  "radial-gradient(ellipse at center, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 98%)",
+                maxWidth: "420px",
+                aspectRatio: "420 / 220",
               }}
               aria-hidden="true"
             >
-              <HaloSpray
-                background="transparent"
-                reach={14}
-                strength={5}
-                dotSize={120}
-                scale={135}
-                style={{ width: "100%", height: "100%" }}
-              />
+              {/* Radial fade mask that dissolves edges without a square boundary */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: "-30px",
+                  WebkitMaskImage:
+                    "radial-gradient(ellipse 72% 72% at center, black 40%, transparent 100%)",
+                  maskImage:
+                    "radial-gradient(ellipse 72% 72% at center, black 40%, transparent 100%)",
+                }}
+              >
+                <HaloSpray
+                  background="transparent"
+                  reach={14}
+                  strength={5}
+                  dotSize={120}
+                  scale={135}
+                  showLogo={true}
+                  style={{ width: "100%", height: "100%" }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -206,7 +217,7 @@ const Footer = () => {
                 © 2026 Aditya Chauhan. All rights reserved.
               </p>
             </div>
-            
+
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs text-neutral-400">
               <span className="flex items-center gap-1.5 sm:gap-2">
                 <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400/90 shadow-[0_0_6px_rgba(52,211,153,0.4)] animate-pulse" />
@@ -221,7 +232,7 @@ const Footer = () => {
                 CGPA: <span className="text-neutral-200 font-mono">8.56</span>
               </span>
             </div>
-            
+
             <div className="flex flex-col items-center md:items-end text-sm text-neutral-400">
               <p>
                 Made with <span className="inline-block text-rose-500/90 text-xs mx-0.5">❤️</span> in BLR
