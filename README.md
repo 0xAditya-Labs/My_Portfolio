@@ -1,12 +1,12 @@
 <div align="center">
 
-# Aditya Chauhan | Software Engineer Portfolio
+# Aditya Chauhan | Portfolio
 
 <a href="https://adityac.codes">
 <img src="https://img.shields.io/badge/Live%20Portfolio-adityac.codes-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Portfolio" />
 </a>
 
-### **Building intelligent systems where AI meets high-performance engineering.**
+### **Engineered like a product: AI-powered navigation meets performance-first design.**
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-007ACC?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=white)](https://react.dev/)
@@ -24,12 +24,9 @@
 
 ## 🎯 Overview
 
-This is the personal portfolio and interactive resume of **Aditya Chauhan**—a software engineer specializing in high-performance concurrent systems, applied AI, and full-stack web development. Built with **React + Vite + TypeScript**, this repository acts as a real-world product showcasing production-grade engineering.
+This is a modern, product-grade developer portfolio built with React + Vite + TypeScript, designed to showcase projects, experience, and live coding stats with a premium UX.
 
-### Why this portfolio matters:
-- **For Non-Tech & Recruiters:** A clean, lightning-fast interactive resume that clearly presents my experience, projects, and contact details without overwhelming jargon.
-- **For Hiring Managers & Interviewers:** Direct proof of impact. Features integrated AI (Gemini), live metrics for 1,500+ DSA problems solved (Codeforces Specialist, LeetCode Knight), and case studies of systems handling 15,000+ QPS with sub-50ms latency.
-- **For Engineers & Architects:** Clean architecture highlighting my focus on concurrency, system design, and graceful degradation (e.g., hardcoded fallback logic when LLM APIs fail, scroll-optimized rendering, and state-driven animations).
+It’s optimized for keyboard-first navigation, smooth scroll interactions, and fast perceived performance (preloading, lightweight animations, and a clean component architecture).
 
 ---
 
@@ -138,23 +135,77 @@ This is the personal portfolio and interactive resume of **Aditya Chauhan**—a 
 ## 🚀 Quick Start
 
 ### 1. Clone & Install
+
 ```bash
 git clone https://github.com/0xAditya-Labs/My_Portfolio.git
 cd My_Portfolio
 npm install
 ```
 
-### 2. Configure Environment
-To enable the AI Command Palette, you need a free Google Gemini API key. Create a `.env` file in the root directory:
+### 2. Configure Environment Variables
+
+Create a `.env.local` file in the project root and configure your coding profiles:
+
 ```env
-VITE_GEMINI_API_KEY=your_gemini_key_here
+VITE_LEETCODE_USERNAME=your_leetcode_username
+VITE_GFG_USERNAME=your_gfg_username
+VITE_CODECHEF_USERNAME=your_codechef_username
+VITE_CODEFORCES_USERNAME=your_codeforces_username
+VITE_GITHUB_USERNAME=your_github_username
 ```
 
-### 3. Run Development Server
+These variables configure the coding profiles displayed on the portfolio.
+
+To enable the Gemini-powered AI Command Palette, configure `GEMINI_API_KEYS` as a server-side environment variable. For local development, add it to `.env.local` only if your server-side implementation loads that file:
+
+```env
+GEMINI_API_KEYS=your_key_one,your_key_two
+```
+
+Multiple keys can be provided as a comma-separated list if supported by the application's key-selection and fallback logic.
+
+**Security:** Never expose Gemini API keys through `VITE_`-prefixed variables. Keep credentials out of client-side bundles and version control.
+
+### 3. Start the Development Server
+
 ```bash
 npm run dev
 ```
-Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
+
+Open [http://localhost:8080](http://localhost:8080) in your browser.
+
+### 4. Verify API Keys
+
+If your repository includes `testing.js`, validate your configured Gemini keys with:
+
+```bash
+node testing.js
+```
+
+### 5. Build for Production
+
+```bash
+npm run build
+npm run preview
+```
+
+### 6. Deploy to Vercel
+
+Import the repository into Vercel and configure the required environment variables under **Project → Settings → Environment Variables**.
+
+| Variable | Scope |
+|---|---|
+| `VITE_LEETCODE_USERNAME` | Public |
+| `VITE_GFG_USERNAME` | Public |
+| `VITE_CODECHEF_USERNAME` | Public |
+| `VITE_CODEFORCES_USERNAME` | Public |
+| `VITE_GITHUB_USERNAME` | Public |
+| `GEMINI_API_KEYS` | Server-side only |
+
+Apply the variables to the appropriate Production, Preview, and Development environments.
+
+Ensure your deployment configuration preserves `/api/*` endpoints while routing frontend navigation to `index.html`, if your application uses Vercel serverless functions.
+
 
 ---
 
@@ -172,9 +223,9 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 **Interactive 3D & Canvas Visualizations**
 - WebGL 2.0 & Custom GLSL Shaders
-- **Gabriel Graph** & **Halo Spray (Aurora Drift)** components adapted from [OriginKit](https://originkit.com)
+- Gabriel Graph & Halo Spray (Aurora Drift components adapted from [OriginKit](https://originkit.com)
   - Custom Viewport Culling (`useIntersectionObserver`) for 0% background CPU usage
-  - Hardware-adaptive dynamic DPR capping and $O(n^2)$ mathematical optimization
+  - Hardware-adaptive dynamic DPR capping and O(n^2) mathematical optimization
 
 **Data & AI**
 - Google Gemini API (`generativelanguage.googleapis.com/v1beta`)
@@ -186,14 +237,17 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 ---
 
-## 💎 Credits & Attributions
+## 🎨 Customization
 
-Special thanks to the open-source and creative engineering community:
-- **[OriginKit](https://originkit.com):** The mathematical canvas foundations for the **Gabriel Graph** (interactive 3D sphere wireframe in Projects) and **Halo Spray / Aurora Drift** (particle flow ring in the Footer) were adapted from OriginKit and tailored with custom viewport culling, multi-OS kernel compatibility, and performance optimizations.
-- **[shadcn/ui](https://ui.shadcn.com/):** Beautifully designed accessible UI components.
-- **[Lucide Icons](https://lucide.dev/):** Consistent, high-quality icon system.
+The portfolio is organized to make personal updates straightforward.
+
+- **Projects:** Edit `src/data/projects.ts` to update project information and metadata.
+- **AI Assistant:** Update `src/lib/aiSearch.ts` to modify the assistant's knowledge base and fallback responses.
+- **Branding & Themes:** Customize `src/index.css` to adjust CSS variables, colors, and theme styles.
+- **Public Assets:** Replace images, icons, project screenshots, and preloader graphics in `public/`.
 
 ---
+
 
 ## 📬 Contact
 
@@ -203,6 +257,8 @@ Special thanks to the open-source and creative engineering community:
 - **GitHub:** [@0xAditya-Labs](https://github.com/0xAditya-Labs)
 - **Email:** aditya.chauhan.nitj.ac@gmail.com
 - **LeetCode:** [Aditya_chauhan__](https://leetcode.com/u/Aditya_chauhan__/)
+- **Codeforces:** [Adree](https://codeforces.com/profile/Adree)
+- **X(formly Twitter):** [@AdityaNitj1204](https://x.com/AdityaNitj1204)
 
 <br/>
 <div align="center">
