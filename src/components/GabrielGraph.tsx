@@ -5,6 +5,7 @@
 import * as React from "react"
 import { useEffect, useRef, useState } from "react"
 import { useTheme } from "next-themes"
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
 
 const DPR_CAP = 2
 
@@ -376,12 +377,11 @@ function __OriginkitBase_GabrielGraph(props: Props) {
         background = "#000000",
         baseColor = "#531669",
         palette = { "color1": "#ED555D", "color2": "#FFFCC9", "color3": "#41B797", "color4": "#EDA126", "color5": "#7B5770" },
-        density = 500,
-        thickness = 70,
+        density = 120,
+        thickness = 2,
         size = 85,
-        speed = 50,
+        speed = 15,
         direction = "clockwise",
-        inner = false,
         nodes = false,
         seed = 1,
         style,
@@ -390,15 +390,57 @@ function __OriginkitBase_GabrielGraph(props: Props) {
 
     const hostRef = useRef<HTMLDivElement>(null)
     const canvasRef = useRef<HTMLCanvasElement>(null)
-    const live = useRef({ baseColor, palette, density, thickness, size, speed, direction, inner, nodes, seed })
-    live.current = { baseColor, palette, density, thickness, size, speed, direction, inner, nodes, seed }
+    const live = useRef({ baseColor, palette, density, thickness, size, speed, direction, nodes, seed })
+    live.current = { baseColor, palette, density, thickness, size, speed, direction, nodes, seed }
+
+    const isIntersecting = useIntersectionObserver(hostRef)
+    const isIntersectingRef = useRef(isIntersecting)
+    isIntersectingRef.current = isIntersecting
+    const rafRef = useRef<number>(0)
+    const lastTimeRef = useRef<number>(-1)
+    const frameRef = useRef<(now: number) => void>(() => {})
+
+    useEffect(() => {
+        if (isIntersecting) {
+            if (!rafRef.current && frameRef.current) {
+                lastTimeRef.current = -1
+                rafRef.current = requestAnimationFrame(frameRef.current)
+            }
+        } else {
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current)
+                rafRef.current = 0
+                lastTimeRef.current = -1
+            }
+        }
+    }, [isIntersecting])
 
     useEffect(() => {
         const canvas = canvasRef.current
         const host = hostRef.current
         if (!canvas || !host) return
-        const gl = canvas.getContext("webgl2", { antialias: true, alpha: true, premultipliedAlpha: true })
+        const gl = (canvas.getContext("webgl2", {
+            antialias: true,
+            alpha: true,
+            premultipliedAlpha: true,
+            powerPreference: "high-performance",
+            desynchronized: false,
+        }) || canvas.getContext("webgl", {
+            antialias: true,
+            alpha: true,
+            premultipliedAlpha: true,
+            powerPreference: "high-performance",
+        })) as WebGL2RenderingContext | null
         if (!gl) return
+
+        const onContextLost = (e: Event) => {
+            e.preventDefault()
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current)
+                rafRef.current = 0
+            }
+        }
+        canvas.addEventListener("webglcontextlost", onContextLost)
 
         const boxProg = compile(gl, BOX_VS, BOX_FS)
         const dotProg = compile(gl, DOT_VS, DOT_FS)
@@ -444,35 +486,15 @@ function __OriginkitBase_GabrielGraph(props: Props) {
 
         let builtKey = ""
         let outerEdges = 0
-        let allEdges = 0
         let outerPts = 0
-        let allPts = 0
         const rebuild = (n: number, s: number) => {
             const outer = buildGraph(n, s)
-            const inn = buildGraph(Math.max(2, Math.ceil(n / 4)), s + 7919)
-            const half = (a: Float32Array, stride: number, cols: number) => {
-                const c = a.slice()
-                for (let i = 0; i < c.length; i += stride) {
-                    for (let k = 0; k < cols; k++) c[i + k] *= 0.5
-                }
-                return c
-            }
-            const innerEdgesData = half(inn.edges, 7, 6)
-            const innerPts = half(inn.points, 3, 3)
-            const e = new Float32Array(outer.edges.length + innerEdgesData.length)
-            e.set(outer.edges)
-            e.set(innerEdgesData, outer.edges.length)
-            const p = new Float32Array(outer.points.length + innerPts.length)
-            p.set(outer.points)
-            p.set(innerPts, outer.points.length)
             gl.bindBuffer(gl.ARRAY_BUFFER, edgeBuf)
-            gl.bufferData(gl.ARRAY_BUFFER, e, gl.STATIC_DRAW)
+            gl.bufferData(gl.ARRAY_BUFFER, outer.edges, gl.STATIC_DRAW)
             gl.bindBuffer(gl.ARRAY_BUFFER, dotBuf)
-            gl.bufferData(gl.ARRAY_BUFFER, p, gl.STATIC_DRAW)
+            gl.bufferData(gl.ARRAY_BUFFER, outer.points, gl.STATIC_DRAW)
             outerEdges = outer.edgeCount
-            allEdges = outer.edgeCount + inn.edgeCount
             outerPts = outer.points.length / 3
-            allPts = p.length / 3
         }
 
         const cam: Cam = { eye: [0, 0, EYE_Z], up: [0, 1, 0] }
@@ -488,6 +510,11 @@ function __OriginkitBase_GabrielGraph(props: Props) {
             dragging = true
             lastX = ev.clientX
             lastY = ev.clientY
+            try {
+                host.setPointerCapture(ev.pointerId)
+            } catch {
+                // Ignore if pointer capture is unsupported
+            }
         }
         const onMove = (ev: PointerEvent) => {
             if (!dragging) return
@@ -496,8 +523,15 @@ function __OriginkitBase_GabrielGraph(props: Props) {
             lastX = ev.clientX
             lastY = ev.clientY
         }
-        const onUp = () => {
+        const onUp = (ev: PointerEvent) => {
             dragging = false
+            try {
+                if (host.hasPointerCapture(ev.pointerId)) {
+                    host.releasePointerCapture(ev.pointerId)
+                }
+            } catch {
+                // Ignore
+            }
         }
         host.addEventListener("pointerdown", onDown)
         window.addEventListener("pointermove", onMove)
@@ -507,16 +541,19 @@ function __OriginkitBase_GabrielGraph(props: Props) {
         const vp = new Float32Array(16)
         const pal = new Float32Array(PALETTE_SIZE * 3)
         let spin = 0
-        let last = -1
-        let raf = 0
 
         const frame = (now: number) => {
-            raf = requestAnimationFrame(frame)
-            const dt = last < 0 ? 0 : Math.min(0.05, (now - last) / 1000)
-            last = now
+            if (!isIntersectingRef.current) {
+                rafRef.current = 0
+                lastTimeRef.current = -1
+                return
+            }
+            rafRef.current = requestAnimationFrame(frame)
+            const dt = lastTimeRef.current < 0 ? 0 : Math.min(0.05, (now - lastTimeRef.current) / 1000)
+            lastTimeRef.current = now
             const L = live.current
 
-            const n = Math.max(10, Math.min(1000, Math.round(L.density ?? 360)))
+            const n = Math.max(10, Math.min(300, Math.round(L.density ?? 120)))
             const s = Math.round(L.seed ?? 1)
             const key = n + ":" + s
             if (key !== builtKey) {
@@ -554,7 +591,7 @@ function __OriginkitBase_GabrielGraph(props: Props) {
             }
 
             const dirSign = L.direction === "counterclockwise" ? -1 : 1
-            spin += dt * Math.PI * 2 * TURNS_PER_SEC * ((L.speed ?? 50) / 50) * dirSign
+            spin += dt * Math.PI * 2 * TURNS_PER_SEC * ((L.speed ?? 15) / 15) * dirSign
             spin %= Math.PI * 2
             viewProj(cam, cw / ch, vp)
 
@@ -579,7 +616,7 @@ function __OriginkitBase_GabrielGraph(props: Props) {
             }
             const stroke = parseColor(L.baseColor, [0.118, 0.118, 0.118])
             const radius = SPHERE_R * ((L.size ?? 100) / 100)
-            const thick = BOX_T * ((L.thickness ?? 100) / 100)
+            const thick = (L.thickness !== undefined && L.thickness <= 10) ? L.thickness : BOX_T * ((L.thickness ?? 100) / 100)
 
             const pxScale = (bh / REF_H)
 
@@ -589,8 +626,7 @@ function __OriginkitBase_GabrielGraph(props: Props) {
             gl.enable(gl.DEPTH_TEST)
             gl.depthFunc(gl.LEQUAL)
 
-            const edgeCount = L.inner ? allEdges : outerEdges
-            if (edgeCount > 0) {
+            if (outerEdges > 0) {
                 gl.useProgram(boxProg)
                 gl.uniformMatrix4fv(ub.vp, false, vp)
                 gl.uniform2f(ub.spin, Math.cos(spin), Math.sin(spin))
@@ -600,7 +636,7 @@ function __OriginkitBase_GabrielGraph(props: Props) {
                 gl.uniform3f(ub.stroke, stroke[0], stroke[1], stroke[2])
                 gl.uniform1f(ub.line, OUTLINE_PX * dpr)
                 gl.bindVertexArray(boxVao)
-                gl.drawArraysInstanced(gl.TRIANGLES, 0, 36, edgeCount)
+                gl.drawArraysInstanced(gl.TRIANGLES, 0, 36, outerEdges)
             }
             if (L.nodes) {
                 gl.useProgram(dotProg)
@@ -610,14 +646,21 @@ function __OriginkitBase_GabrielGraph(props: Props) {
                 gl.uniform1f(ud.size, NODE_PX * pxScale)
                 gl.uniform3f(ud.stroke, stroke[0], stroke[1], stroke[2])
                 gl.bindVertexArray(dotVao)
-                gl.drawArrays(gl.POINTS, 0, L.inner ? allPts : outerPts)
+                gl.drawArrays(gl.POINTS, 0, outerPts)
             }
             gl.bindVertexArray(null)
         }
-        raf = requestAnimationFrame(frame)
+        frameRef.current = frame
+        if (isIntersectingRef.current) {
+            rafRef.current = requestAnimationFrame(frame)
+        }
 
         return () => {
-            cancelAnimationFrame(raf)
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current)
+                rafRef.current = 0
+            }
+            canvas.removeEventListener("webglcontextlost", onContextLost)
             host.removeEventListener("pointerdown", onDown)
             window.removeEventListener("pointermove", onMove)
             window.removeEventListener("pointerup", onUp)
@@ -637,6 +680,8 @@ function __OriginkitBase_GabrielGraph(props: Props) {
                 touchAction: "none",
                 cursor: "grab",
                 background,
+                transform: "translateZ(0)",
+                WebkitBackfaceVisibility: "hidden",
                 ...style,
             }}
         >
@@ -661,11 +706,10 @@ export const THEME_CONFIGS = {
             "#0F172A",
             "#0F172A",
         ],
-        density: 450,
-        thickness: 20,
+        density: 120,
+        thickness: 2,
         size: 80,
         speed: 15,
-        inner: true,
         nodes: false,
     },
     lightMode: {
@@ -678,11 +722,10 @@ export const THEME_CONFIGS = {
             "#FFFFFF",
             "#FFFFFF",
         ],
-        density: 450,
-        thickness: 20,
+        density: 120,
+        thickness: 2,
         size: 80,
         speed: 15,
-        inner: true,
         nodes: false,
     },
 } as const

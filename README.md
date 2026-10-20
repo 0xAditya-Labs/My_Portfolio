@@ -170,6 +170,12 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 - lucide-react (Icons)
 - next-themes (System-aware Dark Mode)
 
+**Interactive 3D & Canvas Visualizations**
+- WebGL 2.0 & Custom GLSL Shaders
+- **Gabriel Graph** & **Halo Spray (Aurora Drift)** components adapted from [OriginKit](https://originkit.com)
+  - Custom Viewport Culling (`useIntersectionObserver`) for 0% background CPU usage
+  - Hardware-adaptive dynamic DPR capping and $O(n^2)$ mathematical optimization
+
 **Data & AI**
 - Google Gemini API (`generativelanguage.googleapis.com/v1beta`)
 - Custom Fallback Search Algorithm (Graceful Degradation)
@@ -177,6 +183,15 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 **Deployment & Analytics**
 - Vercel (Hosting)
 - Vercel Analytics + Speed Insights
+
+---
+
+## 💎 Credits & Attributions
+
+Special thanks to the open-source and creative engineering community:
+- **[OriginKit](https://originkit.com):** The mathematical canvas foundations for the **Gabriel Graph** (interactive 3D sphere wireframe in Projects) and **Halo Spray / Aurora Drift** (particle flow ring in the Footer) were adapted from OriginKit and tailored with custom viewport culling, multi-OS kernel compatibility, and performance optimizations.
+- **[shadcn/ui](https://ui.shadcn.com/):** Beautifully designed accessible UI components.
+- **[Lucide Icons](https://lucide.dev/):** Consistent, high-quality icon system.
 
 ---
 

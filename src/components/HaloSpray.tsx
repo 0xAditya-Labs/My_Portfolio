@@ -4,6 +4,7 @@
 
 import { useEffect, useRef } from "react"
 import type { CSSProperties } from "react"
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
 
 export interface HaloSprayRing {
     band?: number
@@ -604,6 +605,28 @@ function __OriginkitBase_HaloSpray({
     const valuesRef = useRef(values)
     valuesRef.current = values
 
+    const isIntersecting = useIntersectionObserver(rootRef)
+    const isIntersectingRef = useRef(isIntersecting)
+    isIntersectingRef.current = isIntersecting
+    const rafRef = useRef<number>(0)
+    const lastTimeRef = useRef<number>(-1)
+    const frameRef = useRef<(now: number) => void>(() => {})
+
+    useEffect(() => {
+        if (isIntersecting) {
+            if (!rafRef.current && frameRef.current) {
+                lastTimeRef.current = -1
+                rafRef.current = requestAnimationFrame(frameRef.current)
+            }
+        } else {
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current)
+                rafRef.current = 0
+                lastTimeRef.current = -1
+            }
+        }
+    }, [isIntersecting])
+
     useEffect(() => {
         const root = rootRef.current
         const canvas = canvasRef.current
@@ -627,13 +650,17 @@ function __OriginkitBase_HaloSpray({
         gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
         let data = new Float32Array(0)
 
+        const DPR_CAP = 2
+        let currentDprCap = DPR_CAP
+        let slowFrameStreak = 0
+
         let W = 0
         let H = 0
         let dpr = 1
         const resize = () => {
             W = root.offsetWidth
             H = root.offsetHeight
-            dpr = Math.min(2, window.devicePixelRatio || 1)
+            dpr = Math.min(currentDprCap, window.devicePixelRatio || 1)
             canvas.width = Math.max(1, Math.round(W * dpr))
             canvas.height = Math.max(1, Math.round(H * dpr))
         }
@@ -677,13 +704,17 @@ function __OriginkitBase_HaloSpray({
         let palette: Palette | null = null
         let paletteKey = ""
         let T = 0
-        let last = -1
-        let raf = 0
 
         const frame = (now: number) => {
-            raf = requestAnimationFrame(frame)
-            const dt = last < 0 ? 0 : Math.min(1 / 20, Math.max(0, (now - last) / 1000))
-            last = now
+            if (!isIntersectingRef.current) {
+                rafRef.current = 0
+                lastTimeRef.current = -1
+                return
+            }
+            rafRef.current = requestAnimationFrame(frame)
+            const frameStart = performance.now()
+            const dt = lastTimeRef.current < 0 ? 0 : Math.min(1 / 20, Math.max(0, (now - lastTimeRef.current) / 1000))
+            lastTimeRef.current = now
 
             const v = valuesRef.current
             const rg = v.ring
@@ -971,11 +1002,28 @@ function __OriginkitBase_HaloSpray({
             gl.uniform2f(uRes, canvas.width, canvas.height)
             gl.bufferData(gl.ARRAY_BUFFER, data.subarray(0, n * STRIDE), gl.DYNAMIC_DRAW)
             gl.drawArrays(gl.POINTS, 0, n)
+
+            const frameDuration = performance.now() - frameStart
+            if (frameDuration > 16) {
+                slowFrameStreak++
+                if (slowFrameStreak >= 8 && currentDprCap > 1.5) {
+                    currentDprCap = 1.5
+                    resize()
+                }
+            } else if (slowFrameStreak > 0) {
+                slowFrameStreak = Math.max(0, slowFrameStreak - 1)
+            }
         }
-        raf = requestAnimationFrame(frame)
+        frameRef.current = frame
+        if (isIntersectingRef.current) {
+            rafRef.current = requestAnimationFrame(frame)
+        }
 
         return () => {
-            cancelAnimationFrame(raf)
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current)
+                rafRef.current = 0
+            }
             ro.disconnect()
             gl.getExtension("WEBGL_lose_context")?.loseContext()
             root.removeEventListener("pointermove", onMove)

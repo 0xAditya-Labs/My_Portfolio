@@ -66,9 +66,9 @@ const Projects = () => {
     <section id="projects" ref={projectsRef} className="pt-24 pb-16 bg-transparent">
       <div className="max-w-7xl mx-auto px-6">
         <div className={`mb-12 ${projectsVisible ? 'scroll-animate' : ''}`}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+          <div className="flex flex-col md:flex-row md:items-center gap-6 sm:gap-8 lg:gap-8">
             {/* Column 1: Title and Filter Tabs */}
-            <div className="flex flex-col justify-between space-y-6">
+            <div className="flex flex-col justify-between space-y-6 shrink-0">
               <div>
                 <p className="text-sm uppercase tracking-wider text-muted-foreground mb-3">
                   Projects
@@ -123,18 +123,15 @@ const Projects = () => {
               </div>
             </div>
 
-            {/* Column 2: Interactive 3D Gabriel Graph (parallel in grid) */}
-            <div className="flex items-center justify-start">
+            {/* Interactive 3D Gabriel Graph (positioned at midpoint, cross-device stable) */}
+            <div className="flex items-center justify-start shrink-0">
               <div
-                className="w-[190px] h-[190px] sm:w-[210px] sm:h-[210px] relative select-none"
+                className="w-[180px] h-[180px] sm:w-[200px] sm:h-[200px] relative select-none will-change-transform transform-gpu"
                 title="Interactive 3D Gabriel Graph - Drag to orbit"
               >
                 <GabrielGraph background="transparent" nodes={false} style={{ width: "100%", height: "100%" }} />
               </div>
             </div>
-
-            {/* Column 3: Empty column maintaining 3-column grid alignment */}
-            <div className="hidden lg:block" />
           </div>
         </div>
 
