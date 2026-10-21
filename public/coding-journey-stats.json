@@ -5,9 +5,9 @@
     "topPercentage": 3.26,
     "contestsCount": 49,
     "easySolved": 279,
-    "mediumSolved": 448,
+    "mediumSolved": 449,
     "hardSolved": 94,
-    "totalSolved": 821,
+    "totalSolved": 822,
     "history": [
       {
         "timestamp": 1723905000000,
@@ -267,7 +267,7 @@
     "currentRankTitle": "pupil",
     "maxRankTitle": "Specialist",
     "contestsCount": 78,
-    "totalSolved": 464,
+    "totalSolved": 467,
     "history": [
       {
         "timestamp": 1719768900000,
@@ -739,81 +739,7 @@
       }
     ]
   },
-  "codechef": {
-    "currentRating": 1637,
-    "maxRating": 1661,
-    "stars": "★★★",
-    "maxStars": "★★★",
-    "contestsCount": 13,
-    "totalSolved": 59,
-    "history": [
-      {
-        "timestamp": 1750809600000,
-        "rating": 1445,
-        "name": "Starters 192 (Rated)"
-      },
-      {
-        "timestamp": 1751414400000,
-        "rating": 1627,
-        "name": "Starters 193 (Rated)"
-      },
-      {
-        "timestamp": 1753228800000,
-        "rating": 1619,
-        "name": "Starters 196 (Rated)"
-      },
-      {
-        "timestamp": 1753833600000,
-        "rating": 1618,
-        "name": " Starters 197 (Rated)"
-      },
-      {
-        "timestamp": 1755043200000,
-        "rating": 1623,
-        "name": "Starters 199 (Rated)"
-      },
-      {
-        "timestamp": 1756252800000,
-        "rating": 1645,
-        "name": "Starters 201 (Rated)"
-      },
-      {
-        "timestamp": 1761091200000,
-        "rating": 1644,
-        "name": "Starters 209 (Rated)"
-      },
-      {
-        "timestamp": 1766534400000,
-        "rating": 1644,
-        "name": "Starters 218 (Rated)"
-      },
-      {
-        "timestamp": 1767139200000,
-        "rating": 1661,
-        "name": "Starters 219 (Rated)"
-      },
-      {
-        "timestamp": 1774396800000,
-        "rating": 1659,
-        "name": "Starters 231 (Rated)"
-      },
-      {
-        "timestamp": 1778025600000,
-        "rating": 1627,
-        "name": "Starters 237 (Rated)"
-      },
-      {
-        "timestamp": 1781654400000,
-        "rating": 1593,
-        "name": "Starters 243 (Rated)"
-      },
-      {
-        "timestamp": 1790726400000,
-        "rating": 1637,
-        "name": "Starters 258 (Rated)"
-      }
-    ]
-  },
+  "codechef": {},
   "gfg": {
     "totalSolved": 146
   },
@@ -1753,10 +1679,16 @@
     {
       "date": "2026-10-20",
       "count": 3
+    },
+    {
+      "date": "2026-10-21",
+      "count": 5
     }
   ],
-  "errors": [],
-  "totalActiveDays": 322,
-  "totalSolvedAllPlatforms": 1490,
-  "lastUpdated": "2026-10-20T21:46:13.798Z"
+  "errors": [
+    "CodeChef: CodeChef: all_rating array not found on page"
+  ],
+  "totalActiveDays": 323,
+  "totalSolvedAllPlatforms": 1435,
+  "lastUpdated": "2026-10-21T21:52:52.975Z"
 }
