@@ -53,8 +53,8 @@ const Contact = () => {
             <div>
               <h3 className="text-3xl font-bold mb-3 text-black dark:text-white">Current Availability</h3>
               <p className="text-muted-foreground">
-                Currently wrapping up an SDE internship at Accenture.<br />
-                Open to discuss full-time roles for 2027.
+                Open to discuss full-time roles for 2027 and internships starting Jan.<br />
+                Always excited to collaborate on new projects.
               </p>
             </div>
             <a href="https://tally.so/r/LZyoBJ" target="_blank" rel="noopener noreferrer">

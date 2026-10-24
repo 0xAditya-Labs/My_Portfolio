@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, lazy, Suspense } from "react";
+import { useEffect, useState, useRef, useCallback, lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TechStackScroller from "@/components/TechStackScroller";
@@ -13,8 +13,9 @@ import MobileFAB from "@/components/MobileFAB";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
-  const [footerHeight, setFooterHeight] = useState(0);
-  const footerRef = useRef<HTMLDivElement>(null);
+  // Sensible default (~520px) prevents the curtain margin from collapsing to 0
+  const [footerHeight, setFooterHeight] = useState(520);
+  const observerRef = useRef<ResizeObserver | null>(null);
   const isMobile = useIsMobile();
 
   // Handle scroll restoration and hash navigation when component mounts
@@ -37,18 +38,41 @@ const Index = () => {
     }
   }, []);
 
-  // Dynamically measure the footer's height to ensure perfect scrolling
-  useEffect(() => {
-    if (!footerRef.current) return;
-    
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (let entry of entries) {
-        setFooterHeight(entry.contentRect.height);
+  // Callback ref ensures ResizeObserver attaches reliably whenever the desktop footer node mounts,
+  // preventing stale height or missed attachments after responsive transitions or route changes.
+  const footerCallbackRef = useCallback((node: HTMLDivElement | null) => {
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+      observerRef.current = null;
+    }
+
+    if (node) {
+      const updateHeight = (h: number) => {
+        if (h > 0) setFooterHeight(Math.round(h));
+      };
+
+      const initialHeight = node.getBoundingClientRect().height || node.offsetHeight;
+      updateHeight(initialHeight);
+
+      if (typeof ResizeObserver !== "undefined") {
+        const observer = new ResizeObserver((entries) => {
+          for (const entry of entries) {
+            const h = entry.borderBoxSize?.[0]?.blockSize ?? entry.contentRect.height;
+            updateHeight(h);
+          }
+        });
+        observer.observe(node);
+        observerRef.current = observer;
       }
-    });
-    
-    resizeObserver.observe(footerRef.current);
-    return () => resizeObserver.disconnect();
+    }
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
   }, []);
 
   // Mobile: keep normal static scroll (no curtain / fixed footer)
@@ -127,7 +151,7 @@ const Index = () => {
       <div 
         className="fixed inset-0 w-full h-full z-0 flex flex-col justify-end bg-[#0a0a0a]"
       >
-        <div ref={footerRef} className="w-full">
+        <div ref={footerCallbackRef} className="w-full">
           <Footer />
         </div>
       </div>
