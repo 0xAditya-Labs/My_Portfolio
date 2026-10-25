@@ -42,9 +42,7 @@ export const projectsData: Project[] = [
     title: "Interlock — Distributed Real-Time Chat Architecture & Benchmark",
     tagline: "Distributed Real-Time Messaging & Automated WebSocket Benchmarking Engine",
     description: "Distributed Real-Time Messaging & Automated WebSocket Benchmarking Engine",
-    fullDescription: `Interlock is a horizontally scalable real-time chat platform engineered to overcome the single-core event loop bottleneck of monolithic Node.js WebSocket architectures.
-
-By decoupling process memory into a distributed Redis Pub/Sub messaging tier with atomic reference-counted presence tracking and cache-aside message history, Interlock enables seamless cross-server message routing while maintaining verified sub-50ms tail latency (35ms p95, 47ms p99) under saturated multi-node cluster loads.`,
+    fullDescription: "Interlock is a horizontally scalable real-time chat platform engineered to overcome the single-core event loop bottleneck of monolithic Node.js WebSocket architectures. By decoupling process memory into a distributed Redis Pub/Sub messaging tier with atomic reference-counted presence tracking and cache-aside message history, Interlock enables seamless cross-server message routing while maintaining verified sub-50ms tail latency (35ms p95, 47ms p99) under saturated multi-node cluster loads.",
     image: "/projects/Interlock_1.webp",
     images: [
       "/projects/Interlock_1.webp",
@@ -77,9 +75,7 @@ By decoupling process memory into a distributed Redis Pub/Sub messaging tier wit
       "Cross-Server Relay Latency Overhead: Serializing every packet across physical process boundaries incurs a network penalty. Tuned payload structures and Redis pipelines to sustain a 35ms p95 latency and 47ms p99 tail latency under 100% cross-node relay worst-case routing."
     ],
     overview: {
-      projectOverview: `Interlock is a horizontally scalable real-time chat platform engineered to overcome the single-core event loop bottleneck of monolithic Node.js WebSocket architectures.
-
-By decoupling process memory into a distributed Redis Pub/Sub messaging tier with atomic reference-counted presence tracking and cache-aside message history, Interlock enables seamless cross-server message routing while maintaining verified sub-50ms tail latency (35ms p95, 47ms p99) under saturated multi-node cluster loads.`,
+      projectOverview: "Interlock is a horizontally scalable real-time chat platform engineered to overcome the single-core event loop bottleneck of monolithic Node.js WebSocket architectures. By decoupling process memory into a distributed Redis Pub/Sub messaging tier with atomic reference-counted presence tracking and cache-aside message history, Interlock enables seamless cross-server message routing while maintaining verified sub-50ms tail latency (35ms p95, 47ms p99) under saturated multi-node cluster loads.",
       keyFeatures: [
         "Horizontally scalable WebSocket clustering using @socket.io/redis-adapter for zero-coupling cross-node message routing.",
         "Atomic presence tracking powered by Redis INCR/DECR counters, eliminating multi-tab false offline race conditions.",
@@ -95,61 +91,9 @@ By decoupling process memory into a distributed Redis Pub/Sub messaging tier wit
       ]
     },
     technical: {
-      approach: `Decoupled state from process memory into an independent distributed layer utilizing Redis Pub/Sub and atomic operations.
-
-• Backend Architecture: Dual-mode architecture switchable between a single monolithic process for local development and a multi-node stateless cluster behind a load balancer.
-
-• Presence & Caching: Leverages atomic Redis INCR/DECR counters to eliminate multi-tab false disconnect race conditions, and deterministic cache-aside message history (1-hour TTL) to offload >90% of MongoDB Atlas reads.
-
-• Benchmarking Engine: An automated benchmarking framework programmatically spins up server topologies and virtual WebSocket client pairs, performing binary search to discover the breaking limit and generating comparative p50/p95/p99 latency curves.`,
-      implementation: `Decoupled state from process memory into an independent distributed layer utilizing Redis Pub/Sub and atomic operations.
-
-• Backend Architecture: Dual-mode architecture switchable between a single monolithic process for local development and a multi-node stateless cluster behind a load balancer.
-
-• Presence & Caching: Leverages atomic Redis INCR/DECR counters to eliminate multi-tab false disconnect race conditions, and deterministic cache-aside message history (1-hour TTL) to offload >90% of MongoDB Atlas reads.
-
-• Benchmarking Engine: An automated benchmarking framework programmatically spins up server topologies and virtual WebSocket client pairs, performing binary search to discover the breaking limit and generating comparative p50/p95/p99 latency curves.`,
-      architecture: `Distributed WebSocket Cluster Architecture:
-
-┌─────────────────────────────────────────────────────────────┐
-│  CLIENT TIER                                                │
-│  React 18  •  Vite  •  Zustand  •  DaisyUI Themes           │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-                               ▼  Bidirectional WebSockets (WSS)
-┌─────────────────────────────────────────────────────────────┐
-│  STATELESS SERVER CLUSTER (Node.js / Express Instances)     │
-│  Horizontal multi-process federation behind Load Balancer   │
-└──────────────┬──────────────────────────────┬───────────────┘
-               │                              │
-               ▼                              ▼
- ┌───────────────────────────┐  ┌───────────────────────────┐
- │ REDIS PUB/SUB MESSAGE BUS │  │ ATOMIC PRESENCE STORE     │
- │ @socket.io/redis-adapter  │  │ Redis INCR / DECR         │
- │ • Zero-coupling routing   │  │ • Reference-counted state │
- │ • 35ms p95 / 47ms p99     │  │ • No multi-tab race cond. │
- └─────────────┬─────────────┘  └───────────────────────────┘
-               │
-               ▼
- ┌───────────────────────────┐
- │ CACHE-ASIDE MESSAGE STORE │
- │ Redis In-Memory (1h TTL)  │
- │ • Deterministic hashing   │
- │ • >90% DB read reduction  │
- └─────────────┬─────────────┘
-               │
-               ▼  Asynchronous Write-Through
-┌─────────────────────────────────────────────────────────────┐
-│  PERSISTENCE TIER (MongoDB Atlas Cluster)                   │
-│  Durable storage for user records, auth & message history   │
-└─────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────┐
-│  AUTOMATED BENCHMARKING ENGINE (Virtual Client Pairs)       │
-│  • Programmatic concurrency load generator (npm run bench)  │
-│  • Binary search breaking-limit discovery (B = 200 pairs)   │
-│  • Automated p50 / p95 / p99 delivery latency curves        │
-└─────────────────────────────────────────────────────────────┘`,
+      approach: "Decoupled state from process memory into an independent distributed layer utilizing Redis Pub/Sub and atomic operations. The backend features a dual-mode architecture switchable between a single monolithic process for local development and a multi-node stateless cluster behind a load balancer. An automated benchmarking framework programmatically spins up server topologies and virtual WebSocket client pairs, performing binary search to discover the breaking limit and generating comparative p50/p95/p99 latency curves.",
+      implementation: "Decoupled state from process memory into an independent distributed layer utilizing Redis Pub/Sub and atomic operations. The backend features a dual-mode architecture switchable between a single monolithic process for local development and a multi-node stateless cluster behind a load balancer. An automated benchmarking framework programmatically spins up server topologies and virtual WebSocket client pairs, performing binary search to discover the breaking limit and generating comparative p50/p95/p99 latency curves.",
+      architecture: `Distributed WebSocket Cluster Architecture:\n\n[Client Layer: React 18 + Vite + Zustand]\n       │\n       ▼ (Bidirectional WebSockets / HTTP Fallback)\n[Cluster Tier: Stateless Node.js / Express Instances behind Load Balancer]\n       │\n       ├──► [Redis Pub/Sub Layer: @socket.io/redis-adapter]\n       │    └── Zero-coupling cross-node message routing; relays room broadcasts with verified <50ms tail latency (35ms p95, 47ms p99)\n       │\n       ├──► [Redis In-Memory State: Atomic INCR/DECR Counters]\n       │    └── Reference-counted presence tracking per user session; eliminates multi-tab false disconnect race conditions\n       │\n       ├──► [Redis Cache-Aside History Layer: Deterministic Hashing]\n       │    └── In-memory recent message buffer with 1-hour sliding TTL; reduces MongoDB Atlas read traffic by >90%\n       │\n       ▼\n[Durable Persistence: MongoDB Atlas Cluster]\n       └── Asynchronous write persistence for message records, user profiles, and channel metadata\n\n[Automated Benchmarking Suite: Virtual Client Pairs]\n       └── Programmatic binary-search concurrency stress-testing suite (npm run benchmark) running virtual socket pairs to profile p50/p95/p99 latency curves and identify breaking limits`,
       technologyChoices: [
         {
           name: "Socket.io v4",
@@ -196,13 +140,7 @@ By decoupling process memory into a distributed Redis Pub/Sub messaging tier wit
       }
     ],
     implementation: {
-      approach: `Decoupled state from process memory into an independent distributed layer utilizing Redis Pub/Sub and atomic operations.
-
-• Backend Architecture: Dual-mode architecture switchable between a single monolithic process for local development and a multi-node stateless cluster behind a load balancer.
-
-• Presence & Caching: Leverages atomic Redis INCR/DECR counters to eliminate multi-tab false disconnect race conditions, and deterministic cache-aside message history (1-hour TTL) to offload >90% of MongoDB Atlas reads.
-
-• Benchmarking Engine: An automated benchmarking framework programmatically spins up server topologies and virtual WebSocket client pairs, performing binary search to discover the breaking limit and generating comparative p50/p95/p99 latency curves.`,
+      approach: "Decoupled state from process memory into an independent distributed layer utilizing Redis Pub/Sub and atomic operations. The backend features a dual-mode architecture switchable between a single monolithic process for local development and a multi-node stateless cluster behind a load balancer. An automated benchmarking framework programmatically spins up server topologies and virtual WebSocket client pairs, performing binary search to discover the breaking limit and generating comparative p50/p95/p99 latency curves.",
       technologies: [
         {
           name: "Socket.io v4",
@@ -222,92 +160,20 @@ By decoupling process memory into a distributed Redis Pub/Sub messaging tier wit
         }
       ]
     },
-    architecture: `Distributed WebSocket Cluster Architecture:
-
-┌─────────────────────────────────────────────────────────────┐
-│  CLIENT TIER                                                │
-│  React 18  •  Vite  •  Zustand  •  DaisyUI Themes           │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-                               ▼  Bidirectional WebSockets (WSS)
-┌─────────────────────────────────────────────────────────────┐
-│  STATELESS SERVER CLUSTER (Node.js / Express Instances)     │
-│  Horizontal multi-process federation behind Load Balancer   │
-└──────────────┬──────────────────────────────┬───────────────┘
-               │                              │
-               ▼                              ▼
- ┌───────────────────────────┐  ┌───────────────────────────┐
- │ REDIS PUB/SUB MESSAGE BUS │  │ ATOMIC PRESENCE STORE     │
- │ @socket.io/redis-adapter  │  │ Redis INCR / DECR         │
- │ • Zero-coupling routing   │  │ • Reference-counted state │
- │ • 35ms p95 / 47ms p99     │  │ • No multi-tab race cond. │
- └─────────────┬─────────────┘  └───────────────────────────┘
-               │
-               ▼
- ┌───────────────────────────┐
- │ CACHE-ASIDE MESSAGE STORE │
- │ Redis In-Memory (1h TTL)  │
- │ • Deterministic hashing   │
- │ • >90% DB read reduction  │
- └─────────────┬─────────────┘
-               │
-               ▼  Asynchronous Write-Through
-┌─────────────────────────────────────────────────────────────┐
-│  PERSISTENCE TIER (MongoDB Atlas Cluster)                   │
-│  Durable storage for user records, auth & message history   │
-└─────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────┐
-│  AUTOMATED BENCHMARKING ENGINE (Virtual Client Pairs)       │
-│  • Programmatic concurrency load generator (npm run bench)  │
-│  • Binary search breaking-limit discovery (B = 200 pairs)   │
-│  • Automated p50 / p95 / p99 delivery latency curves        │
-└─────────────────────────────────────────────────────────────┘`,
+    architecture: `Distributed WebSocket Cluster Architecture:\n\n[Client Layer: React 18 + Vite + Zustand]\n       │\n       ▼ (Bidirectional WebSockets / HTTP Fallback)\n[Cluster Tier: Stateless Node.js / Express Instances behind Load Balancer]\n       │\n       ├──► [Redis Pub/Sub Layer: @socket.io/redis-adapter]\n       │    └── Zero-coupling cross-node message routing; relays room broadcasts with verified <50ms tail latency (35ms p95, 47ms p99)\n       │\n       ├──► [Redis In-Memory State: Atomic INCR/DECR Counters]\n       │    └── Reference-counted presence tracking per user session; eliminates multi-tab false disconnect race conditions\n       │\n       ├──► [Redis Cache-Aside History Layer: Deterministic Hashing]\n       │    └── In-memory recent message buffer with 1-hour sliding TTL; reduces MongoDB Atlas read traffic by >90%\n       │\n       ▼\n[Durable Persistence: MongoDB Atlas Cluster]\n       └── Asynchronous write persistence for message records, user profiles, and channel metadata\n\n[Automated Benchmarking Suite: Virtual Client Pairs]\n       └── Programmatic binary-search concurrency stress-testing suite (npm run benchmark) running virtual socket pairs to profile p50/p95/p99 latency curves and identify breaking limits`,
     documentation: {
-      setup: `# 1. Clone distributed branch & enter directory
-git clone -b distributed-backend https://github.com/0xAditya-Labs/Interlock.git
-cd Interlock
-
-# 2. Install dependencies & build client bundle
-npm install
-npm run build
-
-# 3. Start distributed multi-node cluster
-npm run start:cluster
-
-# 4. Run automated WebSocket load benchmark
-npm run benchmark`,
-      usage: `1. Authentication & Profiles:
-   Register with bcrypt-hashed credentials or log in via JWT HTTP-only cookies. Upload and optimize profile avatars in real time via Cloudinary API.
-
-2. Real-Time Chat & Contact Presence:
-   Message in real time with live online/offline presence indicators. Toggle across 32 dynamic DaisyUI presets.
-
-3. Distributed Cross-Server Routing:
-   Messages route seamlessly across multi-server instances via Redis Pub/Sub (@socket.io/redis-adapter), with cache-aside history (1h TTL) shielding MongoDB Atlas.
-
-4. WebSocket Stress Testing:
-   Launch the benchmarking suite (npm run benchmark) to stress-test cluster topologies, identify breaking limits, and measure tail latency curves.`,
-      api: `POST   /api/auth/signup         Register a new user with bcrypt password hashing
-POST   /api/auth/login          Authenticate using JWT and issue secure HTTP-only cookies
-GET    /api/messages/:id        Fetch conversation history (Redis cache-aside with 1h TTL)
-POST   /api/messages/send/:id   Send message, persist to MongoDB, and broadcast via Redis
-WS     /socket.io               Real-time bidirectional WebSocket transport & presence sync
-PUT    /api/auth/update-profile Upload and optimize user avatar via Cloudinary API`,
+      setup: "git clone -b distributed-backend https://github.com/0xAditya-Labs/Interlock.git && npm run build && npm run start:cluster",
+      usage: "Users authenticate with JWTs, chat in real time with live online/offline presence indicators, upload images via Cloudinary, and switch between 32 DaisyUI themes. Under the hood, messages seamlessly route across multi-server instances via Redis Pub/Sub, and an automated benchmarking engine (npm run benchmark) stress-tests the cluster under configurable concurrency loads.",
+      api: "POST /api/auth/signup :- Register a new user with bcrypt password hashing\nPOST /api/auth/login :- Authenticate using JWT and issue secure HTTP-only cookies\nGET /api/messages/:id :- Fetch conversation history (Redis cache-aside with 1h TTL)\nPOST /api/messages/send/:id :- Send message, persist to MongoDB, and broadcast via Redis\nWS /socket.io :- Real-time bidirectional WebSocket transport and presence sync\nPUT /api/auth/update-profile :- Upload and optimize user avatar via Cloudinary",
       apiReference: [
-        "POST   /api/auth/signup         :- Register a new user with bcrypt password hashing",
-        "POST   /api/auth/login          :- Authenticate using JWT and issue secure HTTP-only cookies",
-        "GET    /api/messages/:id        :- Fetch conversation history (Redis cache-aside with 1h TTL)",
-        "POST   /api/messages/send/:id   :- Send message, persist to MongoDB, and broadcast via Redis",
-        "WS     /socket.io               :- Real-time bidirectional WebSocket transport & presence sync",
-        "PUT    /api/auth/update-profile :- Upload and optimize user avatar via Cloudinary API"
+        "POST /api/auth/signup :- Register a new user with bcrypt password hashing",
+        "POST /api/auth/login :- Authenticate using JWT and issue secure HTTP-only cookies",
+        "GET /api/messages/:id :- Fetch conversation history (Redis cache-aside with 1h TTL)",
+        "POST /api/messages/send/:id :- Send message, persist to MongoDB, and broadcast via Redis",
+        "WS /socket.io :- Real-time bidirectional WebSocket transport and presence sync",
+        "PUT /api/auth/update-profile :- Upload and optimize user avatar via Cloudinary"
       ],
-      architecture: `Interlock decouples Node.js event-loop concurrency from server memory into an independent distributed layer:
-
-• Cross-Node Routing: Relays socket events across independent Node.js instances via Redis Pub/Sub (@socket.io/redis-adapter) with verified sub-50ms tail latency (35ms p95, 47ms p99).
-• Multi-Tab Presence: Uses atomic Redis INCR/DECR counters to track active tabs and prevent false offline broadcasts.
-• Cache-Aside History: Employs deterministic in-memory Redis caching with a 1-hour TTL, cutting MongoDB Atlas read traffic by >90%.
-• Stress-Testing Engine: Automated benchmarking tool programmatically tests saturation breaking limits and plots p50/p95/p99 latency curves.`
+      architecture: `Distributed WebSocket Cluster Architecture:\n\n[Client Layer: React 18 + Vite + Zustand]\n       │\n       ▼ (Bidirectional WebSockets / HTTP Fallback)\n[Cluster Tier: Stateless Node.js / Express Instances behind Load Balancer]\n       │\n       ├──► [Redis Pub/Sub Layer: @socket.io/redis-adapter]\n       │    └── Zero-coupling cross-node message routing; relays room broadcasts with verified <50ms tail latency (35ms p95, 47ms p99)\n       │\n       ├──► [Redis In-Memory State: Atomic INCR/DECR Counters]\n       │    └── Reference-counted presence tracking per user session; eliminates multi-tab false disconnect race conditions\n       │\n       ├──► [Redis Cache-Aside History Layer: Deterministic Hashing]\n       │    └── In-memory recent message buffer with 1-hour sliding TTL; reduces MongoDB Atlas read traffic by >90%\n       │\n       ▼\n[Durable Persistence: MongoDB Atlas Cluster]\n       └── Asynchronous write persistence for message records, user profiles, and channel metadata\n\n[Automated Benchmarking Suite: Virtual Client Pairs]\n       └── Programmatic binary-search concurrency stress-testing suite (npm run benchmark) running virtual socket pairs to profile p50/p95/p99 latency curves and identify breaking limits`
     }
   },
   {
@@ -407,7 +273,7 @@ PUT    /api/auth/update-profile Upload and optimize user avatar via Cloudinary A
       setup: "git clone https://github.com/0xAditya-Labs/ContextIQ.git && pip install -r requirements.txt --break-system-packages",
       usage: "Users submit IT-support questions through the assistant interface. The LangGraph ReAct agent evaluates the query; if valid, it retrieves context and generates a grounded response using Gemini API. Out-of-scope queries are rejected to save tokens.",
       api: "POST /api/query :- Submit IT-support query\nPOST /api/retrieve :- Retrieve relevant knowledge chunks\nGET /api/traces :- View Langfuse request traces\nGET /api/metrics :- Retrieve observability metrics\nGET /api/health :- Health check endpoint"
-,
+      ,
       architecture: "LangGraph ReAct Agent orchestrates tool-gating and query execution. FastAPI handles routing, ChromaDB manages vector storage, and Gemini API powers generation. Full-stack observability is implemented with Langfuse and OpenTelemetry.",
       architectureImage: "/projects/contextiq_3.webp"
     }

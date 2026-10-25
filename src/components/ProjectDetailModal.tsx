@@ -218,7 +218,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                 {/* Full Description */}
                 <div className="space-y-2">
                   <h3 className="font-semibold text-lg">About</h3>
-                  <p className="text-muted-foreground leading-relaxed break-words overflow-wrap-anywhere whitespace-pre-line">{project.fullDescription}</p>
+                  <p className="text-muted-foreground leading-relaxed break-words overflow-wrap-anywhere">{project.fullDescription}</p>
                 </div>
 
                 {/* Key Features */}
@@ -276,7 +276,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                 {/* Implementation */}
                 <div className="space-y-2">
                   <h3 className="font-semibold text-lg">Implementation</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed break-words overflow-wrap-anywhere whitespace-pre-line">{technical.approach}</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed break-words overflow-wrap-anywhere">{technical.approach}</p>
                 </div>
 
                 {/* Technology Choices */}
@@ -298,7 +298,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                 {technical.architecture && (
                   <div className="space-y-2">
                     <h3 className="font-semibold text-lg">Architecture</h3>
-                    <pre className="p-3 rounded-xl text-xs overflow-x-auto font-mono border border-border/80 bg-background/50 whitespace-pre">
+                    <pre className="p-3 rounded-xl text-xs overflow-x-auto font-mono border border-border/80 bg-background/50 whitespace-pre-wrap break-words max-w-full">
                       {technical.architecture}
                     </pre>
                   </div>
@@ -383,56 +383,56 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                   <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight line-clamp-2">{project.title}</h2>
                 </div>
                 <div className="flex flex-wrap gap-3 shrink-0">
-                {project.githubUrl && (
-                  <Button
-                    variant="secondary"
-                    className="rounded-full gap-2 bg-black hover:bg-white/10 border border-white/20 hover:border-white/40 text-white hover:text-white transition-all hover:scale-[1.02] active:scale-95"
-                    asChild
-                  >
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="w-4 h-4 transition-transform group-hover:rotate-12 group-hover:scale-110" />
-                      GitHub
-                    </a>
-                  </Button>
-                )}
-                {project.liveUrl && (
-                  <Button
-                    variant="secondary"
-                    className="rounded-full gap-2 bg-white hover:bg-gray-200 text-black border border-transparent font-bold transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
-                    asChild
-                  >
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                      Live Demo
-                    </a>
-                  </Button>
-                )}
-                {project.demoVideoUrl && (
-                  <Button
-                    variant="secondary"
-                    className="rounded-full gap-2 bg-black hover:bg-white/10 border border-white/20 hover:border-white/40 text-white hover:text-white transition-all hover:scale-[1.02] active:scale-95"
-                    asChild
-                  >
-                    <a href={project.demoVideoUrl} target="_blank" rel="noopener noreferrer">
-                      <Play className="w-4 h-4 transition-transform group-hover:scale-110 group-hover:text-blue-400" />
-                      Watch Demo
-                    </a>
-                  </Button>
-                )}
-                {project.pitchDeckUrl && (
-                  <Button
-                    variant="secondary"
-                    className="rounded-full gap-2 bg-black hover:bg-white/10 border border-white/20 hover:border-white/40 text-white hover:text-white transition-all hover:scale-[1.02] active:scale-95"
-                    asChild
-                  >
-                    <a href={project.pitchDeckUrl} target="_blank" rel="noopener noreferrer">
-                      <Presentation className="w-4 h-4 transition-transform group-hover:scale-110 group-hover:text-purple-400" />
-                      Pitch Deck
-                    </a>
-                  </Button>
-                )}
+                  {project.githubUrl && (
+                    <Button
+                      variant="secondary"
+                      className="rounded-full gap-2 bg-black hover:bg-white/10 border border-white/20 hover:border-white/40 text-white hover:text-white transition-all hover:scale-[1.02] active:scale-95"
+                      asChild
+                    >
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Github className="w-4 h-4 transition-transform group-hover:rotate-12 group-hover:scale-110" />
+                        GitHub
+                      </a>
+                    </Button>
+                  )}
+                  {project.liveUrl && (
+                    <Button
+                      variant="secondary"
+                      className="rounded-full gap-2 bg-white hover:bg-gray-200 text-black border border-transparent font-bold transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                      asChild
+                    >
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                        Live Demo
+                      </a>
+                    </Button>
+                  )}
+                  {project.demoVideoUrl && (
+                    <Button
+                      variant="secondary"
+                      className="rounded-full gap-2 bg-black hover:bg-white/10 border border-white/20 hover:border-white/40 text-white hover:text-white transition-all hover:scale-[1.02] active:scale-95"
+                      asChild
+                    >
+                      <a href={project.demoVideoUrl} target="_blank" rel="noopener noreferrer">
+                        <Play className="w-4 h-4 transition-transform group-hover:scale-110 group-hover:text-blue-400" />
+                        Watch Demo
+                      </a>
+                    </Button>
+                  )}
+                  {project.pitchDeckUrl && (
+                    <Button
+                      variant="secondary"
+                      className="rounded-full gap-2 bg-black hover:bg-white/10 border border-white/20 hover:border-white/40 text-white hover:text-white transition-all hover:scale-[1.02] active:scale-95"
+                      asChild
+                    >
+                      <a href={project.pitchDeckUrl} target="_blank" rel="noopener noreferrer">
+                        <Presentation className="w-4 h-4 transition-transform group-hover:scale-110 group-hover:text-purple-400" />
+                        Pitch Deck
+                      </a>
+                    </Button>
+                  )}
+                </div>
               </div>
-            </div>
 
               {/* Carousel Controls */}
               {images.length > 1 && (
@@ -501,7 +501,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                   {/* Full Description */}
                   <div className="space-y-3">
                     <h3 className="font-semibold text-xl">Project Overview</h3>
-                    <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{project.fullDescription}</p>
+                    <p className="text-muted-foreground leading-relaxed">{project.fullDescription}</p>
                   </div>
 
                   {/* Key Features */}
@@ -561,7 +561,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                   {/* Implementation Approach */}
                   <div className="space-y-3">
                     <h3 className="font-semibold text-xl">Implementation</h3>
-                    <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{technical.approach}</p>
+                    <p className="text-muted-foreground leading-relaxed">{technical.approach}</p>
                   </div>
 
                   {/* Technology Choices */}
@@ -583,9 +583,9 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                   {technical.architecture && (
                     <div className="space-y-3">
                       <h3 className="font-semibold text-xl">Architecture</h3>
-                      <pre className="p-4 rounded-xl text-xs md:text-sm font-mono leading-relaxed border border-border/80 bg-background/50 overflow-x-auto whitespace-pre">
+                      <div className="p-4 rounded-xl text-sm font-mono leading-relaxed border border-border/80 bg-background/50 whitespace-pre-wrap break-words max-w-full">
                         {technical.architecture}
-                      </pre>
+                      </div>
                     </div>
                   )}
                 </TabsContent>
@@ -622,7 +622,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     {/* Usage */}
                     <div className="space-y-3">
                       <h3 className="font-semibold text-xl">Usage</h3>
-                      <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{project.documentation.usage}</p>
+                      <p className="text-muted-foreground">{project.documentation.usage}</p>
                     </div>
 
                     {/* API */}
@@ -639,13 +639,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     {project.documentation.architecture && (
                       <div className="space-y-3">
                         <h3 className="font-semibold text-xl">Architecture</h3>
-                        {project.documentation.architecture.includes("\n") ? (
-                          <pre className="p-4 rounded-xl text-xs md:text-sm overflow-x-auto font-mono bg-muted border border-border/80 whitespace-pre leading-relaxed">
-                            {project.documentation.architecture}
-                          </pre>
-                        ) : (
-                          <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{project.documentation.architecture}</p>
-                        )}
+                        <p className="text-muted-foreground leading-relaxed">{project.documentation.architecture}</p>
                         {project.documentation.architectureImage && (
                           <div className="mt-6 rounded-xl overflow-hidden border border-border/80 mx-auto max-w-3xl bg-background/50">
                             <img src={project.documentation.architectureImage} alt="Architecture Diagram" className="w-full h-auto object-contain" />
