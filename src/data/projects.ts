@@ -1,6 +1,7 @@
 export interface Project {
   id: string;
   title: string;
+  tagline?: string;
   description: string;
   fullDescription: string;
   image: string;
@@ -13,8 +14,11 @@ export interface Project {
   liveUrl?: string;
   demoVideoUrl?: string;
   pitchDeckUrl?: string;
+  links?: Record<string, string>;
   features: string[];
   challenges: string[];
+  overview?: Record<string, any>;
+  technical?: Record<string, any>;
   metrics: {
     value: string;
     label: string;
@@ -34,51 +38,324 @@ export interface Project {
 
 export const projectsData: Project[] = [
   {
-    id: "chatmind",
-    title: "ChatMind — Real-Time Messaging Platform with RAG Q&A",
-    description: "A real-time messaging platform with sub-50ms delivery, featuring a hybrid RAG pipeline for contextual question answering over chat history.",
-    fullDescription: "ChatMind combines real-time bidirectional messaging with a retrieval-augmented generation system that lets users query their own chat history conversationally. WebSocket-based delivery keeps end-to-end latency under 50ms, while a hybrid retrieval pipeline — combining BM25 keyword search, vector similarity, and reciprocal rank fusion — surfaces the most contextually relevant messages before a cross-encoder reranker refines results for accuracy.",
-    image: "/projects/chatmind_1.webp",
+    id: "interlock",
+    title: "Interlock — Distributed Real-Time Chat Architecture & Benchmark",
+    tagline: "Distributed Real-Time Messaging & Automated WebSocket Benchmarking Engine",
+    description: "Distributed Real-Time Messaging & Automated WebSocket Benchmarking Engine",
+    fullDescription: `Interlock is a horizontally scalable real-time chat platform engineered to overcome the single-core event loop bottleneck of monolithic Node.js WebSocket architectures.
+
+By decoupling process memory into a distributed Redis Pub/Sub messaging tier with atomic reference-counted presence tracking and cache-aside message history, Interlock enables seamless cross-server message routing while maintaining verified sub-50ms tail latency (35ms p95, 47ms p99) under saturated multi-node cluster loads.`,
+    image: "/projects/Interlock_1.webp",
     images: [
-      "/projects/chatmind_1.webp",
-      "/projects/chatmind_2.webp",
-      "/projects/chatmind_3.webp",
-      "/projects/chatmind_4.webp",
-      "/projects/chatmind_5.webp"
+      "/projects/Interlock_1.webp",
+      "/projects/Interlock_2.webp",
+      "/projects/Interlock_3.webp",
+      "/projects/Interlock_4.webp",
+      "/projects/Interlock_5.webp"
     ],
-    tags: ["MERN", "FastAPI", "WebSockets", "RAG"],
-    techStack: ["MongoDB", "Express.js", "React", "Node.js", "FastAPI", "WebSockets", "BM25", "Vector Retrieval"],
-    category: ["web", "ai-ml"],
+    tags: ["MERN", "Socket.io", "Redis", "Distributed Systems", "WebSockets"],
+    techStack: ["React 18", "Vite", "Zustand", "Node.js", "Socket.io", "Redis", "MongoDB", "TailwindCSS", "DaisyUI", "Cloudinary"],
+    category: ["web", "backend"],
     featured: true,
-    githubUrl: "https://github.com/0xAditya-Labs/ChatMind",
-    liveUrl: "https://chatmind-4wtp.onrender.com/",
+    githubUrl: "https://github.com/0xAditya-Labs/Interlock",
+    liveUrl: "https://interlock-mv9m.onrender.com",
+    links: {
+      liveDemo: "https://interlock-mv9m.onrender.com",
+      github: "https://github.com/0xAditya-Labs/Interlock"
+    },
     features: [
-      "Real-time bidirectional messaging via WebSockets with sub-50ms end-to-end delivery.",
-      "Hybrid RAG pipeline combining BM25 keyword search and dense vector retrieval.",
-      "Reciprocal Rank Fusion (RRF) to merge and rank results from multiple retrieval methods.",
-      "Cross-encoder reranking layer improving context relevance (MRR@5) by 35%.",
-      "Conversational Q&A interface for querying chat history contextually."
+      "Horizontally scalable WebSocket clustering using @socket.io/redis-adapter for zero-coupling cross-node message routing.",
+      "Atomic presence tracking powered by Redis INCR/DECR counters, eliminating multi-tab false offline race conditions.",
+      "High-speed cache-aside message history in Redis with deterministic hashing, reducing MongoDB Atlas read load by >90%.",
+      "Automated end-to-end WebSocket stress-testing suite profiling p50, p95, and p99 delivery latency curves under configurable concurrency.",
+      "Responsive fullstack client built with React 18, Vite, Zustand, and TailwindCSS featuring 32 dynamic DaisyUI theme presets.",
+      "Rich media sharing with real-time image uploads and CDN transformations via Cloudinary API."
     ],
     challenges: [
-      "Balancing retrieval accuracy against latency — reranking improves relevance but adds compute overhead that had to stay within the sub-50ms delivery budget.",
-      "Merging results from two structurally different retrieval methods (keyword-based BM25 and dense vector search) into one coherent ranked list via RRF."
+      "Single-Threaded Event Loop Saturation: High-frequency concurrent traffic in monolithic Socket.io saturates Node's event loop at ~200 chat pairs (Breaking Limit B=200). Solved by federating independent server processes over a Redis Pub/Sub message bus, scaling throughput across multiple CPU cores.",
+      "Multi-Tab Disconnect Race Conditions: In monolithic chat apps, closing 1 of 2 open tabs triggers a socket disconnect that falsely broadcasts 'User Offline'. Solved using atomic Redis counters (INCR on connect, DECR on disconnect) that only broadcast offline when active connections reach zero.",
+      "Cross-Server Relay Latency Overhead: Serializing every packet across physical process boundaries incurs a network penalty. Tuned payload structures and Redis pipelines to sustain a 35ms p95 latency and 47ms p99 tail latency under 100% cross-node relay worst-case routing."
     ],
-    metrics: [
-      { label: "Message Latency", value: "<50ms (20% faster)" },
-      { label: "Context Relevance (MRR@5)", value: "+35%" }
-    ],
-    implementation: {
-      approach: "Separated real-time delivery (WebSockets) from the RAG retrieval layer (FastAPI microservice), allowing each to scale and be optimized independently. Retrieval combines sparse (BM25) and dense (vector) methods, fused via RRF, then reranked with a cross-encoder before returning results.",
-      technologies: [
-        { name: "WebSockets", reason: "Required for real-time bidirectional message delivery with minimal latency overhead." },
-        { name: "FastAPI", reason: "Serves the RAG retrieval pipeline as a fast, async-capable microservice separate from the main app." },
-        { name: "BM25 + Vector Retrieval + RRF", reason: "Combines keyword precision with semantic understanding for more accurate contextual search than either method alone." }
+    overview: {
+      projectOverview: `Interlock is a horizontally scalable real-time chat platform engineered to overcome the single-core event loop bottleneck of monolithic Node.js WebSocket architectures.
+
+By decoupling process memory into a distributed Redis Pub/Sub messaging tier with atomic reference-counted presence tracking and cache-aside message history, Interlock enables seamless cross-server message routing while maintaining verified sub-50ms tail latency (35ms p95, 47ms p99) under saturated multi-node cluster loads.`,
+      keyFeatures: [
+        "Horizontally scalable WebSocket clustering using @socket.io/redis-adapter for zero-coupling cross-node message routing.",
+        "Atomic presence tracking powered by Redis INCR/DECR counters, eliminating multi-tab false offline race conditions.",
+        "High-speed cache-aside message history in Redis with deterministic hashing, reducing MongoDB Atlas read load by >90%.",
+        "Automated end-to-end WebSocket stress-testing suite profiling p50, p95, and p99 delivery latency curves under configurable concurrency.",
+        "Responsive fullstack client built with React 18, Vite, Zustand, and TailwindCSS featuring 32 dynamic DaisyUI theme presets.",
+        "Rich media sharing with real-time image uploads and CDN transformations via Cloudinary API."
+      ],
+      challengesAndSolutions: [
+        "Single-Threaded Event Loop Saturation: High-frequency concurrent traffic in monolithic Socket.io saturates Node's event loop at ~200 chat pairs (Breaking Limit B=200). Solved by federating independent server processes over a Redis Pub/Sub message bus, scaling throughput across multiple CPU cores.",
+        "Multi-Tab Disconnect Race Conditions: In monolithic chat apps, closing 1 of 2 open tabs triggers a socket disconnect that falsely broadcasts 'User Offline'. Solved using atomic Redis counters (INCR on connect, DECR on disconnect) that only broadcast offline when active connections reach zero.",
+        "Cross-Server Relay Latency Overhead: Serializing every packet across physical process boundaries incurs a network penalty. Tuned payload structures and Redis pipelines to sustain a 35ms p95 latency and 47ms p99 tail latency under 100% cross-node relay worst-case routing."
       ]
     },
+    technical: {
+      approach: `Decoupled state from process memory into an independent distributed layer utilizing Redis Pub/Sub and atomic operations.
+
+• Backend Architecture: Dual-mode architecture switchable between a single monolithic process for local development and a multi-node stateless cluster behind a load balancer.
+
+• Presence & Caching: Leverages atomic Redis INCR/DECR counters to eliminate multi-tab false disconnect race conditions, and deterministic cache-aside message history (1-hour TTL) to offload >90% of MongoDB Atlas reads.
+
+• Benchmarking Engine: An automated benchmarking framework programmatically spins up server topologies and virtual WebSocket client pairs, performing binary search to discover the breaking limit and generating comparative p50/p95/p99 latency curves.`,
+      implementation: `Decoupled state from process memory into an independent distributed layer utilizing Redis Pub/Sub and atomic operations.
+
+• Backend Architecture: Dual-mode architecture switchable between a single monolithic process for local development and a multi-node stateless cluster behind a load balancer.
+
+• Presence & Caching: Leverages atomic Redis INCR/DECR counters to eliminate multi-tab false disconnect race conditions, and deterministic cache-aside message history (1-hour TTL) to offload >90% of MongoDB Atlas reads.
+
+• Benchmarking Engine: An automated benchmarking framework programmatically spins up server topologies and virtual WebSocket client pairs, performing binary search to discover the breaking limit and generating comparative p50/p95/p99 latency curves.`,
+      architecture: `Distributed WebSocket Cluster Architecture:
+
+┌─────────────────────────────────────────────────────────────┐
+│  CLIENT TIER                                                │
+│  React 18  •  Vite  •  Zustand  •  DaisyUI Themes           │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼  Bidirectional WebSockets (WSS)
+┌─────────────────────────────────────────────────────────────┐
+│  STATELESS SERVER CLUSTER (Node.js / Express Instances)     │
+│  Horizontal multi-process federation behind Load Balancer   │
+└──────────────┬──────────────────────────────┬───────────────┘
+               │                              │
+               ▼                              ▼
+ ┌───────────────────────────┐  ┌───────────────────────────┐
+ │ REDIS PUB/SUB MESSAGE BUS │  │ ATOMIC PRESENCE STORE     │
+ │ @socket.io/redis-adapter  │  │ Redis INCR / DECR         │
+ │ • Zero-coupling routing   │  │ • Reference-counted state │
+ │ • 35ms p95 / 47ms p99     │  │ • No multi-tab race cond. │
+ └─────────────┬─────────────┘  └───────────────────────────┘
+               │
+               ▼
+ ┌───────────────────────────┐
+ │ CACHE-ASIDE MESSAGE STORE │
+ │ Redis In-Memory (1h TTL)  │
+ │ • Deterministic hashing   │
+ │ • >90% DB read reduction  │
+ └─────────────┬─────────────┘
+               │
+               ▼  Asynchronous Write-Through
+┌─────────────────────────────────────────────────────────────┐
+│  PERSISTENCE TIER (MongoDB Atlas Cluster)                   │
+│  Durable storage for user records, auth & message history   │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│  AUTOMATED BENCHMARKING ENGINE (Virtual Client Pairs)       │
+│  • Programmatic concurrency load generator (npm run bench)  │
+│  • Binary search breaking-limit discovery (B = 200 pairs)   │
+│  • Automated p50 / p95 / p99 delivery latency curves        │
+└─────────────────────────────────────────────────────────────┘`,
+      technologyChoices: [
+        {
+          name: "Socket.io v4",
+          technology: "Socket.io v4",
+          reason: "Handles persistent bidirectional WebSocket connections with automatic reconnects, room routing, and fallback transports.",
+          description: "Handles persistent bidirectional WebSocket connections with automatic reconnects, room routing, and fallback transports."
+        },
+        {
+          name: "Redis Pub/Sub (@socket.io/redis-adapter)",
+          technology: "Redis Pub/Sub (@socket.io/redis-adapter)",
+          reason: "Relays events across independent Node.js instances with zero direct inter-server coupling, enabling frictionless horizontal scale-out.",
+          description: "Relays events across independent Node.js instances with zero direct inter-server coupling, enabling frictionless horizontal scale-out."
+        },
+        {
+          name: "Atomic Redis Operations & Cache-Aside",
+          technology: "Atomic Redis Operations & Cache-Aside",
+          reason: "Utilizes INCR/DECR for multi-tab presence synchronization and caches conversation history with a 1-hour TTL to protect MongoDB from read spikes.",
+          description: "Utilizes INCR/DECR for multi-tab presence synchronization and caches conversation history with a 1-hour TTL to protect MongoDB from read spikes."
+        },
+        {
+          name: "React 18, Vite & Zustand",
+          technology: "React 18, Vite & Zustand",
+          reason: "Powers a reactive, ultra-fast frontend with lightweight global state management for real-time messaging and contact presence.",
+          description: "Powers a reactive, ultra-fast frontend with lightweight global state management for real-time messaging and contact presence."
+        }
+      ]
+    },
+    metrics: [
+      {
+        value: "35ms (p95)",
+        label: "Message Latency (100% Cross-Server)"
+      },
+      {
+        value: "200 Pairs (400 Sockets)",
+        label: "Monolith Breaking Limit (B)"
+      },
+      {
+        value: "100%",
+        label: "Cluster Delivery Rate at Saturation"
+      },
+      {
+        value: ">90%",
+        label: "MongoDB Read Reduction (Cache-Aside)"
+      }
+    ],
+    implementation: {
+      approach: `Decoupled state from process memory into an independent distributed layer utilizing Redis Pub/Sub and atomic operations.
+
+• Backend Architecture: Dual-mode architecture switchable between a single monolithic process for local development and a multi-node stateless cluster behind a load balancer.
+
+• Presence & Caching: Leverages atomic Redis INCR/DECR counters to eliminate multi-tab false disconnect race conditions, and deterministic cache-aside message history (1-hour TTL) to offload >90% of MongoDB Atlas reads.
+
+• Benchmarking Engine: An automated benchmarking framework programmatically spins up server topologies and virtual WebSocket client pairs, performing binary search to discover the breaking limit and generating comparative p50/p95/p99 latency curves.`,
+      technologies: [
+        {
+          name: "Socket.io v4",
+          reason: "Handles persistent bidirectional WebSocket connections with automatic reconnects, room routing, and fallback transports."
+        },
+        {
+          name: "Redis Pub/Sub (@socket.io/redis-adapter)",
+          reason: "Relays events across independent Node.js instances with zero direct inter-server coupling, enabling frictionless horizontal scale-out."
+        },
+        {
+          name: "Atomic Redis Operations & Cache-Aside",
+          reason: "Utilizes INCR/DECR for multi-tab presence synchronization and caches conversation history with a 1-hour TTL to protect MongoDB from read spikes."
+        },
+        {
+          name: "React 18, Vite & Zustand",
+          reason: "Powers a reactive, ultra-fast frontend with lightweight global state management for real-time messaging and contact presence."
+        }
+      ]
+    },
+    architecture: `Distributed WebSocket Cluster Architecture:
+
+┌─────────────────────────────────────────────────────────────┐
+│  CLIENT TIER                                                │
+│  React 18  •  Vite  •  Zustand  •  DaisyUI Themes           │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼  Bidirectional WebSockets (WSS)
+┌─────────────────────────────────────────────────────────────┐
+│  STATELESS SERVER CLUSTER (Node.js / Express Instances)     │
+│  Horizontal multi-process federation behind Load Balancer   │
+└──────────────┬──────────────────────────────┬───────────────┘
+               │                              │
+               ▼                              ▼
+ ┌───────────────────────────┐  ┌───────────────────────────┐
+ │ REDIS PUB/SUB MESSAGE BUS │  │ ATOMIC PRESENCE STORE     │
+ │ @socket.io/redis-adapter  │  │ Redis INCR / DECR         │
+ │ • Zero-coupling routing   │  │ • Reference-counted state │
+ │ • 35ms p95 / 47ms p99     │  │ • No multi-tab race cond. │
+ └─────────────┬─────────────┘  └───────────────────────────┘
+               │
+               ▼
+ ┌───────────────────────────┐
+ │ CACHE-ASIDE MESSAGE STORE │
+ │ Redis In-Memory (1h TTL)  │
+ │ • Deterministic hashing   │
+ │ • >90% DB read reduction  │
+ └─────────────┬─────────────┘
+               │
+               ▼  Asynchronous Write-Through
+┌─────────────────────────────────────────────────────────────┐
+│  PERSISTENCE TIER (MongoDB Atlas Cluster)                   │
+│  Durable storage for user records, auth & message history   │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│  AUTOMATED BENCHMARKING ENGINE (Virtual Client Pairs)       │
+│  • Programmatic concurrency load generator (npm run bench)  │
+│  • Binary search breaking-limit discovery (B = 200 pairs)   │
+│  • Automated p50 / p95 / p99 delivery latency curves        │
+└─────────────────────────────────────────────────────────────┘`,
     documentation: {
-      setup: "git clone https://github.com/0xAditya-Labs/ChatMind.git && npm install && cd server && npm install",
-      usage: "Users sign up, join real-time chat conversations, and can ask the built-in Q&A panel questions about past messages — the RAG pipeline retrieves and summarizes relevant chat history conversationally instead of requiring manual scrolling/search.",
-      api: "POST /api/auth/signup :- Register a new user\nPOST /api/auth/login :- Authenticate using JWT\nGET /api/messages/:id :- Fetch conversation history\nPOST /api/messages :- Send a message\nWS /socket.io :- Real-time messaging\nPOST /api/rag/query :- Ask questions over chat history"
+      setup: `# 1. Clone distributed branch & enter directory
+git clone -b distributed-backend https://github.com/0xAditya-Labs/Interlock.git
+cd Interlock
+
+# 2. Install dependencies & build client bundle
+npm install
+npm run build
+
+# 3. Start distributed multi-node cluster
+npm run start:cluster
+
+# 4. Run automated WebSocket load benchmark
+npm run benchmark`,
+      usage: `1. Authentication & Profiles:
+   Register with bcrypt-hashed credentials or log in via JWT HTTP-only cookies. Upload and optimize profile avatars in real time via Cloudinary API.
+
+2. Real-Time Chat & Contact Presence:
+   Message in real time with live online/offline presence indicators. Toggle across 32 dynamic DaisyUI presets.
+
+3. Distributed Cross-Server Routing:
+   Messages route seamlessly across multi-server instances via Redis Pub/Sub (@socket.io/redis-adapter), with cache-aside history (1h TTL) shielding MongoDB Atlas.
+
+4. WebSocket Stress Testing:
+   Launch the benchmarking suite (npm run benchmark) to stress-test cluster topologies, identify breaking limits, and measure tail latency curves.`,
+      api: `POST   /api/auth/signup         Register a new user with bcrypt password hashing
+POST   /api/auth/login          Authenticate using JWT and issue secure HTTP-only cookies
+GET    /api/messages/:id        Fetch conversation history (Redis cache-aside with 1h TTL)
+POST   /api/messages/send/:id   Send message, persist to MongoDB, and broadcast via Redis
+WS     /socket.io               Real-time bidirectional WebSocket transport & presence sync
+PUT    /api/auth/update-profile Upload and optimize user avatar via Cloudinary API`,
+      apiReference: [
+        "POST   /api/auth/signup         :- Register a new user with bcrypt password hashing",
+        "POST   /api/auth/login          :- Authenticate using JWT and issue secure HTTP-only cookies",
+        "GET    /api/messages/:id        :- Fetch conversation history (Redis cache-aside with 1h TTL)",
+        "POST   /api/messages/send/:id   :- Send message, persist to MongoDB, and broadcast via Redis",
+        "WS     /socket.io               :- Real-time bidirectional WebSocket transport & presence sync",
+        "PUT    /api/auth/update-profile :- Upload and optimize user avatar via Cloudinary API"
+      ],
+      architecture: `Interlock decouples Node.js event-loop concurrency from server memory into an independent distributed layer:
+
+• Cross-Node Routing: Relays socket events across independent Node.js instances via Redis Pub/Sub (@socket.io/redis-adapter) with verified sub-50ms tail latency (35ms p95, 47ms p99).
+• Multi-Tab Presence: Uses atomic Redis INCR/DECR counters to track active tabs and prevent false offline broadcasts.
+• Cache-Aside History: Employs deterministic in-memory Redis caching with a 1-hour TTL, cutting MongoDB Atlas read traffic by >90%.
+• Stress-Testing Engine: Automated benchmarking tool programmatically tests saturation breaking limits and plots p50/p95/p99 latency curves.`
+    }
+  },
+  {
+    id: "swiftcache",
+    title: "SwiftCache — Thread-Safe Concurrent LRU Cache Server",
+    description: "A high-performance, thread-safe TCP-based LRU cache server built in C++, sustaining 160,000+ QPS with sub-0.26ms p99 latency through deterministic O(1) operations.",
+    fullDescription: "SwiftCache is a concurrent LRU cache server built from first principles in C++, combining a custom hash-map and doubly linked list to guarantee deterministic O(1) get/set operations with TTL-based eviction. Designed with correctness under concurrent load as the primary constraint, it uses fine-grained locking (16 independent shards) to sustain high throughput without sacrificing thread safety, and exposes a modular, self-serve configuration layer to reduce integration effort for new caching features.",
+    image: "/projects/swiftcache_1.webp",
+    images: [
+      "/projects/swiftcache_1.webp",
+      "/projects/swiftcache_2.webp",
+      "/projects/swiftcache_3.webp"
+    ],
+    tags: ["C++", "Concurrency", "TCP/HTTP"],
+    techStack: ["C++", "TCP/HTTP", "Multithreading", "Custom Hash-Map", "Doubly Linked List"],
+    category: ["systems", "backend"],
+    featured: true,
+    githubUrl: "https://github.com/0xAditya-Labs/SwiftCache",
+    liveUrl: "",
+    features: [
+      "Deterministic O(1) get/set operations via custom hash-map + doubly linked list.",
+      "TTL-based eviction with lazy expiry and a background reaper thread.",
+      "Sustains 160,000+ QPS with sub-0.26ms p99 latency under concurrent workloads.",
+      "Fine-grained lock striping via 16 shards to prevent global contention.",
+      "Thread-safe design tested to handle 512 concurrent TCP connections optimally."
+    ],
+    challenges: [
+      "Ensuring correctness under high contention without resorting to a single global lock, which would bottleneck throughput.",
+      "Benchmarking realistic workloads with Zipfian distributions to validate p99 latency rather than relying on average-case numbers.",
+      "Preventing deadlocks in the background TTL reaper by enforcing sequential, per-shard lock acquisition."
+    ],
+    metrics: [
+      { label: "Throughput", value: "160,000+ QPS" },
+      { label: "p99 Latency", value: "<0.26ms" },
+      { label: "Kernel vs Engine Latency", value: ">99% OS overhead" }
+    ],
+    implementation: {
+      approach: "Built a custom hash-map and intrusive doubly-linked list from scratch to guarantee O(1) operations without extra memory allocations per node. Scaled concurrency using a ShardedCache with independent mutexes per shard. Validated via a closed-loop benchmarking client using Zipfian key distributions.",
+      technologies: [
+        { name: "C++", reason: "Low-level control over memory layout and locking primitives needed for deterministic performance guarantees." },
+        { name: "TCP/HTTP", reason: "Enables the cache to be accessed as a networked service, not just an in-process library." }
+      ]
+    },
+    architecture: "Implemented a multi-layered design separating the I/O layer (ThreadPoolServer) from the concurrency layer (ShardedCache). This avoids global locks and achieves true parallel execution, resulting in 160,194 median QPS. The architecture explicitly isolates pure algorithmic cache execution (~0.25µs) from kernel/TCP overhead (~87µs), proving that data structure optimization is bottlenecked by the OS at scale.",
+    documentation: {
+      setup: "git clone https://github.com/0xAditya-Labs/SwiftCache.git && cd SwiftCache && make",
+      usage: "Client applications connect to the server over TCP and issue GET, SET, and DELETE commands against the cache; TTL-based expiry and LRU eviction are handled automatically under the hood.",
+      api: "GET <key> :- Retrieve cached value\nSET <key> <value> [TTL] :- Store value with optional expiration\nDELETE <key> :- Remove cached entry\nEXISTS <key> :- Check key existence\nPING :- Verify server connectivity\nSTATS :- Retrieve cache statistics"
     }
   },
   {
@@ -133,54 +410,6 @@ export const projectsData: Project[] = [
 ,
       architecture: "LangGraph ReAct Agent orchestrates tool-gating and query execution. FastAPI handles routing, ChromaDB manages vector storage, and Gemini API powers generation. Full-stack observability is implemented with Langfuse and OpenTelemetry.",
       architectureImage: "/projects/contextiq_3.webp"
-    }
-  },
-  {
-    id: "swiftcache",
-    title: "SwiftCache — Thread-Safe Concurrent LRU Cache Server",
-    description: "A high-performance, thread-safe TCP-based LRU cache server built in C++, sustaining 160,000+ QPS with sub-0.26ms p99 latency through deterministic O(1) operations.",
-    fullDescription: "SwiftCache is a concurrent LRU cache server built from first principles in C++, combining a custom hash-map and doubly linked list to guarantee deterministic O(1) get/set operations with TTL-based eviction. Designed with correctness under concurrent load as the primary constraint, it uses fine-grained locking (16 independent shards) to sustain high throughput without sacrificing thread safety, and exposes a modular, self-serve configuration layer to reduce integration effort for new caching features.",
-    image: "/projects/swiftcache_1.webp",
-    images: [
-      "/projects/swiftcache_1.webp",
-      "/projects/swiftcache_2.webp",
-      "/projects/swiftcache_3.webp"
-    ],
-    tags: ["C++", "Concurrency", "TCP/HTTP"],
-    techStack: ["C++", "TCP/HTTP", "Multithreading", "Custom Hash-Map", "Doubly Linked List"],
-    category: ["systems", "backend"],
-    featured: true,
-    githubUrl: "https://github.com/0xAditya-Labs/SwiftCache",
-    liveUrl: "",
-    features: [
-      "Deterministic O(1) get/set operations via custom hash-map + doubly linked list.",
-      "TTL-based eviction with lazy expiry and a background reaper thread.",
-      "Sustains 160,000+ QPS with sub-0.26ms p99 latency under concurrent workloads.",
-      "Fine-grained lock striping via 16 shards to prevent global contention.",
-      "Thread-safe design tested to handle 512 concurrent TCP connections optimally."
-    ],
-    challenges: [
-      "Ensuring correctness under high contention without resorting to a single global lock, which would bottleneck throughput.",
-      "Benchmarking realistic workloads with Zipfian distributions to validate p99 latency rather than relying on average-case numbers.",
-      "Preventing deadlocks in the background TTL reaper by enforcing sequential, per-shard lock acquisition."
-    ],
-    metrics: [
-      { label: "Throughput", value: "160,000+ QPS" },
-      { label: "p99 Latency", value: "<0.26ms" },
-      { label: "Kernel vs Engine Latency", value: ">99% OS overhead" }
-    ],
-    implementation: {
-      approach: "Built a custom hash-map and intrusive doubly-linked list from scratch to guarantee O(1) operations without extra memory allocations per node. Scaled concurrency using a ShardedCache with independent mutexes per shard. Validated via a closed-loop benchmarking client using Zipfian key distributions.",
-      technologies: [
-        { name: "C++", reason: "Low-level control over memory layout and locking primitives needed for deterministic performance guarantees." },
-        { name: "TCP/HTTP", reason: "Enables the cache to be accessed as a networked service, not just an in-process library." }
-      ]
-    },
-    architecture: "Implemented a multi-layered design separating the I/O layer (ThreadPoolServer) from the concurrency layer (ShardedCache). This avoids global locks and achieves true parallel execution, resulting in 160,194 median QPS. The architecture explicitly isolates pure algorithmic cache execution (~0.25µs) from kernel/TCP overhead (~87µs), proving that data structure optimization is bottlenecked by the OS at scale.",
-    documentation: {
-      setup: "git clone https://github.com/0xAditya-Labs/SwiftCache.git && cd SwiftCache && make",
-      usage: "Client applications connect to the server over TCP and issue GET, SET, and DELETE commands against the cache; TTL-based expiry and LRU eviction are handled automatically under the hood.",
-      api: "GET <key> :- Retrieve cached value\nSET <key> <value> [TTL] :- Store value with optional expiration\nDELETE <key> :- Remove cached entry\nEXISTS <key> :- Check key existence\nPING :- Verify server connectivity\nSTATS :- Retrieve cache statistics"
     }
   },
   {

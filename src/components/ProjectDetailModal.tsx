@@ -21,10 +21,10 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
   const images = project.images || [project.image].filter(Boolean);
   const tagline = project.tagline || project.description || "";
   const keyFeatures = project.keyFeatures || project.features || [];
-  const technical = project.technical || {
-    approach: project.implementation?.approach || "",
-    technologyChoices: project.implementation?.technologies || [],
-    architecture: project.architecture || ""
+  const technical = {
+    approach: project.technical?.approach || project.technical?.implementation || project.implementation?.approach || "",
+    technologyChoices: project.technical?.technologyChoices || project.implementation?.technologies || [],
+    architecture: project.technical?.architecture || project.architecture || project.documentation?.architecture || ""
   };
 
   useEffect(() => {
@@ -218,7 +218,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                 {/* Full Description */}
                 <div className="space-y-2">
                   <h3 className="font-semibold text-lg">About</h3>
-                  <p className="text-muted-foreground leading-relaxed break-words overflow-wrap-anywhere">{project.fullDescription}</p>
+                  <p className="text-muted-foreground leading-relaxed break-words overflow-wrap-anywhere whitespace-pre-line">{project.fullDescription}</p>
                 </div>
 
                 {/* Key Features */}
@@ -276,7 +276,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                 {/* Implementation */}
                 <div className="space-y-2">
                   <h3 className="font-semibold text-lg">Implementation</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed break-words overflow-wrap-anywhere">{technical.approach}</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed break-words overflow-wrap-anywhere whitespace-pre-line">{technical.approach}</p>
                 </div>
 
                 {/* Technology Choices */}
@@ -286,8 +286,8 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     <div className="space-y-2">
                       {technical.technologyChoices.map((tech, idx) => (
                         <div key={idx} className="p-3 rounded-xl border border-border/80 bg-background/50 w-full overflow-hidden">
-                          <h4 className="font-medium text-sm mb-1 break-words">{tech.name}</h4>
-                          <p className="text-xs text-muted-foreground break-words overflow-wrap-anywhere">{tech.reason}</p>
+                          <h4 className="font-medium text-sm mb-1 break-words">{tech.name || (tech as any).technology}</h4>
+                          <p className="text-xs text-muted-foreground break-words overflow-wrap-anywhere">{tech.reason || (tech as any).description}</p>
                         </div>
                       ))}
                     </div>
@@ -298,7 +298,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                 {technical.architecture && (
                   <div className="space-y-2">
                     <h3 className="font-semibold text-lg">Architecture</h3>
-                    <pre className="p-3 rounded-xl text-xs overflow-x-auto font-mono border border-border/80 bg-background/50 whitespace-pre-wrap break-words max-w-full">
+                    <pre className="p-3 rounded-xl text-xs overflow-x-auto font-mono border border-border/80 bg-background/50 whitespace-pre">
                       {technical.architecture}
                     </pre>
                   </div>
@@ -501,7 +501,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                   {/* Full Description */}
                   <div className="space-y-3">
                     <h3 className="font-semibold text-xl">Project Overview</h3>
-                    <p className="text-muted-foreground leading-relaxed">{project.fullDescription}</p>
+                    <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{project.fullDescription}</p>
                   </div>
 
                   {/* Key Features */}
@@ -561,7 +561,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                   {/* Implementation Approach */}
                   <div className="space-y-3">
                     <h3 className="font-semibold text-xl">Implementation</h3>
-                    <p className="text-muted-foreground leading-relaxed">{technical.approach}</p>
+                    <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{technical.approach}</p>
                   </div>
 
                   {/* Technology Choices */}
@@ -571,8 +571,8 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                       <div className="grid md:grid-cols-2 gap-4">
                         {technical.technologyChoices.map((tech, idx) => (
                           <div key={idx} className="p-4 rounded-xl border border-border/80 bg-background/50">
-                            <h4 className="font-semibold mb-2">{tech.name}</h4>
-                            <p className="text-sm text-muted-foreground">{tech.reason}</p>
+                            <h4 className="font-semibold mb-2">{tech.name || (tech as any).technology}</h4>
+                            <p className="text-sm text-muted-foreground">{tech.reason || (tech as any).description}</p>
                           </div>
                         ))}
                       </div>
@@ -583,9 +583,9 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                   {technical.architecture && (
                     <div className="space-y-3">
                       <h3 className="font-semibold text-xl">Architecture</h3>
-                      <div className="p-4 rounded-xl text-sm font-mono leading-relaxed border border-border/80 bg-background/50 whitespace-pre-wrap break-words max-w-full">
+                      <pre className="p-4 rounded-xl text-xs md:text-sm font-mono leading-relaxed border border-border/80 bg-background/50 overflow-x-auto whitespace-pre">
                         {technical.architecture}
-                      </div>
+                      </pre>
                     </div>
                   )}
                 </TabsContent>
@@ -622,7 +622,7 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     {/* Usage */}
                     <div className="space-y-3">
                       <h3 className="font-semibold text-xl">Usage</h3>
-                      <p className="text-muted-foreground">{project.documentation.usage}</p>
+                      <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{project.documentation.usage}</p>
                     </div>
 
                     {/* API */}
@@ -639,7 +639,13 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     {project.documentation.architecture && (
                       <div className="space-y-3">
                         <h3 className="font-semibold text-xl">Architecture</h3>
-                        <p className="text-muted-foreground leading-relaxed">{project.documentation.architecture}</p>
+                        {project.documentation.architecture.includes("\n") ? (
+                          <pre className="p-4 rounded-xl text-xs md:text-sm overflow-x-auto font-mono bg-muted border border-border/80 whitespace-pre leading-relaxed">
+                            {project.documentation.architecture}
+                          </pre>
+                        ) : (
+                          <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{project.documentation.architecture}</p>
+                        )}
                         {project.documentation.architectureImage && (
                           <div className="mt-6 rounded-xl overflow-hidden border border-border/80 mx-auto max-w-3xl bg-background/50">
                             <img src={project.documentation.architectureImage} alt="Architecture Diagram" className="w-full h-auto object-contain" />

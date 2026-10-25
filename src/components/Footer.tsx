@@ -48,22 +48,11 @@ const Footer = () => {
         <div className="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-12 mb-6 lg:mb-8">
           {/* Left Column: Identity & Positioning */}
           <div className="space-y-5 max-w-sm lg:w-1/3">
-            {/* Primary & Secondary Identity Lockup: adityac.codes + [AC] */}
+            {/* Primary Identity Lockup: adityac.codes */}
             <div className="flex items-center gap-2.5">
               <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white font-sans">
                 adityac<span className="text-neutral-500 font-normal">.codes</span>
               </h3>
-              <div
-                className="w-6 h-6 rounded-full bg-white/5 border border-white/15 flex items-center justify-center overflow-hidden flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity shadow-inner"
-                title="AC Seal"
-              >
-                <img
-                  src="/preloader.svg"
-                  alt="AC"
-                  className="w-full h-full object-cover select-none"
-                  draggable={false}
-                />
-              </div>
             </div>
 
             <p className="text-sm sm:text-base text-neutral-400 leading-relaxed font-normal">

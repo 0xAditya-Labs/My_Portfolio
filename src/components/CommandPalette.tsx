@@ -55,12 +55,12 @@ const CommandPalette = () => {
 
   const projectsData = [
     {
-      id: "chatmind",
-      title: "ChatMind",
-      description: "Real-time RAG-based messaging platform with sub-50ms delivery",
+      id: "interlock",
+      title: "Interlock",
+      description: "Distributed Real-Time Messaging & Automated WebSocket Benchmarking Engine",
       category: "project" as const,
       icon: <Briefcase className="mr-2 h-4 w-4" />,
-      action: () => window.open("https://github.com/0xAditya-Labs/ChatMind", "_blank")
+      action: () => window.open("https://github.com/0xAditya-Labs/Interlock", "_blank")
     },
     {
       id: "swiftcache",
@@ -351,7 +351,7 @@ const CommandPalette = () => {
         <CommandSeparator />
         <CommandGroup heading="Actions">
           <CommandItem onSelect={() => {
-            window.open('https://drive.google.com/file/d/1ey76P7eqpmiMD-C0LmM27ndCzXkrNiDT/view?usp=sharing', '_blank');
+            window.open('https://drive.google.com/file/d/1M7uL6le1WQKvRtNmYtgQQSv9sp4QxSr4/view?usp=sharing', '_blank');
             setOpen(false);
           }}>
             <Download className="mr-2 h-4 w-4" />

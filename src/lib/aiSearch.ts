@@ -28,8 +28,8 @@ C++, Python, C, JavaScript, Data Structures & Algorithms, System Design, Concurr
 PROJECT PORTFOLIO:
 1. SwiftCache
    - Thread-safe TCP-based LRU cache supporting deterministic O(1) operations, sustained 15,000+ QPS
-2. ChatMind
-   - Real-Time Messaging Platform with RAG Q&A, <50ms latency using WebSockets
+2. Interlock
+   - Distributed Real-Time Messaging & Automated WebSocket Benchmarking Engine, verified sub-50ms tail latency with Redis Pub/Sub clustering
 3. RetainOps
    - AI-Powered Customer Retention Platform integrating React and FastAPI with production-ready ML inference
 ACHIEVEMENTS & LEADERSHIP:
@@ -62,7 +62,7 @@ const fallbackResponses: Record<string, string> = {
   "hometown": "I am from Ludhiana, Punjab. I was born in August 2005.",
   "ludhiana": "I am from Ludhiana, Punjab.",
   "background": "I am from Ludhiana, Punjab, born in August 2005.",
-  "projects": "My main projects include SwiftCache (15,000+ QPS concurrent LRU cache), ChatMind (real-time RAG messaging), and RetainOps (AI customer retention platform).",
+  "projects": "My main projects include SwiftCache (15,000+ QPS concurrent LRU cache), Interlock (distributed real-time messaging with Redis Pub/Sub clustering), and RetainOps (AI customer retention platform).",
   "contact": "You can reach me at aditya.chauhan.nitj.ac@gmail.com, or connect on LinkedIn (linkedin.com/in/aditya-chauhan-nitj).",
   "achievements": "I'm a Codeforces Specialist, LeetCode Knight, and CodeChef 3-star with 1,500+ DSA problems solved.",
   "leadership": "I Co-Lead the Google Developer Group and the Literacy and Debating Club at NIT Jalandhar, and organized the Hackmol hackathon.",

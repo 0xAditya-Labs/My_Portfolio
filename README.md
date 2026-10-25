@@ -253,7 +253,6 @@ The portfolio is organized to make personal updates straightforward.
 
 **Aditya Chauhan**
 - **Live Portfolio:** [adityac.codes](https://adityac.codes)
-
 - **LinkedIn:** [aditya-chauhan-nitj](https://www.linkedin.com/in/aditya-chauhan-nitj/)
 - **GitHub:** [@0xAditya-Labs](https://github.com/0xAditya-Labs)
 
