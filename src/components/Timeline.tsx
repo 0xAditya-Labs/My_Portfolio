@@ -26,23 +26,23 @@ const timelineData: TimelineItem[] = [
     tags: ["LangGraph", "ReAct", "Langfuse", "OpenTelemetry", "ChromaDB", "Python", "RAG"],
   },
   {
-    date: "DEC 2024 – PRESENT",
+    date: "DEC 2024 – MAY 2026",
     title: "Software Development & CP Core Team Co-Lead",
     company: "Google Developer Group, NIT Jalandhar",
     companyUrl: "https://gdg.community.dev/gdg-on-campus-dr-b-r-ambedkar-national-institute-of-technology-jalandhar-india/",
     logo: "/icons/gdg-logo.svg",
-    period: "Dec 2024 – Present",
+    period: "Dec 2024 – May 2026",
     summary:
       "Increased contest performance by 40% and junior participation by 30% through structured DSA mentoring; coordinated CodeVerse and CodeHunt for 90+ participants",
     tags: ["Mentorship", "DSA", "Community Leadership", "Contest Design"],
   },
   {
-    date: "DEC 2023 – MAY 2026",
+    date: "DEC 2023 – MAY 2025",
     title: "Group Representative",
     company: "NIT Jalandhar",
     companyUrl: "https://departments.nitj.ac.in/dept/cse/home",
     logo: "/icons/NIT-Jalandhar-Logo.webp",
-    period: "Dec 2023 – May 2026",
+    period: "Dec 2023 – May 2025",
     summary:
       "Represented 1 of 6 CSE groups (28 members), streamlining faculty-student communication; initiated process re-engineering across 10+ departments, reducing paperwork by 75%.",
     tags: ["Leadership", "Process Improvement", "Cross-functional Coordination"],

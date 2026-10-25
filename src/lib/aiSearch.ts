@@ -20,9 +20,9 @@ WORK EXPERIENCE:
 1. Software Development Engineer Intern — Accenture (Jun 2026 – Jul 2026)
    - Decreased RAG input-token usage by 34% for ContextIQ using LangChain chunking
    - Slashed vector-search latency by 69% by refactoring the ChromaDB client into a singleton
-2. Software Development & CP Core Team Co-Lead — Google Developer Group, NIT Jalandhar (Dec 2024 - Present)
+2. Software Development & CP Core Team Co-Lead — Google Developer Group, NIT Jalandhar (Dec 2024 – May 2026)
    - Increased contest performance by 40% and junior participation by 30% through structured DSA mentoring
-3. Group Representative — NIT Jalandhar (Dec 2023 - Present)
+3. Group Representative — NIT Jalandhar (Dec 2023 – May 2025)
 TECHNICAL SKILLS:
 C++, Python, C, JavaScript, Data Structures & Algorithms, System Design, Concurrency, Object-Oriented Programming, DBMS, Computer Networks, Operating Systems, Node.js, Express.js, FastAPI, React.js, Scikit-learn, Pandas, SMOTE, MongoDB, MySQL, Git, GitHub, REST APIs, WebSockets, JWT, Postman, Vercel
 PROJECT PORTFOLIO:
