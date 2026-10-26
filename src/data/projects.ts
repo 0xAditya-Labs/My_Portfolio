@@ -24,7 +24,7 @@ export interface Project {
     label: string;
     description?: string;
   }[];
-  implementation: {
+  implementation?: {
     approach: string;
     technologies: {
       name: string;
@@ -32,6 +32,7 @@ export interface Project {
     }[];
   };
   architecture?: string;
+  architectureImage?: string;
   documentation: Record<string, any>;
   repoNotes?: Record<string, any>;
 }
@@ -42,7 +43,9 @@ export const projectsData: Project[] = [
     title: "Interlock — Distributed Real-Time Chat Architecture & Benchmark",
     tagline: "Distributed Real-Time Messaging & Automated WebSocket Benchmarking Engine",
     description: "Distributed Real-Time Messaging & Automated WebSocket Benchmarking Engine",
-    fullDescription: "Interlock is a horizontally scalable real-time chat platform engineered to overcome the single-core event loop bottleneck of monolithic Node.js WebSocket architectures. By decoupling process memory into a distributed Redis Pub/Sub messaging tier with atomic reference-counted presence tracking and cache-aside message history, Interlock enables seamless cross-server message routing while maintaining verified sub-50ms tail latency (35ms p95, 47ms p99) under saturated multi-node cluster loads.",
+    fullDescription: `Interlock is a horizontally scalable real-time chat platform engineered to overcome the single-core event loop bottleneck of monolithic Node.js WebSocket architectures.
+
+By decoupling process memory into a distributed Redis Pub/Sub messaging tier with atomic reference-counted presence tracking and cache-aside message history, Interlock enables seamless cross-server message routing while maintaining verified sub-50ms tail latency (35ms p95, 47ms p99) under saturated multi-node cluster loads.`,
     image: "/projects/Interlock_1.webp",
     images: [
       "/projects/Interlock_1.webp",
@@ -276,16 +279,16 @@ npm run start:cluster
 # 4. Run automated WebSocket load benchmark
 npm run benchmark`,
       usage: `1. Authentication & User Profiles:
-   Register with bcrypt-hashed credentials or log in via JWT HTTP-only cookies. Upload and optimize profile avatars in real time via Cloudinary API.
+Register with bcrypt-hashed credentials or log in via JWT HTTP-only cookies. Upload and optimize profile avatars in real time via Cloudinary API.
 
 2. Real-Time Chat & Contact Presence:
-   Message in real time with live online/offline presence indicators. Toggle across 32 dynamic DaisyUI presets.
+Message in real time with live online/offline presence indicators. Toggle across 32 dynamic DaisyUI presets.
 
 3. Distributed Cross-Server Routing:
-   Messages route seamlessly across multi-server instances via Redis Pub/Sub (@socket.io/redis-adapter), with cache-aside history (1h TTL) shielding MongoDB Atlas.
+Messages route seamlessly across multi-server instances via Redis Pub/Sub (@socket.io/redis-adapter), with cache-aside history (1h TTL) shielding MongoDB Atlas.
 
 4. WebSocket Stress Testing:
-   Launch the benchmarking suite (npm run benchmark) to stress-test cluster topologies, identify breaking limits, and measure tail latency curves.`,
+Launch the benchmarking suite (npm run benchmark) to stress-test cluster topologies, identify breaking limits, and measure tail latency curves.`,
       api: `POST   /api/auth/signup         Register a new user with bcrypt password hashing
 POST   /api/auth/login          Authenticate using JWT and issue secure HTTP-only cookies
 GET    /api/messages/:id        Fetch conversation history (Redis cache-aside with 1h TTL)
@@ -336,6 +339,119 @@ PUT    /api/auth/update-profile Upload and optimize user avatar via Cloudinary A
       { label: "p99 Latency", value: "<0.26ms" },
       { label: "Kernel vs Engine Latency", value: ">99% OS overhead" }
     ],
+    technical: {
+      approach: `Built a custom hash-map and intrusive doubly-linked list from scratch to guarantee O(1) operations without extra memory allocations per node.
+
+• Concurrency Architecture: Scaled concurrency using a ShardedCache with independent mutexes across 16 shards to eliminate global lock contention.
+
+• Memory Management: Custom intrusive nodes eliminate pointer dereference overhead and dynamic allocations during critical-path GET/SET operations.
+
+• Validation: Validated performance via a closed-loop benchmarking client simulating Zipfian key distributions under 512 concurrent TCP connections.`,
+      architecture: `Concurrent Sharded LRU Cache Architecture:
+
+┌─────────────────────────────────────────────────────────────┐
+│  CLIENT TIER (TCP Network Clients)                          │
+│  Up to 512 concurrent TCP connections sustaining 160k+ QPS  │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼  Non-Blocking Network I/O
+┌─────────────────────────────────────────────────────────────┐
+│  THREAD POOL SERVER LAYER (I/O Decoupling)                  │
+│  Worker thread pool handling connection lifecycle & framing │
+│  Isolates OS/kernel TCP overhead (~87µs) from cache core    │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼  Key Hash Sharding (MurmurHash3)
+┌─────────────────────────────────────────────────────────────┐
+│  SHARDED CONCURRENCY LAYER (16 Independent Shards)          │
+│  Fine-grained lock striping; zero global lock contention    │
+└──────────────┬──────────────────────────────┬───────────────┘
+               │                              │
+               ▼                              ▼
+ ┌───────────────────────────┐  ┌───────────────────────────┐
+ │ CUSTOM HASH MAP           │  │ INTRUSIVE DOUBLY-LINKED   │
+ │ Deterministic O(1) Lookup │  │ LIST (LRU Order)          │
+ │ • Zero dynamic re-alloc   │  │ • Deterministic O(1) move │
+ │ • Pre-allocated buckets   │  │ • Sub-0.26ms p99 latency  │
+ └─────────────┬─────────────┘  └───────────────────────────┘
+               │
+               ▼  Sequential Per-Shard Lock Acquisition
+ ┌───────────────────────────┐
+ │ BACKGROUND TTL REAPER     │
+ │ Periodic eviction worker  │
+ │ • Enforced lock hierarchy │
+ │ • Deadlock-free operation │
+ └───────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│  CLOSED-LOOP BENCHMARKING HARNESS (Zipfian Distribution)    │
+│  • Concurrency stress testing up to 512 client threads      │
+│  • Separates pure data-structure execution from OS penalty  │
+│  • Verified 160,194 QPS throughput with sub-0.26ms p99      │
+└─────────────────────────────────────────────────────────────┘`,
+      technologyChoices: [
+        {
+          name: "C++",
+          technology: "C++",
+          reason: "Low-level control over memory layout, cache locality, and atomic locking primitives needed for deterministic performance guarantees.",
+          description: "Low-level control over memory layout, cache locality, and atomic locking primitives needed for deterministic performance guarantees."
+        },
+        {
+          name: "TCP/HTTP Server",
+          technology: "TCP/HTTP Server",
+          reason: "Enables the cache to operate as a high-performance networked daemon service with multi-threaded connection handling.",
+          description: "Enables the cache to operate as a high-performance networked daemon service with multi-threaded connection handling."
+        },
+        {
+          name: "Intrusive Linked List & Custom Map",
+          technology: "Intrusive Linked List & Custom Map",
+          reason: "Eliminates heap allocation overhead during cache hit re-ordering, enabling deterministic O(1) eviction.",
+          description: "Eliminates heap allocation overhead during cache hit re-ordering, enabling deterministic O(1) eviction."
+        }
+      ]
+    },
+    architecture: `Concurrent Sharded LRU Cache Architecture:
+
+┌─────────────────────────────────────────────────────────────┐
+│  CLIENT TIER (TCP Network Clients)                          │
+│  Up to 512 concurrent TCP connections sustaining 160k+ QPS  │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼  Non-Blocking Network I/O
+┌─────────────────────────────────────────────────────────────┐
+│  THREAD POOL SERVER LAYER (I/O Decoupling)                  │
+│  Worker thread pool handling connection lifecycle & framing │
+│  Isolates OS/kernel TCP overhead (~87µs) from cache core    │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼  Key Hash Sharding (MurmurHash3)
+┌─────────────────────────────────────────────────────────────┐
+│  SHARDED CONCURRENCY LAYER (16 Independent Shards)          │
+│  Fine-grained lock striping; zero global lock contention    │
+└──────────────┬──────────────────────────────┬───────────────┘
+               │                              │
+               ▼                              ▼
+ ┌───────────────────────────┐  ┌───────────────────────────┐
+ │ CUSTOM HASH MAP           │  │ INTRUSIVE DOUBLY-LINKED   │
+ │ Deterministic O(1) Lookup │  │ LIST (LRU Order)          │
+ │ • Zero dynamic re-alloc   │  │ • Deterministic O(1) move │
+ │ • Pre-allocated buckets   │  │ • Sub-0.26ms p99 latency  │
+ └─────────────┬─────────────┘  └───────────────────────────┘
+               │
+               ▼  Sequential Per-Shard Lock Acquisition
+ ┌───────────────────────────┐
+ │ BACKGROUND TTL REAPER     │
+ │ Periodic eviction worker  │
+ │ • Enforced lock hierarchy │
+ │ • Deadlock-free operation │
+ └───────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│  CLOSED-LOOP BENCHMARKING HARNESS (Zipfian Distribution)    │
+│  • Concurrency stress testing up to 512 client threads      │
+│  • Separates pure data-structure execution from OS penalty  │
+│  • Verified 160,194 QPS throughput with sub-0.26ms p99      │
+└─────────────────────────────────────────────────────────────┘`,
     implementation: {
       approach: "Built a custom hash-map and intrusive doubly-linked list from scratch to guarantee O(1) operations without extra memory allocations per node. Scaled concurrency using a ShardedCache with independent mutexes per shard. Validated via a closed-loop benchmarking client using Zipfian key distributions.",
       technologies: [
@@ -343,7 +459,6 @@ PUT    /api/auth/update-profile Upload and optimize user avatar via Cloudinary A
         { name: "TCP/HTTP", reason: "Enables the cache to be accessed as a networked service, not just an in-process library." }
       ]
     },
-    architecture: "Implemented a multi-layered design separating the I/O layer (ThreadPoolServer) from the concurrency layer (ShardedCache). This avoids global locks and achieves true parallel execution, resulting in 160,194 median QPS. The architecture explicitly isolates pure algorithmic cache execution (~0.25µs) from kernel/TCP overhead (~87µs), proving that data structure optimization is bottlenecked by the OS at scale.",
     documentation: {
       setup: "git clone https://github.com/0xAditya-Labs/SwiftCache.git && cd SwiftCache && make",
       usage: "Client applications connect to the server over TCP and issue GET, SET, and DELETE commands against the cache; TTL-based expiry and LRU eviction are handled automatically under the hood.",
@@ -386,6 +501,113 @@ PUT    /api/auth/update-profile Upload and optimize user avatar via Cloudinary A
       { label: "Vector-Search Latency", value: "-69% (580ms → 180ms)" },
       { label: "Bottleneck Identified", value: "400ms traced via OpenTelemetry" }
     ],
+    technical: {
+      approach: `Built a stateful ReAct agent using LangGraph to orchestrate query tool-gating, ensuring out-of-scope queries are blocked before costly database retrievals.
+
+• Agent Orchestration: Employs dynamic docstring validation in LangGraph to prevent out-of-scope LLM hallucinations and eliminate token waste.
+
+• Embedding & Retrieval: Utilizes Gemini API for vector embeddings and ChromaDB for vector similarity search. Fixed a traced 400ms latency bottleneck by refactoring ChromaDB into a persistent singleton instance.
+
+• Observability Pipeline: Integrated Langfuse for request-level LLM cost and output quality tracking, alongside OpenTelemetry for end-to-end backend distributed tracing.`,
+      architecture: `LangGraph ReAct Architecture with Full-Stack Observability:
+
+┌─────────────────────────────────────────────────────────────┐
+│  USER QUERY INTERFACE                                       │
+│  FastAPI Endpoint (/api/query)                              │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│  LANGGRAPH REACT AGENT (Tool Gating & Validation)           │
+│  • Dynamic docstring evaluation against IT query scope      │
+│  • Rejects out-of-scope queries (Prevents hallucinations)   │
+└──────────────┬──────────────────────────────┬───────────────┘
+               │ [Valid IT Query]             │ [Out-of-Scope]
+               ▼                              ▼
+ ┌───────────────────────────┐  ┌───────────────────────────┐
+ │ CHROMADB VECTOR RETRIEVAL │  │ FAST EARLY RETURN         │
+ │ Singleton Client Instance │  │ Token waste prevented     │
+ │ • -69% vector latency     │  │ Zero database retrieval   │
+ │ • 400ms bottleneck fixed  │  └───────────────────────────┘
+ └─────────────┬─────────────┘
+               │
+               ▼ Grounded Context
+ ┌───────────────────────────┐
+ │ GEMINI LLM INFERENCE      │
+ │ Grounded Response Synth   │
+ │ • -34% input token usage  │
+ └─────────────┬─────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────────────────────────┐
+│  OBSERVABILITY & TELEMETRY TIER                             │
+│  • Langfuse: Real-time LLM cost, latency & output quality   │
+│  • OpenTelemetry: Distributed end-to-end backend tracing    │
+└─────────────────────────────────────────────────────────────┘`,
+      architectureImage: "/projects/contextiq_3.webp",
+      technologyChoices: [
+        {
+          name: "LangGraph",
+          technology: "LangGraph",
+          reason: "Provides the ReAct architecture and stateful orchestration for the RAG agent.",
+          description: "Provides the ReAct architecture and stateful orchestration for the RAG agent."
+        },
+        {
+          name: "Gemini API",
+          technology: "Gemini API",
+          reason: "Powers the LLM generations and high-quality vector embeddings for the knowledge base.",
+          description: "Powers the LLM generations and high-quality vector embeddings for the knowledge base."
+        },
+        {
+          name: "Langfuse",
+          technology: "Langfuse",
+          reason: "Traces LLM cost and quality per request, enabling measurable token-usage optimization.",
+          description: "Traces LLM cost and quality per request, enabling measurable token-usage optimization."
+        },
+        {
+          name: "OpenTelemetry",
+          technology: "OpenTelemetry",
+          reason: "End-to-end backend latency tracing, used to locate and fix the 400ms ChromaDB bottleneck.",
+          description: "End-to-end backend latency tracing, used to locate and fix the 400ms ChromaDB bottleneck."
+        }
+      ]
+    },
+    architecture: `LangGraph ReAct Architecture with Full-Stack Observability:
+
+┌─────────────────────────────────────────────────────────────┐
+│  USER QUERY INTERFACE                                       │
+│  FastAPI Endpoint (/api/query)                              │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│  LANGGRAPH REACT AGENT (Tool Gating & Validation)           │
+│  • Dynamic docstring evaluation against IT query scope      │
+│  • Rejects out-of-scope queries (Prevents hallucinations)   │
+└──────────────┬──────────────────────────────┬───────────────┘
+               │ [Valid IT Query]             │ [Out-of-Scope]
+               ▼                              ▼
+ ┌───────────────────────────┐  ┌───────────────────────────┐
+ │ CHROMADB VECTOR RETRIEVAL │  │ FAST EARLY RETURN         │
+ │ Singleton Client Instance │  │ Token waste prevented     │
+ │ • -69% vector latency     │  │ Zero database retrieval   │
+ │ • 400ms bottleneck fixed  │  └───────────────────────────┘
+ └─────────────┬─────────────┘
+               │
+               ▼ Grounded Context
+ ┌───────────────────────────┐
+ │ GEMINI LLM INFERENCE      │
+ │ Grounded Response Synth   │
+ │ • -34% input token usage  │
+ └─────────────┬─────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────────────────────────┐
+│  OBSERVABILITY & TELEMETRY TIER                             │
+│  • Langfuse: Real-time LLM cost, latency & output quality   │
+│  • OpenTelemetry: Distributed end-to-end backend tracing    │
+└─────────────────────────────────────────────────────────────┘`,
+    architectureImage: "/projects/contextiq_3.webp",
     implementation: {
       approach: "Built a stateful ReAct agent using LangGraph to orchestrate query tool-gating, ensuring out-of-scope queries are blocked before costly database retrievals. The system leverages Gemini API for generation and embeddings. Integrated Langfuse and OpenTelemetry to form a systematic observability layer — Langfuse for LLM cost/quality tracing, OpenTelemetry for backend latency — allowing for precise bottleneck identification and metric-driven optimization.",
       technologies: [
@@ -399,9 +621,6 @@ PUT    /api/auth/update-profile Upload and optimize user avatar via Cloudinary A
       setup: "git clone https://github.com/0xAditya-Labs/ContextIQ.git && pip install -r requirements.txt --break-system-packages",
       usage: "Users submit IT-support questions through the assistant interface. The LangGraph ReAct agent evaluates the query; if valid, it retrieves context and generates a grounded response using Gemini API. Out-of-scope queries are rejected to save tokens.",
       api: "POST /api/query :- Submit IT-support query\nPOST /api/retrieve :- Retrieve relevant knowledge chunks\nGET /api/traces :- View Langfuse request traces\nGET /api/metrics :- Retrieve observability metrics\nGET /api/health :- Health check endpoint"
-      ,
-      architecture: "LangGraph ReAct Agent orchestrates tool-gating and query execution. FastAPI handles routing, ChromaDB manages vector storage, and Gemini API powers generation. Full-stack observability is implemented with Langfuse and OpenTelemetry.",
-      architectureImage: "/projects/contextiq_3.webp"
     }
   },
   {
