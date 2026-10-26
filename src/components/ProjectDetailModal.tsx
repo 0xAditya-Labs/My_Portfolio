@@ -51,6 +51,48 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
     return { intro: text, items: [] as { title: string; description: string }[] };
   })();
 
+  // Helper to parse usage into structured steps or single box
+  const usageParsed = (() => {
+    const text = project.documentation?.usage || "";
+    if (!text) return { isList: false, single: "", items: [] as { step: string; title: string; description: string }[] };
+    
+    // Check if text has numbered points like "1. " or "\n2. "
+    const regex = /(?:^|\n\n?)(\d+)\.\s+/g;
+    const matches = Array.from(text.matchAll(regex));
+    
+    if (matches.length > 1) {
+      const rawParts = text.split(/(?:^|\n\n?)\d+\.\s+/).filter(Boolean);
+      const items = rawParts.map((part, index) => {
+        const clean = part.trim();
+        const firstLineEnd = clean.indexOf('\n');
+        let title = '';
+        let description = '';
+        
+        if (firstLineEnd !== -1) {
+          title = clean.slice(0, firstLineEnd).trim().replace(/:$/, '');
+          description = clean.slice(firstLineEnd + 1).trim();
+        } else {
+          const colonIdx = clean.indexOf(':');
+          if (colonIdx !== -1) {
+            title = clean.slice(0, colonIdx).trim();
+            description = clean.slice(colonIdx + 1).trim();
+          } else {
+            title = `Step ${index + 1}`;
+            description = clean;
+          }
+        }
+        return {
+          step: `${index + 1}`,
+          title,
+          description
+        };
+      });
+      return { isList: true, single: "", items };
+    }
+    
+    return { isList: false, single: text, items: [] as { step: string; title: string; description: string }[] };
+  })();
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 915);
     checkMobile();
@@ -243,7 +285,9 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                 {/* Full Description */}
                 <div className="space-y-2">
                   <h3 className="font-semibold text-lg">About</h3>
-                  <p className="text-muted-foreground leading-relaxed break-words overflow-wrap-anywhere whitespace-pre-line">{project.fullDescription}</p>
+                  <div className="p-3.5 rounded-xl border border-border/80 bg-background/50 text-xs text-muted-foreground leading-relaxed break-words overflow-wrap-anywhere whitespace-pre-line">
+                    {project.fullDescription}
+                  </div>
                 </div>
 
                 {/* Key Features */}
@@ -388,11 +432,27 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
 
                   {/* Usage */}
                   {project.documentation.usage && (
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       <h3 className="font-semibold text-lg">Usage</h3>
-                      <div className="text-muted-foreground text-sm leading-relaxed whitespace-pre-line">
-                        {project.documentation.usage}
-                      </div>
+                      {usageParsed.isList ? (
+                        <div className="space-y-2">
+                          {usageParsed.items.map((item, idx) => (
+                            <div key={idx} className="p-3 rounded-xl border border-border/80 bg-background/50">
+                              <div className="flex items-center gap-2 mb-1.5">
+                                <span className="w-5 h-5 rounded-full bg-accent/20 text-accent font-mono text-xs flex items-center justify-center font-bold shrink-0">
+                                  {item.step}
+                                </span>
+                                <h4 className="font-medium text-sm text-foreground">{item.title}</h4>
+                              </div>
+                              <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="p-3 rounded-xl border border-border/80 bg-background/50 text-xs text-muted-foreground leading-relaxed whitespace-pre-line">
+                          {usageParsed.single}
+                        </div>
+                      )}
                     </div>
                   )}
 
@@ -599,7 +659,9 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                   {/* Full Description */}
                   <div className="space-y-3">
                     <h3 className="font-semibold text-xl">Project Overview</h3>
-                    <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{project.fullDescription}</p>
+                    <div className="p-5 rounded-xl border border-border/80 bg-background/50 text-muted-foreground leading-relaxed whitespace-pre-line text-sm md:text-base">
+                      {project.fullDescription}
+                    </div>
                   </div>
 
                   {/* Key Features */}
@@ -744,11 +806,27 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     </div>
 
                     {/* Usage */}
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                       <h3 className="font-semibold text-xl">Usage</h3>
-                      <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                        {project.documentation.usage}
-                      </div>
+                      {usageParsed.isList ? (
+                        <div className="grid md:grid-cols-2 gap-4">
+                          {usageParsed.items.map((item, idx) => (
+                            <div key={idx} className="p-4 rounded-xl border border-border/80 bg-background/50 flex flex-col justify-start">
+                              <div className="flex items-center gap-2 mb-2">
+                                <span className="w-6 h-6 rounded-full bg-accent/20 text-accent font-mono text-xs flex items-center justify-center font-bold shrink-0">
+                                  {item.step}
+                                </span>
+                                <h4 className="font-semibold text-foreground text-sm md:text-base">{item.title}</h4>
+                              </div>
+                              <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="p-5 rounded-xl border border-border/80 bg-background/50 text-muted-foreground leading-relaxed whitespace-pre-line text-sm md:text-base">
+                          {usageParsed.single}
+                        </div>
+                      )}
                     </div>
 
                     {/* API */}
@@ -765,7 +843,9 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
                     {project.documentation.architecture && (
                       <div className="space-y-3">
                         <h3 className="font-semibold text-xl">Architecture</h3>
-                        <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{project.documentation.architecture}</p>
+                        <div className="p-5 rounded-xl border border-border/80 bg-background/50 text-muted-foreground leading-relaxed whitespace-pre-line text-sm md:text-base">
+                          {project.documentation.architecture}
+                        </div>
                         {project.documentation.architectureImage && (
                           <div className="mt-6 rounded-xl overflow-hidden border border-border/80 mx-auto max-w-3xl bg-background/50">
                             <img src={project.documentation.architectureImage} alt="Architecture Diagram" className="w-full h-auto object-contain" />
