@@ -28,6 +28,29 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
     architectureImage: project.technical?.architectureImage || project.architectureImage || project.documentation?.architectureImage || ""
   };
 
+  // Helper to parse implementation approach into overview card + structured cards
+  const approachParsed = (() => {
+    const text = technical.approach || "";
+    if (!text) return { intro: "", items: [] as { title: string; description: string }[] };
+    const parts = text.split(/(?=• )/g).map(s => s.trim()).filter(Boolean);
+    if (parts.length > 1 && !parts[0].startsWith('•')) {
+      const intro = parts[0];
+      const items = parts.slice(1).map(p => {
+        const clean = p.replace(/^•\s*/, '');
+        const colonIdx = clean.indexOf(':');
+        if (colonIdx !== -1) {
+          return {
+            title: clean.slice(0, colonIdx).trim(),
+            description: clean.slice(colonIdx + 1).trim()
+          };
+        }
+        return { title: '', description: clean };
+      });
+      return { intro, items };
+    }
+    return { intro: text, items: [] as { title: string; description: string }[] };
+  })();
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 915);
     checkMobile();
@@ -276,9 +299,28 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
 
               <TabsContent value="technical" className="space-y-6 mt-0">
                 {/* Implementation */}
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <h3 className="font-semibold text-lg">Implementation</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed break-words overflow-wrap-anywhere whitespace-pre-line">{technical.approach}</p>
+                  {approachParsed.intro && (
+                    <div className="p-3 rounded-xl border border-border/80 bg-background/50 text-xs text-muted-foreground leading-relaxed whitespace-pre-line">
+                      {approachParsed.intro}
+                    </div>
+                  )}
+                  {approachParsed.items.length > 0 && (
+                    <div className="space-y-2">
+                      {approachParsed.items.map((item, idx) => (
+                        <div key={idx} className="p-3 rounded-xl border border-border/80 bg-background/50">
+                          {item.title && (
+                            <h4 className="font-medium text-sm mb-1 text-foreground flex items-center gap-2">
+                              <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                              <span>{item.title}</span>
+                            </h4>
+                          )}
+                          <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* Technology Choices */}
@@ -615,9 +657,28 @@ const ProjectDetailModal = ({ project, isOpen, onClose }: ProjectDetailModalProp
 
                 <TabsContent value="technical" className="mt-0 space-y-6">
                   {/* Implementation Approach */}
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     <h3 className="font-semibold text-xl">Implementation</h3>
-                    <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{technical.approach}</p>
+                    {approachParsed.intro && (
+                      <div className="p-4 rounded-xl border border-border/80 bg-background/50 text-muted-foreground leading-relaxed whitespace-pre-line text-sm md:text-base">
+                        {approachParsed.intro}
+                      </div>
+                    )}
+                    {approachParsed.items.length > 0 && (
+                      <div className={`grid gap-4 ${approachParsed.items.length === 2 ? 'md:grid-cols-2' : approachParsed.items.length >= 3 ? 'md:grid-cols-3' : 'grid-cols-1'}`}>
+                        {approachParsed.items.map((item, idx) => (
+                          <div key={idx} className="p-4 rounded-xl border border-border/80 bg-background/50 flex flex-col justify-start">
+                            {item.title && (
+                              <h4 className="font-semibold mb-2 text-foreground flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                                <span>{item.title}</span>
+                              </h4>
+                            )}
+                            <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   {/* Technology Choices */}
