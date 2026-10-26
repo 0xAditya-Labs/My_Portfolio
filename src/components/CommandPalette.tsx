@@ -60,7 +60,7 @@ const CommandPalette = () => {
       description: "Distributed Real-Time Messaging & Automated WebSocket Benchmarking Engine",
       category: "project" as const,
       icon: <Briefcase className="mr-2 h-4 w-4" />,
-      action: () => window.open("https://github.com/0xAditya-Labs/Interlock", "_blank")
+      action: () => window.open("https://github.com/0xAditya-Labs/Interlock/tree/distributed-backend", "_blank")
     },
     {
       id: "swiftcache",
