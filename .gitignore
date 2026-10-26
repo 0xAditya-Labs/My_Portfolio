@@ -34,3 +34,7 @@ dist
 # testing while dev logic andSuggestions for projects 
 testing_and_suggestions/
 .env
+
+# Non-github local scratch files
+non_gitgithub_files/
+non_github_folder/
