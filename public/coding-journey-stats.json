@@ -1,9 +1,9 @@
 {
   "leetcode": {
-    "currentRating": 1961,
-    "maxRating": 1965,
-    "topPercentage": 3.27,
-    "contestsCount": 49,
+    "currentRating": 1982,
+    "maxRating": 1982,
+    "topPercentage": 2.93,
+    "contestsCount": 50,
     "easySolved": 280,
     "mediumSolved": 452,
     "hardSolved": 95,
@@ -258,6 +258,11 @@
         "timestamp": 1789223400000,
         "rating": 1961,
         "contestName": "Biweekly Contest 191"
+      },
+      {
+        "timestamp": 1792852200000,
+        "rating": 1982,
+        "contestName": "Biweekly Contest 194"
       }
     ]
   },
@@ -818,10 +823,6 @@
     "totalSolved": 146
   },
   "heatmap": [
-    {
-      "date": "2025-10-30",
-      "count": 1
-    },
     {
       "date": "2025-10-31",
       "count": 3
@@ -1760,7 +1761,7 @@
     }
   ],
   "errors": [],
-  "totalActiveDays": 324,
+  "totalActiveDays": 323,
   "totalSolvedAllPlatforms": 1506,
-  "lastUpdated": "2026-10-29T22:53:01.027Z"
+  "lastUpdated": "2026-10-30T22:31:25.800Z"
 }
