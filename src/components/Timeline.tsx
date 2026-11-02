@@ -17,7 +17,7 @@ const timelineData: TimelineItem[] = [
   {
     date: "JUN 2026 – JUL 2026",
     title: "Software Development Engineer Intern",
-    company: "Accenture",
+    company: "Accenture, Bengaluru",
     companyUrl: "https://accenture.com",
     logo: "/icons/Accenture-Logo (2).webp",
     period: "Jun 2026 – Jul 2026",
@@ -39,7 +39,7 @@ const timelineData: TimelineItem[] = [
   {
     date: "DEC 2023 – MAY 2025",
     title: "Group Representative",
-    company: "NIT Jalandhar",
+    company: "CSE, NIT Jalandhar",
     companyUrl: "https://departments.nitj.ac.in/dept/cse/home",
     logo: "/icons/NIT-Jalandhar-Logo.webp",
     period: "Dec 2023 – May 2025",

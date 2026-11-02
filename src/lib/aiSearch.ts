@@ -17,12 +17,12 @@ EDUCATION & ACADEMICS:
 PROFESSIONAL SUMMARY:
 Aditya Chauhan is a final-year Computer Science Engineering student at NIT Jalandhar (CGPA 8.56, Top 4%ile). He recently completed an SDE Internship at Accenture building GenAI and RAG-based systems. Currently, he is building scalable projects targeting real users, enjoying competitive programming, and actively exploring his next opportunity. He specializes in high-performance concurrent systems, applied AI, and full-stack web development, with a strong competitive programming background (Specialist on Codeforces, Knight on LeetCode, 3-star on CodeChef).
 WORK EXPERIENCE:
-1. Software Development Engineer Intern — Accenture (Jun 2026 – Jul 2026)
+1. Software Development Engineer Intern — Accenture, Bengaluru (Jun 2026 – Jul 2026)
    - Decreased RAG input-token usage by 34% for ContextIQ using LangChain chunking
    - Slashed vector-search latency by 69% by refactoring the ChromaDB client into a singleton
 2. Software Development & CP Core Team Co-Lead — Google Developer Group, NIT Jalandhar (Dec 2024 – May 2026)
    - Increased contest performance by 40% and junior participation by 30% through structured DSA mentoring
-3. Group Representative — NIT Jalandhar (Dec 2023 – May 2025)
+3. Group Representative — CSE, NIT Jalandhar (Dec 2023 – May 2025)
 TECHNICAL SKILLS:
 C++, Python, C, JavaScript, Data Structures & Algorithms, System Design, Concurrency, Object-Oriented Programming, DBMS, Computer Networks, Operating Systems, Node.js, Express.js, FastAPI, React.js, Scikit-learn, Pandas, SMOTE, MongoDB, MySQL, Git, GitHub, REST APIs, WebSockets, JWT, Postman, Vercel
 PROJECT PORTFOLIO:
@@ -33,6 +33,10 @@ PROJECT PORTFOLIO:
 3. RetainOps
    - AI-Powered Customer Retention Platform integrating React and FastAPI with production-ready ML inference
 ACHIEVEMENTS & LEADERSHIP:
+- Meta Hacker Cup 2025: Global Rank 3223 (AIR 875) in Round 1, qualified for Round 2
+- Flipkart GRID 7.0: Semi-Finalist (top 0.5% nationally among 1.5 lakh+ participants)
+- Adobe University Hackathon: Qualified for Round 2 (Case Study on Brand Visibility)
+- CodeStorms (GDG): Secured 3rd position in college-wide coding competition by GDG On Campus, NIT Jalandhar
 - Co-Lead, Google Developer Group NIT Jalandhar
 - Co-Lead, LADC (Literacy and Debating Club)
 - Class Representative

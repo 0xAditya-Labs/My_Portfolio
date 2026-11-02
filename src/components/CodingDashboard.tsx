@@ -278,6 +278,17 @@ const CodingDashboard = () => {
   const [loaded, setLoaded] = useState(false);
   const [cfExpanded, setCfExpanded] = useState(false);
   const [activeCert, setActiveCert] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!activeCert) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveCert(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeCert]);
   const [lcExpanded, setLcExpanded] = useState(false);
 
   // Heatmap tooltip state (preserved from original implementation)
@@ -922,6 +933,58 @@ const CodingDashboard = () => {
                     </div>
                     <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
                       Semi-Finalist, reaching the top 0.5% nationally among 1.5 lakh+ participants.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-background/50 border border-border/50 hover:border-primary/50 transition-colors">
+                  <div className="w-10 h-10 rounded bg-slate-100/80 dark:bg-slate-200/90 flex items-center justify-center shrink-0 mt-0.5 p-1.5 shadow-sm border border-border/50">
+                    <img src="/icons/adobe-logo-webp.webp" alt="Adobe" className="w-full h-full object-contain" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between gap-2 flex-wrap">
+                      <h4 className="text-sm font-semibold text-foreground">Adobe University Hackathon</h4>
+                      <div className="flex items-center gap-2">
+                        <button 
+                          onClick={() => setActiveCert("/achievements/Adobe-University-Hackthon-Certificate.png")}
+                          className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          Certificate
+                        </button>
+                        <span className="text-muted-foreground/40 text-[10px]">•</span>
+                        <button 
+                          onClick={() => setActiveCert("/achievements/Adobe-University-Hackathon-Round2-Confirmation-mail.png")}
+                          className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          Round 2 Mail
+                        </button>
+                      </div>
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
+                      Qualified for Round 2 (Case Study on Brand Visibility) in Adobe University Hackathon.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-background/50 border border-border/50 hover:border-primary/50 transition-colors">
+                  <div className="w-10 h-10 rounded bg-slate-100/80 dark:bg-slate-200/90 flex items-center justify-center shrink-0 mt-0.5 p-1.5 shadow-sm border border-border/50">
+                    <img src="/icons/gdg-logo.svg" alt="Google Developer Groups" className="w-full h-full object-contain" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm font-semibold text-foreground">CodeStorms (GDG)</h4>
+                      <button 
+                        onClick={() => setActiveCert("/achievements/Codestorm Certificate of Achievement.png")}
+                        className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
+                      >
+                        <ExternalLink className="w-3 h-3" />
+                        Certificate
+                      </button>
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
+                      Secured 3rd position in college-wide coding competition organized by GDG On Campus, NIT Jalandhar.
                     </p>
                   </div>
                 </div>
