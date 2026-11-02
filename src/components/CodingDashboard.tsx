@@ -686,8 +686,8 @@ const CodingDashboard = () => {
             <CardContent>
               {lcChartData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={220}>
-                  <AreaChart 
-                    data={lcChartData} 
+                  <AreaChart
+                    data={lcChartData}
                     margin={{ left: 0, right: 16, top: 8, bottom: 24 }}
                     onMouseMove={(e: any) => {
                       if (e.isTooltipActive && e.activePayload) {
@@ -767,8 +767,8 @@ const CodingDashboard = () => {
             <CardContent>
               {cfChartData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={220}>
-                  <AreaChart 
-                    data={cfChartData} 
+                  <AreaChart
+                    data={cfChartData}
                     margin={{ left: 0, right: 16, top: 8, bottom: 24 }}
                     onMouseMove={(e: any) => {
                       if (e.isTooltipActive && e.activePayload) {
@@ -837,7 +837,7 @@ const CodingDashboard = () => {
                   Problem Breakdown
                 </CardTitle>
                 <div className="text-xs text-muted-foreground bg-foreground/5 px-2.5 py-1 rounded-md font-medium border border-border/40">
-                  <span className="font-bold text-foreground mr-1">{activeDaysCount > 0 ? activeDaysCount : "â€”"}</span> 
+                  <span className="font-bold text-foreground mr-1">{activeDaysCount > 0 ? activeDaysCount : "â€”"}</span>
                   Active Days
                 </div>
               </CardHeader>
@@ -902,7 +902,7 @@ const CodingDashboard = () => {
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <h4 className="text-sm font-semibold text-foreground">Meta Hacker Cup</h4>
-                      <button 
+                      <button
                         onClick={() => setActiveCert("/achievements/Meta_HackerCup_2025_certificate_img.webp")}
                         className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
                       >
@@ -923,7 +923,7 @@ const CodingDashboard = () => {
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <h4 className="text-sm font-semibold text-foreground">Flipkart Grid 7.0</h4>
-                      <button 
+                      <button
                         onClick={() => setActiveCert("/achievements/Flipkart7.0_certificate.webp")}
                         className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
                       >
@@ -945,7 +945,7 @@ const CodingDashboard = () => {
                     <div className="flex items-center justify-between gap-2 flex-wrap">
                       <h4 className="text-sm font-semibold text-foreground">Adobe University Hackathon</h4>
                       <div className="flex items-center gap-2">
-                        <button 
+                        <button
                           onClick={() => setActiveCert("/achievements/Adobe-University-Hackthon-Certificate.png")}
                           className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
                         >
@@ -953,7 +953,7 @@ const CodingDashboard = () => {
                           Certificate
                         </button>
                         <span className="text-muted-foreground/40 text-[10px]">•</span>
-                        <button 
+                        <button
                           onClick={() => setActiveCert("/achievements/Adobe-University-Hackathon-Round2-Confirmation-mail.png")}
                           className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
                         >
@@ -963,7 +963,7 @@ const CodingDashboard = () => {
                       </div>
                     </div>
                     <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
-                      Qualified for Round 2 (Case Study on Brand Visibility) in Adobe University Hackathon.
+                      Qualified for Round 2 (Case Study on Brand Visibility) in Adobe University Hackathon, placing me at Top 1.5% out of 301k+ globally.
                     </p>
                   </div>
                 </div>
@@ -975,7 +975,7 @@ const CodingDashboard = () => {
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <h4 className="text-sm font-semibold text-foreground">CodeStorms (GDG)</h4>
-                      <button 
+                      <button
                         onClick={() => setActiveCert("/achievements/Codestorm Certificate of Achievement.png")}
                         className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
                       >
@@ -1084,23 +1084,23 @@ const CodingDashboard = () => {
 
       {/* â”€â”€ Fullscreen Certificate Modal â”€â”€ */}
       {activeCert && (
-        <div 
+        <div
           className="fixed inset-0 z-[100] flex items-center justify-center premium-overlay p-4 animate-in fade-in duration-200"
           onClick={() => setActiveCert(null)}
         >
           <div className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center">
-            <button 
+            <button
               onClick={(e) => { e.stopPropagation(); setActiveCert(null); }}
               className="absolute -top-12 right-0 p-2 text-white/70 hover:text-white transition-colors rounded-full hover:bg-white/10"
               aria-label="Close certificate"
             >
               <X className="w-6 h-6" />
             </button>
-            <img 
-              src={activeCert} 
-              alt="Achievement Certificate" 
+            <img
+              src={activeCert}
+              alt="Achievement Certificate"
               className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl border border-white/10"
-              onClick={(e) => e.stopPropagation()} 
+              onClick={(e) => e.stopPropagation()}
             />
           </div>
         </div>
