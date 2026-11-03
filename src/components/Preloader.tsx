@@ -68,7 +68,7 @@ export default function Preloader({
         src="/preloader.svg"
         alt=""
         className={cn(
-          "h-auto w-[220px] select-none",
+          "h-auto w-[175px] select-none",
           "animate-preloader-logo-in",
           prefersReducedMotion && "animate-none"
         )}
