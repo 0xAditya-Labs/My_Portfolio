@@ -70,7 +70,7 @@ By decoupling process memory into a distributed Redis Pub/Sub messaging tier wit
       "High-speed cache-aside message history in Redis with deterministic hashing, reducing MongoDB Atlas read load by >90%.",
       "Automated end-to-end WebSocket stress-testing suite profiling p50, p95, and p99 delivery latency curves under configurable concurrency.",
       "Responsive fullstack client built with React 18, Vite, Zustand, and TailwindCSS featuring 32 dynamic DaisyUI theme presets.",
-      "Rich media sharing with real-time image uploads and CDN transformations via Cloudinary API."
+      "Minimized message payloads by 80% by offloading media processing from base64 to an asynchronous Cloudinary CDN."
     ],
     challenges: [
       "Single-Threaded Event Loop Saturation: High-frequency concurrent traffic in monolithic Socket.io saturates Node's event loop at ~200 chat pairs (Breaking Limit B=200). Solved by federating independent server processes over a Redis Pub/Sub message bus, scaling throughput across multiple CPU cores.",
@@ -87,7 +87,7 @@ By decoupling process memory into a distributed Redis Pub/Sub messaging tier wit
         "High-speed cache-aside message history in Redis with deterministic hashing, reducing MongoDB Atlas read load by >90%.",
         "Automated end-to-end WebSocket stress-testing suite profiling p50, p95, and p99 delivery latency curves under configurable concurrency.",
         "Responsive fullstack client built with React 18, Vite, Zustand, and TailwindCSS featuring 32 dynamic DaisyUI theme presets.",
-        "Rich media sharing with real-time image uploads and CDN transformations via Cloudinary API."
+        "Minimized message payloads by 80% by offloading media processing from base64 to an asynchronous Cloudinary CDN."
       ],
       challengesAndSolutions: [
         "Single-Threaded Event Loop Saturation: High-frequency concurrent traffic in monolithic Socket.io saturates Node's event loop at ~200 chat pairs (Breaking Limit B=200). Solved by federating independent server processes over a Redis Pub/Sub message bus, scaling throughput across multiple CPU cores.",
@@ -308,7 +308,7 @@ PUT    /api/auth/update-profile Upload and optimize user avatar via Cloudinary A
   {
     id: "swiftcache",
     title: "SwiftCache — Thread-Safe Concurrent LRU Cache Server",
-    description: "A high-performance, thread-safe TCP-based LRU cache server built in C++, sustaining 160,000+ QPS with sub-0.26ms p99 latency through deterministic O(1) operations.",
+    description: "A high-performance, thread-safe TCP-based LRU cache server built in C++, sustaining 160,000+ QPS at p99 < 0.24ms through deterministic O(1) operations.",
     fullDescription: "SwiftCache is a concurrent LRU cache server built from first principles in C++, combining a custom hash-map and doubly linked list to guarantee deterministic O(1) get/set operations with TTL-based eviction. Designed with correctness under concurrent load as the primary constraint, it uses fine-grained locking (16 independent shards) to sustain high throughput without sacrificing thread safety, and exposes a modular, self-serve configuration layer to reduce integration effort for new caching features.",
     image: "/projects/swiftcache_1.webp",
     images: [
@@ -325,7 +325,7 @@ PUT    /api/auth/update-profile Upload and optimize user avatar via Cloudinary A
     features: [
       "Deterministic O(1) get/set operations via custom hash-map + doubly linked list.",
       "TTL-based eviction with lazy expiry and a background reaper thread.",
-      "Sustains 160,000+ QPS with sub-0.26ms p99 latency under concurrent workloads.",
+      "Sustains 160,000+ QPS at p99 < 0.24ms by implementing a hybrid TTL eviction policy with active background reaping.",
       "Fine-grained lock striping via 16 shards to prevent global contention.",
       "Thread-safe design tested to handle 512 concurrent TCP connections optimally."
     ],
@@ -336,7 +336,7 @@ PUT    /api/auth/update-profile Upload and optimize user avatar via Cloudinary A
     ],
     metrics: [
       { label: "Throughput", value: "160,000+ QPS" },
-      { label: "p99 Latency", value: "<0.26ms" },
+      { label: "p99 Latency", value: "<0.24ms" },
       { label: "Kernel vs Engine Latency", value: ">99% OS overhead" }
     ],
     technical: {
@@ -372,7 +372,7 @@ PUT    /api/auth/update-profile Upload and optimize user avatar via Cloudinary A
  │ CUSTOM HASH MAP           │  │ INTRUSIVE DOUBLY-LINKED   │
  │ Deterministic O(1) Lookup │  │ LIST (LRU Order)          │
  │ • Zero dynamic re-alloc   │  │ • Deterministic O(1) move │
- │ • Pre-allocated buckets   │  │ • Sub-0.26ms p99 latency  │
+ │ • Pre-allocated buckets   │  │ • Sub-0.24ms p99 latency  │
  └─────────────┬─────────────┘  └───────────────────────────┘
                │
                ▼  Sequential Per-Shard Lock Acquisition
@@ -387,7 +387,7 @@ PUT    /api/auth/update-profile Upload and optimize user avatar via Cloudinary A
 │  CLOSED-LOOP BENCHMARKING HARNESS (Zipfian Distribution)    │
 │  • Concurrency stress testing up to 512 client threads      │
 │  • Separates pure data-structure execution from OS penalty  │
-│  • Verified 160,194 QPS throughput with sub-0.26ms p99      │
+│  • Verified 160,000+ QPS throughput with p99 < 0.24ms      │
 └─────────────────────────────────────────────────────────────┘`,
       technologyChoices: [
         {
@@ -435,7 +435,7 @@ PUT    /api/auth/update-profile Upload and optimize user avatar via Cloudinary A
  │ CUSTOM HASH MAP           │  │ INTRUSIVE DOUBLY-LINKED   │
  │ Deterministic O(1) Lookup │  │ LIST (LRU Order)          │
  │ • Zero dynamic re-alloc   │  │ • Deterministic O(1) move │
- │ • Pre-allocated buckets   │  │ • Sub-0.26ms p99 latency  │
+ │ • Pre-allocated buckets   │  │ • Sub-0.24ms p99 latency  │
  └─────────────┬─────────────┘  └───────────────────────────┘
                │
                ▼  Sequential Per-Shard Lock Acquisition
@@ -450,7 +450,7 @@ PUT    /api/auth/update-profile Upload and optimize user avatar via Cloudinary A
 │  CLOSED-LOOP BENCHMARKING HARNESS (Zipfian Distribution)    │
 │  • Concurrency stress testing up to 512 client threads      │
 │  • Separates pure data-structure execution from OS penalty  │
-│  • Verified 160,194 QPS throughput with sub-0.26ms p99      │
+│  • Verified 160,000+ QPS throughput with p99 < 0.24ms      │
 └─────────────────────────────────────────────────────────────┘`,
     implementation: {
       approach: "Built a custom hash-map and intrusive doubly-linked list from scratch to guarantee O(1) operations without extra memory allocations per node. Scaled concurrency using a ShardedCache with independent mutexes per shard. Validated via a closed-loop benchmarking client using Zipfian key distributions.",

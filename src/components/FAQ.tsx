@@ -12,7 +12,7 @@ const FAQ = () => {
   {
     question: "What do you do and what are you currently working on?",
     answer:
-      "I'm a final-year CS Engineering student at NIT Jalandhar. I recently wrapped up an SDE Internship at Accenture where I built GenAI and RAG-based document intelligence systems. Right now, I'm focused on building scalable projects for real users, competing in CP, and exploring my next role. Outside of that, I'm building high-performance systems — most recently a thread-safe LRU cache handling 15,000+ QPS.",
+      "I'm a final-year CS Engineering student at NIT Jalandhar. I recently wrapped up an SDE Internship at Accenture where I built GenAI and RAG-based document intelligence systems. Right now, I'm focused on building scalable projects for real users, competing in CP, and exploring my next role. Outside of that, I'm building high-performance systems — most recently a thread-safe LRU cache sustaining 160,000+ QPS at p99 < 0.24ms.",
   },
   {
     question: "What kind of projects excite you the most?",

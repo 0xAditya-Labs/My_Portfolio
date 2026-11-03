@@ -4,12 +4,12 @@ const About = () => {
   const { ref: aboutRef, isVisible: aboutVisible } = useScrollAnimation();
 
   const skills = {
-    languages: ["C++", "Python", "C", "JavaScript"],
+    languages: ["C++", "Python", "JavaScript", "SQL", "C"],
     frameworks: ["React.js", "Node.js", "Express.js", "FastAPI", "TailwindCSS", "DaisyUI"],
-    databases: ["MongoDB", "MySQL", "ChromaDB"],
-    ai: ["RAG", "LangChain", "Langfuse", "OpenTelemetry", "Scikit-learn", "Pandas", "SHAP", "SMOTE"],
-    core: ["Data Structures & Algorithms", "OOPs", "DBMS", "Operating Systems", "Computer Networks", "System Design"],
-    tools: ["Git", "GitHub", "Postman", "REST APIs", "WebSockets", "JWT"]
+    databases: ["MongoDB", "MySQL", "ChromaDB", "Redis"],
+    ai: ["RAG", "LangChain", "LangGraph", "ChromaDB", "Sentence Transformers", "Langfuse", "OpenTelemetry", "Scikit-learn", "SHAP"],
+    core: ["Data Structures & Algorithms", "Low-Level Design", "Concurrency", "Multithreading", "OOPs", "DBMS", "Operating Systems", "Computer Networks"],
+    tools: ["Git", "GitHub", "Postman", "REST APIs", "WebSockets", "Redis", "JWT"]
   };
 
   return (
@@ -27,15 +27,15 @@ const About = () => {
 
             <div className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed">
               <p>
-                I'm a final-year Computer Science Engineering student at Dr. B.R. Ambedkar National Institute of Technology, Jalandhar, maintaining a <span className="font-bold text-black dark:text-white">CGPA of 8.56 (Top 4%ile)</span>. I recently completed my Software Development Engineering Internship at Accenture, where I built a RAG-based Q&A microservice that reduced manual review time by 45%. Currently, I'm building scalable projects targeting real users, enjoying competitive programming, and actively exploring my next opportunity.
+                I'm a final-year Computer Science Engineering student at Dr. B.R. Ambedkar National Institute of Technology, Jalandhar, maintaining a <span className="font-bold text-black dark:text-white">CGPA of 8.56 (Top 4%ile)</span>. I recently completed my Software Development Engineering Internship at Accenture, where I built an internal LangGraph ReAct agent prototype with FastAPI and OpenTelemetry, slashing vector-search latency by 69% (to 180ms) and cutting LLM token usage by 34%. Currently, I'm building scalable projects targeting real users, enjoying competitive programming, and actively exploring my next opportunity.
               </p>
 
               <p>
-                My work sits at the intersection of software engineering, systems engineering, and applied AI — I genuinely enjoy reasoning through concurrency, system design, and OS internals, not just building on top of them. I've engineered a thread-safe LRU cache handling 15,000+ QPS at 3ms p99 latency, and a real-time RAG messaging platform delivering sub-50ms under concurrent load. I've also solved <span className="font-bold text-black dark:text-white">1,500+ DSA problems</span>, earning Specialist on Codeforces, Knight on LeetCode, and 3-star on CodeChef.
+                My work sits at the intersection of software engineering, systems engineering, and applied AI — I genuinely enjoy reasoning through concurrency, system design, and OS internals, not just building on top of them. I've engineered a thread-safe LRU cache sustaining 160,000+ QPS at p99 &lt; 0.24ms, and a distributed real-time messaging platform delivering verified 35ms p95 latency under saturated cluster loads. I've also solved <span className="font-bold text-black dark:text-white">1,500+ DSA problems</span>, earning Specialist on Codeforces, Knight on LeetCode, and 3-star on CodeChef.
               </p>
 
               <p>
-                What drives me is solving hard problems with measurable impact — whether it's high-throughput caching architecture, production-grade RAG pipelines, or leading algorithmic training for 150+ students as Co-Lead of the Google Developer Group at NIT Jalandhar.
+                What drives me is solving hard problems with measurable impact — whether it's high-throughput caching architecture, production-grade RAG pipelines, or mentoring 70+ juniors in advanced DSA cohorts and authoring 35 contest problems as Competitive Programming Lead of the Google Developer Group at NIT Jalandhar.
               </p>
             </div>
 

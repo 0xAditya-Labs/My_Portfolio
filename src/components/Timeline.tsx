@@ -22,19 +22,19 @@ const timelineData: TimelineItem[] = [
     logo: "/icons/Accenture-Logo (2).webp",
     period: "Jun 2026 – Jul 2026",
     summary:
-      "Engineered a LangGraph ReAct agent for ContextIQ, decreasing RAG input-token usage by 34% via docstring tool-gating to eliminate out-of-scope calls. Slashed vector-search latency by 69% by tracing DB connection bottlenecks with OpenTelemetry and refactoring ChromaDB into a thread-safe singleton.",
-    tags: ["LangGraph", "ReAct", "Langfuse", "OpenTelemetry", "ChromaDB", "Python", "RAG"],
+      "Built an internal LangGraph ReAct agent prototype with FastAPI to benchmark retrieval performance, decreasing LLM input-token usage by 34% via doc-string tool-gating (suppressing 93% of out-of-scope calls). Slashed vector-search latency by 69% (to 180ms) by tracing bottlenecks via OpenTelemetry and refactoring ChromaDB into a singleton.",
+    tags: ["LangGraph", "FastAPI", "OpenTelemetry", "ChromaDB", "Langfuse", "Python", "RAG"],
   },
   {
     date: "DEC 2024 – MAY 2026",
-    title: "Software Development & CP Core Team Co-Lead",
+    title: "Competitive Programming Lead",
     company: "Google Developer Group, NIT Jalandhar",
     companyUrl: "https://gdg.community.dev/gdg-on-campus-dr-b-r-ambedkar-national-institute-of-technology-jalandhar-india/",
     logo: "/icons/gdg-logo.svg",
     period: "Dec 2024 – May 2026",
     summary:
-      "Increased contest performance by 40% and junior participation by 30% through structured DSA mentoring; coordinated CodeVerse and CodeHunt for 90+ participants",
-    tags: ["Mentorship", "DSA", "Community Leadership", "Contest Design"],
+      "Mentored 70+ juniors in advanced DSA cohorts, boosting contest solve-rates by 40%; authored 35 original algorithmic problems with test cases and reference solutions across 16 campus contests; coordinated CodeVerse and CodeHunt for 90+ participants.",
+    tags: ["Competitive Programming", "DSA", "Problem Setting", "Mentorship", "Leadership"],
   },
   {
     date: "DEC 2023 – MAY 2025",

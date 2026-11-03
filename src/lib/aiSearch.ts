@@ -10,38 +10,61 @@ LinkedIn: linkedin.com/in/aditya-chauhan-nitj
 GitHub: github.com/0xAditya-Labs
 Portfolio: adityac.codes
 EDUCATION & ACADEMICS:
-1. B.Tech CSE, NIT Jalandhar (CGPA: 8.56, Top 4%ile)
-2. Class 12 (PCM + CS), DAV Public School, BRS Nagar, Ludhiana (CBSE: 94%)
-3. Class 10, DAV Public School, BRS Nagar, Ludhiana (CBSE: 92%)
+1. Dr. B.R. Ambedkar National Institute of Technology Jalandhar (Aug 2023 – Jun 2027)
+   Bachelor of Technology in Computer Science and Engineering | CGPA: 8.56 / 10.0 (Top 4%ile)
+2. DAV Public School, BRS Nagar, Ludhiana (Jul 2022 – Jun 2023)
+   Class XII, CBSE: 94%
+3. DAV Public School, BRS Nagar, Ludhiana
+   Class X, CBSE: 92%
 4. Competitive Exams: JEE Main & Advanced (AIR 12,000)
 PROFESSIONAL SUMMARY:
-Aditya Chauhan is a final-year Computer Science Engineering student at NIT Jalandhar (CGPA 8.56, Top 4%ile). He recently completed an SDE Internship at Accenture building GenAI and RAG-based systems. Currently, he is building scalable projects targeting real users, enjoying competitive programming, and actively exploring his next opportunity. He specializes in high-performance concurrent systems, applied AI, and full-stack web development, with a strong competitive programming background (Specialist on Codeforces, Knight on LeetCode, 3-star on CodeChef).
+Aditya Chauhan is a final-year Computer Science Engineering student at NIT Jalandhar (CGPA 8.56, Top 4%ile). He recently completed a Software Engineering Internship at Accenture building GenAI and RAG-based systems. Currently, he is building scalable projects targeting real users, enjoying competitive programming, and actively exploring his next opportunity. He specializes in high-performance concurrent systems, applied AI, and full-stack web development, with a strong competitive programming background (Specialist on Codeforces, Knight on LeetCode, 3-star on CodeChef).
 WORK EXPERIENCE:
 1. Software Development Engineer Intern — Accenture, Bengaluru (Jun 2026 – Jul 2026)
-   - Decreased RAG input-token usage by 34% for ContextIQ using LangChain chunking
-   - Slashed vector-search latency by 69% by refactoring the ChromaDB client into a singleton
-2. Software Development & CP Core Team Co-Lead — Google Developer Group, NIT Jalandhar (Dec 2024 – May 2026)
-   - Increased contest performance by 40% and junior participation by 30% through structured DSA mentoring
+   - Built an internal LangGraph ReAct agent prototype with a FastAPI backend to benchmark retrieval performance.
+   - Optimized vector-search latency by 69% (to 180ms) via OpenTelemetry and refactoring ChromaDB client to singleton pattern.
+   - Decreased LLM input-token usage by 34% via doc-string tool-gating, suppressing 93% of out-of-scope API calls.
+2. Competitive Programming Lead — Google Developer Group, NIT Jalandhar (Dec 2024 – May 2026)
+   - Mentored 70+ juniors in advanced DSA cohorts, boosting contest problem solve-rates by 40%.
+   - Authored 35 original algorithmic problems with test cases and reference solutions across 16 campus contests; coordinated CodeVerse and CodeHunt for 90+ participants.
 3. Group Representative — CSE, NIT Jalandhar (Dec 2023 – May 2025)
+   - Represented 1 of 6 CSE groups (28 members), streamlining faculty-student communication and academic coordination.
 TECHNICAL SKILLS:
-C++, Python, C, JavaScript, Data Structures & Algorithms, System Design, Concurrency, Object-Oriented Programming, DBMS, Computer Networks, Operating Systems, Node.js, Express.js, FastAPI, React.js, Scikit-learn, Pandas, SMOTE, MongoDB, MySQL, Git, GitHub, REST APIs, WebSockets, JWT, Postman, Vercel
+- Languages: C++, Python, JavaScript, SQL, C
+- Core CS: Data Structures & Algorithms, Object-Oriented Programming, Operating Systems, DBMS, Computer Networks, Low-Level Design, System Design
+- Web Development: React.js, Node.js, Express.js, FastAPI, REST APIs, WebSockets, MongoDB, MySQL, Tailwind CSS, DaisyUI
+- Generative AI & ML: Retrieval-Augmented Generation (RAG), LangChain, LangGraph, ChromaDB, Sentence Transformers, Langfuse, OpenTelemetry, Scikit-learn, Pandas, SMOTE, SHAP
+- Systems & Tools: Multithreading, Concurrency, Redis, OpenTelemetry, Git, GitHub, Postman, Langfuse, JWT, Vercel
 PROJECT PORTFOLIO:
-1. SwiftCache
-   - Thread-safe TCP-based LRU cache supporting deterministic O(1) operations, sustained 15,000+ QPS
-2. Interlock
-   - Distributed Real-Time Messaging & Automated WebSocket Benchmarking Engine, verified sub-50ms tail latency with Redis Pub/Sub clustering
-3. RetainOps
-   - AI-Powered Customer Retention Platform integrating React and FastAPI with production-ready ML inference
-ACHIEVEMENTS & LEADERSHIP:
-- Meta Hacker Cup 2025: Global Rank 3223 (AIR 875) in Round 1, qualified for Round 2
-- Flipkart GRID 7.0: Semi-Finalist (top 0.5% nationally among 1.5 lakh+ participants)
-- Adobe University Hackathon: Qualified for Round 2 (Case Study on Brand Visibility)
-- CodeStorms (GDG): Secured 3rd position in college-wide coding competition by GDG On Campus, NIT Jalandhar
-- Co-Lead, Google Developer Group NIT Jalandhar
-- Co-Lead, LADC (Literacy and Debating Club)
-- Class Representative
-- Organized Hackmol hackathon
-- Winner, Inter-School Badminton Competition
+1. SwiftCache – Thread-Safe Concurrent LRU Cache Server
+   - Tech: C++17, TCP, POSIX Sockets, Concurrency, Multithreading
+   - Architected a C++17 multithreaded TCP cache server featuring a custom binary/text wire protocol for network I/O.
+   - Sustained 160,000+ QPS at p99 < 0.24ms by implementing a hybrid TTL eviction policy with active background reaping.
+   - Mitigated hot-key contention across 512 concurrent connections via 16-shard lock striping, achieving linear scaling on a 1M-key Zipfian workload.
+   - Profiled median RTT (87 µs), where C++ cache logic consumes <1% (~300ns), while the Linux TCP stack accounts for >99%.
+2. Interlock – Distributed Real-Time Messaging Platform
+   - Tech: MERN Stack, Socket.io, Redis, JWT, Cloudinary, TailwindCSS
+   - Engineered distributed WebSocket connections and private API routes using JWT authentication and Bcrypt hashing.
+   - Achieved 100% message delivery at 35ms p95 latency for 400 concurrent WebSockets by architecting a dual-server backend with Redis Pub/Sub to bypass event loop saturation.
+   - Eliminated multi-tab false-offline race conditions by implementing atomic reference counting (INCR/DECR) in Redis.
+   - Minimized message payloads by 80% by offloading media processing from base64 to an asynchronous Cloudinary CDN.
+3. ContextIQ — RAG-Based IT Support Assistant
+   - Tech: Python, LangGraph, FastAPI, ChromaDB, Langfuse, OpenTelemetry, Gemini API
+   - Stateful ReAct assistant achieving 69% vector latency cut (to 180ms) and 34% token reduction via docstring tool-gating.
+4. RetainOps / ISP Customer Retention Platform
+   - Tech: React, FastAPI, Scikit-learn, SHAP Explainable AI
+   - B2B churn prediction & decision dashboard addressing 3:1 class imbalance with SMOTE and explainable inference.
+COMPETITIVE PROGRAMMING & ACHIEVEMENTS:
+- Meta Hacker Cup 2025: Advanced to Round 2, securing Global Rank 3172 (AIR 875).
+- Flipkart GRiD 2025 and 2026: Semi-Finalist in 7.0 (2025) and 8.0 (2026), placing in top 0.5% among 170K+ participants.
+- Adobe University Hackathon 2026: Shortlisted for Round 2 (Top 1.5%) from 301K+ global applicants.
+- LeetCode Knight (Top 1.5%): Peak rating 1982; Global Rank 315 in Biweekly Contest 172.
+- Competitive Profiles: Specialist on Codeforces (Peak 1418) | 3-Star on CodeChef (Peak 1661).
+- Algorithmic Proficiency: Solved 1,500+ complex algorithmic problems across various platforms.
+- CodeStorms (GDG): Secured 3rd position in college-wide coding competition by GDG On Campus, NIT Jalandhar.
+- Leadership: Competitive Programming Lead at Google Developer Group NIT Jalandhar, Group Representative for CSE, and previously Co-Lead of LADC.
+- Hackmol: Organized Hackmol hackathon at NIT Jalandhar.
+- Sports: Winner, Inter-School Badminton Competition.
 ADDITIONAL INFORMATION:
 Languages: English, Hindi, Punjabi
 Availability: Open to full-time software engineering and applied AI roles starting mid-2027, and open to internship/collaboration opportunities before then.
@@ -60,16 +83,16 @@ interface GeminiResponse {
 // Fallback responses for common queries when AI fails
 const fallbackResponses: Record<string, string> = {
   "work style": "I like to understand problems deeply, including where they break under real load, choose the right technology, and follow a proper SDLC rather than jumping straight into code.",
-  "experience": "I recently completed an SDE Internship at Accenture working on GenAI/RAG systems, and I co-lead the Google Developer Group at NIT Jalandhar, mentoring 150+ students in DSA. Currently, I'm building scalable projects and exploring my next opportunity.",
+  "experience": "I recently completed an SDE Internship at Accenture working on GenAI/RAG systems (optimizing latency by 69% and reducing token usage by 34%), and I serve as Competitive Programming Lead at Google Developer Group NIT Jalandhar. Currently, I'm building scalable projects and exploring my next opportunity.",
   "skills": "I specialize in C++ and Python for systems, MERN/FastAPI for full-stack, and have a growing focus on RAG pipelines, concurrency, and high-performance system design.",
   "education": "I'm a B.Tech CSE student at NIT Jalandhar (CGPA 8.56). I completed my 10th (92%) and 12th (94%) from DAV Public School, BRS Nagar, Ludhiana. I also secured AIR 12,000 in JEE Main and Advanced.",
   "hometown": "I am from Ludhiana, Punjab. I was born in August 2005.",
   "ludhiana": "I am from Ludhiana, Punjab.",
   "background": "I am from Ludhiana, Punjab, born in August 2005.",
-  "projects": "My main projects include SwiftCache (15,000+ QPS concurrent LRU cache), Interlock (distributed real-time messaging with Redis Pub/Sub clustering), and RetainOps (AI customer retention platform).",
+  "projects": "My main projects include SwiftCache (160,000+ QPS concurrent LRU cache at p99 < 0.24ms), Interlock (distributed real-time messaging with Redis Pub/Sub clustering and 35ms p95 latency), and RetainOps / ContextIQ.",
   "contact": "You can reach me at aditya.chauhan.nitj.ac@gmail.com, or connect on LinkedIn (linkedin.com/in/aditya-chauhan-nitj).",
-  "achievements": "I'm a Codeforces Specialist, LeetCode Knight, and CodeChef 3-star with 1,500+ DSA problems solved.",
-  "leadership": "I Co-Lead the Google Developer Group and the Literacy and Debating Club at NIT Jalandhar, and organized the Hackmol hackathon.",
+  "achievements": "I am a LeetCode Knight (peak 1982, top 1.5%), Codeforces Specialist (peak 1418), and CodeChef 3-star (peak 1661) with 1,500+ DSA problems solved. I also advanced to Round 2 in Meta Hacker Cup 2025 (Global Rank 3172, AIR 875) and was a Semi-Finalist in Flipkart GRiD 7.0 & 8.0 (top 0.5% of 170k+).",
+  "leadership": "I am the Competitive Programming Lead for Google Developer Group NIT Jalandhar, Group Representative for CSE, and previously Co-Led the Literacy and Debating Club.",
   "availability": "I am open to full-time roles starting mid-2027, and open to internship/collaboration opportunities before then.",
   "text": "You can reach me through my website (adityac.codes), LinkedIn (linkedin.com/in/aditya-chauhan-nitj), or email (aditya.chauhan.nitj.ac@gmail.com).",
   "contact information": "Feel free to reach out via email at aditya.chauhan.nitj.ac@gmail.com or connect with me on LinkedIn.",

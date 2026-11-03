@@ -911,7 +911,7 @@ const CodingDashboard = () => {
                       </button>
                     </div>
                     <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
-                      Global Rank 3223 (AIR 875) in Round 1 and qualified for Round 2.
+                      Advanced to Round 2, securing Global Rank 3172 (AIR 875).
                     </p>
                   </div>
                 </div>
@@ -922,7 +922,7 @@ const CodingDashboard = () => {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-sm font-semibold text-foreground">Flipkart Grid 7.0</h4>
+                      <h4 className="text-sm font-semibold text-foreground">Flipkart GRiD 7.0 & 8.0</h4>
                       <button
                         onClick={() => setActiveCert("/achievements/Flipkart7.0_certificate.webp")}
                         className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
@@ -932,7 +932,7 @@ const CodingDashboard = () => {
                       </button>
                     </div>
                     <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
-                      Semi-Finalist, reaching the top 0.5% nationally among 1.5 lakh+ participants.
+                      Semi-Finalist in 7.0 (2025) and 8.0 (2026), placing in top 0.5% among 170K+ participants.
                     </p>
                   </div>
                 </div>
