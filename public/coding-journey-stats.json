@@ -272,7 +272,7 @@
     "currentRankTitle": "specialist",
     "maxRankTitle": "Specialist",
     "contestsCount": 78,
-    "totalSolved": 474,
+    "totalSolved": 478,
     "history": [
       {
         "timestamp": 1719768900000,
@@ -824,12 +824,8 @@
   },
   "heatmap": [
     {
-      "date": "2025-11-03",
-      "count": 2
-    },
-    {
       "date": "2025-11-04",
-      "count": 3
+      "count": 2
     },
     {
       "date": "2025-11-05",
@@ -1758,10 +1754,14 @@
     {
       "date": "2026-11-03",
       "count": 1
+    },
+    {
+      "date": "2026-11-04",
+      "count": 4
     }
   ],
   "errors": [],
-  "totalActiveDays": 325,
-  "totalSolvedAllPlatforms": 1508,
-  "lastUpdated": "2026-11-03T23:32:22.572Z"
+  "totalActiveDays": 326,
+  "totalSolvedAllPlatforms": 1512,
+  "lastUpdated": "2026-11-04T23:48:16.843Z"
 }
