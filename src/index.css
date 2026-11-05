@@ -316,6 +316,30 @@ All colors MUST be HSL.
     transform: scale(1.02);
   }
 
+  /* Mouse wheel scroll animation */
+  @keyframes mouseWheelScroll {
+    0% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    20% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(6px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(11px);
+    }
+  }
+
+  .animate-mouse-wheel {
+    animation: mouseWheelScroll 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+
   /* Scroll fade-in animation */
   @keyframes fadeInUp {
     0% {

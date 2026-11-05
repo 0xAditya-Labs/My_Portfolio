@@ -138,6 +138,30 @@ const Hero = () => {
               <Download className="w-5 h-5" />
             </Button>
           </div>
+
+          {/* Mouse Scroll Indicator */}
+          <div className="pt-6 sm:pt-8 flex items-center justify-start">
+            <button
+              type="button"
+              onClick={() => {
+                const aboutSection = document.getElementById('about');
+                if (aboutSection) {
+                  aboutSection.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
+                }
+              }}
+              className="inline-flex flex-col items-center gap-2 cursor-pointer group text-muted-foreground hover:text-foreground transition-colors focus:outline-none"
+              aria-label="Scroll to explore more"
+            >
+              <div className="w-5 h-8.5 rounded-full border-2 border-foreground/40 dark:border-white/40 group-hover:border-foreground dark:group-hover:border-white transition-colors flex justify-center pt-1.5 shadow-sm">
+                <div className="w-1 h-2 rounded-full bg-foreground/70 dark:bg-white/70 group-hover:bg-foreground dark:group-hover:bg-white animate-mouse-wheel" />
+              </div>
+              <span className="text-xs font-medium tracking-wide">
+                Scroll to explore more
+              </span>
+            </button>
+          </div>
         </div>
 
         {/* Right Content - Profile Image */}
