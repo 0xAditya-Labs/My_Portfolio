@@ -101,12 +101,17 @@ const Hero = () => {
             )}
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-[4.2rem] font-bold leading-[1.1] tracking-tight">
-            Building intelligent systems where AI meets full stack development
+          <h1 className="tracking-tight leading-none">
+            <span className="block text-xl sm:text-2xl md:text-3xl font-medium text-muted-foreground mb-2">
+              Hi, I'm
+            </span>
+            <span className="block text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] font-bold text-foreground">
+              Aditya Chauhan
+            </span>
           </h1>
 
           <p className="text-base md:text-lg text-muted-foreground max-w-xl leading-relaxed">
-            Hi, I'm <span className="text-foreground font-medium">Aditya Chauhan</span>. <br></br>I solve real problems through thoughtful engineering, combining strong fundamentals with practical execution. I care deeply about performance, clarity, and building systems that scale beyond prototypes.
+            I solve real problems through thoughtful engineering, combining strong fundamentals with practical execution. I care deeply about performance, clarity, and building systems that scale beyond prototypes.
           </p>
 
           <div className="flex flex-wrap gap-4">

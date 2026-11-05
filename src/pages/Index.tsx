@@ -6,6 +6,7 @@ import About from "@/components/About";
 import Timeline from "../components/Timeline";
 import Projects from "@/components/Projects";
 const CodingDashboard = lazy(() => import("@/components/CodingDashboard"));
+import OpenSource from "@/components/OpenSource";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -97,6 +98,8 @@ const Index = () => {
           <CodingDashboard />
         </Suspense>
         
+        <OpenSource />
+        
         <div className="bg-muted/30 dark:bg-card/40 transition-colors duration-300">
           <FAQ />
         </div>
@@ -136,6 +139,8 @@ const Index = () => {
         <Suspense fallback={<div className="py-24" />}>
           <CodingDashboard />
         </Suspense>
+        
+        <OpenSource />
         
         <div className="bg-muted/30 dark:bg-card/40 transition-colors duration-300">
           <FAQ />
