@@ -113,7 +113,7 @@ const Hero = () => {
         <div className={`flex flex-col ${heroVisible ? 'scroll-animate' : ''}`}>
           <div className="space-y-5 lg:space-y-6">
             {/* Role Badge */}
-            <div className="inline-block">
+            <div className="inline-block mb-3 sm:mb-5 lg:mb-6">
               {isNarrow ? (
                 <div className="marquee" aria-hidden>
                   <div className="marquee__inner bg-primary text-primary-foreground px-6 py-2 rounded-full text-sm font-medium uppercase tracking-wide">
