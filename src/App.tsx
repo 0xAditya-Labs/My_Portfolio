@@ -41,12 +41,28 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  const [showPreloader, setShowPreloader] = useState(true);
+  const [showPreloader, setShowPreloader] = useState(() => {
+    if (typeof window === "undefined") return false;
+    try {
+      return !sessionStorage.getItem("has_seen_preloader");
+    } catch {
+      return true;
+    }
+  });
+
+  const handlePreloaderDone = () => {
+    setShowPreloader(false);
+    try {
+      sessionStorage.setItem("has_seen_preloader", "1");
+    } catch {
+      /* ignore */
+    }
+  };
 
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        {showPreloader && <Preloader onDone={() => setShowPreloader(false)} />}
+        {showPreloader && <Preloader onDone={handlePreloaderDone} />}
         <Toaster />
         <Sonner />
         <RouterProvider router={router} future={{ v7_startTransition: true }} />

@@ -1,14 +1,28 @@
 import { Github, Linkedin, Mail, Twitter, ArrowUp } from "lucide-react";
 import { useState, useEffect } from "react";
 import HaloSpray from "./HaloSpray";
+import { fetchCodingJourneyStats } from "@/lib/codingStats";
 
 const Footer = () => {
   const [lcRating, setLcRating] = useState<number | null>(null);
   const [lcTitle, setLcTitle] = useState<string>("Knight");
+  const [shouldAnimateHalo, setShouldAnimateHalo] = useState(false);
 
   useEffect(() => {
-    fetch("/coding-journey-stats.json")
-      .then((res) => res.json())
+    // Only load and run WebGL canvas when the user scrolls down, preserving initial page load performance
+    const checkScroll = () => {
+      if (window.scrollY > 300) {
+        setShouldAnimateHalo(true);
+        window.removeEventListener("scroll", checkScroll);
+      }
+    };
+    window.addEventListener("scroll", checkScroll, { passive: true });
+    checkScroll();
+    return () => window.removeEventListener("scroll", checkScroll);
+  }, []);
+
+  useEffect(() => {
+    fetchCodingJourneyStats()
       .then((data) => {
         const rating = data?.leetcode?.currentRating || data?.leetcode?.maxRating;
         if (rating) {
@@ -172,15 +186,19 @@ const Footer = () => {
                     "radial-gradient(ellipse 72% 72% at center, black 40%, transparent 100%)",
                 }}
               >
-                <HaloSpray
-                  background="transparent"
-                  reach={14}
-                  strength={5}
-                  dotSize={120}
-                  scale={135}
-                  showLogo={true}
-                  style={{ width: "100%", height: "100%" }}
-                />
+                {shouldAnimateHalo ? (
+                  <HaloSpray
+                    background="transparent"
+                    reach={14}
+                    strength={5}
+                    dotSize={120}
+                    scale={135}
+                    showLogo={true}
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                ) : (
+                  <div className="w-full h-full" />
+                )}
               </div>
             </div>
           </div>

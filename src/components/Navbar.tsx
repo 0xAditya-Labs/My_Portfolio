@@ -13,88 +13,104 @@ import {
 
 const Navbar = () => {
   const location = useLocation();
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const leftEyeRef = useRef<HTMLDivElement>(null);
   const rightEyeRef = useRef<HTMLDivElement>(null);
-  const [isDesktop, setIsDesktop] = useState<boolean>(
-    typeof window !== "undefined" ? window.innerWidth >= 915 : true
-  );
+  const leftPupilRef = useRef<HTMLDivElement>(null);
+  const rightPupilRef = useRef<HTMLDivElement>(null);
+  const scrollProgressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsMounted(true);
 
-    const handleResize = () => setIsDesktop(window.innerWidth >= 915);
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
+    let mouseRaf: number | null = null;
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      if (mouseRaf) return;
+      mouseRaf = requestAnimationFrame(() => {
+        mouseRaf = null;
+        if (window.innerWidth < 915) return;
+        const updatePupil = (eye: HTMLDivElement | null, pupil: HTMLDivElement | null) => {
+          if (!eye || !pupil) return;
+          const rect = eye.getBoundingClientRect();
+          const eyeCenterX = rect.left + rect.width / 2;
+          const eyeCenterY = rect.top + rect.height / 2;
+          const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+          const distance = Math.min(
+            4,
+            Math.hypot(e.clientX - eyeCenterX, e.clientY - eyeCenterY) / 100
+          );
+          const x = Math.cos(angle) * distance;
+          const y = Math.sin(angle) * distance;
+          pupil.style.transform = `translate(${x}px, ${y}px)`;
+        };
+        updatePupil(leftEyeRef.current, leftPupilRef.current);
+        updatePupil(rightEyeRef.current, rightPupilRef.current);
+      });
     };
+
+    let scrollRaf: number | null = null;
+    let lastIsScrolled = false;
+    let lastActiveSection = "home";
 
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = Math.min(scrollTop / docHeight, 1);
-      setScrollProgress(progress);
-      setIsScrolled(scrollTop > 20);
+      if (scrollRaf) return;
+      scrollRaf = requestAnimationFrame(() => {
+        scrollRaf = null;
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
 
-      const sections = ["hero", "about", "timeline", "projects", "faq"];
-      const scrollPosition = scrollTop + 100;
-      for (const sectionId of sections) {
-        const element =
-          document.getElementById(sectionId) ||
-          document.querySelector(`[data-section="${sectionId}"]`);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
-            setActiveSection(sectionId === "hero" ? "home" : sectionId);
-            break;
+        if (scrollProgressRef.current) {
+          scrollProgressRef.current.style.width = `${progress * 100}%`;
+        }
+
+        const nextScrolled = scrollTop > 20;
+        if (nextScrolled !== lastIsScrolled) {
+          lastIsScrolled = nextScrolled;
+          setIsScrolled(nextScrolled);
+        }
+
+        const sections = ["hero", "about", "timeline", "projects", "faq"];
+        const scrollPosition = scrollTop + 100;
+        let foundSection = "home";
+        for (const sectionId of sections) {
+          const element =
+            document.getElementById(sectionId) ||
+            document.querySelector(`[data-section="${sectionId}"]`);
+          if (element instanceof HTMLElement) {
+            const { offsetTop, offsetHeight } = element;
+            if (
+              scrollPosition >= offsetTop &&
+              scrollPosition < offsetTop + offsetHeight
+            ) {
+              foundSection = sectionId === "hero" ? "home" : sectionId;
+              break;
+            }
           }
         }
-      }
 
-      if (scrollTop < 100) setActiveSection("home");
+        if (scrollTop < 100) foundSection = "home";
+        if (foundSection !== lastActiveSection) {
+          lastActiveSection = foundSection;
+          setActiveSection(foundSection);
+        }
+      });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
     return () => {
+      if (mouseRaf) cancelAnimationFrame(mouseRaf);
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  const calculateEyePosition = (eyeElement: HTMLDivElement | null) => {
-    if (!eyeElement) return { x: 0, y: 0 };
-    if (typeof window !== "undefined" && window.innerWidth < 915)
-      return { x: 0, y: 0 };
-
-    const rect = eyeElement.getBoundingClientRect();
-    const eyeCenterX = rect.left + rect.width / 2;
-    const eyeCenterY = rect.top + rect.height / 2;
-
-    const angle = Math.atan2(mousePos.y - eyeCenterY, mousePos.x - eyeCenterX);
-    const distance = Math.min(
-      4,
-      Math.hypot(mousePos.x - eyeCenterX, mousePos.y - eyeCenterY) / 100
-    );
-
-    return {
-      x: Math.cos(angle) * distance,
-      y: Math.sin(angle) * distance,
-    };
-  };
 
   const navLinks = [
     { name: "Home", path: "/", section: "home" },
@@ -153,13 +169,13 @@ const Navbar = () => {
         >
           {/* ✅ Scroll Underline */}
           <div
-            className="absolute bottom-0 left-0 h-[3px] rounded-b-full z-[5] transition-all duration-300 ease-out dark:bg-white bg-black"
+            ref={scrollProgressRef}
+            className="absolute bottom-0 left-0 h-[3px] rounded-b-full z-[5] transition-opacity duration-300 ease-out dark:bg-white bg-black pointer-events-none"
             style={{
-              width: `${scrollProgress * 100}%`,
+              width: "0%",
               opacity: isScrolled ? 1 : 0,
               boxShadow:
                 "0 0 6px rgba(0,0,0,0.3), 0 0 6px rgba(255,255,255,0.2)",
-              transition: "width 0.25s ease-out, opacity 0.3s ease",
             }}
           />
 
@@ -176,14 +192,8 @@ const Navbar = () => {
               className="w-6 h-6 rounded-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 flex items-center justify-center relative overflow-hidden"
             >
               <div
-                className="w-1.5 h-1.5 bg-black dark:bg-white rounded-full absolute transition-transform duration-100 ease-out"
-                style={{
-                  transform: `translate(${
-                    isDesktop ? calculateEyePosition(leftEyeRef.current).x : 0
-                  }px, ${
-                    isDesktop ? calculateEyePosition(leftEyeRef.current).y : 0
-                  }px)`,
-                }}
+                ref={leftPupilRef}
+                className="w-1.5 h-1.5 bg-black dark:bg-white rounded-full absolute will-change-transform"
               />
             </div>
             <div
@@ -191,14 +201,8 @@ const Navbar = () => {
               className="w-6 h-6 rounded-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 flex items-center justify-center relative overflow-hidden"
             >
               <div
-                className="w-1.5 h-1.5 bg-black dark:bg-white rounded-full absolute transition-transform duration-100 ease-out"
-                style={{
-                  transform: `translate(${
-                    isDesktop ? calculateEyePosition(rightEyeRef.current).x : 0
-                  }px, ${
-                    isDesktop ? calculateEyePosition(rightEyeRef.current).y : 0
-                  }px)`,
-                }}
+                ref={rightPupilRef}
+                className="w-1.5 h-1.5 bg-black dark:bg-white rounded-full absolute will-change-transform"
               />
             </div>
           </div>

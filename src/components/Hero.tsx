@@ -81,22 +81,22 @@ const Hero = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
           ref={blobA}
-          className={`absolute top-20 left-10 w-48 h-48 rounded-full ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          className={`absolute top-20 left-10 w-48 h-48 rounded-full will-change-transform ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
           style={{ background: 'radial-gradient(circle, rgba(191,219,254,0.3) 0%, rgba(191,219,254,0) 70%)' }}
         />
         <div
           ref={blobB}
-          className={`absolute top-40 right-20 w-64 h-64 rounded-full ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          className={`absolute top-40 right-20 w-64 h-64 rounded-full will-change-transform ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
           style={{ background: 'radial-gradient(circle, rgba(233,213,255,0.2) 0%, rgba(233,213,255,0) 70%)', animationDelay: '1s' }}
         />
         <div
           ref={blobC}
-          className={`absolute bottom-40 left-1/4 w-56 h-56 rounded-full ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          className={`absolute bottom-40 left-1/4 w-56 h-56 rounded-full will-change-transform ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
           style={{ background: 'radial-gradient(circle, rgba(251,207,232,0.2) 0%, rgba(251,207,232,0) 70%)', animationDelay: '2s' }}
         />
         <div
           ref={blobD}
-          className={`absolute top-1/3 right-1/3 w-40 h-40 rounded-full ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
+          className={`absolute top-1/3 right-1/3 w-40 h-40 rounded-full will-change-transform ${isMobile ? '' : 'animate-float-sm md:animate-float'}`}
           style={{ background: 'radial-gradient(circle, rgba(165,243,252,0.3) 0%, rgba(165,243,252,0) 70%)', animationDelay: '0.5s' }}
         />
       </div>
@@ -183,6 +183,9 @@ const Hero = () => {
               <img
                 src="/Aditya-PFP.webp"
                 alt="Profile"
+                fetchPriority="high"
+                loading="eager"
+                decoding="async"
                 className="w-full h-[360px] sm:h-[400px] md:h-[440px] lg:h-[460px] xl:h-[475px] object-cover rounded-2xl transition-transform duration-500 scale-150 sm:scale-100 sm:group-hover:scale-105"
               />
               {/* Vignette effect overlay */}
@@ -199,10 +202,10 @@ const Hero = () => {
               <p className="text-xs sm:text-xs text-yellow-400 tracking-wide font-medium drop-shadow-md">|| ॐ कृष्णाय नमः || ॐ नमः शिवाय ||</p>
             </div>
 
-            {/* Available / CTA text — sits right above the mantra */}
-            <div className="absolute bottom-6 left-4 right-4 rounded-2xl px-4 pt-4 pb-2 text-white border-white/10 drop-shadow-lg">
+            {/* Available / CTA text — sits right above the mantra, with safe right padding to never collide with the floating AI button */}
+            <div className="absolute bottom-6 left-4 right-4 rounded-2xl px-4 pt-4 pb-2 pr-16 sm:pr-20 md:pr-24 text-white border-white/10 drop-shadow-lg">
               <p className="text-[10px] sm:text-xs uppercase tracking-wider mb-1 text-white/80 font-semibold">Available for work</p>
-              <p className="text-sm sm:text-base md:text-lg font-semibold leading-snug">Let's talk systems and architecture, or collaborate on our next big idea!</p>
+              <p className="text-sm sm:text-base md:text-lg font-semibold leading-snug max-w-sm sm:max-w-md">Let's talk systems and architecture, or collaborate on our next big idea!</p>
             </div>
           </div>
         </div>

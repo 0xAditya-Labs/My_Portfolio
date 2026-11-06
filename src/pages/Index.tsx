@@ -10,7 +10,6 @@ import OpenSource from "@/components/OpenSource";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import MobileFAB from "@/components/MobileFAB";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
@@ -106,7 +105,6 @@ const Index = () => {
         
         <Contact />
         <Footer />
-        <MobileFAB />
       </div>
     );
   }
@@ -162,7 +160,6 @@ const Index = () => {
       </div>
 
       {/* Kept outside the stacking contexts so it remains floating above all */}
-      <MobileFAB />
     </div>
   );
 };

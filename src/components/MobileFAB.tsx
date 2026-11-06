@@ -86,17 +86,18 @@ const MobileFAB: React.FC = () => {
         </div>
       </button>
 
-      {/* Tooltip */}
+      {/* Tooltip - Positioned above the button so it never overlaps hero photo text or mantra */}
       {showTooltip && (
         <div 
-          className="fixed bottom-8 right-20 md:bottom-10 md:right-24 z-50 bg-black/90 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-lg backdrop-blur-sm border border-white/10 max-w-[200px] text-center"
+          className="fixed bottom-[5.5rem] right-4 md:bottom-[6.5rem] md:right-8 z-50 bg-black/90 text-white px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium shadow-xl backdrop-blur-sm border border-white/10 max-w-[190px] text-center pointer-events-none"
           style={{
             animation: 'tooltipAppear 0.5s ease-out, tooltipFadeOut 0.5s ease-in 7.5s forwards',
             animationFillMode: 'both'
           }}
         >
           Try the AI assistant to explore my work
-          <div className="absolute top-1/2 left-full transform -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-black/90" />
+          {/* Downward pointing arrow centered over the FAB button */}
+          <div className="absolute top-full right-[1.35rem] w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-black/90" />
         </div>
       )}
 

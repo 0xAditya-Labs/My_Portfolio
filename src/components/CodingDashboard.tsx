@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { fetchCodingJourneyStats } from "@/lib/codingStats";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Code2,
@@ -322,14 +323,12 @@ const CodingDashboard = () => {
 
   // â”€â”€ Fetch stats JSON once â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   useEffect(() => {
-    fetch("/coding-journey-stats.json")
-      .then((r) => { if (!r.ok) throw new Error("Failed to load stats"); return r.json(); })
+    fetchCodingJourneyStats()
       .then((data: CodingJourneyStats) => {
         setStats(data);
-        // small delay so fade-in is visible
         requestAnimationFrame(() => setLoaded(true));
       })
-      .catch(() => setLoaded(true)); // still reveal UI even on error
+      .catch(() => setLoaded(true));
   }, []);
 
   // â”€â”€ Heatmap tooltip (ported, preserved logic) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
