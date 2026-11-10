@@ -76,7 +76,7 @@ const Hero = () => {
   );
 
   return (
-    <section ref={heroRef} className="min-h-[85vh] bg-background relative overflow-hidden pt-[88px] sm:pt-[90px] lg:pt-[92px] pb-6 sm:pb-8 flex flex-col justify-start">
+    <section ref={heroRef} className="min-h-0 bg-background relative overflow-hidden pt-24 sm:pt-28 lg:pt-28 pb-8 sm:pb-10 flex flex-col justify-start">
       {/* Decorative floating elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
@@ -230,7 +230,7 @@ const Hero = () => {
       </div>
 
       {/* Mobile / Tablet Mouse Scroll Indicator - Centered below on smaller devices */}
-      <div className="flex lg:hidden justify-center w-full pt-8 pb-4 relative z-10">
+      <div className="flex lg:hidden justify-center w-full pt-6 pb-2 relative z-10">
         <MouseIndicator />
       </div>
     </section>
