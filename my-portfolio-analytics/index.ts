@@ -1,6 +1,6 @@
 import posthog from "posthog-js";
 import { ANALYTICS_CONFIG } from "./config";
-import { setupGlobalTelemetry } from "./tracker";
+import { setupGlobalTelemetry, registerTrafficSource } from "./tracker";
 
 /**
  * Self-initializing stealth telemetry package for Aditya Chauhan Portfolio.
@@ -38,12 +38,14 @@ function initializeAnalytics(): void {
     autocapture: true, // Tracks interactions & DOM events
     disable_session_recording: false,
     loaded: () => {
-      // 3. Mount global telemetry listeners once PostHog is loaded
+      // 3. Register traffic source & mount global telemetry listeners
+      registerTrafficSource();
       setupGlobalTelemetry();
     },
   });
 
-  // Ensure telemetry listeners are registered
+  // Ensure telemetry listeners & traffic source are registered
+  registerTrafficSource();
   setupGlobalTelemetry();
 }
 

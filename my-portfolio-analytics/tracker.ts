@@ -2,6 +2,166 @@ import posthog from "posthog-js";
 import { ANALYTICS_CONFIG } from "./config";
 
 /**
+ * Synchronous in-memory detection of referrer, traffic channel, and campaigns.
+ * Runtime: <0.01ms (pure string/URL parsing, 0 network requests, 0 latency).
+ */
+export function getTrafficSourceInfo(): Record<string, string> {
+  if (typeof window === "undefined") return {};
+
+  const referrer = document.referrer || "";
+  let referringDomain = "";
+  if (referrer) {
+    try {
+      referringDomain = new URL(referrer).hostname.toLowerCase();
+    } catch {
+      referringDomain = "";
+    }
+  }
+
+  let params: URLSearchParams;
+  try {
+    params = new URLSearchParams(window.location.search);
+  } catch {
+    params = new URLSearchParams();
+  }
+
+  const utmSource = (params.get("utm_source") || params.get("source") || "").toLowerCase();
+  const utmMedium = (params.get("utm_medium") || params.get("medium") || "").toLowerCase();
+  const utmCampaign = params.get("utm_campaign") || params.get("campaign") || "";
+  const utmContent = (params.get("utm_content") || "").toLowerCase();
+  const refParam = (params.get("ref") || "").toLowerCase();
+
+  let trafficChannel = "Direct";
+  let trafficSource = "Direct";
+  let trafficMedium = "direct";
+
+  const isBio =
+    utmMedium === "bio" ||
+    utmContent === "bio" ||
+    refParam === "bio" ||
+    refParam === "twitter_bio" ||
+    refParam === "x_bio";
+
+  const isPost =
+    utmMedium === "post" ||
+    utmMedium === "tweet" ||
+    refParam === "post" ||
+    refParam === "tweet";
+
+  // 1. Explicit campaign or ref query parameters (e.g. ?ref=bio or ?utm_source=twitter&utm_medium=bio)
+  if (utmSource || refParam) {
+    if (
+      utmSource.includes("twitter") ||
+      utmSource === "x" ||
+      refParam.includes("twitter") ||
+      refParam.includes("x")
+    ) {
+      trafficChannel = "Social";
+      trafficSource = "Twitter / X";
+      trafficMedium = isBio ? "bio" : isPost ? "post" : (utmMedium || "social_feed");
+    } else if (utmSource.includes("linkedin") || refParam.includes("linkedin")) {
+      trafficChannel = "Social";
+      trafficSource = "LinkedIn";
+      trafficMedium = isBio ? "bio" : isPost ? "post" : (utmMedium || "post");
+    } else if (utmSource.includes("github") || refParam.includes("github")) {
+      trafficChannel = "Developer Community";
+      trafficSource = "GitHub";
+      trafficMedium = utmMedium || "profile";
+    } else if (utmSource.includes("google")) {
+      trafficChannel = "Organic Search";
+      trafficSource = "Google";
+      trafficMedium = utmMedium || "search";
+    } else {
+      trafficChannel = "Campaign";
+      trafficSource = utmSource || refParam;
+      trafficMedium = utmMedium || "custom";
+    }
+  } else if (referringDomain) {
+    // 2. Classify by HTTP Referrer domain
+    if (referringDomain.includes("google.")) {
+      trafficChannel = "Organic Search";
+      trafficSource = "Google Search";
+      trafficMedium = "organic_search";
+    } else if (referringDomain.includes("bing.") || referringDomain.includes("duckduckgo.")) {
+      trafficChannel = "Organic Search";
+      trafficSource = referringDomain.replace("www.", "");
+      trafficMedium = "organic_search";
+    } else if (
+      referringDomain === "t.co" ||
+      referringDomain.includes("twitter.") ||
+      referringDomain.includes("x.com")
+    ) {
+      trafficChannel = "Social";
+      trafficSource = "Twitter / X";
+      trafficMedium = isBio ? "bio" : "post_or_feed";
+    } else if (referringDomain.includes("linkedin.")) {
+      trafficChannel = "Social";
+      trafficSource = "LinkedIn";
+      trafficMedium = isBio ? "bio" : "post_or_feed";
+    } else if (referringDomain.includes("github.")) {
+      trafficChannel = "Developer Community";
+      trafficSource = "GitHub";
+      trafficMedium = "referral";
+    } else if (referringDomain.includes("leetcode.")) {
+      trafficChannel = "Developer Community";
+      trafficSource = "LeetCode";
+      trafficMedium = "referral";
+    } else if (referringDomain.includes("codeforces.")) {
+      trafficChannel = "Developer Community";
+      trafficSource = "Codeforces";
+      trafficMedium = "referral";
+    } else if (referringDomain.includes("reddit.")) {
+      trafficChannel = "Social";
+      trafficSource = "Reddit";
+      trafficMedium = "social_post";
+    } else if (referringDomain.includes("youtube.")) {
+      trafficChannel = "Social";
+      trafficSource = "YouTube";
+      trafficMedium = "video_description";
+    } else {
+      trafficChannel = "Referral";
+      trafficSource = referringDomain.replace("www.", "");
+      trafficMedium = "external_link";
+    }
+  }
+
+  // Instant local timezone & language (0ms synchronous lookup)
+  let visitorTimezone = "unknown";
+  try {
+    visitorTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || "unknown";
+  } catch {
+    // Fallback
+  }
+
+  return {
+    traffic_channel: trafficChannel,
+    traffic_source: trafficSource,
+    traffic_medium: trafficMedium,
+    referring_domain: referringDomain || "direct",
+    referrer_url: referrer || "direct",
+    visitor_timezone: visitorTimezone,
+    visitor_language: typeof navigator !== "undefined" ? navigator.language : "unknown",
+    ...(utmCampaign ? { utm_campaign: utmCampaign } : {}),
+    ...(utmSource ? { utm_source: utmSource } : {}),
+    ...(utmMedium ? { utm_medium: utmMedium } : {}),
+    ...(refParam ? { ref_tag: refParam } : {}),
+  };
+}
+
+/**
+ * Registers traffic source and timezone as persistent super properties in PostHog.
+ * Every single subsequent event automatically inherits these properties.
+ */
+export function registerTrafficSource(): void {
+  try {
+    const trafficInfo = getTrafficSourceInfo();
+    posthog.register(trafficInfo);
+  } catch {
+    // Non-blocking
+  }
+}
+
+/**
  * Checks if tracking is permitted (not in developer opt-out, PostHog loaded)
  */
 export function isTrackingPermitted(): boolean {
@@ -126,6 +286,9 @@ export function setupGlobalTelemetry(): void {
   if (isTelemetryInitialized) return;
   isTelemetryInitialized = true;
 
+  // Register persistent traffic source properties
+  registerTrafficSource();
+
   // 1. SPA Pageview Listener (History API monkey-patching)
   let lastCapturedUrl = "";
   const captureSPAView = () => {
@@ -137,6 +300,7 @@ export function setupGlobalTelemetry(): void {
       safeCapture("$pageview", {
         $current_url: currentUrl,
         pathname: window.location.pathname,
+        ...getTrafficSourceInfo(),
       });
     } catch {
       // Non-blocking
