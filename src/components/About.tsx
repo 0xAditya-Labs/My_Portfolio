@@ -25,24 +25,37 @@ const About = () => {
               <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6">My background</h2>
             </div>
 
-            <div className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed">
+            <div className="space-y-4 text-base md:text-lg text-muted-foreground leading-relaxed">
               <p>
-                I'm a final-year Computer Science Engineering student at Dr. B.R. Ambedkar National Institute of Technology, Jalandhar, maintaining a <span className="font-bold text-black dark:text-white">CGPA of 8.56 (Top 4%ile)</span>. I recently completed my Software Development Engineering Internship at Accenture, where I built an internal LangGraph ReAct agent prototype with FastAPI and OpenTelemetry, slashing vector-search latency by 69% (to 180ms) and cutting LLM token usage by 34%. Currently, I'm building scalable projects targeting real users, enjoying competitive programming, and actively exploring my next opportunity.
+                Final-year CSE at <strong className="text-foreground font-semibold">NIT Jalandhar</strong> (<span className="font-semibold text-foreground">CGPA 8.56, Top 4%ile</span>). My focus is on first-principles systems engineering, OS internals, and concurrent architecture.
               </p>
 
               <p>
-                My work sits at the intersection of software engineering, systems engineering, and applied AI — I genuinely enjoy reasoning through concurrency, system design, and OS internals, not just building on top of them. I've engineered a thread-safe LRU cache sustaining 160,000+ QPS at p99 &lt; 0.24ms, and a distributed real-time messaging platform delivering verified 35ms p95 latency under saturated cluster loads. I've also solved <span className="font-bold text-black dark:text-white">1,500+ DSA problems</span>, earning Specialist on Codeforces, Knight on LeetCode, and 3-star on CodeChef.
+                Recently completed my SDE Internship at <strong className="text-foreground font-semibold">Accenture</strong>, engineering an internal LangGraph ReAct agent with FastAPI and OpenTelemetry that slashed vector retrieval latency by <span className="font-semibold text-foreground">69% (180ms)</span> and cut token usage by <span className="font-semibold text-foreground">34%</span>.
               </p>
 
-              <p>
-                What drives me is solving hard problems with measurable impact — whether it's high-throughput caching architecture, production-grade RAG pipelines, or mentoring 70+ juniors in advanced DSA cohorts and authoring 35 contest problems as Competitive Programming Lead of the Google Developer Group at NIT Jalandhar.
+              <div className="space-y-2 pl-4 border-l-2 border-border/80 text-sm md:text-base">
+                <p>
+                  <strong className="text-foreground font-semibold">SwiftCache</strong> — Thread-safe concurrent LRU cache in C++ sustaining <span className="font-semibold text-foreground">160,000+ QPS</span> at p99 &lt; 0.24ms.
+                </p>
+                <p>
+                  <strong className="text-foreground font-semibold">Interlock</strong> — Distributed real-time messaging engine delivering verified <span className="font-semibold text-foreground">35ms p95 latency</span> under saturated cluster load.
+                </p>
+              </div>
+
+              <p className="text-sm md:text-base">
+                Obsessed with algorithmic rigor: solved over <span className="font-semibold text-foreground">1,500+ DSA problems</span>, achieving <strong className="text-foreground font-semibold">Knight on LeetCode</strong> (1961 peak, Top 4%ile), Codeforces Specialist, and CodeChef 3-star. Qualified for <strong className="text-foreground font-semibold">Meta Hacker Cup Round 2</strong> and twice a national <strong className="text-foreground font-semibold">Flipkart GRiD Semi-Finalist</strong> (Top 0.5% of 170k+).
+              </p>
+
+              <p className="text-sm md:text-base">
+                Official reference contributor to <strong className="text-foreground font-semibold">XERJ Corpus Hub</strong> (&gt;19k stars), and <strong className="text-foreground font-semibold">GDG CP Lead</strong> at NIT Jalandhar — authored 35 contest problems and mentored 70+ juniors in advanced DSA.
               </p>
             </div>
 
           </div>
 
           {/* Right Content - Skills Card */}
-          <div 
+          <div
             className={`premium-card rounded-3xl p-8 ${aboutVisible ? 'scroll-animate scroll-animate-delay-2' : ''}`}
           >
             <h3 className="text-2xl font-bold mb-8">Skills & Expertise</h3>
