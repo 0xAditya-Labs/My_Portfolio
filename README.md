@@ -232,8 +232,9 @@ Ensure your deployment configuration preserves `/api/*` endpoints while routing 
 - Custom Fallback Search Algorithm (Graceful Degradation)
 
 **Deployment & Analytics**
-- Vercel (Hosting)
+- Vercel (Hosting & Edge Rewrites)
 - Vercel Analytics + Speed Insights
+- PostHog (Session Replays & Telemetry via First-Party Proxy)
 
 ---
 

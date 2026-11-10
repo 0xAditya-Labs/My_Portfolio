@@ -1,5 +1,17 @@
 {
   "rewrites": [
+    {
+      "source": "/status-of-user-response/static/:path(.*)",
+      "destination": "https://us-assets.i.posthog.com/static/:path"
+    },
+    {
+      "source": "/status-of-user-response/array/:path(.*)",
+      "destination": "https://us-assets.i.posthog.com/array/:path"
+    },
+    {
+      "source": "/status-of-user-response/:path(.*)",
+      "destination": "https://us.i.posthog.com/:path"
+    },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [

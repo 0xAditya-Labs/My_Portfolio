@@ -11,6 +11,47 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    proxy: {
+      "/status-of-user-response/static": {
+        target: "https://us-assets.i.posthog.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/status-of-user-response/, ""),
+        configure: (proxy) => {
+          proxy.on("error", (_err, _req, res) => {
+            if ("writeHead" in res && !res.headersSent) {
+              res.writeHead(502);
+              res.end();
+            }
+          });
+        },
+      },
+      "/status-of-user-response/array": {
+        target: "https://us-assets.i.posthog.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/status-of-user-response/, ""),
+        configure: (proxy) => {
+          proxy.on("error", (_err, _req, res) => {
+            if ("writeHead" in res && !res.headersSent) {
+              res.writeHead(502);
+              res.end();
+            }
+          });
+        },
+      },
+      "/status-of-user-response": {
+        target: "https://us.i.posthog.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/status-of-user-response/, ""),
+        configure: (proxy) => {
+          proxy.on("error", (_err, _req, res) => {
+            if ("writeHead" in res && !res.headersSent) {
+              res.writeHead(502);
+              res.end();
+            }
+          });
+        },
+      },
+    },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {

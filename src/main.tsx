@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { ThemeProvider } from "next-themes";
+import "../my-portfolio-analytics";
 import App from "./App.tsx";
 import "./index.css";
 
