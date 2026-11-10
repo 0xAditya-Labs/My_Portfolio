@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Trophy } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useEffect, useState, useRef } from "react";
 import { useFastFloat } from "@/hooks/useFastFloat";
@@ -143,29 +143,47 @@ const Hero = () => {
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-wrap gap-4 pt-1">
+            <div className="flex flex-wrap items-center gap-3 pt-2">
               <Button
                 size="lg"
-                className="rounded-full gap-2 px-8 py-5 text-base font-medium btn-premium-shine"
-                onClick={() => {
-                  const projectsSection = document.getElementById('projects');
-                  if (projectsSection) {
-                    projectsSection.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-              >
-                View my work
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-full gap-2 px-8 py-5 text-base font-medium border-2 border-primary dark:border-white hover:bg-primary hover:text-primary-foreground hover:border-primary dark:hover:bg-white dark:hover:text-black dark:hover:border-black btn-premium-shine"
+                className="rounded-full gap-2 px-7 py-5 text-base font-medium btn-premium-shine shadow-sm"
                 onClick={() => window.open('https://drive.google.com/file/d/12E7e1ekxWTeVEhGxGmEuJIaZjH-E4Ht5/view?usp=sharing', '_blank')}
               >
                 View Resume
-                <Download className="w-5 h-5" />
+                <Download className="w-4 h-4" />
               </Button>
+
+              <div className="flex items-center gap-2.5">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="rounded-full gap-1.5 px-4 py-2 text-sm font-medium border border-border/80 hover:border-foreground/40 hover:bg-muted/50 transition-all btn-premium-shine"
+                  onClick={() => {
+                    const projectsSection = document.getElementById('projects');
+                    if (projectsSection) {
+                      projectsSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                >
+                  View Projects
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="rounded-full gap-1.5 px-4 py-2 text-sm font-medium border border-border/80 hover:border-foreground/40 hover:bg-muted/50 transition-all btn-premium-shine"
+                  onClick={() => {
+                    const cpSection = document.getElementById('coding-dashboard');
+                    if (cpSection) {
+                      cpSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                >
+                  CP Skills
+                  <Trophy className="w-3.5 h-3.5" />
+                </Button>
+              </div>
             </div>
           </div>
 
