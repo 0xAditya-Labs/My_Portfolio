@@ -44,7 +44,7 @@ const About = () => {
               </div>
 
               <p className="text-sm md:text-base">
-                Obsessed with algorithmic rigor: solved over <span className="font-semibold text-foreground">1,500+ DSA problems</span>, achieving <strong className="text-foreground font-semibold">Knight on LeetCode</strong> (1961 peak, Top 4%ile), Codeforces Specialist, and CodeChef 3-star. Qualified for <strong className="text-foreground font-semibold">Meta Hacker Cup Round 2</strong> and twice a national <strong className="text-foreground font-semibold">Flipkart GRiD Semi-Finalist</strong> (Top 0.5% of 170k+).
+                Obsessed with algorithmic rigor: solved over <span className="font-semibold text-foreground">1,500+ DSA problems</span>, achieving <strong className="text-foreground font-semibold">Knight on LeetCode</strong> (1982 peak, Top 2.9%ile), <strong className="text-foreground font-bold">Codeforces Specialist</strong> (1461 peak), and <strong className="text-foreground font-semibold">CodeChef 3-star</strong>. Qualified for <strong className="text-foreground font-semibold">Meta Hacker Cup Round 2</strong> and twice a national <strong className="text-foreground font-semibold">Flipkart GRiD Semi-Finalist</strong> (Top 0.5% of 170k+).
               </p>
 
               <p className="text-sm md:text-base">
