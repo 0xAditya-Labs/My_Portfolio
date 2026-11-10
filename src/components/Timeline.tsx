@@ -53,8 +53,6 @@ const Timeline = () => {
   const { ref, isVisible } = useScrollAnimation();
   const timelineRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [visibleItems, setVisibleItems] = useState(1);
-  const scrollAccumulator = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,133 +70,96 @@ const Timeline = () => {
         );
         setScrollProgress(progress);
       }
-
-      // Fix for refresh: if we load the page and timeline is already past the top, 
-      // reveal all items so they don't get stuck at 1.
-      if (elementTop < 0) {
-        setVisibleItems(timelineData.length);
-      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      if (!timelineRef.current) return;
-
-      // Only apply scroll-jacking on desktop (lg breakpoint = 1024px)
-      if (window.innerWidth < 1024) return;
-
-      const rect = timelineRef.current.getBoundingClientRect();
-      const isInView = rect.top <= 100 && rect.bottom >= window.innerHeight / 2;
-
-      // Only lock scroll if scrolling down and we have more items to show.
-      // This allows scrolling back (up) smoothly without hiding items like a stack.
-      if (isInView && e.deltaY > 0 && visibleItems < timelineData.length) {
-        e.preventDefault();
-        scrollAccumulator.current += e.deltaY;
-
-        // "Wait for very less like 5 scrolls extra" -> reduced threshold to 50
-        if (scrollAccumulator.current > 50) {
-          setVisibleItems((prev) => Math.min(prev + 1, timelineData.length));
-          scrollAccumulator.current = 0;
-        }
-      }
-    };
-
-    window.addEventListener("wheel", handleWheel, { passive: false });
-    return () => window.removeEventListener("wheel", handleWheel);
-  }, [visibleItems]);
-
   return (
     <section
       ref={timelineRef}
-      className="py-0 px-6 lg:px-8 relative overflow-hidden"
+      className="py-16 lg:py-20 px-6 lg:px-8 relative overflow-hidden"
       id="timeline"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Title with Google Intern Badge */}
-        <div ref={ref} className={`${isVisible ? "scroll-animate" : "opacity-0"} flex items-center justify-center gap-8 mb-20 flex-wrap`}>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center">
+        {/* Title */}
+        <div ref={ref} className={`${isVisible ? "scroll-animate" : "opacity-0"} flex items-center justify-center gap-8 mb-16 flex-wrap`}>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center tracking-tight">
             Tracing the Arc...
           </h2>
-          {/* <img 
-            src="/icons/aditya-intern.webp" 
-            alt="Aditya Intern '26" 
-            className="object-contain w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 flex-shrink-0"
-          /> */}
         </div>
 
-        {/* Desktop Timeline - Horizontal */}
+        {/* Desktop Timeline - Horizontal (Responsive 3-Column Grid, Zero Scroll-Jacking) */}
         <div className="hidden lg:block relative">
           {/* Background Line */}
           <div className="absolute top-8 left-0 right-0 h-0.5 bg-border" />
 
           {/* Animated Progress Line */}
           <div
-            className="absolute top-8 left-0 h-0.5 bg-gradient-to-r from-accent via-primary to-accent transition-all duration-300 ease-out"
-            style={{ width: `${(visibleItems / timelineData.length) * 100}%` }}
+            className={`absolute top-8 left-0 h-0.5 bg-gradient-to-r from-accent via-primary to-accent transition-all duration-1000 ease-out ${
+              isVisible ? "w-full" : "w-0"
+            }`}
           />
 
           {/* Timeline Items */}
-          <div className="grid grid-flow-col auto-cols-fr gap-8 relative items-stretch">
+          <div className="grid grid-cols-3 gap-8 relative items-stretch">
             {timelineData.map((item, index) => (
               <div
                 key={index}
-                className={`relative transition-all duration-700 ${index < visibleItems ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                  }`}
+                className={`relative transition-all duration-700 ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
                 {/* Dot */}
                 <div className="relative flex justify-center mb-8">
                   <div
-                    className={`w-4 h-4 rounded-full border-2 transition-all duration-500 ${index < visibleItems
-                      ? "bg-blue-500 border-blue-500 shadow-lg shadow-blue-500/50 scale-125"
-                      : "bg-background border-border"
-                      }`}
+                    className="w-4 h-4 rounded-full border-2 transition-all duration-500 bg-blue-500 border-blue-500 shadow-lg shadow-blue-500/50 scale-125"
                   />
                 </div>
 
                 {/* Content Card */}
                 <div 
-                  className="premium-card p-5 rounded-xl group cursor-default"
+                  className="premium-card p-5 rounded-xl group cursor-default h-[calc(100%-48px)] flex flex-col justify-between"
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex gap-4 w-full">
-                      {item.logo && (
-                        <div className="w-12 h-12 rounded bg-slate-100/80 dark:bg-slate-200/90 p-1.5 flex items-center justify-center shrink-0 border border-border/50 shadow-sm mt-1">
-                          <img src={item.logo} alt={item.company} className="max-w-full max-h-full object-contain" />
-                        </div>
-                      )}
-                      <div>
-                        <p className="text-sm text-muted-foreground">{item.period || item.date}</p>
-                        <div className="mt-1 flex items-start justify-between gap-3">
-                          <h3 className="text-xl font-bold text-foreground leading-snug">{item.title}</h3>
-                        </div>
-                        {item.company && (
-                          <p className="text-sm text-muted-foreground mb-3">
-                            {item.companyUrl ? (
-                              <a href={item.companyUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:underline relative pr-6">
-                                <span>{item.company}</span>
-                                <ArrowRight className="absolute top-0 right-0 w-5 h-5 -rotate-45 text-accent" />
-                              </a>
-                            ) : (
-                              <>{item.company}</>
-                            )}
-                          </p>
+                  <div>
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex gap-4 w-full">
+                        {item.logo && (
+                          <div className="w-12 h-12 rounded bg-slate-100/80 dark:bg-slate-200/90 p-1.5 flex items-center justify-center shrink-0 border border-border/50 shadow-sm mt-1">
+                            <img src={item.logo} alt={item.company} className="max-w-full max-h-full object-contain" />
+                          </div>
                         )}
+                        <div>
+                          <p className="text-sm text-muted-foreground">{item.period || item.date}</p>
+                          <div className="mt-1 flex items-start justify-between gap-3">
+                            <h3 className="text-xl font-bold text-foreground leading-snug">{item.title}</h3>
+                          </div>
+                          {item.company && (
+                            <p className="text-sm text-muted-foreground mb-3">
+                              {item.companyUrl ? (
+                                <a href={item.companyUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:underline relative pr-6">
+                                  <span>{item.company}</span>
+                                  <ArrowRight className="absolute top-0 right-0 w-5 h-5 -rotate-45 text-accent" />
+                                </a>
+                              ) : (
+                                <>{item.company}</>
+                              )}
+                            </p>
+                          )}
+                        </div>
                       </div>
                     </div>
+
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                      {item.summary}
+                    </p>
                   </div>
 
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                    {item.summary}
-                  </p>
-
-                  <div className="mt-4 flex flex-wrap gap-2">
+                  <div className="mt-4 flex flex-wrap gap-2 pt-2">
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
