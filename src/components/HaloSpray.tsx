@@ -692,12 +692,12 @@ function __OriginkitBase_HaloSpray({
         const onUp = () => {
             ptr.down = false
         }
-        root.addEventListener("pointermove", onMove)
-        root.addEventListener("pointerenter", onMove)
-        root.addEventListener("pointerleave", onLeave)
-        root.addEventListener("pointerdown", onDown)
-        window.addEventListener("pointerup", onUp)
-        window.addEventListener("pointercancel", onUp)
+        root.addEventListener("pointermove", onMove, { passive: true })
+        root.addEventListener("pointerenter", onMove, { passive: true })
+        root.addEventListener("pointerleave", onLeave, { passive: true })
+        root.addEventListener("pointerdown", onDown, { passive: true })
+        window.addEventListener("pointerup", onUp, { passive: true })
+        window.addEventListener("pointercancel", onUp, { passive: true })
 
         let field: Field | null = null
         let fieldKey = ""

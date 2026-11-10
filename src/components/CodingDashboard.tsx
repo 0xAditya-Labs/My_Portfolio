@@ -401,10 +401,10 @@ const CodingDashboard = () => {
     const onPointerOut = () => setTooltip((t) => (t.visible ? { ...t, visible: false } : t));
     const onResize = () => adjust();
 
-    container.addEventListener("pointermove", onPointerMove);
-    container.addEventListener("pointerover", onPointerOver);
-    container.addEventListener("pointerout", onPointerOut);
-    window.addEventListener("resize", onResize);
+    container.addEventListener("pointermove", onPointerMove, { passive: true });
+    container.addEventListener("pointerover", onPointerOver, { passive: true });
+    container.addEventListener("pointerout", onPointerOut, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
 
     // Per-rect listeners (robust fallback)
     const attachedRects: Array<{ el: Element; move: EventListener; enter: EventListener; leave: EventListener }> = [];
@@ -419,9 +419,9 @@ const CodingDashboard = () => {
         const move = (ev: Event) => onPointerMove(ev as unknown as PointerEvent);
         const enter = (ev: Event) => onPointerOver(ev as unknown as PointerEvent);
         const leave = () => onPointerOut();
-        n.addEventListener("pointermove", move);
-        n.addEventListener("pointerenter", enter);
-        n.addEventListener("pointerleave", leave);
+        n.addEventListener("pointermove", move, { passive: true });
+        n.addEventListener("pointerenter", enter, { passive: true });
+        n.addEventListener("pointerleave", leave, { passive: true });
         attachedRects.push({ el: n, move, enter, leave });
       });
     };

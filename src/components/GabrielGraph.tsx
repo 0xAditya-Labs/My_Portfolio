@@ -533,10 +533,10 @@ function __OriginkitBase_GabrielGraph(props: Props) {
                 // Ignore
             }
         }
-        host.addEventListener("pointerdown", onDown)
-        window.addEventListener("pointermove", onMove)
-        window.addEventListener("pointerup", onUp)
-        window.addEventListener("pointercancel", onUp)
+        host.addEventListener("pointerdown", onDown, { passive: true })
+        window.addEventListener("pointermove", onMove, { passive: true })
+        window.addEventListener("pointerup", onUp, { passive: true })
+        window.addEventListener("pointercancel", onUp, { passive: true })
 
         const vp = new Float32Array(16)
         const pal = new Float32Array(PALETTE_SIZE * 3)
