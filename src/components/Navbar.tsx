@@ -53,7 +53,7 @@ const Navbar = () => {
 
     let scrollRaf: number | null = null;
     let lastIsScrolled = false;
-    let lastActiveSection = "home";
+    let lastActiveSection = "";
 
     const handleScroll = () => {
       if (scrollRaf) return;
@@ -73,9 +73,14 @@ const Navbar = () => {
           setIsScrolled(nextScrolled);
         }
 
-        const sections = ["hero", "about", "timeline", "projects", "faq"];
-        const scrollPosition = scrollTop + 100;
-        let foundSection = "home";
+        const sections = [
+          "about",
+          "projects",
+          "coding-dashboard",
+          "opensource",
+        ];
+        const scrollPosition = scrollTop + 150;
+        let foundSection = "";
         for (const sectionId of sections) {
           const element =
             document.getElementById(sectionId) ||
@@ -86,13 +91,13 @@ const Navbar = () => {
               scrollPosition >= offsetTop &&
               scrollPosition < offsetTop + offsetHeight
             ) {
-              foundSection = sectionId === "hero" ? "home" : sectionId;
+              foundSection = sectionId;
               break;
             }
           }
         }
 
-        if (scrollTop < 100) foundSection = "home";
+        if (scrollTop < 100) foundSection = "";
         if (foundSection !== lastActiveSection) {
           lastActiveSection = foundSection;
           setActiveSection(foundSection);
@@ -113,11 +118,10 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Home", path: "/", section: "home" },
     { name: "About", path: "#about", section: "about" },
-    { name: "Timeline", path: "#timeline", section: "timeline" },
     { name: "Projects", path: "#projects", section: "projects" },
-    { name: "FAQ", path: "#faq", section: "faq" },
+    { name: "Problem Solving", path: "#coding-dashboard", section: "coding-dashboard" },
+    { name: "Open Source", path: "#opensource", section: "opensource" },
   ];
 
   const closeMenu = useCallback(() => setMobileMenuOpen(false), []);
@@ -179,9 +183,22 @@ const Navbar = () => {
             }}
           />
 
-          {/* Left - Logo */}
-          <Link to="/" className="text-xl font-bold z-10 flex-shrink-0">
-            <span className="text-foreground whitespace-nowrap">adityac</span>
+          {/* Left - Logo (Clicking navigates/scrolls to landing page) */}
+          <Link
+            to="/"
+            title="adityac.codes — Home"
+            onClick={(e) => {
+              if (window.location.pathname === "/" || window.location.pathname === "") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                if (window.location.hash) {
+                  history.pushState(null, "", window.location.pathname);
+                }
+              }
+            }}
+            className="text-xl font-bold z-10 flex-shrink-0 cursor-pointer group"
+          >
+            <span className="text-foreground whitespace-nowrap transition-colors group-hover:text-primary">adityac</span>
             <span className="text-muted-foreground whitespace-nowrap">.codes</span>
           </Link>
 
@@ -224,16 +241,18 @@ const Navbar = () => {
                 </a>
               ))}
               <ThemeToggle />
-              <a
-                href="https://tally.so/r/LZyoBJ"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Button
+                onClick={() => {
+                  const contactSection = document.getElementById("contact");
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+                className="rounded-full gap-2 px-6 py-2.5 text-sm font-medium bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 ml-2 btn-premium-shine cursor-pointer"
               >
-                <Button className="rounded-full gap-2 px-6 py-2.5 text-sm font-medium bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 ml-2 btn-premium-shine">
-                  Let's talk
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </a>
+                Let's talk
+                <ArrowRight className="w-4 h-4" />
+              </Button>
             </div>
 
             {/* Mobile */}
@@ -306,18 +325,19 @@ const Navbar = () => {
                               {link.name}
                             </a>
                           ))}
-                          <a
-                            href="https://tally.so/r/LZyoBJ"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={closeMenu}
-                            className="mt-4 w-full"
+                          <Button
+                            onClick={() => {
+                              closeMenu();
+                              const contactSection = document.getElementById("contact");
+                              if (contactSection) {
+                                contactSection.scrollIntoView({ behavior: "smooth" });
+                              }
+                            }}
+                            className="w-full rounded-full gap-2 px-6 py-6 text-base font-medium bg-foreground text-background hover:bg-foreground/90 mt-4 cursor-pointer"
                           >
-                            <Button className="w-full rounded-full gap-2 px-6 py-6 text-base font-medium bg-foreground text-background hover:bg-foreground/90">
-                              Let's talk
-                              <ArrowRight className="w-4 h-4" />
-                            </Button>
-                          </a>
+                            Let's talk
+                            <ArrowRight className="w-4 h-4" />
+                          </Button>
                         </nav>
                       </div>
                     </div>

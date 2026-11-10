@@ -157,7 +157,7 @@ const Hero = () => {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="rounded-full gap-1.5 px-4 py-2 text-sm font-medium border border-border/80 hover:border-foreground/40 hover:bg-muted/50 transition-all btn-premium-shine"
+                  className="rounded-full gap-1.5 px-4 py-2 text-sm font-medium border border-border/80 text-foreground hover:bg-foreground hover:text-background hover:border-foreground transition-all duration-200 btn-premium-shine cursor-pointer"
                   onClick={() => {
                     const projectsSection = document.getElementById('projects');
                     if (projectsSection) {
@@ -172,7 +172,7 @@ const Hero = () => {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="rounded-full gap-1.5 px-4 py-2 text-sm font-medium border border-border/80 hover:border-foreground/40 hover:bg-muted/50 transition-all btn-premium-shine"
+                  className="rounded-full gap-1.5 px-4 py-2 text-sm font-medium border border-border/80 text-foreground hover:bg-foreground hover:text-background hover:border-foreground transition-all duration-200 btn-premium-shine cursor-pointer"
                   onClick={() => {
                     const cpSection = document.getElementById('coding-dashboard');
                     if (cpSection) {
