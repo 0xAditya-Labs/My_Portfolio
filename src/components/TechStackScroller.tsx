@@ -52,10 +52,10 @@ const TechStackScroller = () => {
     <div className="flex items-center shrink-0">
       {techStack.map((tech, index) => (
         <div key={index} className="flex items-center shrink-0">
-          <span className="tech-item px-3 sm:px-4 text-xl sm:text-2xl font-medium text-background dark:text-foreground whitespace-nowrap transition-all duration-300 cursor-pointer">
+          <span className="tech-item px-4 sm:px-6 text-2xl sm:text-3xl font-semibold text-background dark:text-foreground whitespace-nowrap transition-all duration-300 cursor-pointer">
             {tech}
           </span>
-          <span className="mx-3 sm:mx-4 text-background/40 dark:text-foreground/40 transition-opacity duration-300 tech-dot">
+          <span className="mx-4 sm:mx-6 text-background/40 dark:text-foreground/40 transition-opacity duration-300 tech-dot">
             •
           </span>
         </div>
@@ -64,7 +64,7 @@ const TechStackScroller = () => {
   );
 
   return (
-    <section ref={scrollerRef} className={`py-6 sm:py-7 bg-foreground dark:bg-card overflow-hidden ${scrollerVisible ? 'scroll-animate-fade' : 'opacity-0'}`}>
+    <section ref={scrollerRef} className={`py-12 sm:py-14 lg:py-16 bg-foreground dark:bg-card overflow-hidden ${scrollerVisible ? 'scroll-animate-fade' : 'opacity-0'}`}>
       <div
         className="max-w-full relative"
         onMouseMove={handleMouseMove}
