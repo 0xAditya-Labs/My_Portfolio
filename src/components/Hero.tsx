@@ -76,7 +76,7 @@ const Hero = () => {
   );
 
   return (
-    <section ref={heroRef} className="min-h-0 bg-background relative overflow-hidden pt-24 sm:pt-28 lg:pt-28 pb-8 sm:pb-10 flex flex-col justify-start">
+    <section ref={heroRef} className="min-h-0 lg:min-h-[calc(100vh-5rem)] bg-background relative overflow-hidden pt-24 sm:pt-28 lg:pt-20 pb-8 sm:pb-10 flex flex-col justify-center">
       {/* Decorative floating elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
@@ -101,7 +101,7 @@ const Hero = () => {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 lg:gap-8 items-start relative z-10 w-full">
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 lg:gap-8 items-start relative z-10 w-full my-auto">
         {/* Command Palette Hint - Overlaid on main content top right */}
         <div className="absolute top-0 right-0 z-20 hidden sm:block">
           <div className="bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-900 dark:to-card text-gray-900 dark:text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg border border-black/20 dark:border-white/10 transform-gpu">
