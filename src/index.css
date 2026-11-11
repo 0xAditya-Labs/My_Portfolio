@@ -1,4 +1,30 @@
-@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+/* Self-hosted SF Pro Display — eliminates render-blocking third-party @import.
+   local() hits system font instantly on Apple devices (zero network cost).
+   font-display: swap keeps text visible during font load (prevents FCP delay). */
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('SF Pro Display'), local('.SFNSDisplay-Regular'),
+       url('/fonts/SFProDisplay-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('SF Pro Display Medium'), local('.SFNSDisplay-Medium'),
+       url('/fonts/SFProDisplay-Medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('SF Pro Display Bold'), local('.SFNSDisplay-Bold'),
+       url('/fonts/SFProDisplay-Bold.woff') format('woff');
+}
 
 @tailwind base;
 @tailwind components;

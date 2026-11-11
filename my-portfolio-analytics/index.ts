@@ -43,10 +43,6 @@ function initializeAnalytics(): void {
       setupGlobalTelemetry();
     },
   });
-
-  // Ensure telemetry listeners & traffic source are registered
-  registerTrafficSource();
-  setupGlobalTelemetry();
 }
 
 // Auto-run on load
