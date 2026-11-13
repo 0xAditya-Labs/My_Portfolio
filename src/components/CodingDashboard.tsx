@@ -920,15 +920,25 @@ const CodingDashboard = () => {
                     <img src="/icons/Flipkart-Logo-webp.webp" alt="Flipkart" className="w-full h-full object-contain scale-[1.2]" />
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between gap-2 flex-wrap">
                       <h4 className="text-sm font-semibold text-foreground">Flipkart GRiD 7.0 & 8.0</h4>
-                      <button
-                        onClick={() => setActiveCert("/achievements/Flipkart7.0_certificate.webp")}
-                        className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
-                      >
-                        <ExternalLink className="w-3 h-3" />
-                        Certificate
-                      </button>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => setActiveCert("/achievements/Flipkart7.0_certificate.webp")}
+                          className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          GRiD 7.0
+                        </button>
+                        <span className="text-muted-foreground/40 text-[10px]">•</span>
+                        <button
+                          onClick={() => setActiveCert("/achievements/Flipkart Grid 8.0 certificate.webp")}
+                          className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wider text-blue-500 hover:text-blue-600 transition-colors"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          GRiD 8.0
+                        </button>
+                      </div>
                     </div>
                     <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
                       Semi-Finalist in 7.0 (2025) and 8.0 (2026), placing in top 0.5% among 170K+ participants.
