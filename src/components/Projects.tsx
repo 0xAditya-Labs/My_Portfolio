@@ -7,11 +7,13 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { preloadImages } from "@/lib/imagePreloader";
 import GabrielGraph from "@/components/GabrielGraph";
 
+type ProjectItem = (typeof projectsData)[number];
+
 const Projects = () => {
   const { ref: projectsRef, isVisible: projectsVisible } = useScrollAnimation();
   const isMobile = useIsMobile();
   const [filter, setFilter] = useState("all");
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const pageSize = isMobile ? 3 : 6;
   const [visibleCount, setVisibleCount] = useState(pageSize);
   const preloaded = useRef<Set<string>>(new Set());
@@ -56,14 +58,14 @@ const Projects = () => {
     preloadImages(toLoad);
   };
 
-  const openProject = (project: any) => {
+  const openProject = (project: ProjectItem) => {
     setSelectedProject(project);
   };
 
   const closeProject = () => setSelectedProject(null);
 
   return (
-    <section id="projects" ref={projectsRef} className="pt-24 pb-16 bg-transparent">
+    <section id="projects" ref={projectsRef} className="py-16 lg:py-20 bg-transparent">
       <div className="max-w-7xl mx-auto px-6">
         <div className={`mb-12 ${projectsVisible ? 'scroll-animate' : ''}`}>
           <div className="flex flex-col md:flex-row md:items-center gap-6 sm:gap-8 lg:gap-8">

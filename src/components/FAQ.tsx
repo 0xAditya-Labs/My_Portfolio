@@ -38,7 +38,7 @@ const FAQ = () => {
 
 
   return (
-    <section id="faq" ref={faqRef} className="pt-16 pb-24 bg-transparent">
+    <section id="faq" ref={faqRef} className="py-16 bg-transparent">
       <div className="max-w-4xl mx-auto px-6">
         <div className={`text-center mb-12 ${faqVisible ? 'scroll-animate' : ''}`}>
           <p className="text-sm uppercase tracking-wider text-muted-foreground mb-3">

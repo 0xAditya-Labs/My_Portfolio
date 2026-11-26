@@ -84,28 +84,38 @@ const Index = () => {
         <Hero />
         <TechStackScroller />
         
-        <div className="bg-muted/30 dark:bg-card/40 transition-colors duration-300">
+        {/* Section 1: About (Shade 2) */}
+        <div className="bg-muted/30 dark:bg-card/40 border-y border-border/40 transition-colors duration-300">
           <About />
         </div>
         
+        {/* Section 2: Timeline (Shade 1) */}
         <Timeline />
         
-        <div className="bg-muted/30 dark:bg-card/40 transition-colors duration-300">
+        {/* Section 3: Projects (Shade 2) */}
+        <div className="bg-muted/30 dark:bg-card/40 border-y border-border/40 transition-colors duration-300">
           <Projects />
         </div>
         
+        {/* Section 4: CodingDashboard (Shade 1) */}
         <Suspense fallback={<div className="py-24" />}>
           <CodingDashboard />
         </Suspense>
         
-        <OpenSource />
-        
-        <div className="bg-muted/30 dark:bg-card/40 transition-colors duration-300">
-          <FAQ />
+        {/* Section 5: OpenSource (Shade 2) */}
+        <div className="bg-muted/30 dark:bg-card/40 border-y border-border/40 transition-colors duration-300">
+          <OpenSource />
         </div>
         
-        <AnalogSide />
+        {/* Section 6: FAQ (Shade 1) */}
+        <FAQ />
         
+        {/* Section 7: AnalogSide (Shade 2) */}
+        <div className="bg-muted/30 dark:bg-card/40 border-y border-border/40 transition-colors duration-300">
+          <AnalogSide />
+        </div>
+        
+        {/* Section 8: Contact (Shade 1) */}
         <Contact />
         <Footer />
       </div>
@@ -127,28 +137,38 @@ const Index = () => {
         <Hero />
         <TechStackScroller />
         
-        <div className="bg-muted/30 dark:bg-card/40 transition-colors duration-300">
+        {/* Section 1: About (Shade 2) */}
+        <div className="bg-muted/30 dark:bg-card/40 border-y border-border/40 transition-colors duration-300">
           <About />
         </div>
         
+        {/* Section 2: Timeline (Shade 1) */}
         <Timeline />
         
-        <div className="bg-muted/30 dark:bg-card/40 transition-colors duration-300">
+        {/* Section 3: Projects (Shade 2) */}
+        <div className="bg-muted/30 dark:bg-card/40 border-y border-border/40 transition-colors duration-300">
           <Projects />
         </div>
         
+        {/* Section 4: CodingDashboard (Shade 1) */}
         <Suspense fallback={<div className="py-24" />}>
           <CodingDashboard />
         </Suspense>
         
-        <OpenSource />
-        
-        <div className="bg-muted/30 dark:bg-card/40 transition-colors duration-300">
-          <FAQ />
+        {/* Section 5: OpenSource (Shade 2) */}
+        <div className="bg-muted/30 dark:bg-card/40 border-y border-border/40 transition-colors duration-300">
+          <OpenSource />
         </div>
         
-        <AnalogSide />
+        {/* Section 6: FAQ (Shade 1) */}
+        <FAQ />
         
+        {/* Section 7: AnalogSide (Shade 2) */}
+        <div className="bg-muted/30 dark:bg-card/40 border-y border-border/40 transition-colors duration-300">
+          <AnalogSide />
+        </div>
+        
+        {/* Section 8: Contact (Shade 1) */}
         <Contact />
       </main>
 {/* FIXED FOOTER */}
