@@ -58,8 +58,8 @@ COMPETITIVE PROGRAMMING & ACHIEVEMENTS:
 - Meta Hacker Cup 2025: Advanced to Round 2, securing Global Rank 3172 (AIR 875).
 - Flipkart GRiD 2025 and 2026: Semi-Finalist in 7.0 (2025) and 8.0 (2026), placing in top 0.5% among 170K+ participants.
 - Adobe University Hackathon 2026: Shortlisted for Round 2 (Top 1.5%) from 301K+ global applicants.
-- LeetCode Knight (Top 1.5%): Peak rating 1982; Global Rank 315 in Biweekly Contest 172.
-- Competitive Profiles: Specialist on Codeforces (Peak 1418) | 3-Star on CodeChef (Peak 1661).
+- LeetCode Knight (Top 2.6%): Peak rating 2003; Global Rank 315 in Biweekly Contest 172.
+- Competitive Profiles: Specialist on Codeforces (Peak 1461) | 3-Star on CodeChef (Peak 1661).
 - Algorithmic Proficiency: Solved 1,500+ complex algorithmic problems across various platforms.
 - CodeStorms (GDG): Secured 3rd position in college-wide coding competition by GDG On Campus, NIT Jalandhar.
 - Leadership: Competitive Programming Lead at Google Developer Group NIT Jalandhar, Group Representative for CSE, and previously Co-Lead of LADC.
@@ -91,11 +91,16 @@ const fallbackResponses: Record<string, string> = {
   "background": "I am from Ludhiana, Punjab, born in August 2005.",
   "projects": "My main projects include SwiftCache (160,000+ QPS concurrent LRU cache at p99 < 0.24ms), Interlock (distributed real-time messaging with Redis Pub/Sub clustering and 35ms p95 latency), and RetainOps / ContextIQ.",
   "contact": "You can reach me at aditya.chauhan.nitj.ac@gmail.com, or connect on LinkedIn (linkedin.com/in/aditya-chauhan-nitj).",
-  "achievements": "I am a LeetCode Knight (peak 1982, top 1.5%), Codeforces Specialist (peak 1418), and CodeChef 3-star (peak 1661) with 1,500+ DSA problems solved. I also advanced to Round 2 in Meta Hacker Cup 2025 (Global Rank 3172, AIR 875) and was a Semi-Finalist in Flipkart GRiD 7.0 & 8.0 (top 0.5% of 170k+).",
+  "achievements": "I am a LeetCode Knight (peak 2003, top 2.6%), Codeforces Specialist (peak 1461), and CodeChef 3-star (peak 1661) with 1,500+ DSA problems solved. I also advanced to Round 2 in Meta Hacker Cup 2025 (Global Rank 3172, AIR 875) and was a Semi-Finalist in Flipkart GRiD 7.0 & 8.0 (top 0.5% of 170k+).",
   "leadership": "I am the Competitive Programming Lead for Google Developer Group NIT Jalandhar, Group Representative for CSE, and previously Co-Led the Literacy and Debating Club.",
   "availability": "I am open to full-time roles starting mid-2027, and open to internship/collaboration opportunities before then.",
   "text": "You can reach me through my website (adityac.codes), LinkedIn (linkedin.com/in/aditya-chauhan-nitj), or email (aditya.chauhan.nitj.ac@gmail.com).",
   "contact information": "Feel free to reach out via email at aditya.chauhan.nitj.ac@gmail.com or connect with me on LinkedIn.",
+  "art": "Outside of engineering and algorithms, I do traditional pencil and ink sketching—especially anime and character studies like Ash Ketchum from Pokémon! You can explore my hand-drawn artwork in 'The Analog Side' section of my portfolio.",
+  "drawings": "Outside of engineering and algorithms, I do traditional pencil and ink sketching—especially anime and character studies like Ash Ketchum from Pokémon! You can explore my hand-drawn artwork in 'The Analog Side' section of my portfolio.",
+  "sketches": "Outside of engineering and algorithms, I do traditional pencil and ink sketching—especially anime and character studies like Ash Ketchum from Pokémon! You can explore my hand-drawn artwork in 'The Analog Side' section of my portfolio.",
+  "hobbies": "When I'm not writing low-level C++ or competing in DSA contests, I spend my time on traditional hand-drawing (see 'The Analog Side' section), playing badminton, and mentoring juniors at GDG NIT Jalandhar.",
+  "analog side": "The Analog Side is a dedicated section on my website showcasing my offline passions and hand-drawn sketches (including Ash-Greninja and Ash Ketchum character studies) created with pen and graphite pencil.",
 };
 
 function getFallbackResponse(query: string): string | null {

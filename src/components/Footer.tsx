@@ -156,6 +156,12 @@ const Footer = () => {
                   FAQs
                 </a>
                 <a
+                  href="#analog-side"
+                  className="text-[13px] sm:text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white leading-none flex items-center"
+                >
+                  The Analog Side
+                </a>
+                <a
                   href="#contact"
                   className="text-[13px] sm:text-sm text-neutral-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white leading-none flex items-center"
                 >

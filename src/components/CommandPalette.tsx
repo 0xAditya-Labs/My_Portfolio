@@ -10,7 +10,7 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import MobileCommandDialog from "@/components/MobileCommandDialog";
-import { Briefcase, User, Mail, FileText, Github, Linkedin, Download, Moon, Sun, Sparkles, Loader } from "lucide-react";
+import { Briefcase, User, Mail, FileText, Github, Linkedin, Download, Moon, Sun, Sparkles, Loader, Palette } from "lucide-react";
 import { useTheme } from "next-themes";
 import { isHardcodedQuery } from "@/lib/aiSearch";
 
@@ -85,6 +85,14 @@ const CommandPalette = () => {
       category: "project" as const,
       icon: <Briefcase className="mr-2 h-4 w-4" />,
       action: () => window.open("https://github.com/0xAditya-Labs/Airline-Reservation-System-C-OOP-", "_blank")
+    },
+    {
+      id: "analog-side",
+      title: "The Analog Side",
+      description: "Traditional hand sketches, drawings of Ash Ketchum (Pokémon), and offline creative hobbies",
+      category: "project" as const,
+      icon: <Palette className="mr-2 h-4 w-4 text-purple-400" />,
+      action: () => handleNavigation("#analog-side")
     }
   ];
 
@@ -195,6 +203,7 @@ const CommandPalette = () => {
     return () => {
       clearTimeout(timer);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
 
   const handleNavigation = (href: string) => {
@@ -208,13 +217,11 @@ const CommandPalette = () => {
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 640px)");
-    const onChange = (e: MediaQueryListEvent | MediaQueryList) => setIsMobile(e.matches);
-    onChange(mq);
-    if (mq.addEventListener) mq.addEventListener("change", onChange as any);
-    else mq.addListener(onChange as any);
+    const onChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    setIsMobile(mq.matches);
+    mq.addEventListener("change", onChange);
     return () => {
-      if (mq.removeEventListener) mq.removeEventListener("change", onChange as any);
-      else mq.removeListener(onChange as any);
+      mq.removeEventListener("change", onChange);
     };
   }, []);
 
@@ -341,6 +348,11 @@ const CommandPalette = () => {
           <CommandItem onSelect={() => handleNavigation("#projects")}>
             <Briefcase className="mr-2 h-4 w-4" />
             <span>View Projects</span>
+          </CommandItem>
+          
+          <CommandItem onSelect={() => handleNavigation("#analog-side")}>
+            <Palette className="mr-2 h-4 w-4 text-purple-400" />
+            <span>The Analog Side (Sketches & Hobbies)</span>
           </CommandItem>
           
           <CommandItem onSelect={() => handleNavigation("#contact")}>

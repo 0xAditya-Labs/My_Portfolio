@@ -8,6 +8,7 @@ import Projects from "@/components/Projects";
 const CodingDashboard = lazy(() => import("@/components/CodingDashboard"));
 import OpenSource from "@/components/OpenSource";
 import FAQ from "@/components/FAQ";
+import AnalogSide from "@/components/AnalogSide";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -103,6 +104,8 @@ const Index = () => {
           <FAQ />
         </div>
         
+        <AnalogSide />
+        
         <Contact />
         <Footer />
       </div>
@@ -143,6 +146,8 @@ const Index = () => {
         <div className="bg-muted/30 dark:bg-card/40 transition-colors duration-300">
           <FAQ />
         </div>
+        
+        <AnalogSide />
         
         <Contact />
       </main>

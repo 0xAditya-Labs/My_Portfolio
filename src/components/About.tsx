@@ -1,7 +1,88 @@
+import { useState, useEffect } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { fetchCodingJourneyStats } from "@/lib/codingStats";
 
 const About = () => {
   const { ref: aboutRef, isVisible: aboutVisible } = useScrollAnimation();
+
+  // Dynamic peak stats initialized with latest verified values to prevent layout shift
+  const [stats, setStats] = useState({
+    lcTitle: "Knight",
+    lcPeak: 2003,
+    lcTop: "2.6",
+    cfRank: "Specialist",
+    cfPeak: 1461,
+    ccStars: "3-star",
+    totalSolved: "1,500+"
+  });
+
+  useEffect(() => {
+    fetchCodingJourneyStats()
+      .then((data) => {
+        if (!data) return;
+
+        // 1. LeetCode peak rating, title and top percentile
+        const lcPeak = data.leetcode?.maxRating ?? 2003;
+        const lcTitle =
+          lcPeak >= 2150 ? "Guardian" :
+          lcPeak >= 1850 ? "Knight" : "Top Solver";
+        const topPct = data.leetcode?.topPercentage;
+        const lcTop =
+          topPct != null
+            ? (topPct % 1 !== 0 ? topPct.toFixed(1) : topPct.toString())
+            : "2.6";
+
+        // 2. Codeforces peak rating and rank title
+        const cfPeak = data.codeforces?.maxRating ?? 1461;
+        let cfRank = data.codeforces?.maxRankTitle;
+        if (!cfRank) {
+          if (cfPeak >= 2400) cfRank = "Grandmaster";
+          else if (cfPeak >= 2100) cfRank = "Master";
+          else if (cfPeak >= 1900) cfRank = "Candidate Master";
+          else if (cfPeak >= 1600) cfRank = "Expert";
+          else if (cfPeak >= 1400) cfRank = "Specialist";
+          else if (cfPeak >= 1200) cfRank = "Pupil";
+          else cfRank = "Newbie";
+        } else {
+          cfRank = cfRank.charAt(0).toUpperCase() + cfRank.slice(1);
+        }
+
+        // 3. CodeChef stars
+        const ccPeak = data.codechef?.maxRating ?? 1661;
+        let ccStars = "";
+        if (data.codechef?.maxStars) {
+          const count = (data.codechef.maxStars.match(/★/g) || []).length;
+          if (count > 0) {
+            ccStars = `${count}-star`;
+          }
+        }
+        if (!ccStars) {
+          if (ccPeak >= 2500) ccStars = "7-star";
+          else if (ccPeak >= 2200) ccStars = "6-star";
+          else if (ccPeak >= 2000) ccStars = "5-star";
+          else if (ccPeak >= 1800) ccStars = "4-star";
+          else if (ccPeak >= 1600) ccStars = "3-star";
+          else if (ccPeak >= 1400) ccStars = "2-star";
+          else ccStars = "1-star";
+        }
+
+        // 4. Total Solved across all platforms
+        const total = data.totalSolvedAllPlatforms ?? 1522;
+        const roundedSolved = Math.floor(total / 100) * 100;
+        const totalSolved = `${roundedSolved.toLocaleString()}+`;
+
+        setStats({
+          lcTitle,
+          lcPeak,
+          lcTop,
+          cfRank,
+          cfPeak,
+          ccStars,
+          totalSolved
+        });
+      })
+      .catch((err) => console.error("Failed to load coding stats for About section", err));
+  }, []);
 
   const skills = {
     languages: ["C++", "Python", "JavaScript", "SQL", "C"],
@@ -44,7 +125,7 @@ const About = () => {
               </div>
 
               <p className="text-sm md:text-base">
-                Obsessed with algorithmic rigor: solved over <span className="font-semibold text-foreground">1,500+ DSA problems</span>, achieving <strong className="text-foreground font-semibold">Knight on LeetCode</strong> (1982 peak, Top 2.9%ile), <strong className="text-foreground font-bold">Codeforces Specialist</strong> (1461 peak), and <strong className="text-foreground font-semibold">CodeChef 3-star</strong>. Qualified for <strong className="text-foreground font-semibold">Meta Hacker Cup Round 2</strong> and twice a national <strong className="text-foreground font-semibold">Flipkart GRiD Semi-Finalist</strong> (Top 0.5% of 170k+).
+                Obsessed with algorithmic rigor: solved over <span className="font-semibold text-foreground">{stats.totalSolved} DSA problems</span>, achieving <strong className="text-foreground font-semibold">{stats.lcTitle} on LeetCode</strong> ({stats.lcPeak} peak, Top {stats.lcTop}%ile), <strong className="text-foreground font-bold">Codeforces {stats.cfRank}</strong> ({stats.cfPeak} peak), and <strong className="text-foreground font-semibold">CodeChef {stats.ccStars}</strong>. Qualified for <strong className="text-foreground font-semibold">Meta Hacker Cup Round 2</strong> and twice a national <strong className="text-foreground font-semibold">Flipkart GRiD Semi-Finalist</strong> (Top 0.5% of 170k+).
               </p>
 
               <p className="text-sm md:text-base">

@@ -245,7 +245,21 @@ const ProfileLink = ({ url, label }: { url: string; label: string }) => (
 );
 
 // Remove Global Rank from tooltip to focus on contest, date, rating and change.
-const ChartTooltip = ({ active, payload }: any) => {
+interface ChartTooltipPayload {
+  payload: {
+    contestName?: string;
+    fullDate?: string;
+    rating?: number;
+    ratingChange: number;
+  };
+}
+
+interface ChartTooltipProps {
+  active?: boolean;
+  payload?: ChartTooltipPayload[];
+}
+
+const ChartTooltip = ({ active, payload }: ChartTooltipProps) => {
   if (!active || !payload?.length) return null;
   const data = payload[0].payload;
   const isPositive = data.ratingChange >= 0;
@@ -333,7 +347,7 @@ const CodingDashboard = () => {
 
   // â”€â”€ Heatmap tooltip (ported, preserved logic) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   useEffect(() => {
-    let container = heatmapRef.current;
+    const container = heatmapRef.current;
     if (!container) return;
 
     const adjust = (opts?: { retries?: number; anchorX?: number; anchorY?: number }) => {
@@ -362,7 +376,9 @@ const CodingDashboard = () => {
 
     const resolveCellFromEvent = (e: PointerEvent) => {
       try {
-        const cp: any[] = typeof (e as any).composedPath === "function" ? (e as any).composedPath() : [];
+        const cp = (typeof (e as unknown as { composedPath?: () => EventTarget[] }).composedPath === "function")
+          ? (e as unknown as { composedPath: () => EventTarget[] }).composedPath()
+          : [];
         for (const el of cp || []) {
           if (!el || !(el as Element).getAttribute) continue;
           if ((el as Element).hasAttribute && (el as Element).hasAttribute("data-date")) return el as Element;
@@ -477,8 +493,21 @@ const CodingDashboard = () => {
     return null;
   })();
 
-  const [lcHovered, setLcHovered] = useState<any>(null);
-  const [cfHovered, setCfHovered] = useState<any>(null);
+  interface HoveredPoint {
+    contestName?: string;
+    rating?: number;
+    ratingChange?: number;
+    fullDate?: string;
+    date?: string;
+  }
+
+  interface ChartMouseEvent {
+    isTooltipActive?: boolean;
+    activePayload?: Array<{ payload: HoveredPoint }>;
+  }
+
+  const [lcHovered, setLcHovered] = useState<HoveredPoint | null>(null);
+  const [cfHovered, setCfHovered] = useState<HoveredPoint | null>(null);
 
   const activeDaysCount = stats?.totalActiveDays || 0;
 
@@ -515,24 +544,22 @@ const CodingDashboard = () => {
   // â”€â”€ Render â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   return (
     <section
-      className="py-16 px-6 bg-gradient-to-b from-background to-muted/20"
+      className="py-12 lg:py-14 px-6 bg-transparent"
       id="coding-dashboard"
       style={{ opacity: loaded ? 1 : 0, transition: "opacity 0.4s ease" }}
     >
       <div className="max-w-7xl mx-auto">
 
-        {/* â”€â”€ Section Header â”€â”€ */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-              Coding Journey
-            </span>
+        {/* Section Header */}
+        <div className="text-center mb-8">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-3 text-foreground">
+            Algorithmic Performance
           </h2>
-          <p className="text-muted-foreground text-lg mb-6">
-            Daily consistency and continuous learning
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto mb-5 leading-relaxed">
+            Verified contest ratings, real-time performance curves, and problem-solving metrics.
           </p>
           {/* Platform profile links */}
-          <div className="flex flex-wrap justify-center gap-3 mt-4">
+          <div className="flex flex-wrap justify-center gap-2 mt-2">
             {[
               { name: "LeetCode", url: `https://leetcode.com/${LC_USER}`, user: LC_USER, icon: "/icons/LeetCode_logo_black.webp", hoverBorder: "hover:border-[#5e6ad2]/50" },
               { name: "Codeforces", url: `https://codeforces.com/profile/${CF_USER}`, user: CF_USER, icon: "/icons/codeforces.webp", hoverBorder: "hover:border-[#e87a36]/50" },
@@ -547,7 +574,7 @@ const CodingDashboard = () => {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-3 px-4 py-2 rounded-xl border border-border/60 bg-card hover:shadow-lg transition-all duration-300 text-sm font-medium text-foreground hover:-translate-y-1 ${hoverBorder}`}
+                  className={`inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-lg border border-border/60 bg-card hover:border-foreground/30 hover:shadow-sm transition-all duration-200 text-xs sm:text-sm font-medium text-foreground hover:-translate-y-0.5 ${hoverBorder}`}
                 >
                   <div className="p-1 rounded bg-foreground/5 dark:bg-foreground/10 flex-shrink-0 border border-border/40 flex items-center justify-center">
                     {IconComponent ? (
@@ -557,7 +584,7 @@ const CodingDashboard = () => {
                     )}
                   </div>
                   <div className="flex flex-col items-start leading-none">
-                    <span className="mb-0.5 font-bold">{name}</span>
+                    <span className="mb-0.5 font-semibold text-xs sm:text-sm">{name}</span>
                     <span className="text-[10px] text-muted-foreground font-normal">@{user}</span>
                   </div>
                 </a>
@@ -566,7 +593,7 @@ const CodingDashboard = () => {
           </div>
         </div>
 
-        {/* â”€â”€ Headline Stat Row â”€â”€ */}
+        {/* Headline Stat Row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8" ref={statsRowRef}>
 
           {/* LeetCode max rating */}
@@ -587,7 +614,7 @@ const CodingDashboard = () => {
               </div>
               <div className="w-5 h-0.5 bg-[#5e6ad2] mb-3 rounded-full opacity-80 transition-all duration-300 group-hover:w-[40%]" />
               <div className="cj-stat-value text-lc tabular-nums" style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700 }}>
-                {stats?.leetcode?.maxRating != null ? lcMaxRating : "â€”"}
+                {stats?.leetcode?.maxRating != null ? lcMaxRating : "—"}
               </div>
               {stats?.leetcode?.topPercentage != null && (
                 <p className="cj-stat-sub">Top {stats.leetcode.topPercentage}%</p>
@@ -660,8 +687,8 @@ const CodingDashboard = () => {
           </Card>
         </div>
 
-        {/* ── Rating Trend Charts ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 items-stretch">
+        {/* Rating Trend Charts */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 items-stretch">
 
           {/* LeetCode Rating History */}
           <Card className="cj-chart-card flex flex-col h-full">
@@ -684,11 +711,11 @@ const CodingDashboard = () => {
             </CardHeader>
             <CardContent>
               {lcChartData.length > 0 ? (
-                <ResponsiveContainer width="100%" height={220}>
+                <ResponsiveContainer width="100%" height={195}>
                   <AreaChart
                     data={lcChartData}
-                    margin={{ left: 0, right: 16, top: 8, bottom: 24 }}
-                    onMouseMove={(e: any) => {
+                    margin={{ left: 0, right: 12, top: 6, bottom: 12 }}
+                    onMouseMove={(e: ChartMouseEvent) => {
                       if (e.isTooltipActive && e.activePayload) {
                         setLcHovered(e.activePayload[0].payload);
                       } else {
@@ -699,7 +726,7 @@ const CodingDashboard = () => {
                   >
                     <defs>
                       <linearGradient id="colorLc" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#5e6ad2" stopOpacity={0.3} />
+                        <stop offset="5%" stopColor="#5e6ad2" stopOpacity={0.25} />
                         <stop offset="95%" stopColor="#5e6ad2" stopOpacity={0} />
                       </linearGradient>
                     </defs>
@@ -737,7 +764,7 @@ const CodingDashboard = () => {
                   </AreaChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="h-[220px] flex items-center justify-center text-muted-foreground text-sm">
+                <div className="h-[195px] flex items-center justify-center text-muted-foreground text-sm">
                   No data available
                 </div>
               )}
@@ -765,11 +792,11 @@ const CodingDashboard = () => {
             </CardHeader>
             <CardContent>
               {cfChartData.length > 0 ? (
-                <ResponsiveContainer width="100%" height={220}>
+                <ResponsiveContainer width="100%" height={195}>
                   <AreaChart
                     data={cfChartData}
-                    margin={{ left: 0, right: 16, top: 8, bottom: 24 }}
-                    onMouseMove={(e: any) => {
+                    margin={{ left: 0, right: 12, top: 6, bottom: 12 }}
+                    onMouseMove={(e: ChartMouseEvent) => {
                       if (e.isTooltipActive && e.activePayload) {
                         setCfHovered(e.activePayload[0].payload);
                       } else {
@@ -780,7 +807,7 @@ const CodingDashboard = () => {
                   >
                     <defs>
                       <linearGradient id="colorCf" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#e87a36" stopOpacity={0.3} />
+                        <stop offset="5%" stopColor="#e87a36" stopOpacity={0.25} />
                         <stop offset="95%" stopColor="#e87a36" stopOpacity={0} />
                       </linearGradient>
                     </defs>
@@ -818,7 +845,7 @@ const CodingDashboard = () => {
                   </AreaChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="h-[220px] flex items-center justify-center text-muted-foreground text-sm">
+                <div className="h-[195px] flex items-center justify-center text-muted-foreground text-sm">
                   No data available
                 </div>
               )}
@@ -826,9 +853,9 @@ const CodingDashboard = () => {
           </Card>
         </div>
 
-        {/* ── Difficulty Breakdown ── */}
+        {/* Difficulty Breakdown */}
         {donutData.length > 0 && (
-          <div className="mb-8">
+          <div className="mb-6">
             <Card className="cj-chart-card">
               <CardHeader className="pb-2 flex flex-row items-center justify-between">
                 <CardTitle className="flex items-center gap-2 text-base">
@@ -840,8 +867,8 @@ const CodingDashboard = () => {
                   Active Days
                 </div>
               </CardHeader>
-              <CardContent className="pt-6">
-                <div className="flex flex-col gap-6 w-full pb-4">
+              <CardContent className="pt-4 pb-4">
+                <div className="flex flex-col gap-4 w-full">
                   {/* Metrics Row */}
                   <div className="flex items-center justify-between flex-wrap gap-4">
                     <div className="flex flex-col">
@@ -862,7 +889,7 @@ const CodingDashboard = () => {
                   </div>
 
                   {/* Horizontal Progress Bar */}
-                  <div className="h-4 w-full bg-muted/50 rounded-full overflow-hidden flex gap-0.5">
+                  <div className="h-3 w-full bg-muted/50 rounded-full overflow-hidden flex gap-0.5">
                     {donutData.map((item, i) => {
                       const total = lc?.totalSolved || 1;
                       const width = `${(item.value / total) * 100}%`;
@@ -883,8 +910,8 @@ const CodingDashboard = () => {
           </div>
         )}
 
-        {/* â”€â”€ Notable Achievements â”€â”€ */}
-        <div className="mb-8">
+        {/* Notable Achievements */}
+        <div className="mb-6">
           <Card className="cj-chart-card">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center gap-2 text-base">
@@ -1031,7 +1058,7 @@ const CodingDashboard = () => {
                       ["data-date"]: value.date,
                       ["data-count"]: String(c),
                       ["data-title"]: `${c} ${plural} on ${formatted}`,
-                    } as any;
+                    } as unknown as Record<string, string>;
                   }}
                   showWeekdayLabels
                 />
@@ -1049,9 +1076,9 @@ const CodingDashboard = () => {
           </CardContent>
         </Card>
 
-        {/* â”€â”€ Status Footer â”€â”€ */}
+        {/* Status Footer */}
         {(stats?.codechef || stats?.gfg) && (
-          <div className="flex flex-col items-center justify-center gap-1.5 text-center mt-12 text-[13.5px] leading-relaxed text-[#4B5563] dark:text-[#9CA3AF] font-normal">
+          <div className="flex flex-col items-center justify-center gap-1 text-center mt-6 text-xs sm:text-[13px] leading-relaxed text-[#4B5563] dark:text-[#9CA3AF] font-normal">
             <div className="flex items-center justify-center gap-2 flex-wrap">
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#22C55E] animate-pulse flex-shrink-0" />
               <span>
@@ -1115,7 +1142,7 @@ const CodingDashboard = () => {
         </div>
       )}
 
-      {/* â”€â”€ Scoped styles â”€â”€ */}
+      {/* Scoped styles */}
       <style>{`
         /* Stat cards */
         .cj-stat-card {
@@ -1164,17 +1191,20 @@ const CodingDashboard = () => {
 
         /* Chart cards */
         .cj-chart-card {
-          background-color: hsl(var(--card) / 0.85);
-          border-color: hsl(var(--border) / 0.3);
+          background-color: hsl(var(--card));
+          border-color: hsl(var(--border) / 0.5);
+          border-radius: 1rem;
           transform: translateZ(0);
-          transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+          transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
         .cj-chart-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.08);
+          border-color: hsl(var(--foreground) / 0.3);
         }
         .dark .cj-chart-card:hover {
-          box-shadow: 0 12px 25px -5px rgba(255, 255, 255, 0.05), 0 8px 10px -6px rgba(255, 255, 255, 0.02);
+          box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.4);
+          border-color: hsl(var(--foreground) / 0.4);
         }
 
         /* Chart tooltip */

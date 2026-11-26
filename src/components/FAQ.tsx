@@ -40,11 +40,14 @@ const FAQ = () => {
   return (
     <section id="faq" ref={faqRef} className="pt-16 pb-24 bg-transparent">
       <div className="max-w-4xl mx-auto px-6">
-        <div className={`text-center mb-16 ${faqVisible ? 'scroll-animate' : ''}`}>
-          <p className="text-sm uppercase tracking-wider text-muted-foreground mb-4">
-            Questions & Answers
+        <div className={`text-center mb-12 ${faqVisible ? 'scroll-animate' : ''}`}>
+          <p className="text-sm uppercase tracking-wider text-muted-foreground mb-3">
+            How I Build & Think
           </p>
-          <h2 className="text-5xl font-bold">Frequently Asked Questions</h2>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-3 text-foreground">Engineering Principles & Philosophy</h2>
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+            Core convictions on systems engineering, architectural tradeoffs, and practical execution.
+          </p>
         </div>
 
         <Accordion type="single" collapsible className="space-y-4">
